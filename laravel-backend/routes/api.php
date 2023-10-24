@@ -23,6 +23,8 @@ Route::get('/categories', [CategoriesController::class,'index']);
 Route::post('/novaComanda', [ComandesController::class,'store']);
 
 Route::get('/comandes', [ComandesController::class,'index']);
+Route::get('/comandes/{id}', [ComandesController::class,'show']);
+Route::get('/comandes/user/{userId}', [ComandesController::class,'search']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
