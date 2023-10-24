@@ -14,6 +14,12 @@ class ComandesController extends Controller
     {
         $comandes = Comanda::with('llibres')->get();
 
+        $comandes->each(function ($comanda) {
+            $comanda->llibres->each(function ($llibre) {
+                $llibre->quantitat = $llibre->pivot->quantitat;
+            });
+        });
+
         return response()->json($comandes);
     }
 
@@ -55,7 +61,20 @@ class ComandesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comanda = Comanda::with('llibres')->find($id);
+
+        if(!$comanda) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Comanda no trobada',
+            ], 404);
+        }
+
+        $comanda->llibres->each(function ($llibre) {
+            $llibre->quantitat = $llibre->pivot->quantitat;
+        });
+
+        return response()->json($comanda);
     }
 
     /**
@@ -72,5 +91,27 @@ class ComandesController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Busca la comanda per a usuari
+     */
+    public function search(string $userId) {
+        $comandes = Comanda::with('llibres')->where('user_id','=', $userId)->get();
+
+        if ($comandes->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'El usuari no te comandes actives',
+            ], 404);
+        }
+
+        $comandes->each(function ($comanda) {
+            $comanda->llibres->each(function ($llibre) {
+                $llibre->quantitat = $llibre->pivot->quantitat;
+            });
+        });
+
+        return $comandes;
     }
 }
