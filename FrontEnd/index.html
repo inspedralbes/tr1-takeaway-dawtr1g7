@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Galaxia Gutenberg</title>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header">
+                <h1>Galaxia Gutenberg</h1>
+            </div>
+        </header>
+
+        <div id="container">
+            <div id="landing">
+            </div>
+
+            <div id="botiga">
+                <div id="categorias">
+                </div>
+                <div id="previewCarrito">
+                </div>
+                <div id="productes">
+                </div>
+            </div>
+
+            <div id="showProducte">
+            </div>
+
+            <div id="validacio" v-if="mostrar('validacio')">
+                <h2>Revisio</h2>
+                <label for="nomValidacio">Nom</label><br>
+                <input type="text" id="nomValidacio" name="nomValidacio"><br>
+                <label for="emailValidacio">Email</label><br>
+                <input type="email" id="emailValidacio" name="emailValidacio" placeholder="exemple@mail.com"><br>
+                <label for="telValidacio">Numero de telefon:</label><br>
+                <input type="tel" id="telValidacio" name="telValidacio" placeholder="123456789" maxlength="9" pattern="[0-9]{9}"><br>
+
+                <h2>Resum compra</h2>
+                <table>
+                    <tr>
+                      <th>Llibre</th>
+                      <th>Preu</th>
+                    </tr>
+                    <tr v-for="(LlibreCarrito,index) in carrito">
+                      <td>{{ llibres[LlibreCarrito.id].titol }}</td>
+                      <td>{{ LlibreCarrito.preu }}€</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL</strong></td>
+                        <td><strong>{{ reutrnTotal() }}€</strong></td>
+                    </tr>
+                  </table>
+
+                <button @click="cambiarDiv('estat')">CONFIRMAR</button>
+            </div>
+
+            <div v-if="mostrar('estat')" id="estat">
+                <button @click="cambiarDiv('validacio')">CONFIRMAR Estat</button>
+            </div>
+        </div>
+
+        <footer>
+            <hr>
+            <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="js/functions.js" type="module"></script>
+</body>
+</html>
