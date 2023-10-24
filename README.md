@@ -1,25 +1,24 @@
-# Projectes finals curs 2022 2023
+# Proyecto TR1 Curso 2023-2024
 
 ## Galaxia Gutenberg
 
-Galaxia Gutenberg és un projecte dissenyat com una activitat avaluable de segon curs del CFGS en Desenvolupament d'Aplicacions Web. El projecte consisteix en el desenvolupament d’un lloc web de comerç electrònic on l’usuari pot demanar llibres per posteriorment passar per una botiga a recollir-los (takeaway).
+**Galaxia Gutenberg** es un proyecto diseñado como una actividad evaluativa del segundo curso del Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web. El proyecto consiste en el desarrollo de un sitio web de comercio electrónico donde los usuarios pueden solicitar libros para luego recogerlos en una tienda (modalidad de recogida en tienda, "takeaway").
 
-L’aplicació disposa d’una portada des d’on es pot accedir al catàleg de llibres a la venda però també a una part privada on s’administra l’estat de les comandes així com eliminar i incloure nous llibres al catàleg.
+La aplicación cuenta con una página de inicio desde la cual se puede acceder al catálogo de libros disponibles para la venta. También ofrece una sección privada donde se administra el estado de los pedidos y se pueden eliminar e incluir nuevos libros en el catálogo.
 
-Mentre es navega pel catàleg es mostren tots els llibres disponibles en una graella de sis en sis. Tot i així, l’usuari té la possibilitat de filtrar la seva cerca per categories amb un botó que mostra una llista d’aquestes o amb una barra de buscador que filtra per títol, autor, categoría, etc... Quan es punxa en un producte es mostra una informació més detallada d’aquest així com la possibilitat d’afegir-lo a la cistella. L’usuari pot veure en qualsevol moment i de manera actualitzada els productes que ha afegit a la cistella i passar a la pantalla de pagament.
+Mientras se navega por el catálogo, se muestran todos los libros disponibles en una cuadrícula de seis en seis. Sin embargo, los usuarios tienen la posibilidad de filtrar su búsqueda por categorías utilizando un botón que muestra una lista de estas categorías o mediante una barra de búsqueda que permite filtrar por título, autor, categoría, etc. Al hacer clic en un producto, se muestra información detallada del mismo y la opción de agregarlo al carrito de compras. Los usuarios pueden ver en cualquier momento y de manera actualizada los productos que han agregado al carrito y proceder a la pantalla de pago.
 
-La pantalla de pagament conté un altre cop un resum de la comanda així com un formulari per recollir les dades del client. Un cop realitzat el pagament, la pantalla mostra un missatge que confirma el correcte enviament de la comanda i l’estat i el contingut d’aquesta.
+La pantalla de pago incluye un resumen del pedido y un formulario para recopilar los datos del cliente. Una vez realizado el pago, la pantalla muestra un mensaje de confirmación del envío correcto del pedido, junto con su estado y contenido.
 
-* Autors: GRUP 7
-    - Gala Del Águila Redó (coordinadora de Desplegament)
-    - Ivan Barbero Santisteban (coordinador de HTML, CSS i Javascript)
-    - Santiago Pujol Saumell (coordinador de PHP i SQL)
-    - David Salvador Sosa (coordinador de HTML, CSS i Javascript)
-    - Álvaro Kumenius Romero (coordinador de PHP i SQL)
+**Autores: GRUPO 7**
+- Gala Del Águila Redó (Coordinadora de Despliegue)
+- Ivan Barbero Santisteban (Coordinador de HTML, CSS y Javascript)
+- Santiago Pujol Saumell (Coordinador de PHP y SQL)
+- David Salvador Sosa (Coordinador de HTML, CSS y Javascript)
+- Álvaro Kumenius Romero (Coordinador de PHP y SQL)
 
-* URL del prototip de penpod (penseu a deixar el prototip públic)
-* URL del taiga.io
-* URL de preproducció 
-* URL de producció (amb un domini registrat)
-
-
+**Enlaces:**
+- [Prototipo en Penpot (asegúrate de dejar el prototipo público)](https://design.penpot.app/#/view/bc104529-972b-8028-8003-522fc01f9f96?page-id=bc104529-972b-8028-8003-522fc01f9f97&section=interactions&frame-id=08c53b94-d879-809b-8003-522fd66e4565&index=0&share-id=bc104529-972b-8028-8003-536571d1b86e)
+- [Taiga.io](https://tree.taiga.io/project/santipu03-tr1g7)
+- [URL de Preproducción](https://galaxiagutenberg.daw.inspedralbes.cat/tr1-takeaway-dawtr1g7-preproduccio)
+- [URL de Producción (con dominio registrado)](https://galaxiagutenberg.daw.inspedralbes.cat/tr1-takeaway-dawtr1g7-produccio)
