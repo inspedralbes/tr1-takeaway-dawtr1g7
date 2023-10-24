@@ -17,6 +17,6 @@ class Llibre extends Model
 
     public function comandes()
     {
-        return $this->belongsToMany(Comanda::class);
+        return $this->belongsToMany(Comanda::class, 'llibre_comanda')->withPivot('quantitat', 'preu');
     }
 }
