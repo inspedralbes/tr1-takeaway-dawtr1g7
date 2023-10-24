@@ -1,0 +1,13 @@
+:root{
+--black:#0000;    
+}
+body{
+    margin: 0;
+    padding: 0;
+
+}
+
+.header{
+    background-color: var(--black);
+}
+

@@ -2,7 +2,6 @@
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Galaxia Gutenberg</title>
@@ -14,21 +13,65 @@
                 <h1>Galaxia Gutenberg</h1>
             </div>
         </header>
-
         <div id="container">
-            <div id="landing">
+            <div v-if="mostrar('landing')" id="landing">
+                <p>Esta es la landing page</p>
+                <button @click="cambiarDiv('botiga')">Ir a tienda</button>
+            </div>
+            <div id="botiga" v-if="mostrar('botiga')">
+                
+                <div id="categories" v-for="(category, index) in categories" :key="index">
+                    <p>{{category.nom}}</p>
+                </div>
+
+
+
+
+                <div id="previewCarrito" v-if="mostrar('previewCarrito')">
+                    <div>
+                        <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" style="width: 20px; height: 20px;">
+                    </div>
+                    <div >
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div v-for="(llibre, index) in llibres" @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')"id="productes" :key="index" style="border: solid 2px black;">
+                        <h5>{{llibre.titol}}</h5>
+                        <img :src="llibre.portada" style="width: 200px;height: 200px;">
+                        <p>{{llibre.preu}}€</p>
+                        
+                </div>
             </div>
 
-            <div id="botiga">
-                <div id="categorias">
+            <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
+                <img :src="getLlibreActual().portada" style="width: 200px;height: 200px;">
+                <div class="infoLlibre">
+                    <h5>{{ getLlibreActual().titol }}</h5>
+                    <p>{{ getLlibreActual().any }}</p>
+                    <p>{{ getLlibreActual().preu }}€</p>
                 </div>
-                <div id="previewCarrito">
-                </div>
-                <div id="productes">
-                </div>
-            </div>
 
-            <div id="showProducte">
+                <div class="llibreDescr">
+                    <p>{{ getLlibreActual().descripcio }}</p>
+                </div>
+
+                <div class="butonsSumaResta">
+                    <button @click="restar()">-</button>
+                    <input type="number" v-model="quantitat">
+                    <button @click="sumar()">+</button>
+                </div>
+
+                <div class="butonAfegirCarrito">
+                    <button @click="afegirLlibreCarrito()">Afegir Producte</button>
+                </div>
+                <div class="butonAfegir">
+                    <button @click="cambiarDiv('botiga')">Tornar enrere</button>
+                </div>
             </div>
 
             <div id="validacio" v-if="mostrar('validacio')">
@@ -63,7 +106,7 @@
                 <button @click="cambiarDiv('validacio')">CONFIRMAR Estat</button>
             </div>
         </div>
-
+        </div>
         <footer>
             <hr>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
