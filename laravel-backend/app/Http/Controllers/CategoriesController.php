@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
@@ -45,5 +46,13 @@ class CategoriesController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    // MÈTODES DE LA PART D'ADMINISTRACIÓ
+    public function adminIndex()
+    {
+        $categories = DB::table('categorias')->get();
+
+    return view('categories.index', ['categories' => $categories]);
     }
 }
