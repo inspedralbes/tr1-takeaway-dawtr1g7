@@ -30,7 +30,7 @@
 
             <div id="showProducte">
             </div>
-            
+
             <div id="validacio" v-if="mostrar('validacio')">
                 <h2>Revisio</h2>
                 <label for="nomValidacio">Nom</label><br>
@@ -43,12 +43,12 @@
                 <h2>Resum compra</h2>
                 <table>
                     <tr>
-                      <th>Producte</th>
+                      <th>Llibre</th>
                       <th>Preu</th>
                     </tr>
-                    <tr v-for="(producteCarrito,index) in carrito">
-                      <td>{{ producteCarrito.nom }}</td>
-                      <td>{{ producteCarrito.preu }}€</td>
+                    <tr v-for="(LlibreCarrito,index) in carrito">
+                      <td>{{ llibres[LlibreCarrito.id].titol }}</td>
+                      <td>{{ LlibreCarrito.preu }}€</td>
                     </tr>
                     <tr>
                         <td><strong>TOTAL</strong></td>
