@@ -12,7 +12,9 @@ class ComandesController extends Controller
      */
     public function index()
     {
-        return Comanda::all();
+        $comandes = Comanda::with('llibres')->get();
+
+        return response()->json($comandes);
     }
 
     /**
@@ -20,7 +22,32 @@ class ComandesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comanda = new Comanda();
+        $comanda->estat = 'En preparació';
+
+        $llibresComanda = $request->input('carrito');
+        $lineesComanda = [];
+
+        // Insertar valors a la taula llibre_comanda
+        if (is_array($llibresComanda) && count($llibresComanda) > 0) {
+            // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
+            foreach ($llibresComanda as $llibre) {
+                $lineesComanda[$llibre['id']] = [
+                    'quantitat' => $llibre['quantitat'],
+                    'preu'=> $llibre['preu'],
+                ];
+            }
+            $comanda->save();
+            $comanda->llibres()->attach($lineesComanda);
+            return response()->json($comanda);
+        }
+
+        // Si no s'a enviat ningun array, retorna error
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Validation failed',
+            'errors' => 'No hi han elements a la comanda!'
+        ], 422);
     }
 
     /**

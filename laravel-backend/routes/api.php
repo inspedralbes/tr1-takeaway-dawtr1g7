@@ -20,6 +20,8 @@ use App\Http\Controllers\ComandesController;
 // Public
 Route::get('/llibres', [LlibresController::class,'index']);
 Route::get('/categories', [CategoriesController::class,'index']);
+Route::post('/novaComanda', [ComandesController::class,'store']);
+
 Route::get('/comandes', [ComandesController::class,'index']);
 
 
