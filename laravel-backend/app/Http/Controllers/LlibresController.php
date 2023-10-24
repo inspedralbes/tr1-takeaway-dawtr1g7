@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Llibre;
+use Illuminate\Support\Facades\DB;
 
 class LlibresController extends Controller
 {
@@ -46,4 +47,13 @@ class LlibresController extends Controller
     {
         //
     }
+
+    // MÈTODES DE LA PART D'ADMINISTRACIÓ
+    public function adminIndex()
+    {
+        $llibres = DB::table('llibres')->get();
+
+    return view('llibres.index', ['llibres' => $llibres]);
+    }
+
 }
