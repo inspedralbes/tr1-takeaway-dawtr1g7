@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <title>Galaxia Gutenberg</title>
 </head>
@@ -11,7 +12,7 @@
 <body>
     <div id="app">
         <header>
-            <div class="header">
+            <div class="header" @click="cambiarDiv('landing')">
                 <h1>Galaxia Gutenberg</h1>
             </div>
         </header>
@@ -38,6 +39,7 @@
                         <div>Resum de la comanda</div>
                         <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
                             <div>{{ getLlibrePerId(itemCarrito.id).titol }}</div>
+                            <div>{{ itemCarrito.quantitat }}</div>
                             <div>{{ getLlibrePerId(itemCarrito.id).preu }}</div>
                         </div>
                         <div>El total de la compra es: {{ getPreuTotalCarrito() }} €</div>
@@ -66,9 +68,9 @@
                 </div>
 
                 <div class="butonsSumaResta">
-                    <button @click="restar()">-</button>
+                    <button @click="restarQuantitat()">-</button>
                     <input type="number" v-model="quantitat">
-                    <button @click="sumar()">+</button>
+                    <button @click="sumarQuantitat()">+</button>
                 </div>
 
                 <div class="butonAfegirCarrito">
@@ -93,14 +95,17 @@
                 <table>
                     <tr>
                         <th>Llibre</th>
+                        <th>Quantitat</th>
                         <th>Preu</th>
                     </tr>
                     <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
                         <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
+                        <td>{{ itemCarrito.quantitat }}</td>
                         <td>{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
                     </tr>
                     <tr>
                         <td>TOTAL</td>
+                        <td>{{ getQuantitatTotalCarrito() }}</td>
                         <td><strong>{{ getPreuTotalCarrito() }} €</strong></td>
                     </tr>
                 </table>

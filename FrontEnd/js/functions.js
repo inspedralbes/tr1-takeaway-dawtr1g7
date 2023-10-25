@@ -3,7 +3,6 @@ import { createApp } from 'http://unpkg.com/vue@3/dist/vue.esm-browser.js';
 createApp({
     data() {
         return {
-            buttonMostrar: true,
             botigaStatus: 'landing',
             llibres: [],
             categories: [],
@@ -13,25 +12,23 @@ createApp({
             previewCarrito: false
         }
     },
+
+    created() {
+        this.getLlibres()
+    },
+
     methods: {
         async getLlibres() {
-            const response = await fetch(`./data.json`);
-            const productes =  await response.json();
-            return productes;
+            let response = await fetch('http://localhost:8000/api/llibres')
+            let productes =  await response.json()
+            console.log(productes)
+            this.llibres = productes
         },
-        cambiarDiv(id) {
+        async cambiarDiv(id) {
             this.botigaStatus = id;
         },
         mostrar(id) {
             return (this.botigaStatus == id);
-        },
-        reutrnTotal() {
-            let total = 0;
-            for (let i = 0; i < this.carrito.length; i++) {
-                total += this.carrito[i].preu * this.carrito[i].quantitat;
-            }
-
-            return total.toFixed(2);
         },
         getCarrito() {
             return this.carrito
@@ -40,18 +37,21 @@ createApp({
             this.previewCarrito = !this.previewCarrito
         },
         mostrarLlibre(index) {
-
             this.idActual = index;
             this.quantitat = 0;
-        },
-        sumar() {
-            this.quantitat++;
         },
         getLlibreActual() {
             return this.llibres.find(llibre => llibre.id === this.idActual)
         },
         getLlibrePerId(id) {
             return this.llibres.find(llibre => llibre.id === id)
+        },
+        getQuantitatTotalCarrito() {
+            let quantitat = 0
+            this.carrito.forEach(llibre => {
+                quantitat += llibre.quantitat
+            });
+            return quantitat
         },
         getPreuTotalCarrito() {
             let preu = 0
@@ -60,21 +60,19 @@ createApp({
             });
             return preu.toFixed(2)
         },
-        restar() {
-            if (this.quantitat === 0) {
-                this.quantitat = 0;
-            } else {
-                this.quantitat--;
+        sumarQuantitat() {
+            this.quantitat++;
+        },
+        restarQuantitat() {
+            if (this.quantitat !== 0) {
+                this.quantitat--
             }
-
         },
         afegirLlibreCarrito() {
-            if (this.quantitat === 0) {
-                alert('cuantitat 0')
-            } else {
-                let llibreBuscat = this.carrito.find(llibre => llibre.id === this.idActual);
-                if(llibreBuscat){
-                    llibreBuscat.quantitat += this.quantitat;
+            if (this.quantitat !== 0) {
+                let llibre = this.carrito.find(llibre => llibre.id === this.idActual);
+                if(llibre){
+                    llibre.quantitat += this.quantitat;
                 } else{
                     var llibreCarrito = {
                         "id": this.idActual,
@@ -86,11 +84,5 @@ createApp({
             }
             console.log(this.carrito);
         }
-    },
-    created() {
-        this.getLlibres().then(data => {
-            this.llibres = data.llibres;
-            this.categories = data.categories;
-        });
     }
 }).mount('#app');
