@@ -112,5 +112,12 @@ class LlibresController extends Controller
 
         return redirect()->route('view-modificar-llibre', ['id' => $llibre->id])->with('success', 'Llibre actualitazat correctament');
     }
+
+    public function adminDelete($id) {
+        $llibre = Llibre::find($id);
+        $llibre->delete();
+
+        return redirect()->route('llibres')->with('success', 'Llibre eliminat correctament'); 
+    }
 }
 

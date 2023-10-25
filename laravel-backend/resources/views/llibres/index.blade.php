@@ -15,6 +15,7 @@
             <th>Autor</th>
             <th>ISBN</th>
             <th>Preu</th>
+            <th></th>
         </tr>
         @foreach ($llibres as $llibre)
             <tr>
@@ -23,6 +24,13 @@
                 <td>{{ $llibre->autor }}</td>
                 <td>{{ $llibre->isbn }}</td>
                 <td>{{ $llibre->preu }}</td>
+                <td>
+                    <form action="{{ route('eliminar-llibre', ['id' => $llibre->id]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>

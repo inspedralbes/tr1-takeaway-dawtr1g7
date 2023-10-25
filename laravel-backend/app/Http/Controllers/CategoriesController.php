@@ -77,11 +77,17 @@ class CategoriesController extends Controller
     
 
     public function adminUpdate(Request $request, $id) {
-        
         $categoria = Categoria::find($id);
         $categoria->nom = $request->nom;
         $categoria->save();
 
         return redirect()->route('view-modificar-categoria', ['id' => $categoria->id])->with('success', 'Categoria actualitazada correctament');
+    }
+
+    public function adminDelete($id) {
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+
+        return redirect()->route('categories')->with('success', 'Categoria eliminada correctament'); 
     }
 }
