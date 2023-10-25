@@ -56,4 +56,61 @@ class LlibresController extends Controller
     return view('llibres.index', ['llibres' => $llibres]);
     }
 
+    public function adminStore(Request $request)
+    {
+        
+            /*$request->validate([
+                'nom' => 'required',
+                'data' => 'required',
+                'hora' => 'required',
+                'aforament' => 'required'
+            ]);*/
+    
+            $llibre = new Llibre;
+            $llibre->titol = $request->titol;
+            $llibre->autor = $request->autor;
+            $llibre->descripcio = $request->descripcio;
+            $llibre->editorial = $request->editorial;
+            $llibre->any = $request->any;
+            $llibre->preu = $request->preu;
+            $llibre->editorial = $request->editorial;
+            $llibre->isbn = $request->isbn;
+            $llibre->categoria_id = $request->categoria;
+            $llibre->img_url = $request->imatge;
+            
+            /*if ($request->hasfile('imatge')) {
+                $file = $request->file('imatge');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time().'.'.$extension;
+                $file->move('fotos_esdeveniments/', $filename);
+                $esdev->imatge = $filename;
+            }*/
+            $llibre->save();
+    
+            return redirect()->route('view-afegir-llibre')->with('success', 'Llibre afegit correctament');
+    }
+
+    public function adminShow($id) {
+        $llibre = Llibre::find($id);
+        return view('llibres.modificar', ['llibre' => $llibre]);
+    }
+
+    public function adminUpdate(Request $request, $id) {
+        
+        $llibre = Llibre::find($id);
+        $llibre->titol = $request->titol;
+        $llibre->autor = $request->autor;
+        $llibre->descripcio = $request->descripcio;
+        $llibre->editorial = $request->editorial;
+        $llibre->any = $request->any;
+        $llibre->preu = $request->preu;
+        $llibre->editorial = $request->editorial;
+        $llibre->isbn = $request->isbn;
+        $llibre->categoria_id = $request->categoria;
+        $llibre->img_url = $request->imatge;
+        $llibre->save();
+
+        return redirect()->route('view-modificar-llibre', ['id' => $llibre->id])->with('success', 'Llibre actualitazat correctament');
+    }
 }
+

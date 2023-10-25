@@ -46,11 +46,6 @@
     </div>
   </div>
 </nav>
-<div>
-  <button>Llibres</button>
-  <a class="nav-link" href="{{route('llibres')}}">Llibres</a>
-  <button>Comandes</button>
-</div>
 @yield('content')
 
 </body>

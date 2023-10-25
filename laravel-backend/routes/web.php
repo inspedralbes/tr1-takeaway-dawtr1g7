@@ -20,6 +20,13 @@ Route::get('/', function () {
 });
 
 Route::get('/llibres', [LlibresController::class, 'adminIndex'])->name('llibres');
-Route::get('/llibres/afegir', [LlibresController::class, 'createEvent'])->name('nou-esdeveniment');
+Route::get('/llibres/afegir', function () { return view('llibres.afegir');})->name('view-afegir-llibre');
+Route::post('/llibres/afegir', [LlibresController::class, 'adminStore'])->name('afegir-llibre');
+Route::get('/llibres/modificar/{id}', [LlibresController::class, 'adminShow'])->name('view-modificar-llibre');
+Route::patch('/llibres/modificar/{id}', [LlibresController::class, 'adminUpdate'])->name('modificar-llibre');
 
 Route::get('/categories', [CategoriesController::class, 'adminIndex'])->name('categories');
+Route::get('/categories/afegir', function () { return view('categories.afegir');})->name('view-afegir-categoria');
+Route::post('/categories/afegir', [CategoriesController::class, 'adminStore'])->name('afegir-categoria');
+Route::get('/categories/modificar/{id}', [CategoriesController::class, 'adminShow'])->name('view-modificar-categoria');
+Route::patch('/categories/modificar/{id}', [CategoriesController::class, 'adminUpdate'])->name('modificar-categoria');
