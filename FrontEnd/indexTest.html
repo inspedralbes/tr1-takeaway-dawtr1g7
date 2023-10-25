@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="validacio">
+        <div id="dades">
+            <h2>Revisió</h2>
+            <div id="dadesInput">
+                <label for="nomValidacio" id="labelNom">Nom</label>
+                <input type="text" id="nomValidacio"name="nomValidacio">
+                <label for="emailValidacio" id="labelEmail">Email</label>
+                <input type="email" id="emailValidacio" name="emailValidacio" placeholder="exemple@mail.com">
+                <label for="telValidacio" id="labelTel">Numero de telefon:</label>
+                <input type="tel" id="telValidacio" name="telValidacio" placeholder="123456789" maxlength="9" pattern="[0-9]{9}">
+            </div>
+        </div>
+        <div id="resumCompra">
+            <h2>Resum compra</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th class="tablNom">Llibre</th>
+                        <th class="tablQuant">Quantitat</th>
+                        <th class="tablPreu">Preu</th>
+                    </tr>
+                    <tr>
+                        <td class="tablNom">Harry Potter i la Pedra Filosofal</td>
+                        <td class="tablQuant">5</td>
+                        <td class="tablPreu">4.66€</td>
+                    </tr>
+                    <tr>
+                        <td class="tablNom">El Gran Gatsby</td>
+                        <td class="tablQuant">5</td>
+                        <td class="tablPreu">9.99€</td>
+                    </tr>
+                    <tr>
+                        <td>TOTAL</td>
+                        <td></td>
+                        <td class="tablPreu"><strong>38.62€</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="containerConf">
+            <button>CONFIRMAR</button>
+        </div>
+    </div>
+</body>
+
+</html>

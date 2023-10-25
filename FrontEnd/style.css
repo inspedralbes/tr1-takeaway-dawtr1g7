@@ -1,13 +1,98 @@
 :root{
---black:#0000;    
+--black:#000;    
 }
-body{
+*{
     margin: 0;
     padding: 0;
-
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .header{
     background-color: var(--black);
 }
 
+/*GRIDS DADES*/
+#labelNom{
+    grid-area: lablNom;
+}
+#nomValidacio{
+    grid-area: nomInp;
+}
+#labelEmail{
+    grid-area: lablEmail;
+}
+#emailValidacio{
+    grid-area: emailInp;
+}
+#labelTel{
+    grid-area: lablTel;
+}
+#telValidacio{
+    grid-area: telInp;
+}
+
+/*GRID DADES*/
+#dadesInput{
+    display: grid;
+    grid-template-areas: 
+    "lablNom"
+    "nomInp"
+    "lablEmail"
+    "emailInp"
+    "lablTel"
+    "telInp";
+}
+#dadesInput>label{
+    padding-top: 10px;
+}
+
+#dades{
+    grid-area: dades;
+    padding-top: 15px;
+}
+
+/*RESUM COMPRA*/
+#resumCompra{
+    grid-area: resum;
+    padding-top: 30px;
+}
+#resumCompra>h2{
+    text-align: center;
+}
+#resumCompra>table{
+    padding-top: 15px;
+}
+td, th {
+    text-align: left;
+    padding: 8px;
+}
+.tablQuant{
+    text-align: center;
+}
+.tablPreu{
+    text-align: right;
+}
+
+/*BUTTON CONFIRMAR*/
+#containerConf{
+    grid-area: buttConf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+#containerConf>button{
+    padding: 10px;
+}
+
+/*GRID VALIDACIO*/
+#validacio{
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-areas: 
+    "dades"
+    "resum"
+    "buttConf";
+    justify-content: center;
+}
