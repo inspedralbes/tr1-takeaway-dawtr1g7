@@ -53,6 +53,7 @@ class CategoriesController extends Controller
     {
         $categories = DB::table('categorias')->get();
 
-    return view('categories.index', ['categories' => $categories]);
+    return view('categories.index', ['categories' => $categoriedcvfs]);
+    
     }
 }
