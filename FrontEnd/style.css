@@ -1,14 +1,155 @@
 :root{
---black:#000;    
+  --black:#000;
+  --dark-blue: #64729c;
+  --light-blue: #b8caff;   
+  --white:white;
+  --color-fons-productes:rgb(0, 225, 255);    
 }
+
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .header{
     background-color: var(--black);
+    color:var(--white);
+}
+
+/*****DESCRIPCIÓ LLIBRE*****/
+
+#mostrarLlibre {
+    margin: 0 20px;
+    display: grid;
+    grid-template-areas:
+    "tornar_enrere ."
+    "portada dades_basiques"
+    "descripcio descripcio";
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+    font-family: sans-serif;
+}
+
+.portada {
+    grid-area: portada;
+}
+
+.infoLlibre {
+    grid-area: dades_basiques;
+}
+
+.llibreDescr{
+    grid-area: descripcio;
+}
+
+.infoLlibre > p:nth-child(2) {
+    font-size: 1.25em;
+    font-weight: lighter;
+}
+
+.butonsSumaResta{
+    height: 30px;
+}
+
+.butonAfegir{
+    grid-area: tornar_enrere;
+}
+
+.infoLlibre > h5 {
+    font-size: 1.25em;
+    margin: 0;
+}
+
+.butonAfegir > button {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.butonAfegir > button:active {
+    text-decoration: underline;
+}
+
+.llibreDescr > p {
+    font-size: 0.8em;
+}
+
+.butonsSumaResta > input{
+    width: 70%;
+    height: 100%;
+    border: 1px solid var(--black);
+    border-left-style: none;
+    border-right-style: none;
+    text-align: center;
+}
+
+.butonsSumaResta > button{
+    background-color: var(--light-blue);
+    border: 1px solid var(--black);
+    height: 100%;
+    width: 15%;
+}
+
+.butonsSumaResta > button:nth-child(1) {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.butonsSumaResta > button:nth-child(3) {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.butonsSumaResta > button:active{
+    background-color: var(--dark-blue);
+}
+
+.portada > img {
+    width: 100%;
+    height: auto;
+}
+
+#graella__productes {
+    display: grid;
+    grid-template-columns: 1 1fr; /* 1 llibre per filera*/
+    text-align: center;
+    align-items: center;
+}
+#producte{
+    position: relative;
+    border: solid 1px transparent;
+    background-color: var(--color-fons-productes);
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px lightslategray;
+    align-items: center;
+    display: flex; /* Agregado para centrar verticalmente el contenido */
+    flex-direction: column; /* Agregado para alinear el contenido verticalmente */
+    padding-bottom: 120px; /* Agregado para espacio interno */
+    padding-top: 30px ;
+    margin:30px;
+}
+
+#producte__titol{
+    color: var(--black);
+}
+
+#etiqueta{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 0px 0px 7px 7px;
+    color: var(--black);
+    padding-bottom:14px ;
+    padding-top:14px ;
+}
+#producte__img{
+    width: 100px;
+    height: 100px;
 }
 
 /*GRIDS DADES*/
@@ -95,4 +236,7 @@ td, th {
     "resum"
     "buttConf";
     justify-content: center;
+
+#producte__preu{
+    color: var(--black);
 }
