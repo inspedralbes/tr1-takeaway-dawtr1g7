@@ -118,7 +118,9 @@
                                 </tr>
                             </table>
                         </div>
-                        <button @click="cambiarDiv('estat')">CONFIRMAR</button>
+                        <div id="containerConf">
+                          <button @click="cambiarDiv('estat')">CONFIRMAR</button>
+                        </div>
                     </div>
 
                     <div v-if="mostrar('estat')" id="estat">
