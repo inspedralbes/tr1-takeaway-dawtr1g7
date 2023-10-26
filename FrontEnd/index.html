@@ -20,18 +20,21 @@
         </header>
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
-                <div id="infoBotiga">
-                    <div id="textInfoBot">
-                        <h2>Informacio de la botiga</h2>
+                
+                <div id="infoBotiga"> 
+                    <div id="textInfoBot">                      
+                        <h2>Informació sobre la botiga</h2>
                         <p>
                             Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim
                             infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a
                             explorar la nostra biblioteca
                         </p>
                     </div>
-                    <button @click="cambiarDiv('botiga')">Ir a tienda</button>
+                    <button @click="cambiarDiv('botiga')">CATÀLEG</button>
                 </div>
+                <img src="./imgP.jpeg" alt="" id="imgP">
             </div>
+
             <div id="botiga" v-if="mostrar('botiga')">
 
                 <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
@@ -100,7 +103,7 @@
 
             <div id="validacio" v-if="mostrar('validacio')">
                 <div id="dades">
-                    <h2>Revisió</h2>
+                    <h2>TICKET</h2>
                     <div id="dadesInput">
                         <label for="nomValidacio">Nom</label>
                         <input type="text" id="nomValidacio" name="nomValidacio">
@@ -142,7 +145,7 @@
 
             <div id="estat" v-if="mostrar('estat')">
                 <div id="imgEstat">
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png" alt="img_check">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png" alt="img_check" >
                 </div>
                 <h2>Compra efectuada correctament</h2>
 
@@ -187,7 +190,7 @@
             <hr>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
         </footer>
-        <script src="js/functions.js" type="module"></script>
+        <script src="functions.js" type="module"></script>
     </div>
 </body>
 
