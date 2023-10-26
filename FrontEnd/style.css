@@ -12,6 +12,9 @@
     box-sizing: border-box;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+img{
+    max-width: 100%;
+}
 
 #app {
     min-height: 100vh;
@@ -239,6 +242,62 @@ td, th {
     "buttConf";
     justify-content: center;
 }
+
 #producte__preu{
     color: var(--black);
+}
+
+#imgEstat{
+    text-align: center;
+}
+#imgEstat>img{
+    width: 70%;
+    height: auto;
+}
+#estat>h2{
+    text-align: center;
+}
+#resumComanda{
+    width: 90%;
+    margin: auto;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+#idComanda{
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+}
+
+#estatComanda{
+    grid-area: estatC;
+}
+#tableComanda{
+    padding-top: 15px;
+    grid-area: tablC;
+}
+
+.tablQuantEstat{
+    text-align: center;
+}
+.tablPreuEstat{
+    text-align: right;
+}
+
+#InfoComanda{
+    padding: 15px;
+}
+#tablC{
+    width: 100%;
+}
+
+#containerTornarInici{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+#containerTornarInici>button{
+    padding: 10px;
 }
