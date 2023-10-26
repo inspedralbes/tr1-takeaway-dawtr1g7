@@ -23,18 +23,13 @@
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
-                <!-- <div id="categories" v-for="(category, index) in categories" :key="index">
-                    <p>{{category.nom}}</p>
-                </div> -->
-
                 <div @click="togglePreviewCarrito()">
                     <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt=""
                         style="width: 40px; height: 40px;">
                 </div>
+
                 <div id="previewCarrito" v-if="previewCarrito">
-                    <div>
-                        Cistella de la Compra
-                    </div>
+                    <div>Cistella de la Compra </div>
                     <div>
                         <div>Resum de la comanda</div>
                         <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
@@ -47,20 +42,34 @@
                     <button @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
-                <div v-for="(llibre, index) in llibres" @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')"
-                    id="productes" :key="index" style="border: solid 2px black;">
-                    <h5>{{llibre.titol}}</h5>
-                    <img :src="llibre.portada" style="width: 200px;height: 200px;">
-                    <p>{{llibre.preu}}€</p>
-                </div>
-            </div>
 
+                <div id="graella__productes">
+                    <div id="producte" v-for="(llibre, index) in llibres"
+                        @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
+                        <img id="producte__img" :src="llibre.portada" style="width: 200px;height: 200px;">
+                        <div id="etiqueta">
+                            <h5 id="producte__titol">{{llibre.titol}}</h5>
+                            <p id="producte__preu">{{llibre.preu}}€</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+<!---->
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
-                <img :src="getLlibreActual().portada" style="width: 200px;height: 200px;">
+                <div class="portada">
+                    <img :src="getLlibreActual().portada">
+                    <div class="butonsSumaResta">
+                        <button @click="restar()">-</button>
+                        <input type="number" v-model="quantitat">
+                        <button @click="sumar()">+</button>
+                    </div>
+                </div>
+
                 <div class="infoLlibre">
                     <h5>{{ getLlibreActual().titol }}</h5>
-                    <p>{{ getLlibreActual().any }}</p>
                     <p>{{ getLlibreActual().preu }}€</p>
+                    <p>{{ getLlibreActual().any }}</p>
                 </div>
 
                 <div class="llibreDescr">
@@ -77,9 +86,10 @@
                     <button @click="afegirLlibreCarrito()">Afegir Producte</button>
                 </div>
                 <div class="butonAfegir">
-                    <button @click="cambiarDiv('botiga')">Tornar enrere</button>
+                    <button @click="cambiarDiv('botiga')"> &lt; Tornar enrere</button>
                 </div>
             </div>
+<!---->
 
             <div id="validacio" v-if="mostrar('validacio')">
                 <h2>Revisió</h2>
@@ -106,11 +116,12 @@
                     <tr>
                         <td>TOTAL</td>
                         <td>{{ getQuantitatTotalCarrito() }}</td>
+
                         <td><strong>{{ getPreuTotalCarrito() }} €</strong></td>
                     </tr>
                 </table>
                 <div>
-                    <div >
+                    <div>
                         <div></div>
                         <div></div>
                     </div>
