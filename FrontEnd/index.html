@@ -20,8 +20,15 @@
         </header>
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
-                <p>Esta es la landing page</p>
-                <button @click="cambiarDiv('botiga')">Ir a tienda</button>
+                <div id="infoBotiga">
+                    <div id="textInfoBot">
+                        <h2>Informacio de la botiga</h2>
+                        <p>
+                            Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a explorar la nostra biblioteca
+                        </p>
+                    </div>
+                    <button @click="cambiarDiv('botiga')">Ir a tienda</button>
+                </div>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
@@ -29,6 +36,7 @@
                     <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt=""
                         style="width: 40px; height: 40px;">
                 </div>
+                <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
@@ -54,11 +62,10 @@
                     <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
-
                 <div id="graella__productes">
                     <div id="producte" v-for="(llibre, index) in llibres"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
-                        <img id="producte__img" :src="llibre.portada" style="width: 200px;height: 200px;">
+                        <img id="producte__img" :src="llibre.img_url">
                         <div id="etiqueta">
                             <h5 id="producte__titol">{{llibre.titol}}</h5>
                             <p id="producte__preu">{{llibre.preu}}€</p>
@@ -70,7 +77,7 @@
 
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
                 <div class="portada">
-                    <img :src="getLlibreActual().portada">
+                    <img :src="getLlibreActual().img_url">
                     <div class="butonsSumaResta">
                         <button @click="restarQuantitat()">-</button>
                         <input type="number" v-model="quantitat">
@@ -112,36 +119,77 @@
                             <table>
                                 <tr>
                                     <th>Llibre</th>
-                                    <th>Quantitat</th>
-                                    <th>Preu</th>
+                                    <th class="tablQuant">Quantitat</th>
+                                    <th class="tablPreu">Preu</th>
                                 </tr>
                                 <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
                                     <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
-                                    <td>{{ itemCarrito.quantitat }}</td>
-                                    <td>{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
+                                    <td class="tablQuant">{{ itemCarrito.quantitat }}</td>
+                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
                                 </tr>
                                 <tr>
                                     <td>TOTAL</td>
-                                    <td>{{ getQuantitatTotalCarrito() }}</td>
-                                    <td><strong>{{ getPreuTotalCarrito() }} €</strong></td>
+                                    <td class="tablQuant">{{ getQuantitatTotalCarrito() }}</td>
+                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }} €</strong></td>
                                 </tr>
                             </table>
                         </div>
                         <div id="containerConf">
-                            <button @click="cambiarDiv('estat')">CONFIRMAR</button>
-                        </div>
-                    </div>
 
-                    <div v-if="mostrar('estat')" id="estat">
-                        <button @click="cambiarDiv('validacio')">CONFIRMAR Estat</button>
+                          <button @click="crearComanda()">CONFIRMAR</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <footer>
-                <hr>
-                <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
-            </footer>
+
+            <div id="estat" v-if="mostrar('estat')">
+                <div id="imgEstat">
+                    <img src="https://assets.stickpng.com/images/5aa78e387603fc558cffbf1d.png" 
+                        alt="img_check">
+                </div>
+                <h2>Compra efectuada correctament</h2>
+
+                <div id="resumComanda">
+                    <div id="idComanda">
+                        Comanda <strong>{{ getComanda().id }}</strong>
+                    </div>
+                    <div id="InfoComanda">
+                        <div id="estatComanda">
+                            Estat de la comanda: <strong>{{ getComanda().estat }}</strong>
+                        </div>
+                        <div id="tableComanda">
+                            <h3>RESUM COMPRA:</h3>
+                            <table id="tablC">
+                                <tr>
+                                    <th>Llibre</th>
+                                    <th class="tablQuantEstat">Quantitat</th>
+                                    <th class="tablPreuEstat">Preu</th>
+                                </tr>
+                                <tr v-for="producte in getComanda().productes" :key="producte.id">
+                                    <td>{{ getLlibrePerId(producte.id).titol }}</td>
+                                    <td class="tablQuantEstat">{{ producte.quantitat }}</td>
+                                    <td class="tablPreuEstat">{{ producte.preu }}€</td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL</td>
+                                    <td class="tablQuantEstat">{{ getQuantitatTotalComanda() }}</td>
+                                    <td class="tablPreuEstat">{{ getPreuTotalComanda() }}€</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="containerTornarInici">
+                    <button @click="cambiarDiv('landing')">Tornar Inici</button>
+                </div>
+
+            </div>
         </div>
+        <footer>
+            <hr>
+            <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
+        </footer>
         <script src="js/functions.js" type="module"></script>
     </div>
 </body>

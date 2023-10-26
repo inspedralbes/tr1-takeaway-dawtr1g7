@@ -7,6 +7,7 @@ createApp({
             llibres: [],
             categories: [],
             carrito: [],
+            comanda: {productes: []},
             idActual: 0,
             quantitat: 0,
             previewCarrito: false
@@ -24,7 +25,29 @@ createApp({
             console.log(productes)
             this.llibres = productes.llibres
         },
-        async cambiarDiv(id) {
+        async crearComanda() {
+            let carrito = JSON.parse(JSON.stringify(this.carrito));
+            let jsonObject = {
+                "carrito": carrito
+            }
+            try {
+                let response = await fetch('http://localhost:8000/api/novaComanda', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
+
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+                this.crearNovaComanda(jsonResponse);
+
+            } catch(error) {
+                console.error(error)
+            }
+        },
+        cambiarDiv(id) {
             this.botigaStatus = id;
         },
         mostrar(id) {
@@ -32,6 +55,9 @@ createApp({
         },
         getCarrito() {
             return this.carrito
+        },
+        getComanda() {
+            return this.comanda
         },
         togglePreviewCarrito() {
             this.previewCarrito = !this.previewCarrito
@@ -60,6 +86,31 @@ createApp({
                 preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
+        },
+        getPreuTotalComanda() {
+            let preu = 0
+            this.comanda.productes.forEach(llibre => {
+                preu += llibre.preu * llibre.quantitat
+            });
+            return preu.toFixed(2)
+        },
+        getQuantitatTotalComanda() {
+            let quantitat = 0
+            this.comanda.productes.forEach(llibre => {
+                quantitat += llibre.quantitat
+            });
+            return quantitat
+        },
+        crearNovaComanda(objecteComanda) {
+            let novaComanda = {
+                id: objecteComanda.id,
+                estat: objecteComanda.estat,
+                productes: this.carrito
+            }
+            this.comanda = novaComanda
+            this.carrito = []
+            console.log("creada")
+            this.cambiarDiv('estat')
         },
         sumarQuantitat() {
             this.quantitat++;
