@@ -7,7 +7,7 @@ createApp({
             llibres: [],
             categories: [],
             carrito: [],
-            comanda: {},
+            comanda: {productes: []},
             idActual: 0,
             quantitat: 0,
             previewCarrito: false
@@ -39,9 +39,9 @@ createApp({
                     body: JSON.stringify(jsonObject)
                 })
 
-                const idComanda = await response.json();
-                console.log(idComanda);
-                this.crearNovaComanda(idComanda);
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+                this.crearNovaComanda(jsonResponse);
 
             } catch(error) {
                 console.error(error)
@@ -55,6 +55,9 @@ createApp({
         },
         getCarrito() {
             return this.carrito
+        },
+        getComanda() {
+            return this.comanda
         },
         togglePreviewCarrito() {
             this.previewCarrito = !this.previewCarrito
@@ -84,14 +87,30 @@ createApp({
             });
             return preu.toFixed(2)
         },
-        crearNovaComanda(idComanda) {
+        getPreuTotalComanda() {
+            let preu = 0
+            this.comanda.productes.forEach(llibre => {
+                preu += llibre.preu * llibre.quantitat
+            });
+            return preu.toFixed(2)
+        },
+        getQuantitatTotalComanda() {
+            let quantitat = 0
+            this.comanda.productes.forEach(llibre => {
+                quantitat += llibre.quantitat
+            });
+            return quantitat
+        },
+        crearNovaComanda(objecteComanda) {
             let novaComanda = {
-                id: idComanda,
-                items: this.carrito
+                id: objecteComanda.id,
+                estat: objecteComanda.estat,
+                productes: this.carrito
             }
             this.comanda = novaComanda
             this.carrito = []
             console.log("creada")
+            this.cambiarDiv('estat')
         },
         sumarQuantitat() {
             this.quantitat++;

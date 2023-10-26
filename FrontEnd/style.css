@@ -121,20 +121,19 @@ img{
 
 #graella__productes {
     display: grid;
-    grid-template-columns: 1 1fr; /* 1 llibre per filera*/
+    grid-template-columns: 1fr 1fr; /* 1 llibre per filera*/
     text-align: center;
     align-items: center;
 }
 #producte{
     position: relative;
-    border: solid 1px transparent;
-    background-color: var(--color-fons-productes);
     border-radius: 7px;
-    box-shadow: 2px 2px 2px lightslategray;
     align-items: center;
     display: flex; /* Agregado para centrar verticalmente el contenido */
     flex-direction: column; /* Agregado para alinear el contenido verticalmente */
-    margin:30px;
+    margin:15px;
+    width: 150px;
+    box-shadow: 3px 6px 5px #333, -1px -1px 3px #333;
 }
 
 #producte__titol{
@@ -146,15 +145,16 @@ img{
     bottom: 0;
     text-align: center;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 0px 0px 7px 7px;
     color: var(--black);
     padding-bottom:14px ;
     padding-top:14px ;
 }
 #producte__img{
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 225px;
+    border-radius: 7px;
 }
 
 /*GRIDS DADES*/
