@@ -29,6 +29,7 @@
                     <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt=""
                         style="width: 40px; height: 40px;">
                 </div>
+                <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra </div>
@@ -118,7 +119,7 @@
                             </table>
                         </div>
                         <div id="containerConf">
-                          <button @click="cambiarDiv('estat')">CONFIRMAR</button>
+                          <button @click="crearComanda()">CONFIRMAR</button>
                         </div>
                     </div>
                 </div>
@@ -133,11 +134,11 @@
 
                 <div id="resumComanda">
                     <div id="idComanda">
-                        Comanda <strong>00011</strong>
+                        Comanda <strong>{{ getComanda().id }}</strong>
                     </div>
                     <div id="InfoComanda">
                         <div id="estatComanda">
-                            Estat de la comanda: <strong>EN PREPARACIO</strong>
+                            Estat de la comanda: <strong>{{ getComanda().estat }}</strong>
                         </div>
                         <div id="tableComanda">
                             <h3>RESUM COMPRA:</h3>
@@ -147,15 +148,15 @@
                                     <th class="tablQuantEstat">Quantitat</th>
                                     <th class="tablPreuEstat">Preu</th>
                                 </tr>
-                                <tr>
-                                    <td>Harry</td>
-                                    <td class="tablQuantEstat">1</td>
-                                    <td class="tablPreuEstat">19.99€</td>
+                                <tr v-for="producte in getComanda().productes" :key="producte.id">
+                                    <td>{{ getLlibrePerId(producte.id).titol }}</td>
+                                    <td class="tablQuantEstat">{{ producte.quantitat }}</td>
+                                    <td class="tablPreuEstat">{{ producte.preu }}€</td>
                                 </tr>
                                 <tr>
-                                    <td>PREU FINAL</td>
-                                    <td class="tablQuantEstat">1</td>
-                                    <td class="tablPreuEstat">19.99€</td>
+                                    <td>TOTAL</td>
+                                    <td class="tablQuantEstat">{{ getQuantitatTotalComanda() }}</td>
+                                    <td class="tablPreuEstat">{{ getPreuTotalComanda() }}€</td>
                                 </tr>
                             </table>
                         </div>
