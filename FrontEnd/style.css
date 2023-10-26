@@ -1,5 +1,5 @@
 :root {
-    --black: #000;
+    --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
     --dark-blue: #64729c;
     --light-blue: #b8caff;
     --white: white;
@@ -8,6 +8,7 @@
 h1{
     margin: 0;
     padding: 10px;
+
 }
 *{
     margin: 0;
@@ -23,7 +24,7 @@ img{
 /*DISTRIBUCIO D'ESPAIS*/
 header {
     grid-area: header;
-    background-color: var(--black); 
+    background: var(--mi-gradient); 
     color:var(--white);
     text-align: center;
     display: flex;
@@ -32,13 +33,13 @@ header {
 }
 
 #container{
-    padding-top: 10px;
-    grid-area: conten;
+    padding-top: 10%;
+  
 }
 
 footer {
     grid-area: footer;
-    background-color: var(--black);
+    background: var(--mi-gradient);
     color:var(--white);
     text-align: center;
     padding: 10px;
@@ -61,22 +62,14 @@ footer {
     grid-template-rows: 60px 1fr 50px;
 }
 
-/*LANDING*/
+/*LANDING
 
-#infoBotiga>#textInfoBot>h2{
-    grid-area: titleInf;
-}
 #infoBotiga>#textInfoBot>p{
     grid-area: textInfo;
     text-align: justify;
 }
 
-#infoBotiga>#textInfoBot{
-    grid-area: infoBot;
-    display: grid;
-    grid-template-areas: "titleInf" "textInfo";
-    gap: 15px;
-}
+
 
 #infoBotiga>button{
     grid-area: buttonBut;
@@ -84,17 +77,53 @@ footer {
     margin: auto;
     width: 40%;
 }
+*/
+/*LANDING*/
+#imgP{
+    width: 100%;
+    height: 20%;
+   
+ 
+}
+
+   
+
+#infoBotiga>#textInfoBot>h2{
+    height: 100%;
+   border-bottom: 1px solid black;
+   margin-bottom: 10%;
+   background-image: linear-gradient(to left,#ac8ffc, #000, #6e3afc);
+   background-clip: text;
+   -webkit-background-clip: text;
+   color: transparent;
+   border-bottom: 2px;
+}
+
+#infoBotiga>button{
+    padding: 15px;
+    margin: auto;
+    width: 35%;
+    background: var(--mi-gradient);
+    border-radius: 7%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+   
+}
+#infoBotiga>#textInfoBot{
+    align-self: flex-end;
+    gap: 15px;
+}
 #infoBotiga{
     width: 80%;
-    margin: auto;
-    padding-top: 40%;
-    display: grid;
-    grid-template-areas: 
-    "infoBot"
-    "buttonBut";
+    padding-bottom: 20%;
+    padding-top: 45%;
+    display: flex;
     justify-content: center;
     text-align: center;
+    align-items: center;
     gap: 50px;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*****DESCRIPCIÓ LLIBRE*****/
@@ -167,6 +196,7 @@ footer {
     border: 1px solid var(--black);
     height: 100%;
     width: 15%;
+    
 }
 
 .butonsSumaResta>button:nth-child(1) {
@@ -218,6 +248,8 @@ footer {
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    float: right;
 }
 
 .carrito-item {
@@ -322,7 +354,9 @@ footer {
 /*RESUM COMPRA*/
 #resumCompra {
     grid-area: resum;
+    margin-top: 10%;
     padding-top: 30px;
+    width: 100%;
 }
 
 #resumCompra>h2 {
@@ -357,7 +391,14 @@ th {
 }
 
 #containerConf>button {
-    padding: 10px;
+    padding: 15px;
+    margin: auto;
+    width: 60%;
+    background: var(--mi-gradient);
+    border-radius: 7%;
+    margin-bottom: 15px;
+    border-radius: 7%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
 }
 
 /*GRID VALIDACIO*/
@@ -370,6 +411,8 @@ th {
         "resum"
         "buttConf";
     justify-content: center;
+    border: 1px solid black;
+    margin-top: 15%;
 }
 
 #producte__preu {
@@ -429,5 +472,8 @@ th {
 }
 #containerTornarInici>button{
     padding: 10px;
+    background: var(--mi-gradient);
+    border-radius: 7%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
 }
 
