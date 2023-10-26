@@ -20,7 +20,7 @@ createApp({
     methods: {
         async getLlibres() {
             let response = await fetch('http://localhost:8000/api/llibres')
-            let productes =  await response.json()
+            let productes = await response.json()
             console.log(productes)
             this.llibres = productes
         },
@@ -38,7 +38,8 @@ createApp({
         },
         mostrarLlibre(index) {
             this.idActual = index;
-            this.quantitat = 0;
+            let llibre = this.carrito.find(llibre => llibre.id === index)
+            this.quantitat = llibre ? llibre.quantitat : 0;
         },
         getLlibreActual() {
             return this.llibres.find(llibre => llibre.id === this.idActual)
@@ -62,27 +63,42 @@ createApp({
         },
         sumarQuantitat() {
             this.quantitat++;
+            this.afegirLlibreCarrito();
         },
         restarQuantitat() {
             if (this.quantitat !== 0) {
-                this.quantitat--
+                this.quantitat--;
+                this.treureLlibreCarrito()
             }
         },
         afegirLlibreCarrito() {
-            if (this.quantitat !== 0) {
-                let llibre = this.carrito.find(llibre => llibre.id === this.idActual);
-                if(llibre){
-                    llibre.quantitat += this.quantitat;
-                } else{
-                    var llibreCarrito = {
-                        "id": this.idActual,
-                        "preu": this.getLlibreActual().preu,
-                        "quantitat": this.quantitat
-                    };
-                    this.carrito.push(llibreCarrito);
-                }
+            let llibre = this.carrito.find(item => item.id === this.idActual)
+
+            if (llibre) {
+                this.carrito.forEach(item => {
+                    if (item.id === this.idActual) {
+                        item.quantitat++
+                    }
+                })
+            } else {
+                let llibreCarrito = {
+                    "id": this.idActual,
+                    "preu": this.getLlibreActual().preu,
+                    "quantitat": 1
+                };
+                this.carrito.push(llibreCarrito);
             }
-            console.log(this.carrito);
+        },
+        treureLlibreCarrito() {
+            // Restar quantitat
+            this.carrito.forEach(item => {
+                if (item.id === this.idActual) {
+                    item.quantitat--
+                }
+            })
+            // Filtrar llibres amb quantitat zero
+            let newCarrito = this.carrito.filter(item => item.quantitat != 0)
+            this.carrito = newCarrito
         }
     }
 }).mount('#app');
