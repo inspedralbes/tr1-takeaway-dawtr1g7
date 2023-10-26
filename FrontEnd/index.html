@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <title>Galaxia Gutenberg</title>
 </head>
@@ -55,14 +57,14 @@
                 </div>
 
             </div>
-            
+
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
                 <div class="portada">
                     <img :src="getLlibreActual().portada">
                     <div class="butonsSumaResta">
-                        <button @click="restar()">-</button>
+                        <button @click="restarQuantitat()">-</button>
                         <input type="number" v-model="quantitat">
-                        <button @click="sumar()">+</button>
+                        <button @click="sumarQuantitat()">+</button>
                     </div>
                 </div>
 
@@ -85,49 +87,52 @@
                 <div id="dades">
                     <h2>Revisió</h2>
                     <div id="dadesInput">
-                        <label for="nomValidacio">Nom</label><br>
-                        <input type="text" id="nomValidacio" name="nomValidacio"><br>
-                        <label for="emailValidacio">Email</label><br>
-                        <input type="email" id="emailValidacio" name="emailValidacio" placeholder="exemple@mail.com"><br>
-                        <label for="telValidacio">Numero de telefon:</label><br>
-                        <input type="tel" id="telValidacio" name="telValidacio" placeholder="123456789" maxlength="9" pattern="[0-9]{9}"><br>
+                        <label for="nomValidacio">Nom</label>
+                        <input type="text" id="nomValidacio" name="nomValidacio">
+                        <label for="emailValidacio">Email</label>
+                        <input type="email" id="emailValidacio" name="emailValidacio"
+                            placeholder="exemple@mail.com">
+                        <label for="telValidacio">Numero de telefon:</label>
+                        <input type="tel" id="telValidacio" name="telValidacio" placeholder="123456789" maxlength="9"
+                            pattern="[0-9]{9}">
                     </div>
-                <div>
-                    
-                <div id="resumCompra">
-                    <h2>Resum compra</h2>
-                    <table>
-                        <tr>
-                            <th>Llibre</th>
-                            <th>Quantitat</th>
-                            <th>Preu</th>
-                        </tr>
-                        <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
-                            <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
-                            <td>{{ itemCarrito.quantitat }}</td>
-                            <td>{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
-                        </tr>
-                        <tr>
-                            <td>TOTAL</td>
-                            <td>{{ getQuantitatTotalCarrito() }}</td>
-                            <td><strong>{{ getPreuTotalCarrito() }} €</strong></td>
-                        </tr>
-                    </table>
-                </div>
-                <button @click="cambiarDiv('estat')">CONFIRMAR</button>
-            </div>
+                    <div>
 
-            <div v-if="mostrar('estat')" id="estat">
-                <button @click="cambiarDiv('validacio')">CONFIRMAR Estat</button>
+                        <div id="resumCompra">
+                            <h2>Resum compra</h2>
+                            <table>
+                                <tr>
+                                    <th>Llibre</th>
+                                    <th>Quantitat</th>
+                                    <th>Preu</th>
+                                </tr>
+                                <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                                    <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
+                                    <td>{{ itemCarrito.quantitat }}</td>
+                                    <td>{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL</td>
+                                    <td>{{ getQuantitatTotalCarrito() }}</td>
+                                    <td><strong>{{ getPreuTotalCarrito() }} €</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button @click="cambiarDiv('estat')">CONFIRMAR</button>
+                    </div>
+
+                    <div v-if="mostrar('estat')" id="estat">
+                        <button @click="cambiarDiv('validacio')">CONFIRMAR Estat</button>
+                    </div>
+                </div>
             </div>
+            <footer>
+                <hr>
+                <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
+            </footer>
         </div>
+        <script src="js/functions.js" type="module"></script>
     </div>
-    <footer>
-        <hr>
-        <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
-    </footer>
-    </div>
-    <script src="js/functions.js" type="module"></script>
 </body>
 
 </html>
