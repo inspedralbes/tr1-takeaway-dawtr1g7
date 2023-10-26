@@ -1,5 +1,4 @@
 import { createApp } from 'http://unpkg.com/vue@3/dist/vue.esm-browser.js';
-import { getLlibres } from './managmentFunctions.js';
 
 createApp({
     data() {
@@ -10,10 +9,16 @@ createApp({
             categories: [],
             carrito: [],
             idActual: 0,
-            quantitat: 0
+            quantitat: 0,
+            previewCarrito: false
         }
     },
     methods: {
+        async getLlibres() {
+            const response = await fetch(`./data.json`);
+            const productes =  await response.json();
+            return productes;
+        },
         cambiarDiv(id) {
             this.botigaStatus = id;
         },
@@ -28,7 +33,12 @@ createApp({
 
             return total.toFixed(2);
         },
-
+        getCarrito() {
+            return this.carrito
+        },
+        togglePreviewCarrito() {
+            this.previewCarrito = !this.previewCarrito
+        },
         mostrarLlibre(index) {
 
             this.idActual = index;
@@ -39,6 +49,16 @@ createApp({
         },
         getLlibreActual() {
             return this.llibres.find(llibre => llibre.id === this.idActual)
+        },
+        getLlibrePerId(id) {
+            return this.llibres.find(llibre => llibre.id === id)
+        },
+        getPreuTotalCarrito() {
+            let preu = 0
+            this.carrito.forEach(llibre => {
+                preu += llibre.preu * llibre.quantitat
+            });
+            return preu.toFixed(2)
         },
         restar() {
             if (this.quantitat === 0) {
@@ -68,7 +88,7 @@ createApp({
         }
     },
     created() {
-        getLlibres().then(data => {
+        this.getLlibres().then(data => {
             this.llibres = data.llibres;
             this.categories = data.categories;
         });

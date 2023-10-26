@@ -2,19 +2,19 @@
 --black:#000;
 --dark-blue: #64729c;
 --light-blue: #b8caff;   
+--white:white;
+--color-fons-productes:rgb(0, 225, 255);    
 }
-body{
+
+*{
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
 }
 
 .header{
     background-color: var(--black);
-}
-
-* {
-    box-sizing: border-box;
+    color:var(--white);
 }
 
 /*****DESCRIPCIÓ LLIBRE*****/
@@ -109,4 +109,48 @@ body{
 .portada > img {
     width: 100%;
     height: auto;
+}
+
+#graella__productes {
+    display: grid;
+    grid-template-columns: 1 1fr; /* 1 llibre per filera*/
+    text-align: center;
+    align-items: center;
+}
+#producte{
+    position: relative;
+    border: solid 1px transparent;
+    background-color: var(--color-fons-productes);
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px lightslategray;
+    align-items: center;
+    display: flex; /* Agregado para centrar verticalmente el contenido */
+    flex-direction: column; /* Agregado para alinear el contenido verticalmente */
+    padding-bottom: 120px; /* Agregado para espacio interno */
+    padding-top: 30px ;
+    margin:30px;
+}
+
+#producte__titol{
+    color: var(--black);
+}
+
+#etiqueta{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 0px 0px 7px 7px;
+    color: var(--black);
+    padding-bottom:14px ;
+    padding-top:14px ;
+}
+#producte__img{
+    width: 100px;
+    height: 100px;
+}
+
+#producte__preu{
+    color: var(--black);
 }
