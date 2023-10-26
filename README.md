@@ -4,7 +4,6 @@
 
 **Galaxia Gutenberg** és un projecte dissenyat com a activitat avaluadora del segon curs del Cicle Formatiu de Grau Superior en Desenvolupament d'Aplicacions Web. El projecte consisteix en el desenvolupament d'un lloc web de comerç electrònic on els usuaris poden sol·licitar llibres per després recollir-los en una botiga (modalitat de recollida a la botiga, "takeaway").
 
-L'aplicació compta amb una pàgina d'inici des de la qual es pot accedir al catàleg de llibres disponibles per a la venda. També ofereix una secció privada on s'administra l'estat dels comandes i es poden eliminar i incloure nous llibres al catàleg.
 
 Mentre es navega pel catàleg, es mostren tots els llibres disponibles en una graella de sis en sis. No obstant això, els usuaris tenen la possibilitat de filtrar la seva cerca per categories utilitzant un botó que mostra una llista d'aquestes categories o mitjançant una barra de cerca que permet filtrar per títol, autor, categoria, etc. En fer clic en un producte, es mostra informació detallada d'aquest i l'opció d'afegir-lo al carro de la compra. Els usuaris poden veure en qualsevol moment i de manera actualitzada els productes que han afegit al carro i procedir a la pantalla de pagament.
 
