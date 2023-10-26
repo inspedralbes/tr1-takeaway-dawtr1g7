@@ -7,6 +7,7 @@ createApp({
             llibres: [],
             categories: [],
             carrito: [],
+            comanda: {},
             idActual: 0,
             quantitat: 0,
             previewCarrito: false
@@ -24,7 +25,29 @@ createApp({
             console.log(productes)
             this.llibres = productes
         },
-        async cambiarDiv(id) {
+        async crearComanda() {
+            let carrito = JSON.parse(JSON.stringify(this.carrito));
+            let jsonObject = {
+                "carrito": carrito
+            }
+            try {
+                let response = await fetch('http://localhost:8000/api/novaComanda', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
+
+                const idComanda = await response.json();
+                console.log(idComanda);
+                this.crearNovaComanda(idComanda);
+
+            } catch(error) {
+                console.error(error)
+            }
+        },
+        cambiarDiv(id) {
             this.botigaStatus = id;
         },
         mostrar(id) {
@@ -60,6 +83,15 @@ createApp({
                 preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
+        },
+        crearNovaComanda(idComanda) {
+            let novaComanda = {
+                id: idComanda,
+                items: this.carrito
+            }
+            this.comanda = novaComanda
+            this.carrito = []
+            console.log("creada")
         },
         sumarQuantitat() {
             this.quantitat++;
