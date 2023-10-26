@@ -55,7 +55,7 @@
                 </div>
 
             </div>
-<!---->
+            
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
                 <div class="portada">
                     <img :src="getLlibreActual().portada">
@@ -76,20 +76,10 @@
                     <p>{{ getLlibreActual().descripcio }}</p>
                 </div>
 
-                <div class="butonsSumaResta">
-                    <button @click="restarQuantitat()">-</button>
-                    <input type="number" v-model="quantitat">
-                    <button @click="sumarQuantitat()">+</button>
-                </div>
-
-                <div class="butonAfegirCarrito">
-                    <button @click="afegirLlibreCarrito()">Afegir Producte</button>
-                </div>
                 <div class="butonAfegir">
                     <button @click="cambiarDiv('botiga')"> &lt; Tornar enrere</button>
                 </div>
             </div>
-<!---->
 
             <div id="validacio" v-if="mostrar('validacio')">
                 <h2>Revisió</h2>
