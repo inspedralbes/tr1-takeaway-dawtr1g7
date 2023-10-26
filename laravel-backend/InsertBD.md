@@ -37,4 +37,3 @@ INSERT INTO comandas(estat, user_id) VALUES
 
 INSERT INTO llibre_comanda (comanda_id, llibre_id, quantitat, preu) VALUES
 (1, 5, 1, 20.99),(1,8,2, 15.99),(2,12,1, 12.99),(3,18,2, 15.99),(3,15,3, 16.99),(3,1,1, 14.99),(3,6,1, 13.99)
-

@@ -20,10 +20,10 @@ createApp({
 
     methods: {
         async getLlibres() {
-            let response = await fetch('./data.json')
+            let response = await fetch('http://localhost:8000/api/llibres')
             let productes = await response.json()
             console.log(productes)
-            this.llibres = productes.llibres
+            this.llibres = productes
         },
         async crearComanda() {
             let carrito = JSON.parse(JSON.stringify(this.carrito));
@@ -112,38 +112,43 @@ createApp({
             console.log("creada")
             this.cambiarDiv('estat')
         },
-        sumarQuantitat() {
+        sumarQuantitat(id) {
             this.quantitat++;
-            this.afegirLlibreCarrito();
+            this.afegirLlibreCarrito(id);
         },
-        restarQuantitat() {
-            if (this.quantitat !== 0) {
-                this.quantitat--;
-                this.treureLlibreCarrito()
+        restarQuantitat(id, comprovacio) {
+            if(comprovacio) {
+                if (this.quantitat !== 0) {
+                    this.quantitat--
+                    this.treureLlibreCarrito(id)
+                }
+            } else {
+                this.treureLlibreCarrito(id)
             }
+            
         },
-        afegirLlibreCarrito() {
-            let llibre = this.carrito.find(item => item.id === this.idActual)
+        afegirLlibreCarrito(id) {
+            let llibre = this.carrito.find(item => item.id === id)
 
             if (llibre) {
                 this.carrito.forEach(item => {
-                    if (item.id === this.idActual) {
+                    if (item.id === id) {
                         item.quantitat++
                     }
                 })
             } else {
                 let llibreCarrito = {
-                    "id": this.idActual,
+                    "id": id,
                     "preu": this.getLlibreActual().preu,
                     "quantitat": 1
                 };
                 this.carrito.push(llibreCarrito);
             }
         },
-        treureLlibreCarrito() {
+        treureLlibreCarrito(id) {
             // Restar quantitat
             this.carrito.forEach(item => {
-                if (item.id === this.idActual) {
+                if (item.id === id) {
                     item.quantitat--
                 }
             })

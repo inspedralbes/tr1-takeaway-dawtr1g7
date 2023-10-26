@@ -14,8 +14,9 @@
 <body>
     <div id="app">
         <header>
-            <div class="header" @click="cambiarDiv('landing')">
-                <h1>Galaxia Gutenberg</h1>
+            <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
+            <div @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
+                <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
             </div>
         </header>
         <div id="container">
@@ -24,7 +25,9 @@
                     <div id="textInfoBot">
                         <h2>Informacio de la botiga</h2>
                         <p>
-                            Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a explorar la nostra biblioteca
+                            Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim
+                            infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a
+                            explorar la nostra biblioteca
                         </p>
                     </div>
                     <button @click="cambiarDiv('botiga')">Ir a tienda</button>
@@ -32,19 +35,15 @@
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
-                <div @click="togglePreviewCarrito()">
-                    <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt=""
-                        style="width: 40px; height: 40px;">
-                </div>
                 <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
                     <hr>
                     <div>
-                        <div  v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
                             <div class="carrito-item">
-                                <img :src="getLlibrePerId(itemCarrito.id).portada" style="width: 70px;height: 106px;">
+                                <img :src="getLlibrePerId(itemCarrito.id).img_url" style="width: 70px;height: 106px;">
                                 <div class="carrito-item-info">
                                     <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
                                     <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
@@ -52,9 +51,9 @@
                                 </div>
                             </div>
                             <div class="butonsSumaResta">
-                                <button @click="restarQuantitat()">-</button>
+                                <button @click="restarQuantitat(itemCarrito.id,false)">-</button>
                                 <input type="number" v-model="itemCarrito.quantitat">
-                                <button @click="sumarQuantitat()">+</button>
+                                <button @click="sumarQuantitat(itemCarrito.id)">+</button>
                             </div>
                         </div>
                         <div>Total {{ getPreuTotalCarrito() }} €</div>
@@ -79,9 +78,9 @@
                 <div class="portada">
                     <img :src="getLlibreActual().img_url">
                     <div class="butonsSumaResta">
-                        <button @click="restarQuantitat()">-</button>
+                        <button @click="restarQuantitat(getLlibreActual().id,true)">-</button>
                         <input type="number" v-model="quantitat">
-                        <button @click="sumarQuantitat()">+</button>
+                        <button @click="sumarQuantitat(getLlibreActual().id)">+</button>
                     </div>
                 </div>
 
@@ -136,7 +135,7 @@
                         </div>
                         <div id="containerConf">
 
-                          <button @click="crearComanda()">CONFIRMAR</button>
+                            <button @click="crearComanda()">CONFIRMAR</button>
                         </div>
                     </div>
                 </div>
@@ -144,8 +143,7 @@
 
             <div id="estat" v-if="mostrar('estat')">
                 <div id="imgEstat">
-                    <img src="https://assets.stickpng.com/images/5aa78e387603fc558cffbf1d.png" 
-                        alt="img_check">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png" alt="img_check">
                 </div>
                 <h2>Compra efectuada correctament</h2>
 
