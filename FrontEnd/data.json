@@ -8,7 +8,7 @@
             "editorial": "Empuries",
             "isbn": "9788475967745",
             "descripcio": "Harry Potter és orfe i viu en unes condicions infrahumanes a casa d'uns tiets despietats fins al dia que descobreix els seus dots de bruixot i és convidat a estudiar a una escola de màgia i bruixeria. Allà, a més d'aprendre l'ofici, haurà de combatre Voldemort, que encarna les forces del mal, i defensar la joia de l'escola, una pedra filosofal que, segons sembla, n'hi ha més d'un que vol trobar.",
-            "portada": "https://pictures.abebooks.com/isbn/9788475967745-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9788475967745-es.jpg",
             "preu": 4.66,
             "categories": [
                 "Aventura",
@@ -23,7 +23,7 @@
             "editorial": "Scribner",
             "isbn": "9780743273565",
             "descripcio": "El Gran Gatsby es una novela que explora la decadencia de la sociedad estadounidense en la década de 1920. La historia sigue a Jay Gatsby y su obsesión por Daisy Buchanan en un mundo lleno de excesos y corrupción.",
-            "portada": "https://pictures.abebooks.com/isbn/9780743273565-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780743273565-es.jpg",
             "preu": 9.99,
             "categories": [
                 "Ficció",
@@ -38,7 +38,7 @@
             "editorial": "Sudamericana",
             "isbn": "9788437604947",
             "descripcio": "Esta obra maestra del realismo mágico narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo de Macondo. Una epopeya que combina la fantasía con la crónica de la realidad latinoamericana.",
-            "portada": "https://pictures.abebooks.com/isbn/9788437604947-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9788437604947-es.jpg",
             "preu": 12.50,
             "categories": [
                 "Realisme Màgic",
@@ -53,7 +53,7 @@
             "editorial": "J. B. Lippincott & Co.",
             "isbn": "9780061120084",
             "descripcio": "La novela relata la historia de una niña llamada Scout Finch y su hermano Jem mientras su padre, el abogado Atticus Finch, defiende a un hombre negro acusado de violar a una mujer blanca en el sur de Estados Unidos durante la década de 1930.",
-            "portada": "https://pictures.abebooks.com/isbn/9780061120084-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780061120084-es.jpg",
             "preu": 8.75,
             "categories": [
                 "Drama"
@@ -67,7 +67,7 @@
             "editorial": "Secker & Warburg",
             "isbn": "9780451524935",
             "descripcio": "Una novela distópica que presenta un mundo totalitario en el que el Gran Hermano vigila a todos. Winston Smith, el protagonista, lucha contra la opresión del Estado y busca la verdad en un mundo de propaganda y control absoluto.",
-            "portada": "https://pictures.abebooks.com/isbn/9780451524935-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780451524935-es.jpg",
             "preu": 7.99,
             "categories": [
                 "Distopia",
@@ -82,7 +82,7 @@
             "editorial": "The Russian Messenger",
             "isbn": "9781983488024",
             "descripcio": "La novela sigue la vida de Raskolnikov, un estudiante que comete un asesinato por razones filosóficas. A medida que la culpa lo atormenta, enfrenta las consecuencias de su crimen en la Rusia del siglo XIX.",
-            "portada": "https://pictures.abebooks.com/isbn/9781983488024-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781983488024-es.jpg",
             "preu": 10.25,
             "categories": [
                 "Psicològica",
@@ -97,7 +97,7 @@
             "editorial": "Richard Bentley",
             "isbn": "9781503280784",
             "descripcio": "La historia del capitán Ahab y su obsesión por cazar a la ballena blanca Moby-Dick. La novela es una exploración épica de la obsesión y la venganza en alta mar.",
-            "portada": "https://pictures.abebooks.com/isbn/9781503280784-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781503280784-es.jpg",
             "preu": 11.75,
             "categories": [
                 "Aventura",
@@ -112,7 +112,7 @@
             "editorial": "T. Egerton, Whitehall",
             "isbn": "9780141439518",
             "descripcio": "Una novela romántica que sigue la vida de Elizabeth Bennet y su complicada relación con el señor Darcy. La obra critica la sociedad y las convenciones de la Inglaterra del siglo XIX.",
-            "portada": "https://pictures.abebooks.com/isbn/9780141439518-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780141439518-es.jpg",
             "preu": 6.99,
             "categories": [
                 "Romàntica",
@@ -127,7 +127,7 @@
             "editorial": "Sylvia Beach",
             "isbn": "9780141197419",
             "descripcio": "Ulises es una obra maestra de la literatura moderna que narra un día en la vida de Leopold Bloom en Dublín. A través de su estilo experimental y simbolismo, James Joyce exploró la conciencia humana y la condición humana.",
-            "portada": "https://pictures.abebooks.com/isbn/9780141197419-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780141197419-es.jpg",
             "preu": 14.99,
             "categories": [
                 "Modernisme",
@@ -142,7 +142,7 @@
             "editorial": "Grasset",
             "isbn": "9788432061271",
             "descripcio": "Esta monumental obra literaria consta de siete partes y narra la vida del narrador y su búsqueda de la verdad y el significado de la vida a través de la memoria y la introspección.",
-            "portada": "https://pictures.abebooks.com/isbn/9788432061271-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9788432061271-es.jpg",
             "preu": 19.99,
             "categories": [
                 "Modernista"
@@ -156,7 +156,7 @@
             "editorial": "Juan de la Cuesta",
             "isbn": "9788420673054",
             "descripcio": "La historia de Don Quijote y su fiel escudero Sancho Panza es una sátira de las novelas de caballerías y una exploración de la locura y la imaginación. Es una de las obras más importantes de la literatura española.",
-            "portada": "https://pictures.abebooks.com/isbn/9788420673054-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9788420673054-es.jpg",
             "preu": 8.25,
             "categories": [
                 "Aventura",
@@ -171,7 +171,7 @@
             "editorial": "Sudamericana",
             "isbn": "9788437604947",
             "descripcio": "Esta obra maestra del realismo mágico narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo de Macondo. Una epopeya que combina la fantasía con la crónica de la realidad latinoamericana.",
-            "portada": "https://pictures.abebooks.com/isbn/9788437604947-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9788437604947-es.jpg",
             "preu": 12.50,
             "categories": [
                 "Realisme Màgic",
@@ -186,7 +186,7 @@
             "editorial": "J. B. Lippincott & Co.",
             "isbn": "9780061120084",
             "descripcio": "La novela relata la historia de una niña llamada Scout Finch y su hermano Jem mientras su padre, el abogado Atticus Finch, defiende a un hombre negro acusado de violar a una mujer blanca en el sur de Estados Unidos durante la década de 1930.",
-            "portada": "https://pictures.abebooks.com/isbn/9780061120084-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780061120084-es.jpg",
             "preu": 8.75,
             "categories": [
                 "Drama"
@@ -200,7 +200,7 @@
             "editorial": "Secker & Warburg",
             "isbn": "9780451524935",
             "descripcio": "Una novela distópica que presenta un mundo totalitario en el que el Gran Hermano vigila a todos. Winston Smith, el protagonista, lucha contra la opresión del Estado y busca la verdad en un mundo de propaganda y control absoluto.",
-            "portada": "https://pictures.abebooks.com/isbn/9780451524935-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780451524935-es.jpg",
             "preu": 7.99,
             "categories": [
                 "Distopia",
@@ -215,7 +215,7 @@
             "editorial": "The Russian Messenger",
             "isbn": "9781983488024",
             "descripcio": "La novela sigue la vida de Raskolnikov, un estudiante que comete un asesinato por razones filosóficas. A medida que la culpa lo atormenta, enfrenta las consecuencias de su crimen en la Rusia del siglo XIX.",
-            "portada": "https://pictures.abebooks.com/isbn/9781983488024-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781983488024-es.jpg",
             "preu": 10.25,
             "categories": [
                 "Psicològica",
@@ -230,7 +230,7 @@
             "editorial": "Richard Bentley",
             "isbn": "9781503280784",
             "descripcio": "La historia del capitán Ahab y su obsesión por cazar a la ballena blanca Moby-Dick. La novela es una exploración épica de la obsesión y la venganza en alta mar.",
-            "portada": "https://pictures.abebooks.com/isbn/9781503280784-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781503280784-es.jpg",
             "preu": 11.75,
             "categories": [
                 "Aventura",
@@ -245,7 +245,7 @@
             "editorial": "T. Egerton, Whitehall",
             "isbn": "9780141439518",
             "descripcio": "Una novela romántica que sigue la vida de Elizabeth Bennet",
-            "portada": "https://pictures.abebooks.com/isbn/9780261102217-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780261102217-es.jpg",
             "preu": 9.99,
             "categories": [
                 "Fantasia",
@@ -260,7 +260,7 @@
             "editorial": "Allen & Unwin",
             "isbn": "9780261102217",
             "descripcio": "La historia de Bilbo Bolsón, un hobbit que se embarca en una aventura inesperada para recuperar un tesoro guardado por el dragón Smaug. En su viaje, se encuentra con elfos, enanos y un anillo mágico.",
-            "portada": "https://pictures.abebooks.com/isbn/9780261102217-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780261102217-es.jpg",
             "preu": 9.99,
             "categories": [
                 "Fantasia",
@@ -275,7 +275,7 @@
             "editorial": "Dar el Helal",
             "isbn": "9781842778739",
             "descripcio": "La novela narra la historia de Firdaus, una mujer egipcia que lucha contra la opresión y la injusticia en una sociedad patriarcal. Una obra que critica la desigualdad de género y la opresión de las mujeres.",
-            "portada": "https://pictures.abebooks.com/isbn/9781842778739-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781842778739-es.jpg",
             "preu": 11.25,
             "categories": [
                 "Ficció Feminista",
@@ -290,7 +290,7 @@
             "editorial": "William Morrow",
             "isbn": "9780451232816",
             "descripcio": "Una epopeya histórica que sigue la construcción de una catedral en la Inglaterra del siglo XII. La novela abarca generaciones y se entrelaza con la política, la religión y la lucha por el poder.",
-            "portada": "https://pictures.abebooks.com/isbn/9780451232816-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780451232816-es.jpg",
             "preu": 14.99,
             "categories": [
                 "Històrica",
@@ -305,7 +305,7 @@
             "editorial": "DAW Books",
             "isbn": "9780756404741",
             "descripcio": "La historia de Kvothe, un músico y mago legendario, que narra sus propias aventuras desde su infancia en una troupe de artistas hasta sus proezas mágicas y la búsqueda de la verdad.",
-            "portada": "https://pictures.abebooks.com/isbn/9780756404741-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780756404741-es.jpg",
             "preu": 12.99,
             "categories": [
                 "Fantasia",
@@ -320,7 +320,7 @@
             "editorial": "Planeta",
             "isbn": "9788408058260",
             "descripcio": "Una novela que explora el misterio y la magia de los libros. La historia sigue a Daniel Sempere mientras descubre un libro que lo lleva a investigar el pasado de un autor olvidado.",
-            "portada": "https://pictures.abebooks.com/isbn/9788408058260-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9788408058260-es.jpg",
             "preu": 9.75,
             "categories": [
                 "Misteri",
@@ -335,7 +335,7 @@
             "editorial": "Margaret K. McElderry Books",
             "isbn": "9781416914280",
             "descripcio": "La primera entrega de la serie Cazadores de sombras. La protagonista, Clary Fray, descubre un mundo de sombras y demonios cuando su madre desaparece, y se une a un grupo de cazadores de sombras para encontrarla.",
-            "portada": "https://pictures.abebooks.com/isbn/9781416914280-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781416914280-es.jpg",
             "preu": 8.99,
             "categories": [
                 "Fantasía Urbana",
@@ -350,7 +350,7 @@
             "editorial": "Doubleday",
             "isbn": "9780385504201",
             "descripcio": "Un thriller que sigue al profesor Robert Langdon mientras investiga un asesinato en el Louvre y descubre una conspiración que involucra códigos secretos y simbología religiosa.",
-            "portada": "https://pictures.abebooks.com/isbn/9780385504201-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780385504201-es.jpg",
             "preu": 10.50,
             "categories": [
                 "Thriller",
@@ -365,7 +365,7 @@
             "editorial": "Ward, Lock & Co.",
             "isbn": "9781493750596",
             "descripcio": "La historia de Dorian Gray, un joven que vende su alma para preservar su belleza eterna mientras su retrato envejece en su lugar. Una exploración de la moralidad y la decadencia.",
-            "portada": "https://pictures.abebooks.com/isbn/9781493750596-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781493750596-es.jpg",
             "preu": 6.75,
             "categories": [
                 "Gótica",
@@ -380,7 +380,7 @@
             "editorial": "Dar el Helal",
             "isbn": "9781842778739",
             "descripcio": "La novela narra la historia de Firdaus, una mujer egipcia que lucha contra la opresión y la injusticia en una sociedad patriarcal. Una obra que critica la desigualdad de género y la opresión de las mujeres.",
-            "portada": "https://pictures.abebooks.com/isbn/9781842778739-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9781842778739-es.jpg",
             "preu": 11.25,
             "categories": [
                 "Ficción Feminista",
@@ -395,7 +395,7 @@
             "editorial": "William Morrow",
             "isbn": "9780451232816",
             "descripcio": "Una epopeya histórica que sigue la construcción de una catedral en la Inglaterra del siglo XII. La novela abarca generaciones y se entrelaza con la política, la religión y la lucha por el poder.",
-            "portada": "https://pictures.abebooks.com/isbn/9780451232816-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780451232816-es.jpg",
             "preu": 14.99,
             "categories": [
                 "Històrica",
@@ -410,7 +410,7 @@
             "editorial": "Scholastic Press",
             "isbn": "9780439023481",
             "descripcio": "La primera entrega de la trilogía Los juegos del hambre. Katniss Everdeen se convierte en voluntaria en un peligroso concurso televisado donde los tributos luchan por sobrevivir.",
-            "portada": "https://pictures.abebooks.com/isbn/9780439023481-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780439023481-es.jpg",
             "preu": 7.50,
             "categories": [
                 "Ciència-Ficció",
@@ -425,7 +425,7 @@
             "editorial": "Knopf",
             "isbn": "9780307265432",
             "descripcio": "La historia de un padre y su hijo que viajan a través de un mundo postapocalíptico en busca de seguridad y supervivencia. Una obra desgarradora sobre el amor y la esperanza en medio de la desolación.",
-            "portada": "https://pictures.abebooks.com/isbn/9780307265432-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9780307265432-es.jpg",
             "preu": 8.99,
             "categories": [
                 "Ficción Apocalíptica",
@@ -440,7 +440,7 @@
             "editorial": "Diogenes",
             "isbn": "9788426412274",
             "descripcio": "La historia de Jean-Baptiste Grenouille, un asesino obsesionado con la creación del perfume perfecto a partir del aroma de las mujeres. Una novela oscura y perturbadora sobre la obsesión y la belleza.",
-            "portada": "https://pictures.abebooks.com/isbn/9788426412274-es.jpg",
+            "img_url": "https://pictures.abebooks.com/isbn/9788426412274-es.jpg",
             "preu": 11.25,
             "categories": [
                 "Gótica",
@@ -455,7 +455,7 @@
             "editorial": "Literatura Random House",
             "isbn": "9788439736318",
             "descripcio": "Marianne y Connell son compañeros de instituto pero no se cruzan  palabra. Él es uno de los populares y ella, una chica solitaria que ha  aprendido a mantenerse alejada del resto de la gente. Todos saben que  Marianne vive en una mansión y que la madre de Connell se encarga de su  limpieza, pero nadie imagina que cada tarde los dos jóvenes coinciden.  Uno de esos días, una conversación torpe dará comienzo a una relación que podría cambiar sus vidas.",
-            "portada": "https://imagessl8.casadellibro.com/a/l/s7/18/9788439736318.webp",
+            "img_url": "https://imagessl8.casadellibro.com/a/l/s7/18/9788439736318.webp",
             "preu": 18.90,
             "categories": [
                 "Romàntica"
