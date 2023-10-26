@@ -44,11 +44,10 @@
                     <button @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
-
                 <div id="graella__productes">
                     <div id="producte" v-for="(llibre, index) in llibres"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
-                        <img id="producte__img" :src="llibre.portada" style="width: 200px;height: 200px;">
+                        <img id="producte__img" :src="llibre.img_url">
                         <div id="etiqueta">
                             <h5 id="producte__titol">{{llibre.titol}}</h5>
                             <p id="producte__preu">{{llibre.preu}}€</p>
@@ -60,7 +59,7 @@
 
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
                 <div class="portada">
-                    <img :src="getLlibreActual().portada">
+                    <img :src="getLlibreActual().img_url">
                     <div class="butonsSumaResta">
                         <button @click="restarQuantitat()">-</button>
                         <input type="number" v-model="quantitat">
