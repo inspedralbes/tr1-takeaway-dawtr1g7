@@ -1,10 +1,10 @@
-:root{
-  --black:#000;
-  --dark-blue: #64729c;
-  --light-blue: #b8caff;   
-  --white:white;
-  --color-fons-productes:#888;    
+:root {
+    --black: #000;
+    --dark-blue: #64729c;
+    --light-blue: #b8caff;
+    --white: white;
 }
+
 h1{
     margin: 0;
     padding: 10px;
@@ -13,15 +13,13 @@ h1{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 img{
     max-width: 100%;
 }
 
-#app {
-    min-height: 100vh;
-}
+
 /*DISTRIBUCIO D'ESPAIS*/
 header {
     grid-area: header;
@@ -89,9 +87,9 @@ footer {
     margin: 0 20px;
     display: grid;
     grid-template-areas:
-    "tornar_enrere ."
-    "portada dades_basiques"
-    "descripcio descripcio";
+        "tornar_enrere ."
+        "portada dades_basiques"
+        "descripcio descripcio";
     grid-template-columns: 1fr 1fr;
     column-gap: 10px;
     row-gap: 10px;
@@ -106,43 +104,40 @@ footer {
     grid-area: dades_basiques;
 }
 
-.llibreDescr{
+.llibreDescr {
     grid-area: descripcio;
 }
 
-.infoLlibre > p:nth-child(2) {
+.infoLlibre>p:nth-child(2) {
     font-size: 1.25em;
     font-weight: lighter;
 }
 
-.butonsSumaResta{
+.butonsSumaResta {
     height: 30px;
 }
 
-.butonAfegir{
+.butonAfegir {
     grid-area: tornar_enrere;
 }
 
-.infoLlibre > h5 {
+.infoLlibre>h5 {
     font-size: 1.25em;
     margin: 0;
 }
 
-.butonAfegir > button {
+.butonAfegir>button {
     border: none;
     background-color: inherit;
     cursor: pointer;
 }
 
-.butonAfegir > button:active {
-    text-decoration: underline;
-}
 
-.llibreDescr > p {
+.llibreDescr>p {
     font-size: 0.8em;
 }
 
-.butonsSumaResta > input{
+.butonsSumaResta>input {
     width: 70%;
     height: 100%;
     border: 1px solid var(--black);
@@ -151,42 +146,44 @@ footer {
     text-align: center;
 }
 
-.butonsSumaResta > button{
-    background-color: var(--light-blue);
+.butonsSumaResta>button {
+    background-color: transparent;
     border: 1px solid var(--black);
     height: 100%;
     width: 15%;
 }
 
-.butonsSumaResta > button:nth-child(1) {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+.butonsSumaResta>button:nth-child(1) {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
 
-.butonsSumaResta > button:nth-child(3) {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+.butonsSumaResta>button:nth-child(3) {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
-.butonsSumaResta > button:active{
-    background-color: var(--dark-blue);
+.butonsSumaResta>button:hover {
+    background-color: lightslategray;
 }
 
-.portada > img {
+.portada>img {
     width: 100%;
     height: auto;
 }
 
 #graella__productes {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 1 llibre per filera*/
+    grid-template-columns: 1fr 1fr;
     text-align: center;
     align-items: center;
 }
-#producte{
+
+#producte {
     position: relative;
     border-radius: 7px;
     align-items: center;
+
     display: flex; /* Agregado para centrar verticalmente el contenido */
     flex-direction: column; /* Agregado para alinear el contenido verticalmente */
     margin:15px;
@@ -194,11 +191,55 @@ footer {
     box-shadow: 3px 6px 5px #333, -1px -1px 3px #333;
 }
 
-#producte__titol{
+#producte__titol {
     color: var(--black);
 }
 
-#etiqueta{
+/*ESTILS CSS DE LA PREVIEW CARRITO*/
+#previewCarrito {
+    margin: 15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.carrito-item {
+    display: flex;
+    margin: 10px 10px;
+}
+
+
+#botonpagar {
+    width: 100%;
+    /* Ancho completo */
+}
+
+#titolPreCarrito {
+    text-align: justify;
+}
+
+#autorPreCarrito {
+    text-align: justify;
+    color: lightgray;
+
+}
+
+#preuPreCarrito {
+    position: absolute;
+    text-align: right;
+    bottom: 0;
+    right: 0;
+}
+
+.carrito-item-info {
+    position: relative;
+    width: 100%;
+    margin-left: 15px;
+
+}
+
+#etiqueta {
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -206,9 +247,10 @@ footer {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 0px 0px 7px 7px;
     color: var(--black);
-    padding-bottom:14px ;
-    padding-top:14px ;
+    padding-bottom: 14px;
+    padding-top: 14px;
 }
+
 #producte__img{
     width: 150px;
     height: 225px;
@@ -216,92 +258,105 @@ footer {
 }
 
 /*GRIDS DADES*/
-#labelNom{
+#labelNom {
     grid-area: lablNom;
 }
-#nomValidacio{
+
+#nomValidacio {
     grid-area: nomInp;
 }
-#labelEmail{
+
+#labelEmail {
     grid-area: lablEmail;
 }
-#emailValidacio{
+
+#emailValidacio {
     grid-area: emailInp;
 }
-#labelTel{
+
+#labelTel {
     grid-area: lablTel;
 }
-#telValidacio{
+
+#telValidacio {
     grid-area: telInp;
 }
 
 /*GRID DADES*/
-#dadesInput{
+#dadesInput {
     display: grid;
-    grid-template-areas: 
-    "lablNom"
-    "nomInp"
-    "lablEmail"
-    "emailInp"
-    "lablTel"
-    "telInp";
+    grid-template-areas:
+        "lablNom"
+        "nomInp"
+        "lablEmail"
+        "emailInp"
+        "lablTel"
+        "telInp";
 }
-#dadesInput>label{
+
+#dadesInput>label {
     padding-top: 10px;
 }
 
-#dades{
+#dades {
     grid-area: dades;
     padding-top: 15px;
 }
 
 /*RESUM COMPRA*/
-#resumCompra{
+#resumCompra {
     grid-area: resum;
     padding-top: 30px;
 }
-#resumCompra>h2{
+
+#resumCompra>h2 {
     text-align: center;
 }
-#resumCompra>table{
+
+#resumCompra>table {
     padding-top: 15px;
 }
-td, th {
+
+td,
+th {
     text-align: left;
     padding: 8px;
 }
-.tablQuant{
+
+.tablQuant {
     text-align: center;
 }
-.tablPreu{
+
+.tablPreu {
     text-align: right;
 }
 
 /*BUTTON CONFIRMAR*/
-#containerConf{
+#containerConf {
     grid-area: buttConf;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 30px;
 }
-#containerConf>button{
+
+#containerConf>button {
     padding: 10px;
 }
 
 /*GRID VALIDACIO*/
-#validacio{
+#validacio {
     width: 90%;
     margin: auto;
     display: grid;
-    grid-template-areas: 
-    "dades"
-    "resum"
-    "buttConf";
+    grid-template-areas:
+        "dades"
+        "resum"
+        "buttConf";
     justify-content: center;
 }
 
-#producte__preu{
+#producte__preu {
     color: var(--black);
 }
 
