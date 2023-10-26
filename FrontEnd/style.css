@@ -5,7 +5,10 @@
   --white:white;
   --color-fons-productes:#888;    
 }
-
+h1{
+    margin: 0;
+    padding: 10px;
+}
 *{
     margin: 0;
     padding: 0;
@@ -19,10 +22,65 @@ img{
 #app {
     min-height: 100vh;
 }
-
-.header{
+/*DISTRIBUCIO D'ESPAIS*/
+header {
+    grid-area: header;
     background-color: var(--black);
     color:var(--white);
+    text-align: center;
+}
+#container{
+    padding-top: 10px;
+    grid-area: conten;
+}
+footer {
+    grid-area: footer;
+    background-color: var(--black);
+    color:var(--white);
+    text-align: center;
+    padding: 10px;
+}
+#app{
+    display: grid;
+    width:100%;
+    grid-template-areas: "header" "conten" "footer";
+    grid-template-rows: 60px 1fr 50px;
+}
+
+/*LANDING*/
+
+#infoBotiga>#textInfoBot>h2{
+    grid-area: titleInf;
+}
+#infoBotiga>#textInfoBot>p{
+    grid-area: textInfo;
+    text-align: justify;
+}
+
+#infoBotiga>#textInfoBot{
+    grid-area: infoBot;
+    display: grid;
+    grid-template-areas: "titleInf" "textInfo";
+    gap: 15px;
+}
+
+#infoBotiga>button{
+    grid-area: buttonBut;
+    padding: 15px;
+    margin: auto;
+    width: 40%;
+}
+#infoBotiga{
+    width: 80%;
+    margin: auto;
+    padding-top: 40%;
+    display: grid;
+    grid-template-areas: 
+    "infoBot"
+    "buttonBut";
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
 }
 
 /*****DESCRIPCIÓ LLIBRE*****/
