@@ -35,3 +35,9 @@ Route::get('/categories/modificar/{id}', [CategoriesController::class, 'adminSho
 Route::patch('/categories/modificar/{id}', [CategoriesController::class, 'adminUpdate'])->name('modificar-categoria');
 Route::delete('/categories/{id}', [CategoriesController::class, 'adminDelete'])->name('eliminar-categoria');
 
+//RUTES COMANDES
+Route::get('/comandes', [ComandesController::class, 'adminIndex'])->name('comandes');
+Route::get('/comandes/modificar/{id}', [ComandesController::class, 'adminShow'])->name('view-modificar-comanda');
+Route::patch('/comandes/modificar/{id}', [ComandesController::class, 'adminUpdate'])->name('modificar-comanda');
+
+

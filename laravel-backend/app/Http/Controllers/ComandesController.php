@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comanda;
+use Illuminate\Support\Facades\DB;
 
 class ComandesController extends Controller
 {
@@ -13,12 +14,6 @@ class ComandesController extends Controller
     public function index()
     {
         $comandes = Comanda::with('llibres')->get();
-
-        $comandes->each(function ($comanda) {
-            $comanda->llibres->each(function ($llibre) {
-                $llibre->quantitat = $llibre->pivot->quantitat;
-            });
-        });
 
         return response()->json($comandes);
     }
@@ -61,20 +56,7 @@ class ComandesController extends Controller
      */
     public function show(string $id)
     {
-        $comanda = Comanda::with('llibres')->find($id);
-
-        if(!$comanda) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Comanda no trobada',
-            ], 404);
-        }
-
-        $comanda->llibres->each(function ($llibre) {
-            $llibre->quantitat = $llibre->pivot->quantitat;
-        });
-
-        return response()->json($comanda);
+        //
     }
 
     /**
@@ -93,25 +75,29 @@ class ComandesController extends Controller
         //
     }
 
-    /**
-     * Busca la comanda per a usuari
-     */
-    public function search(string $userId) {
-        $comandes = Comanda::with('llibres')->where('user_id','=', $userId)->get();
+    // MÈTODES DE LA PART D'ADMINISTRACIÓ
+    public function adminIndex()
+    {
+        $comandes = DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol')    
+            ->get();
 
-        if ($comandes->isEmpty()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'El usuari no te comandes actives',
-            ], 404);
-        }
+     return view('comandes.index', ['comandes' => $comandes]);
+    }
 
-        $comandes->each(function ($comanda) {
-            $comanda->llibres->each(function ($llibre) {
-                $llibre->quantitat = $llibre->pivot->quantitat;
-            });
-        });
+    public function adminShow($id) {
+        $comanda = Comanda::find($id);
+        return view('comandes.modificar', ['comanda' => $comanda]);
+    }
 
-        return $comandes;
+    public function adminUpdate(Request $request, $id) {
+        $comanda = Comanda::find($id);
+        $comanda->estat = $request->estat;
+        $comanda->save();
+
+        return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
     }
 }
+
