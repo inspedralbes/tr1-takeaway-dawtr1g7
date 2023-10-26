@@ -20,8 +20,15 @@
         </header>
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
-                <p>Esta es la landing page</p>
-                <button @click="cambiarDiv('botiga')">Ir a tienda</button>
+                <div id="infoBotiga">
+                    <div id="textInfoBot">
+                        <h2>Informacio de la botiga</h2>
+                        <p>
+                            Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a explorar la nostra biblioteca
+                        </p>
+                    </div>
+                    <button @click="cambiarDiv('botiga')">Ir a tienda</button>
+                </div>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
@@ -167,11 +174,11 @@
                 </div>
 
             </div>
-            <footer>
-                <hr>
-                <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
-            </footer>
         </div>
+        <footer>
+            <hr>
+            <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
+        </footer>
         <script src="js/functions.js" type="module"></script>
     </div>
 </body>
