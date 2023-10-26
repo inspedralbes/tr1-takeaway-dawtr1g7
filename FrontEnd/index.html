@@ -103,18 +103,18 @@
                             <table>
                                 <tr>
                                     <th>Llibre</th>
-                                    <th>Quantitat</th>
-                                    <th>Preu</th>
+                                    <th class="tablQuant">Quantitat</th>
+                                    <th class="tablPreu">Preu</th>
                                 </tr>
                                 <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
                                     <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
-                                    <td>{{ itemCarrito.quantitat }}</td>
-                                    <td>{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
+                                    <td class="tablQuant">{{ itemCarrito.quantitat }}</td>
+                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
                                 </tr>
                                 <tr>
                                     <td>TOTAL</td>
-                                    <td>{{ getQuantitatTotalCarrito() }}</td>
-                                    <td><strong>{{ getPreuTotalCarrito() }} €</strong></td>
+                                    <td class="tablQuant">{{ getQuantitatTotalCarrito() }}</td>
+                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }} €</strong></td>
                                 </tr>
                             </table>
                         </div>
@@ -122,11 +122,51 @@
                           <button @click="cambiarDiv('estat')">CONFIRMAR</button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div v-if="mostrar('estat')" id="estat">
-                        <button @click="cambiarDiv('validacio')">CONFIRMAR Estat</button>
+            <div id="estat" v-if="mostrar('estat')">
+                <div id="imgEstat">
+                    <img src="https://assets.stickpng.com/images/5aa78e387603fc558cffbf1d.png" 
+                        alt="img_check">
+                </div>
+                <h2>Compra efectuada correctament</h2>
+
+                <div id="resumComanda">
+                    <div id="idComanda">
+                        Comanda <strong>00011</strong>
+                    </div>
+                    <div id="InfoComanda">
+                        <div id="estatComanda">
+                            Estat de la comanda: <strong>EN PREPARACIO</strong>
+                        </div>
+                        <div id="tableComanda">
+                            <h3>RESUM COMPRA:</h3>
+                            <table id="tablC">
+                                <tr>
+                                    <th>Llibre</th>
+                                    <th class="tablQuantEstat">Quantitat</th>
+                                    <th class="tablPreuEstat">Preu</th>
+                                </tr>
+                                <tr>
+                                    <td>Harry</td>
+                                    <td class="tablQuantEstat">1</td>
+                                    <td class="tablPreuEstat">19.99€</td>
+                                </tr>
+                                <tr>
+                                    <td>PREU FINAL</td>
+                                    <td class="tablQuantEstat">1</td>
+                                    <td class="tablPreuEstat">19.99€</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
+                <div id="containerTornarInici">
+                    <button @click="cambiarDiv('landing')">Tornar Inici</button>
+                </div>
+
             </div>
             <footer>
                 <hr>
