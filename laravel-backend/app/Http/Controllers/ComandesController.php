@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comanda;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\MailController;
 
 class ComandesController extends Controller
 {
@@ -81,7 +82,8 @@ class ComandesController extends Controller
         $comandes = DB::table('comandas')
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
-            ->select('comandas.id', 'comandas.estat', 'llibres.titol')    
+            ->select('comandas.id', 'comandas.estat', DB::raw('GROUP_CONCAT(llibres.titol SEPARATOR \', \') as llibres'))
+            ->groupBy('comandas.id', 'comandas.estat')    
             ->get();
 
      return view('comandes.index', ['comandes' => $comandes]);
@@ -96,6 +98,14 @@ class ComandesController extends Controller
         $comanda = Comanda::find($id);
         $comanda->estat = $request->estat;
         $comanda->save();
+
+        $direccio_mail = DB::table('comandas')
+            ->join('users', 'comandas.user_id', '=', 'users.id')
+            ->where('comandas.id', '=', $id)
+            ->select('users.email')
+            ->get();
+        $mail = new MailController;
+        $mail->sendMail($direccio_mail);
 
         return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
     }
