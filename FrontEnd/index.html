@@ -54,32 +54,32 @@
                 </div>
 
             </div>
-
+<!---->
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
-                <img :src="getLlibreActual().portada" style="width: 200px;height: 200px;">
+                <div class="portada">
+                    <img :src="getLlibreActual().portada">
+                    <div class="butonsSumaResta">
+                        <button @click="restar()">-</button>
+                        <input type="number" v-model="quantitat">
+                        <button @click="sumar()">+</button>
+                    </div>
+                </div>
+
                 <div class="infoLlibre">
                     <h5>{{ getLlibreActual().titol }}</h5>
-                    <p>{{ getLlibreActual().any }}</p>
                     <p>{{ getLlibreActual().preu }}€</p>
+                    <p>{{ getLlibreActual().any }}</p>
                 </div>
 
                 <div class="llibreDescr">
                     <p>{{ getLlibreActual().descripcio }}</p>
                 </div>
 
-                <div class="butonsSumaResta">
-                    <button @click="restar()">-</button>
-                    <input type="number" v-model="quantitat">
-                    <button @click="sumar()">+</button>
-                </div>
-
-                <div class="butonAfegirCarrito">
-                    <button @click="afegirLlibreCarrito()">Afegir Producte</button>
-                </div>
                 <div class="butonAfegir">
-                    <button @click="cambiarDiv('botiga')">Tornar enrere</button>
+                    <button @click="cambiarDiv('botiga')"> &lt; Tornar enrere</button>
                 </div>
             </div>
+<!---->
 
             <div id="validacio" v-if="mostrar('validacio')">
                 <h2>Revisió</h2>
