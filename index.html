@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Galaxia Gutenberg</title>
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <img class="header__desplegable" v-if="mostrarDesplegable" src="./logoHeader.png" width="20px" alt="">
+            <h1 class="header__title">GALAXIA GUTENBERG</h1>
+            <button class="header_carrito" v-if="mostrarCarrito"><img src="./carrito2.png" width="20px" alt=""></button>
+        </header>
+
+        <div class="landing" v-if="mostrarBotiga">
+            <button class="landing__button" id="botoCataleg">CATÀLEG DE LLIBRES</button><br>
+            <button class="landing__button" id="botoAdmin">ADMINISTRACIÓ</button>
+            <div class="descBotiga">
+                <h4 class="descBotiga__title">INFORMACIÓ BOTIGA</h4>
+                Galaxia Gutenberg és una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim infinites
+                categories per que escullis segons les teves preferències, fes clic a CATÀLEG DE LLIBRES per començar a
+                explorar la nostra biblioteca.
+            </div>
+            <div class="direccioBotiga">
+                <div id="direccio" class="direccioBotiga__item"><b>Direcció</b><br>Av. d'Esplugues, 40<br>Esplugues de
+                    Ll. ,Barcelona<br>08034</div>
+                <div id="horaris" class="direccioBotiga__item"><b>Horaris d'atenció al client</b><br>Dilluns a
+                    Divendres_ 08:00h - 13:30h | 15:30h - 21:00h <br>Dissabtes i Diumenges: Tancat</div>
+                <div id="infoContacte" class="direccioBotiga__item"><b>Informació de contacte</b><br><b>Telèfon:</b>
+                    (123) 456-7890<br><b>Correu Electrònic:</b> Info@galaxiagutenberg.com</div>
+            </div>
+        </div>
+        <div class="botiga" v-if="mostrarBotiga">
+            <div class="llibres">
+                <div v-for="actual in llibres" :key="actual.id" class="llibre">
+                    <img :src="actual.portada" :alt="actual.nom">
+                    <h3>Nom: {{ actual.titol }}</h3>
+                    <p>Autor: {{ actual.autor }} k.author}}</p>
+                    <p>Año: {{actual.any}}</p>
+                    <button @click="mostrarInfoLlibre">+ info</button>
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <div class="validacio" v-if="mostrarValidacio">
+                <form action="#">
+                    <label for="">Nom: </label>
+                    <input type="text" id="nom" name="nom"><br>
+                    <label for="">Cognoms:</label>
+                    <input type="text" id="cognom" name="cognom"><br>
+                    <label for="">Telèfon:</label>
+                    <input type="text" id="telefon" name="telefon"><br>
+                    <label for="">Correu:</label>
+                    <input type="text" id="correu" name="correu"><br>
+                    <button type="submit">Enviar Dades</button>
+
+                </form>
+                <h3>RESUM COMPRA:</h3>
+                <ul>
+
+                </ul>
+                <h5>TOTAL </h5>
+                <button>CONFIRMAR</button>
+            </div>
+
+            <div class="estat" v-if="mostrarEstat">
+                <div id="compraEstat">COMPRA OK ✔</div>
+                <div class="dropdown">
+                    <div id="infoPedido">PEDIDO 000000001 ↓</div>
+                    <div class="dropdown-content">
+                        <p>Estat:</p>
+                        <p>Resum comanda:</p>
+                    </div>
+                </div>
+
+                <div></div>
+            </div>
+        </div>
+
+        <div class="landingAdmin">
+            <button class="landingAdmin__button" id="botoAdminLlibres">LLIBRES</button><br>
+            <button class="landingAdmin__button" id="botoAdminComandas">COMANDAS</button><br>
+            <button class="landingAdmin__button" id="botoAdminInfo">INFO BOTIGA</button><br>
+        </div>
+
+        <div class="llibresAdmin">
+            <h5>Llistat de llibres: </h5>
+            <div class="llibres">
+                <div v-for="actual in llibres" :key="actual.id" class="llibre">
+                    <img :src="actual.portada" :alt="actual.nom">
+                    <h3>Nom: {{ actual.titol }}</h3>
+                    <p>Autor: {{ actual.autor }} k.author}}</p>
+                    <p>Año: {{actual.any}}</p>
+                    <button @click="mostrarInfoLlibre">+ info</button>
+                </div>
+            </div>
+            <div class="buttonsLlibresAdmin">
+                <button class="editarAdmin__button" id="botoAdminEditar">EDITAR</button><br>
+                <button class="editarAdmin__button" id="botoAdminEditar">AFEGIR</button><br>
+                <button class="esborrarAdmin__button" id="botoAdminEsborrar">ESBORRAR</button><br>
+            </div>
+        </div>
+
+        <div class="editarLlibre">
+            <form action="#">
+                <label for="id">ID del llibre a editar: </label>
+                <input type="text" id="id" name="id"><br>
+                <label for="">Títol: </label>
+                <input type="text" id="titol" name="titol"><br>
+                <label for="">Autor:</label>
+                <input type="text" id="autor" name="autor"><br>
+                <label for="">Editorial:</label>
+                <input type="text" id="editorial" name="editorial"><br>
+                <label for="">ISBN:</label>
+                <input type="text" id="isbn" name="isbn"><br>
+                <label for="">Descripció:</label>
+                <input type="text" id="desc" name="desc"><br>
+                <label for="">Portada:</label>
+                <input type="text" id="portada" name="portada"><br>
+                <label for="">Preu:</label>
+                <input type="text" id="preu" name="preu"><br>
+                <label for="">Categories:</label>
+                <select name="cat" id="cat"></select>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+              
+                <button type="submit">EDITAR</button>
+
+            </form>
+        </div>
+
+        <footer class="footer">
+            <hr class="footer__line">
+            <p class="footer__text">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

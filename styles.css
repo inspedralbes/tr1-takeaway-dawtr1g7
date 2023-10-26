@@ -1,0 +1,125 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+    
+.header{
+    background-color: #b8caff;
+    border: 1px solid black;
+    margin-bottom: 10%;
+    display: flex;
+}
+.header__title{
+    margin-left: auto;
+    margin-right: 35%;
+    position: relative;
+    top: 15px;
+}
+
+button{
+    box-sizing: border-box;
+    height: 50px;
+    background-color: #b8caff;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px #a4bafa;
+    margin: 2%;
+}
+.descBotiga{
+    background-color: #b8caff;
+    border: 1px solid black;
+    margin-top: 10%;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    padding: 8px;
+}
+.direccioBotiga{
+    display: grid;
+    grid-template-areas: "direccio horaris"
+                         "info info";
+    background-color: #b8caff;
+    border: 1px solid black;
+    margin-bottom: 15%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    
+}
+.header__desplegable{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 100%;
+    height: 20px;
+    margin-top: 42px;
+    margin-right: 20%;
+    margin-left: 20px;
+}
+
+#direccio{
+    grid-area: direccio;
+}
+#horaris{
+    grid-area: horaris;
+    
+}
+#infoContacte{
+   margin-top: 5%;
+}
+.llibre{
+    background-color: #b8caff;
+    width: 15%;
+    height: 15%;
+    border: 1px solid black;
+    box-shadow: 10px 10px 10px #a4bafa;
+}
+.llibres{
+    width: 80%;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+#compraEstat{
+    width: 25%;
+    padding: 5px;
+    background-color: #b8caff;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dropdown{
+    display: inline-block;
+    position: relative;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    text-align: left;
+
+}
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+.buttonsLlibresAdmin{
+    display: flex;
+    margin-left: 42%;
+    
+}
+#infoPedido{
+    background-color: rgb(192, 192, 192);
+    border: 1px solid black;
+    width: 28em;
+    margin-top: 5%;
+}
+form>input{
+    margin:10px;
+}
+footer{
+    background-color: #b8caff;
+    height: 100%;
+    padding-bottom: 15px;
+}
