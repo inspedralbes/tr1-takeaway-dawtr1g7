@@ -35,11 +35,18 @@
             </div>
         </div>
         <div class="botiga" v-if="mostrarBotiga">
-            <div class="llibres">
-                <div v-for="actual in llibres" :key="actual.id" class="llibre">
+            <div class="llibres" v-for="actual in llibres" :key="actual.id">
+                <div class="llibre">
                     <img :src="actual.portada" :alt="actual.nom">
                     <h3>Nom: {{ actual.titol }}</h3>
-                    <p>Autor: {{ actual.autor }} k.author}}</p>
+                    <p>Autor: {{ actual.autor }}</p>
+                    <p>Año: {{actual.any}}</p>
+                    <button @click="mostrarInfoLlibre">+ info</button>
+                </div>
+                <div class="llibre">
+                    <img :src="actual.portada" :alt="actual.nom">
+                    <h3>Nom: {{ actual.titol }}</h3>
+                    <p>Autor: {{ actual.autor }}</p>
                     <p>Año: {{actual.any}}</p>
                     <button @click="mostrarInfoLlibre">+ info</button>
                 </div>
@@ -90,11 +97,18 @@
 
         <div class="llibresAdmin">
             <h5>Llistat de llibres: </h5>
-            <div class="llibres">
-                <div v-for="actual in llibres" :key="actual.id" class="llibre">
+            <div class="llibres" v-for="actual in llibres" :key="actual.id">
+                <div class="llibre">
                     <img :src="actual.portada" :alt="actual.nom">
                     <h3>Nom: {{ actual.titol }}</h3>
-                    <p>Autor: {{ actual.autor }} k.author}}</p>
+                    <p>Autor: {{ actual.autor }}</p>
+                    <p>Año: {{actual.any}}</p>
+                    <button @click="mostrarInfoLlibre">+ info</button>
+                </div>
+                <div class="llibre">
+                    <img :src="actual.portada" :alt="actual.nom">
+                    <h3>Nom: {{ actual.titol }}</h3>
+                    <p>Autor: {{ actual.autor }}</p>
                     <p>Año: {{actual.any}}</p>
                     <button @click="mostrarInfoLlibre">+ info</button>
                 </div>
@@ -131,7 +145,7 @@
                 <option value=""></option>
                 <option value=""></option>
                 <option value=""></option>
-              
+
                 <button type="submit">EDITAR</button>
 
             </form>
