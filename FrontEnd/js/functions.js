@@ -19,10 +19,10 @@ createApp({
 
     methods: {
         async getLlibres() {
-            let response = await fetch('http://localhost:8000/api/llibres')
+            let response = await fetch('./data.json')
             let productes = await response.json()
             console.log(productes)
-            this.llibres = productes
+            this.llibres = productes.llibres
         },
         async cambiarDiv(id) {
             this.botigaStatus = id;

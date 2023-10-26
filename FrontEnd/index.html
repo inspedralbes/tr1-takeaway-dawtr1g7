@@ -31,17 +31,27 @@
                 </div>
 
                 <div id="previewCarrito" v-if="previewCarrito">
-                    <div>Cistella de la Compra </div>
+                    <div>Cistella de la Compra</div>
+                    <hr>
                     <div>
-                        <div>Resum de la comanda</div>
-                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
-                            <div>{{ getLlibrePerId(itemCarrito.id).titol }}</div>
-                            <div>{{ itemCarrito.quantitat }}</div>
-                            <div>{{ getLlibrePerId(itemCarrito.id).preu }}</div>
+                        <div  v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                            <div class="carrito-item">
+                                <img :src="getLlibrePerId(itemCarrito.id).portada" style="width: 70px;height: 106px;">
+                                <div class="carrito-item-info">
+                                    <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
+                                    <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
+                                    <div id="preuPreCarrito">{{ getLlibrePerId(itemCarrito.id).preu }}€</div>
+                                </div>
+                            </div>
+                            <div class="butonsSumaResta">
+                                <button @click="restarQuantitat()">-</button>
+                                <input type="number" v-model="itemCarrito.quantitat">
+                                <button @click="sumarQuantitat()">+</button>
+                            </div>
                         </div>
-                        <div>El total de la compra es: {{ getPreuTotalCarrito() }} €</div>
+                        <div>Total {{ getPreuTotalCarrito() }} €</div>
                     </div>
-                    <button @click="cambiarDiv('validacio')">PAGAR</button>
+                    <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
 
@@ -90,8 +100,7 @@
                         <label for="nomValidacio">Nom</label>
                         <input type="text" id="nomValidacio" name="nomValidacio">
                         <label for="emailValidacio">Email</label>
-                        <input type="email" id="emailValidacio" name="emailValidacio"
-                            placeholder="exemple@mail.com">
+                        <input type="email" id="emailValidacio" name="emailValidacio" placeholder="exemple@mail.com">
                         <label for="telValidacio">Numero de telefon:</label>
                         <input type="tel" id="telValidacio" name="telValidacio" placeholder="123456789" maxlength="9"
                             pattern="[0-9]{9}">
@@ -119,7 +128,7 @@
                             </table>
                         </div>
                         <div id="containerConf">
-                          <button @click="cambiarDiv('estat')">CONFIRMAR</button>
+                            <button @click="cambiarDiv('estat')">CONFIRMAR</button>
                         </div>
                     </div>
 
