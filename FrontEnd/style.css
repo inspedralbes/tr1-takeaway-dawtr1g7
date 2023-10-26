@@ -1,12 +1,433 @@
-:root{
---black:#0000;    
+:root {
+    --black: #000;
+    --dark-blue: #64729c;
+    --light-blue: #b8caff;
+    --white: white;
 }
-body{
+
+h1{
+    margin: 0;
+    padding: 10px;
+}
+*{
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+img{
+    max-width: 100%;
 }
 
-.header{
+
+/*DISTRIBUCIO D'ESPAIS*/
+header {
+    grid-area: header;
+    background-color: var(--black); 
+    color:var(--white);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+#container{
+    padding-top: 10px;
+    grid-area: conten;
+}
+
+footer {
+    grid-area: footer;
     background-color: var(--black);
+    color:var(--white);
+    text-align: center;
+    padding: 10px;
 }
+
+.header-title {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 40px;
+    filter: brightness(0) invert(1);
+}
+#app{
+    min-height: 100vh;
+    display: grid;
+    width:100%;
+    grid-template-areas: "header" "conten" "footer";
+    grid-template-rows: 60px 1fr 50px;
+}
+
+/*LANDING*/
+
+#infoBotiga>#textInfoBot>h2{
+    grid-area: titleInf;
+}
+#infoBotiga>#textInfoBot>p{
+    grid-area: textInfo;
+    text-align: justify;
+}
+
+#infoBotiga>#textInfoBot{
+    grid-area: infoBot;
+    display: grid;
+    grid-template-areas: "titleInf" "textInfo";
+    gap: 15px;
+}
+
+#infoBotiga>button{
+    grid-area: buttonBut;
+    padding: 15px;
+    margin: auto;
+    width: 40%;
+}
+#infoBotiga{
+    width: 80%;
+    margin: auto;
+    padding-top: 40%;
+    display: grid;
+    grid-template-areas: 
+    "infoBot"
+    "buttonBut";
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
+}
+
+/*****DESCRIPCIÓ LLIBRE*****/
+
+#mostrarLlibre {
+    margin: 0 20px;
+    display: grid;
+    grid-template-areas:
+        "tornar_enrere ."
+        "portada dades_basiques"
+        "descripcio descripcio";
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+    font-family: sans-serif;
+}
+
+.portada {
+    grid-area: portada;
+}
+
+.infoLlibre {
+    grid-area: dades_basiques;
+}
+
+.llibreDescr {
+    grid-area: descripcio;
+}
+
+.infoLlibre>p:nth-child(2) {
+    font-size: 1.25em;
+    font-weight: lighter;
+}
+
+.butonsSumaResta {
+    height: 30px;
+}
+
+.butonAfegir {
+    grid-area: tornar_enrere;
+}
+
+.infoLlibre>h5 {
+    font-size: 1.25em;
+    margin: 0;
+}
+
+.butonAfegir>button {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+
+.llibreDescr>p {
+    font-size: 0.8em;
+}
+
+.butonsSumaResta>input {
+    width: 70%;
+    height: 100%;
+    border: 1px solid var(--black);
+    border-left-style: none;
+    border-right-style: none;
+    text-align: center;
+}
+
+.butonsSumaResta>button {
+    background-color: transparent;
+    border: 1px solid var(--black);
+    height: 100%;
+    width: 15%;
+}
+
+.butonsSumaResta>button:nth-child(1) {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.butonsSumaResta>button:nth-child(3) {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.butonsSumaResta>button:hover {
+    background-color: lightslategray;
+}
+
+.portada>img {
+    width: 100%;
+    height: auto;
+}
+
+#graella__productes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    align-items: center;
+}
+
+#producte {
+    position: relative;
+    border-radius: 7px;
+    align-items: center;
+
+    display: flex; /* Agregado para centrar verticalmente el contenido */
+    flex-direction: column; /* Agregado para alinear el contenido verticalmente */
+    margin:15px;
+    width: 150px;
+    box-shadow: 3px 6px 5px #333, -1px -1px 3px #333;
+}
+
+#producte__titol {
+    color: var(--black);
+}
+
+/*ESTILS CSS DE LA PREVIEW CARRITO*/
+#previewCarrito {
+    margin: 15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.carrito-item {
+    display: flex;
+    margin: 10px 10px;
+}
+
+
+#botonpagar {
+    width: 100%;
+    /* Ancho completo */
+}
+
+#titolPreCarrito {
+    text-align: justify;
+}
+
+#autorPreCarrito {
+    text-align: justify;
+    color: lightgray;
+
+}
+
+#preuPreCarrito {
+    position: absolute;
+    text-align: right;
+    bottom: 0;
+    right: 0;
+}
+
+.carrito-item-info {
+    position: relative;
+    width: 100%;
+    margin-left: 15px;
+
+}
+
+#etiqueta {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0px 0px 7px 7px;
+    color: var(--black);
+    padding-bottom: 14px;
+    padding-top: 14px;
+}
+
+#producte__img{
+    width: 150px;
+    height: 225px;
+    border-radius: 7px;
+}
+
+/*GRIDS DADES*/
+#labelNom {
+    grid-area: lablNom;
+}
+
+#nomValidacio {
+    grid-area: nomInp;
+}
+
+#labelEmail {
+    grid-area: lablEmail;
+}
+
+#emailValidacio {
+    grid-area: emailInp;
+}
+
+#labelTel {
+    grid-area: lablTel;
+}
+
+#telValidacio {
+    grid-area: telInp;
+}
+
+/*GRID DADES*/
+#dadesInput {
+    display: grid;
+    grid-template-areas:
+        "lablNom"
+        "nomInp"
+        "lablEmail"
+        "emailInp"
+        "lablTel"
+        "telInp";
+}
+
+#dadesInput>label {
+    padding-top: 10px;
+}
+
+#dades {
+    grid-area: dades;
+    padding-top: 15px;
+}
+
+/*RESUM COMPRA*/
+#resumCompra {
+    grid-area: resum;
+    padding-top: 30px;
+}
+
+#resumCompra>h2 {
+    text-align: center;
+}
+
+#resumCompra>table {
+    padding-top: 15px;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 8px;
+}
+
+.tablQuant {
+    text-align: center;
+}
+
+.tablPreu {
+    text-align: right;
+}
+
+/*BUTTON CONFIRMAR*/
+#containerConf {
+    grid-area: buttConf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+#containerConf>button {
+    padding: 10px;
+}
+
+/*GRID VALIDACIO*/
+#validacio {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+        "dades"
+        "resum"
+        "buttConf";
+    justify-content: center;
+}
+
+#producte__preu {
+    color: var(--black);
+}
+
+#imgEstat{
+    text-align: center;
+}
+#imgEstat>img{
+    width: 70%;
+    height: auto;
+}
+#estat>h2{
+    text-align: center;
+}
+#resumComanda{
+    width: 90%;
+    margin: auto;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+#idComanda{
+    border-bottom: 1px solid black;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+}
+
+#estatComanda{
+    grid-area: estatC;
+}
+#tableComanda{
+    padding-top: 15px;
+    grid-area: tablC;
+}
+
+.tablQuantEstat{
+    text-align: center;
+}
+.tablPreuEstat{
+    text-align: right;
+}
+
+#InfoComanda{
+    padding: 15px;
+}
+#tablC{
+    width: 100%;
+}
+
+#containerTornarInici{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+#containerTornarInici>button{
+    padding: 10px;
+}
+

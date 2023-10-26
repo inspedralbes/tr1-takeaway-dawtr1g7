@@ -1,16 +1,23 @@
-# Projectes finals curs 2022 2023
+# Projecte TR1 Curs 2023-2024
 
-**Tota** la informació del vostre projecte ha de ser accessible a partir d'aquí
+## Galaxia Gutenberg
 
-Teniu la carpeta /doc per deixar-hi tota la documentació que genereu, en format __markdown__
-
-HEU DE MODIFICAR AQUEST DOCUMENT AMB LA VOSTRA INFORMACIÖ:
-* Nom del projecte (Galaxia Gutenberg)
-* Petita descripció
-* Nom (o inicials) dels integrants del grup i si tenen algun rol
-* URL del prototip de penpot (penseu a deixar el prototip públic)
-* URL del taiga.io
-* URL de preproducció 
-* URL de producció (amb un domini registrat)
+**Galaxia Gutenberg** és un projecte dissenyat com a activitat avaluadora del segon curs del Cicle Formatiu de Grau Superior en Desenvolupament d'Aplicacions Web. El projecte consisteix en el desenvolupament d'un lloc web de comerç electrònic on els usuaris poden sol·licitar llibres per després recollir-los en una botiga (modalitat de recollida a la botiga, "takeaway").
 
 
+Mentre es navega pel catàleg, es mostren tots els llibres disponibles en una graella de sis en sis. No obstant això, els usuaris tenen la possibilitat de filtrar la seva cerca per categories utilitzant un botó que mostra una llista d'aquestes categories o mitjançant una barra de cerca que permet filtrar per títol, autor, categoria, etc. En fer clic en un producte, es mostra informació detallada d'aquest i l'opció d'afegir-lo al carro de la compra. Els usuaris poden veure en qualsevol moment i de manera actualitzada els productes que han afegit al carro i procedir a la pantalla de pagament.
+
+La pantalla de pagament inclou un resum de la comanda i un formulari per recopilar les dades del client. Un cop realitzat el pagament, la pantalla mostra un missatge de confirmació de l'enviament correcte de la comanda, juntament amb el seu estat i contingut.
+
+**Autors: GRUP 7**
+- Gala Del Águila Redó (Coordinadora de Desplegament)
+- Ivan Barbero Santisteban (Coordinador de HTML, CSS i Javascript)
+- Santiago Pujol Saumell (Coordinador de PHP i SQL)
+- David Salvador Sosa (Coordinador de HTML, CSS i Javascript)
+- Álvaro Kumenius Romero (Coordinador de PHP i SQL)
+
+**Enllaços:**
+- [Prototip a Penpot (assegura't de deixar el prototip públic)](https://design.penpot.app/#/view/bc104529-972b-8028-8003-522fc01f9f96?page-id=bc104529-972b-8028-8003-522fc01f9f97&section=interactions&frame-id=08c53b94-d879-809b-8003-522fd66e4565&index=0&share-id=bc104529-972b-8028-8003-536571d1b86e)
+- [Taiga.io](https://tree.taiga.io/project/santipu03-tr1g7)
+- [URL de Preproducció](https://galaxiagutenberg.daw.inspedralbes.cat/tr1-takeaway-dawtr1g7-preproduccio)
+- [URL de Producció (amb domini registrat)](https://galaxiagutenberg.daw.inspedralbes.cat/tr1-takeaway-dawtr1g7-produccio)

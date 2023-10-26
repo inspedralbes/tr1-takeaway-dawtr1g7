@@ -3,38 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <title>Galaxia Gutenberg</title>
 </head>
+
 <body>
     <div id="app">
         <header>
-            <div class="header">
-                <h1>Galaxia Gutenberg</h1>
+            <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
+            <div @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
+                <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
             </div>
         </header>
-        <div id="landing">
-            <button id="botoCataleg">Catáleg</button>
-            <p id="textLanding">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi amet voluptatem distinctio assumenda quos officiis odio. Quibusdam nisi dolorem illum minus quae expedita accusantium praesentium, recusandae, maxime aperiam facere error?</p>
-        </div>
-        <div id="botiga">
-            <div>
-                
+        <div id="container">
+            <div v-if="mostrar('landing')" id="landing">
+                <div id="infoBotiga">
+                    <div id="textInfoBot">
+                        <h2>Informacio de la botiga</h2>
+                        <p>
+                            Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim
+                            infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a
+                            explorar la nostra biblioteca
+                        </p>
+                    </div>
+                    <button @click="cambiarDiv('botiga')">Ir a tienda</button>
+                </div>
             </div>
-            <div id="validacio">
-    
-            </div>
-            <div id="estat">
+            <div id="botiga" v-if="mostrar('botiga')">
+
+                <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
+
+                <div id="previewCarrito" v-if="previewCarrito">
+                    <div>Cistella de la Compra</div>
+                    <hr>
+                    <div>
+                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                            <div class="carrito-item">
+                                <img :src="getLlibrePerId(itemCarrito.id).img_url" style="width: 70px;height: 106px;">
+                                <div class="carrito-item-info">
+                                    <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
+                                    <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
+                                    <div id="preuPreCarrito">{{ getLlibrePerId(itemCarrito.id).preu }}€</div>
+                                </div>
+                            </div>
+                            <div class="butonsSumaResta">
+                                <button @click="restarQuantitat(itemCarrito.id,false)">-</button>
+                                <input type="number" v-model="itemCarrito.quantitat">
+                                <button @click="sumarQuantitat(itemCarrito.id)">+</button>
+                            </div>
+                        </div>
+                        <div>Total {{ getPreuTotalCarrito() }} €</div>
+                    </div>
+                    <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
+                </div>
+
+                <div id="graella__productes">
+                    <div id="producte" v-for="(llibre, index) in llibres"
+                        @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
+                        <img id="producte__img" :src="llibre.img_url">
+                        <div id="etiqueta">
+                            <h5 id="producte__titol">{{llibre.titol}}</h5>
+                            <p id="producte__preu">{{llibre.preu}}€</p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-        </div>
-        <div >
 
+            <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
+                <div class="portada">
+                    <img :src="getLlibreActual().img_url">
+                    <div class="butonsSumaResta">
+                        <button @click="restarQuantitat(getLlibreActual().id,true)">-</button>
+                        <input type="number" v-model="quantitat">
+                        <button @click="sumarQuantitat(getLlibreActual().id)">+</button>
+                    </div>
+                </div>
+
+                <div class="infoLlibre">
+                    <h5>{{ getLlibreActual().titol }}</h5>
+                    <p>{{ getLlibreActual().preu }}€</p>
+                    <p>{{ getLlibreActual().any }}</p>
+                </div>
+
+                <div class="llibreDescr">
+                    <p>{{ getLlibreActual().descripcio }}</p>
+                </div>
+
+                <div class="butonAfegir">
+                    <button @click="cambiarDiv('botiga')"> &lt; Tornar enrere</button>
+                </div>
+            </div>
+
+            <div id="validacio" v-if="mostrar('validacio')">
+                <div id="dades">
+                    <h2>Revisió</h2>
+                    <div id="dadesInput">
+                        <label for="nomValidacio">Nom</label>
+                        <input type="text" id="nomValidacio" name="nomValidacio">
+                        <label for="emailValidacio">Email</label>
+                        <input type="email" id="emailValidacio" name="emailValidacio" placeholder="exemple@mail.com">
+                        <label for="telValidacio">Numero de telefon:</label>
+                        <input type="tel" id="telValidacio" name="telValidacio" placeholder="123456789" maxlength="9"
+                            pattern="[0-9]{9}">
+                    </div>
+                    <div>
+
+                        <div id="resumCompra">
+                            <h2>Resum compra</h2>
+                            <table>
+                                <tr>
+                                    <th>Llibre</th>
+                                    <th class="tablQuant">Quantitat</th>
+                                    <th class="tablPreu">Preu</th>
+                                </tr>
+                                <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                                    <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
+                                    <td class="tablQuant">{{ itemCarrito.quantitat }}</td>
+                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL</td>
+                                    <td class="tablQuant">{{ getQuantitatTotalCarrito() }}</td>
+                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }} €</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="containerConf">
+
+                            <button @click="crearComanda()">CONFIRMAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="estat" v-if="mostrar('estat')">
+                <div id="imgEstat">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png" alt="img_check">
+                </div>
+                <h2>Compra efectuada correctament</h2>
+
+                <div id="resumComanda">
+                    <div id="idComanda">
+                        Comanda <strong>{{ getComanda().id }}</strong>
+                    </div>
+                    <div id="InfoComanda">
+                        <div id="estatComanda">
+                            Estat de la comanda: <strong>{{ getComanda().estat }}</strong>
+                        </div>
+                        <div id="tableComanda">
+                            <h3>RESUM COMPRA:</h3>
+                            <table id="tablC">
+                                <tr>
+                                    <th>Llibre</th>
+                                    <th class="tablQuantEstat">Quantitat</th>
+                                    <th class="tablPreuEstat">Preu</th>
+                                </tr>
+                                <tr v-for="producte in getComanda().productes" :key="producte.id">
+                                    <td>{{ getLlibrePerId(producte.id).titol }}</td>
+                                    <td class="tablQuantEstat">{{ producte.quantitat }}</td>
+                                    <td class="tablPreuEstat">{{ producte.preu }}€</td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL</td>
+                                    <td class="tablQuantEstat">{{ getQuantitatTotalComanda() }}</td>
+                                    <td class="tablPreuEstat">{{ getPreuTotalComanda() }}€</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="containerTornarInici">
+                    <button @click="cambiarDiv('landing')">Tornar Inici</button>
+                </div>
+
+            </div>
         </div>
         <footer>
             <hr>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
         </footer>
+        <script src="js/functions.js" type="module"></script>
     </div>
 </body>
+
+
 </html>
