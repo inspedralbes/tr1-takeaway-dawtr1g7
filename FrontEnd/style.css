@@ -88,6 +88,46 @@ footer {
     margin-left: 5%;
     margin-right: 5%;
     padding: 20px;
+} 
+#buttonsLanding{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+}
+#buttonsLanding button{
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%;
+    justify-content: center;
+}
+#buttonLandingIniciSessio {
+    display: inline-block;
+    width: 110%;
+    background: var(--mi-gradient);
+    border-radius: 10%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+}
+#buttonIniciarS{
+    display: inline-block;
+    width: auto;
+    background: var(--mi-gradient);
+    margin-right: 10%;
+    border-radius:5%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+}
+#buttonRegistre{
+    display: inline-block;
+    width: auto;
+    background: var(--mi-gradient);
+    border-radius: 10%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+}
+#buttonLandingRegistre{
+    display: inline-block;
+    width: auto;
+    background: var(--mi-gradient);
+    border-radius: 10%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
 }
 /*DISTRIBUCIO D'ESPAIS*/
 header {
@@ -101,7 +141,7 @@ header {
 }
 
 #container{
-    padding-top: 25%;
+    padding-top: 5%;
   
 }
 
@@ -132,6 +172,7 @@ footer {
 #infoBotiga>#textInfoBot>p{
     text-align: justify;
 }
+
 /*LANDING
 
 
@@ -182,7 +223,7 @@ footer {
 #infoBotiga{
     width: 80%;
     padding-bottom: 10%;
-    padding-top: 45%;
+
     display: flex;
     justify-content: center;
     text-align: center;
@@ -469,15 +510,31 @@ th {
 .tablPreu {
     text-align: right;
 }
-
+.direccioBotiga {
+    display: grid;
+    grid-template-areas: "direccio horaris"
+                         "info info";
+    background-color: #b8caff;
+    border: 1px solid black;
+    margin-bottom: 15%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+   
+}
+#direccio{
+    height: 50%;
+}
 /*BUTTON CONFIRMAR*/
 #containerConf {
     grid-area: buttConf;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 30px;
+   
 }
+
 
 #containerConf>button {
     padding: 15px;
