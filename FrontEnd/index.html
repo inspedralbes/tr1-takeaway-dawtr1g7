@@ -22,8 +22,10 @@
             <div v-if="mostrar('landing')" id="landing">
                 
                 <div id="infoBotiga">
-                    <button @click="cambiarDiv('iniciarSesion')">Iniciar Sessió</button> 
-                    <button @click="cambiarDiv('registro')">Registre</button> 
+                    <div id="buttonsLanding">
+                    <button @click="cambiarDiv('iniciarSesion')" id="buttonLandingIniciSessio">Iniciar Sessió</button> 
+                    <button @click="cambiarDiv('registro')" id="buttonLandingRegistre">Registre</button> 
+                </div>
                     <div id="textInfoBot">                      
                         <h2>Informació sobre la botiga</h2>
                         <p>
@@ -31,8 +33,15 @@
                             infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a
                             explorar la nostra biblioteca
                         </p>
+                        
                     </div>
                     <button @click="cambiarDiv('botiga')">CATÀLEG</button>
+                </div>
+                <div class="direccioBotiga">
+                    <div id="direccio" class="direccioBotiga__item" ><b>Direcció</b><br>Av. d'Esplugues, 40<br>Esplugues de
+                        Ll. ,Barcelona<br>08034</div>
+                    <div id="infoContacte" class="direccioBotiga__item"><b>Informació de contacte</b><br><b>Telèfon:</b>
+                        (123) 456-7890<br><b>Correu Electrònic:</b> Info@galaxiagutenberg.com</div>
                 </div>
                 <img src="imgP.jpeg" alt="" id="imgP">
             </div>
@@ -42,7 +51,7 @@
                 <input type="text" id="correuIniciSessio"><br>
                 <label for="password">Contrasenya: </label>
                 <input type="text" name="password" id="passwordIniciSesio"><br>
-                <button type="submit">Iniciar Sessió</button>
+                <button type="submit" id="buttonIniciarS">Iniciar Sessió</button>
             </div>
             <div v-if="mostrar('registro')" id="registre">
                 <h2>REGISTRE</h2>
@@ -56,7 +65,7 @@
                 <input type="text" name="password2" id="password2Registre"><br>
                 <label for="telefon">Teléfon: </label>
                 <input type="text" name="telefon" id="telefonRegistre"><br>
-                <button type="submit">Registrarme</button>
+                <button type="submit" id="buttonRegistre">Registrarme</button>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
