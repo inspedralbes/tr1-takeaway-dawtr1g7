@@ -18,6 +18,7 @@ h1{
 }
 img{
     max-width: 100%;
+
 }
 
 
@@ -32,8 +33,75 @@ header {
     padding: 15px;
 }
 
+.buttonComanda{
+    padding: 10px;
+    margin: auto;
+    width: 25%;
+    background: var(--mi-gradient);
+    border-radius: 10%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+}
+
+footer {
+    grid-area: footer;
+    background: var(--mi-gradient);
+    color:var(--white);
+    text-align: center;
+}
+#iniciSessio label,
+    #registre label {
+        display: inline-block;
+        width: 150px; /* Ancho deseado para las etiquetas */
+        text-align: right; /* Alineación de la etiqueta a la derecha */
+        margin-right: 10px; /* Espacio entre la etiqueta y el input */
+    }
+
+    #iniciSessio input,
+    #registre input {
+        width: 100px; /* Ancho deseado para los inputs */
+       margin-bottom: 5%;
+    }
+#iniciSessio button{
+    margin-top: 5%;
+    margin-left: 40%;
+}
+#iniciSessio h2{
+    text-align: center;
+    margin-bottom: 5%;
+}
+#iniciSessio{
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 20px;
+}
+#registre h2{
+    text-align: center;
+    margin-bottom: 5%;
+}
+#registre button{
+    margin-top: 5%;
+    margin-left: 40%;
+}
+#registre{
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 20px;
+}
+/*DISTRIBUCIO D'ESPAIS*/
+header {
+    grid-area: header;
+    background: var(--mi-gradient); 
+    color:var(--white);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
 #container{
-    padding-top: 14%;
+    padding-top: 25%;
   
 }
 
@@ -104,7 +172,7 @@ footer {
     margin: auto;
     width: 35%;
     background: var(--mi-gradient);
-    border-radius: 7%;
+    border-radius: 10%;
     box-shadow: 5px 5px 10px rgb(11, 1, 71);
    
 }
@@ -139,6 +207,10 @@ footer {
     column-gap: 10px;
     row-gap: 10px;
     font-family: sans-serif;
+    border: 1px solid black;
+    height: 80%;
+    width: 80%;
+    padding: 20px;
 }
 
 .portada {
@@ -160,6 +232,8 @@ footer {
 
 .butonsSumaResta {
     height: 30px;
+    background: var(--mi-gradient);
+
 }
 
 .butonAfegir {
@@ -240,16 +314,26 @@ footer {
 #producte__titol {
     color: var(--black);
 }
+.inputN::-webkit-outer-spin-button, .inputN::-webkit-inner-spin-button{
 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.inputN[type=number]{
+    -moz-appearance: textfield;
+}
 /*ESTILS CSS DE LA PREVIEW CARRITO*/
 #previewCarrito {
-    margin: 15px;
+    margin: 10px;
     background: #fff;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 60%;
-    float: right;
+    position: relative;
+    top: 0;
+ 
 }
 
 .carrito-item {
@@ -259,7 +343,13 @@ footer {
 
 
 #botonpagar {
-    width: 100%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    background: var(--mi-gradient);
+    border-radius: 7%;
+    box-shadow: 5px 5px 10px rgb(11, 1, 71);
     /* Ancho completo */
 }
 
@@ -413,6 +503,7 @@ th {
     justify-content: center;
     border: 1px solid black;
     margin-top: 15%;
+    padding: 20px;
 }
 
 #producte__preu {
@@ -476,4 +567,3 @@ th {
     border-radius: 7%;
     box-shadow: 5px 5px 10px rgb(11, 1, 71);
 }
-
