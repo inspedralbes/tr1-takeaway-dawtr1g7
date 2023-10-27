@@ -35,13 +35,14 @@
                         </p>
                         
                     </div>
-                    <button @click="cambiarDiv('botiga')">CATÀLEG</button>
+                    <button @click="cambiarDiv('botiga')" id="buttonLandingCataleg">CATÀLEG</button>
                 </div>
                 <div class="direccioBotiga">
                     <div id="direccio" class="direccioBotiga__item" ><b>Direcció</b><br>Av. d'Esplugues, 40<br>Esplugues de
                         Ll. ,Barcelona<br>08034</div>
-                    <div id="infoContacte" class="direccioBotiga__item"><b>Informació de contacte</b><br><b>Telèfon:</b>
-                        (123) 456-7890<br><b>Correu Electrònic:</b> Info@galaxiagutenberg.com</div>
+                    <div id="infoContacte" class="direccioBotiga__item"><br><b>Telèfon:</b>
+                        (123) 456-7890<br><b>Horaris d'atenció al client</b><br>Dilluns a
+                            Divendres_ 08:00h - 13:30h | 15:30h - 21:00h <br>Dissabtes i Diumenges: Tancat</div>
                 </div>
                 <img src="imgP.jpeg" alt="" id="imgP">
             </div>
@@ -110,7 +111,7 @@
 
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
                 <div class="portada">
-                    <img :src="getLlibreActual().img_url">
+                    <img :src="getLlibreActual().img_url" id="imgLlibre">
                     <div class="butonsSumaResta">
                         <button @click="restarQuantitat(getLlibreActual().id,true)">-</button>
                         <input type="number" v-model="quantitat" class="inputN">
