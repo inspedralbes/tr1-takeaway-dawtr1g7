@@ -57,8 +57,9 @@ createApp({
         cambiarDiv(id) {
             this.botigaStatus = id;
         },
-        mostrar(id) {
-            return (this.botigaStatus == id);
+        mostrar(id) { 
+            
+            return this.botigaStatus === id;  
         },
         getCarrito() {
             return this.carrito
