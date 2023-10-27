@@ -21,7 +21,9 @@
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
                 
-                <div id="infoBotiga"> 
+                <div id="infoBotiga">
+                    <button @click="cambiarDiv('iniciarSesion')">Iniciar Sessió</button> 
+                    <button @click="cambiarDiv('registro')">Registre</button> 
                     <div id="textInfoBot">                      
                         <h2>Informació sobre la botiga</h2>
                         <p>
@@ -32,12 +34,33 @@
                     </div>
                     <button @click="cambiarDiv('botiga')">CATÀLEG</button>
                 </div>
-                <img src="./imgP.jpeg" alt="" id="imgP">
+                <img src="imgP.jpeg" alt="" id="imgP">
             </div>
-
+            <div v-if="mostrar('iniciarSesion')" id="iniciSessio">
+                <h2>INICI SESSIÓ</h2><br>
+                <label for="correu">Correu: </label>
+                <input type="text" id="correuIniciSessio"><br>
+                <label for="password">Contrasenya: </label>
+                <input type="text" name="password" id="passwordIniciSesio"><br>
+                <button type="submit">Iniciar Sessió</button>
+            </div>
+            <div v-if="mostrar('registro')" id="registre">
+                <h2>REGISTRE</h2>
+                <label for="name">Nom: </label>
+                <input type="text" id="nomRegistre"><br>
+                <label for="correu">Correu: </label>
+                <input type="text" id="correuRegistre"><br>
+                <label for="password">Contrasenya: </label>
+                <input type="text" name="password" id="passwordRegistre"><br>
+                <label for="password2">Confirmació contrasenya: </label>
+                <input type="text" name="password2" id="password2Registre"><br>
+                <label for="telefon">Teléfon: </label>
+                <input type="text" name="telefon" id="telefonRegistre"><br>
+                <button type="submit">Registrarme</button>
+            </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
-                <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
+                <button class="buttonComanda" @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
@@ -54,7 +77,7 @@
                             </div>
                             <div class="butonsSumaResta">
                                 <button @click="restarQuantitat(itemCarrito.id,false)">-</button>
-                                <input type="number" v-model="itemCarrito.quantitat">
+                                <input type="number" v-model="itemCarrito.quantitat" class="inputN">
                                 <button @click="sumarQuantitat(itemCarrito.id)">+</button>
                             </div>
                         </div>
@@ -81,7 +104,7 @@
                     <img :src="getLlibreActual().img_url">
                     <div class="butonsSumaResta">
                         <button @click="restarQuantitat(getLlibreActual().id,true)">-</button>
-                        <input type="number" v-model="quantitat">
+                        <input type="number" v-model="quantitat" class="inputN">
                         <button @click="sumarQuantitat(getLlibreActual().id)">+</button>
                     </div>
                 </div>
@@ -190,7 +213,10 @@
             <hr>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
         </footer>
+        <script src="./js/functions.js" type="module"></script>
+
         <script src="js/functions.js" type="module"></script>
+
     </div>
 </body>
 
