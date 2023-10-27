@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LlibresController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ComandesController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,23 @@ use App\Http\Controllers\ComandesController;
 // Public
 Route::get('/llibres', [LlibresController::class,'index']);
 Route::get('/categories', [CategoriesController::class,'index']);
-Route::post('/novaComanda', [ComandesController::class,'store']);
 
-Route::get('/comandes', [ComandesController::class,'index']);
-Route::get('/comandes/{id}', [ComandesController::class,'show']);
-Route::get('/comandes/user/{userId}', [ComandesController::class,'search']);
 
+// Auth
+Route::post('/register', [AuthController::class,'register']);
+Route::post('/login', [AuthController::class,'login']);
+
+
+// Route::get('/comandes', [ComandesController::class,'index']);
+// Route::get('/comandes/{id}', [ComandesController::class,'show']);
+// Route::get('/comandes/user/{userId}', [ComandesController::class,'search']);
+
+
+// Protected Routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/novaComanda', [ComandesController::class,'store']);
+    Route::post('/logout', [AuthController::class,'logout']);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
