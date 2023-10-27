@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LlibresController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ComandesController;
 
 /*
 |--------------------------------------------------------------------------
