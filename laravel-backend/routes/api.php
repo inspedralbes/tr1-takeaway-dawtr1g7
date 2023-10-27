@@ -24,7 +24,7 @@ Route::get('/categories', [CategoriesController::class,'index']);
 
 
 // Auth
-Route::post('/register', [AuthController::class,'register']);
+Route::post('/registre', [AuthController::class,'register']);
 Route::post('/login', [AuthController::class,'login']);
 
 

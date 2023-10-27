@@ -161,6 +161,40 @@ createApp({
             // Filtrar llibres amb quantitat zero
             let newCarrito = this.carrito.filter(item => item.quantitat != 0)
             this.carrito = newCarrito
+        },
+
+        // USUARIS
+        async registrarUsuari() {
+            let jsonObject = {
+                name: document.getElementById("nomRegistre").value,
+                email: document.getElementById("correuRegistre").value,
+                password: document.getElementById("passwordRegistre").value,
+                password_confirmation: document.getElementById("password2Registre").value,
+                telefon: document.getElementById("telefonRegistre").value
+            }
+            console.log(jsonObject)
+            let url;
+            if (this.localhost) {
+                url = "http://localhost:8000/api/registre"
+            } else {
+                url = '../../laravel-backend/public/api/registre'
+            }
+
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            console.log(response)
+            let jsonResponse = await response.json()
+            console.log(jsonResponse)
+        },
+
+        iniciarSessio() {
+
         }
     }
 }).mount('#app');

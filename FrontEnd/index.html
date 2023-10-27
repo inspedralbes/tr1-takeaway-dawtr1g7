@@ -42,21 +42,21 @@
                 <input type="text" id="correuIniciSessio"><br>
                 <label for="password">Contrasenya: </label>
                 <input type="text" name="password" id="passwordIniciSesio"><br>
-                <button type="submit">Iniciar Sessió</button>
+                <button @click="iniciarSessio()">Iniciar Sessió</button>
             </div>
             <div v-if="mostrar('registro')" id="registre">
                 <h2>REGISTRE</h2>
                 <label for="name">Nom: </label>
                 <input type="text" id="nomRegistre"><br>
                 <label for="correu">Correu: </label>
-                <input type="text" id="correuRegistre"><br>
+                <input type="email" id="correuRegistre"><br>
                 <label for="password">Contrasenya: </label>
-                <input type="text" name="password" id="passwordRegistre"><br>
+                <input type="password" name="password" id="passwordRegistre"><br>
                 <label for="password2">Confirmació contrasenya: </label>
-                <input type="text" name="password2" id="password2Registre"><br>
+                <input type="password" name="password2" id="password2Registre"><br>
                 <label for="telefon">Teléfon: </label>
                 <input type="text" name="telefon" id="telefonRegistre"><br>
-                <button type="submit">Registrarme</button>
+                <button @click="registrarUsuari()">Registrarme</button>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
