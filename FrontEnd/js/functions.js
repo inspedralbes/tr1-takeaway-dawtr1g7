@@ -7,10 +7,11 @@ createApp({
             llibres: [],
             categories: [],
             carrito: [],
-            comanda: {productes: []},
+            comanda: { productes: [] },
             idActual: 0,
             quantitat: 0,
-            previewCarrito: false
+            previewCarrito: false,
+            localhost: window.location.hostname == '127.0.0.1'
         }
     },
 
@@ -20,32 +21,38 @@ createApp({
 
     methods: {
         async getLlibres() {
-            let response = await fetch('http://localhost:8000/api/llibres')
+            let url
+            if (this.localhost) {
+                url = "http://localhost:8000/api/llibres"
+            } else {
+                url = '../../laravel-backend/public/api/llibres'
+            }
+            let response = await fetch(url)
             let productes = await response.json()
             console.log(productes)
             this.llibres = productes
         },
         async crearComanda() {
             let carrito = JSON.parse(JSON.stringify(this.carrito));
-            let jsonObject = {
-                "carrito": carrito
+            let jsonObject = { "carrito": carrito }
+            let url
+            if (this.localhost) {
+                url = "http://localhost:8000/api/novaComanda"
+            } else {
+                url = '../../laravel-backend/public/api/novaComanda'
             }
-            try {
-                let response = await fetch('http://localhost:8000/api/novaComanda', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(jsonObject)
-                })
 
-                const jsonResponse = await response.json();
-                console.log(jsonResponse);
-                this.crearNovaComanda(jsonResponse);
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            })
 
-            } catch(error) {
-                console.error(error)
-            }
+            const jsonResponse = await response.json();
+            console.log(jsonResponse);
+            this.crearNovaComanda(jsonResponse);
         },
         cambiarDiv(id) {
             this.botigaStatus = id;
@@ -117,15 +124,13 @@ createApp({
             this.afegirLlibreCarrito(id);
         },
         restarQuantitat(id, comprovacio) {
-            if(comprovacio) {
-                if (this.quantitat !== 0) {
-                    this.quantitat--
-                    this.treureLlibreCarrito(id)
-                }
+            if (comprovacio && this.quantitat !== 0) {
+                this.quantitat--
+                this.treureLlibreCarrito(id)
             } else {
                 this.treureLlibreCarrito(id)
             }
-            
+
         },
         afegirLlibreCarrito(id) {
             let llibre = this.carrito.find(item => item.id === id)
