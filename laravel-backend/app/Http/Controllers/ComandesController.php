@@ -24,12 +24,8 @@ class ComandesController extends Controller
      */
     public function store(Request $request)
     {
-        $usuari = $request->user();
-        $idUsuari = $usuari->id;
-
         $comanda = new Comanda();
         $comanda->estat = 'En preparació';
-        $comanda->user_id = $idUsuari;
 
         $llibresComanda = $request->input('carrito');
         $lineesComanda = [];
@@ -86,11 +82,15 @@ class ComandesController extends Controller
         $comandes = DB::table('comandas')
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
-            ->select('comandas.id', 'comandas.estat', DB::raw('GROUP_CONCAT(llibres.titol SEPARATOR \', \') as llibres'))
-            ->groupBy('comandas.id', 'comandas.estat')    
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
             ->get();
 
-     return view('comandes.index', ['comandes' => $comandes]);
+        $num_llibres = DB::table('llibre_comanda')
+            ->select('llibre_comanda.comanda_id', DB::raw('count(*) as total'))
+            ->groupBy('llibre_comanda.comanda_id')    
+            ->get();
+
+     return view('comandes.index', ['comandes' => $comandes], ['num_llibres' => $num_llibres]);
     }
 
     public function adminShow($id) {
@@ -103,15 +103,26 @@ class ComandesController extends Controller
         $comanda->estat = $request->estat;
         $comanda->save();
 
-        $direccio_mail = DB::table('comandas')
+        /*$contingut_mail = DB::table('comandas')
             ->join('users', 'comandas.user_id', '=', 'users.id')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
             ->where('comandas.id', '=', $id)
-            ->select('users.email')
+            ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', DB::raw("GROUP_CONCAT(llibres.titol SEPARATOR '\r\n') as llibres"))
+            ->groupBy('comandas.id', 'comandas.estat', 'users.name', 'users.email')
+            ->get();*/
+
+            $contingut_mail = DB::table('comandas')
+            ->join('users', 'comandas.user_id', '=', 'users.id')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->where('comandas.id', '=', $id)
+            ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', 'llibres.titol', 'llibres.preu')
             ->get();
+
         $mail = new MailController;
-        $mail->sendMail($direccio_mail);
+        $mail->sendMail($contingut_mail);       
 
         return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
     }
 }
-

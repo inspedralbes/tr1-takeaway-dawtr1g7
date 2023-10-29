@@ -8,7 +8,7 @@ use App\Mail\CanviEstat;
 
 class MailController extends Controller
 {
-    public function sendMail($direccio_mail) {
-        Mail::to($direccio_mail)->send(new CanviEstat());
+    public function sendMail($contingut_mail) {
+        Mail::to($contingut_mail[0]->email)->send(new CanviEstat($contingut_mail));
     }
 }
