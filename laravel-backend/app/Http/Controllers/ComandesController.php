@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Comanda;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\SendMailPDFController;
 
 class ComandesController extends Controller
 {
@@ -120,9 +121,12 @@ class ComandesController extends Controller
             ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', 'llibres.titol', 'llibres.preu')
             ->get();
 
-        $mail = new MailController;
-        $mail->sendMail($contingut_mail);       
+        //$mail = new MailController;
+        //$mail->sendMail($contingut_mail); 
+        $mail = new SendMailPDFController;
+        $mail->sendMailWithPDF($contingut_mail);
 
         return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
     }
 }
+
