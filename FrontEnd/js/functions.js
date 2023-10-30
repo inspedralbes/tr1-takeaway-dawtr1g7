@@ -11,7 +11,9 @@ createApp({
             idActual: 0,
             quantitat: 0,
             previewCarrito: false,
-            localhost: window.location.hostname == '127.0.0.1'
+            localhost: window.location.hostname == '127.0.0.1',
+            usuari: null,
+            errorMsg: ""
         }
     },
 
@@ -33,6 +35,11 @@ createApp({
             this.llibres = productes
         },
         async crearComanda() {
+            if(!this.usuari) {
+                this.errorMsg = "Inicia sessió per a crear una comanda!"
+                return
+            }
+
             let carrito = JSON.parse(JSON.stringify(this.carrito));
             let jsonObject = { "carrito": carrito }
             let url
@@ -45,7 +52,8 @@ createApp({
             let response = await fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.usuari.token}`
                 },
                 body: JSON.stringify(jsonObject)
             })
@@ -55,11 +63,11 @@ createApp({
             this.crearNovaComanda(jsonResponse);
         },
         cambiarDiv(id) {
+            this.errorMsg = ""
             this.botigaStatus = id;
         },
-        mostrar(id) { 
-            
-            return this.botigaStatus === id;  
+        mostrar(id) {
+            return this.botigaStatus === id;
         },
         getCarrito() {
             return this.carrito
@@ -98,7 +106,7 @@ createApp({
         getPreuTotalComanda() {
             let preu = 0
             this.comanda.productes.forEach(llibre => {
-                preu += llibre.preu * llibre.quantitat
+                preu += parseInt(llibre.preu) * llibre.quantitat
             });
             return preu.toFixed(2)
         },
@@ -162,6 +170,44 @@ createApp({
             let newCarrito = this.carrito.filter(item => item.quantitat != 0)
             this.carrito = newCarrito
         },
+        guardarUsuari(dadesUsuari) {
+            this.usuari = {
+                id: dadesUsuari.user.id,
+                nom: dadesUsuari.user.name,
+                email: dadesUsuari.user.email,
+                telefon: dadesUsuari.user.telefon,
+                token: dadesUsuari.token.split('|')[1]
+            }
+            console.log(this.usuari)
+            this.errorMsg = ""
+            if(this.carrito.length > 0) {
+                this.cambiarDiv('validacio')
+            } else {
+                this.cambiarDiv('landing')
+            }
+        },
+
+        async getComandaPerUsuari() {
+            let url;
+            if (this.localhost) {
+                url = `http://localhost:8000/api/comandes/user/${this.usuari.id}`
+            } else {
+                url = `../../laravel-backend/public/api/comandes/user/${this.usuari.id}`
+            }
+            let response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            })
+            let jsonResponse = await response.json()
+            console.log(jsonResponse)
+            this.comanda = {
+                id: jsonResponse[0].id,
+                estat: jsonResponse[0].estat,
+                productes: jsonResponse[0].llibres
+            }
+        },
 
         // USUARIS
         async registrarUsuari() {
@@ -172,7 +218,6 @@ createApp({
                 password_confirmation: document.getElementById("password2Registre").value,
                 telefon: document.getElementById("telefonRegistre").value
             }
-            console.log(jsonObject)
             let url;
             if (this.localhost) {
                 url = "http://localhost:8000/api/registre"
@@ -188,13 +233,64 @@ createApp({
                 },
                 body: JSON.stringify(jsonObject)
             })
-            console.log(response)
             let jsonResponse = await response.json()
             console.log(jsonResponse)
+            if (!jsonResponse.errors) {
+                this.guardarUsuari(jsonResponse)
+            } else {
+                this.errorMsg = jsonResponse.message
+            }
         },
 
-        iniciarSessio() {
+        async iniciarSessio() {
+            let jsonObject = {
+                email: document.getElementById("correuIniciSessio").value,
+                password: document.getElementById("passwordIniciSesio").value
+            }
+            console.log(jsonObject)
+            let url;
+            if (this.localhost) {
+                url = "http://localhost:8000/api/login"
+            } else {
+                url = '../../laravel-backend/public/api/login'
+            }
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(jsonObject)
+            })
+            let jsonResponse = await response.json()
+            console.log(jsonResponse)
+            if (!jsonResponse.errors) {
+                this.guardarUsuari(jsonResponse)
+                this.getComandaPerUsuari()
+            } else {
+                this.errorMsg = jsonResponse.message
+            }
+        },
 
+        async tancarSessio() {
+            let url;
+            if (this.localhost) {
+                url = "http://localhost:8000/api/logout"
+            } else {
+                url = '../../laravel-backend/public/api/logout'
+            }
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${this.usuari.token}`
+                },
+            })
+            let jsonResponse = await response.json()
+            console.log(jsonResponse)
+            this.usuari = null
+            this.comanda = { productes: [] }
         }
     }
 }).mount('#app');

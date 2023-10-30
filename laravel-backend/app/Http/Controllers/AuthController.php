@@ -47,15 +47,17 @@ class AuthController extends Controller
         // Comprovar usuari i contrasenya
         if (!$user) {
             return response([
-                'error' => 'L\'usuari no existeix'
+                'message' => 'L\'usuari no existeix',
+                'errors' => []
             ], 401);
         } else if (!Hash::check($fields['password'], $user->password)) {
             return response([
-                'error'=> 'La contrasenya és incorrecta'    
+                'message'=> 'La contrasenya és incorrecta',
+                'errors' => []    
             ],401);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('GalaxiaGutemberg')->plainTextToken;
 
         $response = [
             'user' => $user,

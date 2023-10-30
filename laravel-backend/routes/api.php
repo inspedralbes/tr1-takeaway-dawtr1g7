@@ -21,17 +21,14 @@ use App\Http\Controllers\AuthController;
 // Public
 Route::get('/llibres', [LlibresController::class,'index']);
 Route::get('/categories', [CategoriesController::class,'index']);
-
+Route::get('/comandes/user/{userId}', [ComandesController::class,'search']);
 
 // Auth
 Route::post('/registre', [AuthController::class,'register']);
 Route::post('/login', [AuthController::class,'login']);
 
-
 // Route::get('/comandes', [ComandesController::class,'index']);
 // Route::get('/comandes/{id}', [ComandesController::class,'show']);
-// Route::get('/comandes/user/{userId}', [ComandesController::class,'search']);
-
 
 // Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
