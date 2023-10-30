@@ -131,11 +131,6 @@ header {
     padding: 15px;
 }
 
-#container{
-    padding-top: 25%;
-  
-}
-
 footer {
     grid-area: footer;
     background: var(--mi-gradient);

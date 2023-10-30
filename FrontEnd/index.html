@@ -21,15 +21,18 @@
             <div @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
                 <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
             </div>
+            <div v-if="mostrar('landing') && usuari">
+                <button @click="tancarSessio()">Logout</button>
+            </div>
         </header>
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
 
-                
                 <div id="infoBotiga">
-                    <button @click="cambiarDiv('iniciarSesion')">Iniciar Sessió</button> 
-                    <button @click="cambiarDiv('registro')">Registre</button> 
-                    <div id="textInfoBot">                      
+                    <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
+                    <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
+                    <h4 v-if="usuari">Benvingut {{ usuari.nom }}!</h4>
+                    <div id="textInfoBot">
                         <h2>Informació sobre la botiga</h2>
                         <p>
                             Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim
@@ -46,25 +49,30 @@
                 <label for="correu">Correu: </label>
                 <input type="text" id="correuIniciSessio"><br>
                 <label for="password">Contrasenya: </label>
-                <input type="text" name="password" id="passwordIniciSesio"><br>
-                <button type="submit">Iniciar Sessió</button>
+                <input type="password" name="password" id="passwordIniciSesio"><br>
+                <button @click="iniciarSessio()">Iniciar Sessió</button>
+                <div style="color: red;text-align: center;">{{ errorMsg }}</div>
             </div>
             <div v-if="mostrar('registro')" id="registre">
                 <h2>REGISTRE</h2>
                 <label for="name">Nom: </label>
                 <input type="text" id="nomRegistre"><br>
                 <label for="correu">Correu: </label>
-                <input type="text" id="correuRegistre"><br>
+                <input type="email" id="correuRegistre"><br>
                 <label for="password">Contrasenya: </label>
-                <input type="text" name="password" id="passwordRegistre"><br>
+                <input type="password" name="password" id="passwordRegistre"><br>
                 <label for="password2">Confirmació contrasenya: </label>
-                <input type="text" name="password2" id="password2Registre"><br>
+                <input type="password" name="password2" id="password2Registre"><br>
                 <label for="telefon">Teléfon: </label>
                 <input type="text" name="telefon" id="telefonRegistre"><br>
-                <button type="submit">Registrarme</button>
+                <button @click="registrarUsuari()">Registrarme</button>
+                <div style="color: red;text-align: center;">{{ errorMsg }}</div>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
+                <button class="buttonComanda" @click="cambiarDiv('estat')"
+                    v-if="getComanda().productes.length > 0">Comanda
+                </button>
                 <div id="categories" :class="{ active: previewCategories }">
                     <div class="itemCategoriaTodas" @click="canviarCat(0),togglePreviewCategories()">
                       <div>Mostrar totes</div>
@@ -116,7 +124,6 @@
                         <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">endevant</button>
                     </div>
                 </div>
-
             </div>
 
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
@@ -147,17 +154,12 @@
             <div id="validacio" v-if="mostrar('validacio')">
                 <div id="dades">
                     <h2>TICKET</h2>
-                    <div id="dadesInput">
-                        <label for="nomValidacio">Nom</label>
-                        <input type="text" id="nomValidacio" name="nomValidacio">
-                        <label for="emailValidacio">Email</label>
-                        <input type="email" id="emailValidacio" name="emailValidacio" placeholder="exemple@mail.com">
-                        <label for="telValidacio">Numero de telefon:</label>
-                        <input type="tel" id="telValidacio" name="telValidacio" placeholder="123456789" maxlength="9"
-                            pattern="[0-9]{9}">
+                    <div v-if="!usuari">
+                        <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
+                        <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
                     </div>
+                    <div v-if="usuari">Hola {{ usuari.nom }}!</div>
                     <div>
-
                         <div id="resumCompra">
                             <h2>Resum compra</h2>
                             <table>
@@ -179,9 +181,9 @@
                             </table>
                         </div>
                         <div id="containerConf">
-
                             <button @click="crearComanda()">CONFIRMAR</button>
                         </div>
+                        <div v-if="errorMsg.length > 0" style="color: red;text-align: center;">{{ errorMsg }}</div>
                     </div>
                 </div>
             </div>

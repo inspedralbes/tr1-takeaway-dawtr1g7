@@ -40,7 +40,7 @@ class ComandesController extends Controller
             foreach ($llibresComanda as $llibre) {
                 $lineesComanda[$llibre['id']] = [
                     'quantitat' => $llibre['quantitat'],
-                    'preu'=> $llibre['preu'],
+                    'preu' => $llibre['preu'],
                 ];
             }
             $comanda->save();
@@ -80,6 +80,27 @@ class ComandesController extends Controller
         //
     }
 
+    public function search(string $userId)
+    {
+        $comandes = Comanda::with('llibres')->where("user_id", $userId)->get();
+
+        if ($comandes->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'L\'usuari no ha realitzat comandes',
+            ], 404); // 404 Not Found
+        }
+
+        // Afegir 'quantitat' a cada llibre
+        $comandes->each(function ($comanda) {
+            $comanda->llibres->each(function ($llibre) {
+                $llibre->quantitat = $llibre->pivot->quantitat;
+            });
+        });
+
+        return $comandes;
+    }
+
     // MÈTODES DE LA PART D'ADMINISTRACIÓ
     public function adminIndex()
     {
@@ -87,18 +108,20 @@ class ComandesController extends Controller
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
             ->select('comandas.id', 'comandas.estat', DB::raw('GROUP_CONCAT(llibres.titol SEPARATOR \', \') as llibres'))
-            ->groupBy('comandas.id', 'comandas.estat')    
+            ->groupBy('comandas.id', 'comandas.estat')
             ->get();
 
-     return view('comandes.index', ['comandes' => $comandes]);
+        return view('comandes.index', ['comandes' => $comandes]);
     }
 
-    public function adminShow($id) {
+    public function adminShow($id)
+    {
         $comanda = Comanda::find($id);
         return view('comandes.modificar', ['comanda' => $comanda]);
     }
 
-    public function adminUpdate(Request $request, $id) {
+    public function adminUpdate(Request $request, $id)
+    {
         $comanda = Comanda::find($id);
         $comanda->estat = $request->estat;
         $comanda->save();
