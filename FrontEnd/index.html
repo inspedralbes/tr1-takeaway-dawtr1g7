@@ -87,13 +87,17 @@
                 </div>
 
                 <div id="graella__productes">
-                    <div id="producte" v-for="(llibre, index) in llibres"
+                    <div id="producte" v-for="(llibre, index) in llibres.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
                         <img id="producte__img" :src="llibre.img_url">
                         <div id="etiqueta">
                             <h5 id="producte__titol">{{llibre.titol}}</h5>
                             <p id="producte__preu">{{llibre.preu}}€</p>
                         </div>
+                    </div>
+                    <div id="buttonsEnrereEndevant">
+                        <button @click="enrere" :disabled="indexLlibres === 0">enrere</button>
+                        <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">endevant</button>
                     </div>
                 </div>
 
