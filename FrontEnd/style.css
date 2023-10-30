@@ -1,5 +1,6 @@
 :root {
     --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
+    --mi-gradient-cat:linear-gradient(to right, #ac8ffc, #4e0ffa);
     --dark-blue: #64729c;
     --light-blue: #b8caff;
     --white: white;
@@ -10,6 +11,7 @@ h1{
     padding: 10px;
 
 }
+
 *{
     margin: 0;
     padding: 0;
@@ -20,11 +22,40 @@ img{
     max-width: 100%;
 
 }
+ 
+/* Estilo para el menú desplegable */
+#categories {
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--mi-gradient-cat); 
+    color:var(--white);
+    display: none;
+    opacity: 0;
+    z-index: 999; 
+}
 
+#categories.active {
+    display: block;
+    opacity: 1;
+}
+
+.itemCategoria {
+    padding: 10px;
+}
+
+.itemCategoriaTodas {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
 
 /*DISTRIBUCIO D'ESPAIS*/
 header {
     grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 999;
     background: var(--mi-gradient); 
     color:var(--white);
     text-align: center;
@@ -111,12 +142,15 @@ footer {
 .header-title {
     display: flex;
     align-items: center;
+    margin: 0 auto;
+
 }
 
 .icon {
-    width: 40px;
+    height: 30px;
     filter: brightness(0) invert(1);
 }
+
 #app{
     min-height: 100vh;
     display: grid;
@@ -293,7 +327,7 @@ footer {
     align-items: center;
 }
 
-#producte {
+.producte {
     position: relative;
     border-radius: 7px;
     align-items: center;
@@ -305,7 +339,7 @@ footer {
     box-shadow: 3px 6px 5px #333, -1px -1px 3px #333;
 }
 
-#producte__titol {
+.producte__titol {
     color: var(--black);
 }
 .inputN::-webkit-outer-spin-button, .inputN::-webkit-inner-spin-button{
@@ -370,7 +404,7 @@ footer {
 
 }
 
-#etiqueta {
+.etiqueta {
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -382,7 +416,7 @@ footer {
     padding-top: 14px;
 }
 
-#producte__img{
+.producte__img{
     width: 150px;
     height: 225px;
     border-radius: 7px;
@@ -499,7 +533,7 @@ th {
     padding: 20px;
 }
 
-#producte__preu {
+.producte__preu {
     color: var(--black);
 }
 

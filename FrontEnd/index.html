@@ -14,6 +14,9 @@
 <body>
     <div id="app">
         <header>
+            <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
+                <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
+            </div>
             <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
             <div @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
                 <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
@@ -68,7 +71,19 @@
             <div id="botiga" v-if="mostrar('botiga')">
 
                 <button class="buttonComanda" @click="cambiarDiv('estat')"
-                    v-if="getComanda().productes.length > 0">Comanda</button>
+                    v-if="getComanda().productes.length > 0">Comanda
+                </button>
+                <div id="categories" :class="{ active: previewCategories }">
+                    <div class="itemCategoriaTodas" @click="canviarCat(0),togglePreviewCategories()">
+                      <div>Mostrar totes</div>
+                    </div>
+                  
+                    <div class="itemCategoria" v-for="categoria in getCategories()" @click="canviarCat(categoria.id), togglePreviewCategories()">
+                      <div>{{ categoria.nom }}</div>
+                    </div>
+                </div>
+
+                <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
@@ -95,13 +110,18 @@
                 </div>
 
                 <div id="graella__productes">
-                    <div id="producte" v-for="(llibre, index) in llibres"
+
+                    <div id="producte" v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
                         <img id="producte__img" :src="llibre.img_url">
                         <div id="etiqueta">
                             <h5 id="producte__titol">{{llibre.titol}}</h5>
                             <p id="producte__preu">{{llibre.preu}}€</p>
                         </div>
+                    </div>
+                    <div id="buttonsEnrereEndevant">
+                        <button @click="enrere" :disabled="indexLlibres === 0">enrere</button>
+                        <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">endevant</button>
                     </div>
                 </div>
             </div>
@@ -213,7 +233,6 @@
             </div>
         </div>
         <footer>
-            <hr>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
         </footer>
         <script src="./js/functions.js" type="module"></script>

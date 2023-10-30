@@ -5,6 +5,9 @@ createApp({
         return {
             botigaStatus: 'landing',
             llibres: [],
+            llibresFiltrats: [],
+            indexLlibres: 0,
+            llibresMostrats:6,
             categories: [],
             carrito: [],
             comanda: { productes: [] },
@@ -14,11 +17,13 @@ createApp({
             localhost: window.location.hostname == '127.0.0.1',
             usuari: null,
             errorMsg: ""
+            previewCategories: false,
         }
     },
 
     created() {
         this.getLlibres()
+        this.fetchCategories()
     },
 
     methods: {
@@ -33,6 +38,19 @@ createApp({
             let productes = await response.json()
             console.log(productes)
             this.llibres = productes
+            this.llibresFiltrats = productes
+        },
+        async fetchCategories() {
+            let url
+            if (this.localhost) {
+                url = "http://localhost:8000/api/categories"
+            } else {
+                url = '../../laravel-backend/public/api/categories'
+            }
+            let response = await fetch(url)
+            let categoriesProductes = await response.json()
+            console.log(categoriesProductes)
+            this.categories = categoriesProductes
         },
         async crearComanda() {
             if(!this.usuari) {
@@ -70,13 +88,29 @@ createApp({
             return this.botigaStatus === id;
         },
         getCarrito() {
-            return this.carrito
+            return this.carrito;
+        },
+        getCategories() {
+            return this.categories;
+        },
+        canviarCat(id) {
+            if (id === 0) {
+                this.llibresFiltrats = this.llibres
+            } else {
+
+                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === id)
+            }
         },
         getComanda() {
-            return this.comanda
+            return this.comanda;
         },
         togglePreviewCarrito() {
-            this.previewCarrito = !this.previewCarrito
+            this.previewCategories = false
+            this.previewCarrito = !this.previewCarrito;
+        },
+        togglePreviewCategories() {
+            this.previewCarrito = false
+            this.previewCategories = !this.previewCategories
         },
         mostrarLlibre(index) {
             this.idActual = index;
@@ -291,6 +325,16 @@ createApp({
             console.log(jsonResponse)
             this.usuari = null
             this.comanda = { productes: [] }
+
+        endevant(){
+            if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
+                this.indexLlibres += this.llibresMostrats;
+            }
+        },
+        enrere(){
+            if (this.indexLlibres >= this.llibresMostrats) {
+                this.indexLlibres -= this.llibresMostrats;
+            }
         }
     }
 }).mount('#app');
