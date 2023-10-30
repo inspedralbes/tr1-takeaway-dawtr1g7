@@ -16,7 +16,7 @@ createApp({
             previewCarrito: false,
             localhost: window.location.hostname == '127.0.0.1',
             usuari: null,
-            errorMsg: ""
+            errorMsg: "",
             previewCategories: false,
         }
     },
@@ -325,7 +325,7 @@ createApp({
             console.log(jsonResponse)
             this.usuari = null
             this.comanda = { productes: [] }
-
+        },
         endevant(){
             if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
                 this.indexLlibres += this.llibresMostrats;

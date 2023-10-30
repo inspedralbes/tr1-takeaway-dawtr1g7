@@ -70,9 +70,7 @@
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
-                <button class="buttonComanda" @click="cambiarDiv('estat')"
-                    v-if="getComanda().productes.length > 0">Comanda
-                </button>
+                
                 <div id="categories" :class="{ active: previewCategories }">
                     <div class="itemCategoriaTodas" @click="canviarCat(0),togglePreviewCategories()">
                       <div>Mostrar totes</div>
@@ -82,8 +80,9 @@
                       <div>{{ categoria.nom }}</div>
                     </div>
                 </div>
-
-                <button @click="cambiarDiv('estat')" v-if="getComanda().productes.length > 0">Comanda</button>
+                <button class="buttonComanda" @click="cambiarDiv('estat')"
+                    v-if="getComanda().productes.length > 0">Comanda
+                </button>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
@@ -119,10 +118,10 @@
                             <p id="producte__preu">{{llibre.preu}}€</p>
                         </div>
                     </div>
-                    <div id="buttonsEnrereEndevant">
-                        <button @click="enrere" :disabled="indexLlibres === 0">enrere</button>
-                        <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">endevant</button>
-                    </div>
+                </div>
+                <div id="buttonsEnrereEndevant">
+                    <button @click="enrere" :disabled="indexLlibres === 0">enrere</button>
+                    <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">endevant</button>
                 </div>
             </div>
 
