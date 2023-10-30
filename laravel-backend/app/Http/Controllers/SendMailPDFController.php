@@ -15,6 +15,7 @@ class SendMailPDFController extends Controller
             $obj = new stdClass();
             $obj->titol = $llibre->titol;
             $obj->preu = $llibre->preu;
+            $obj->quantitat = $llibre->quantitat;
             $llibres[] = $obj; 
         }
 

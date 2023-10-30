@@ -118,7 +118,7 @@ class ComandesController extends Controller
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
             ->where('comandas.id', '=', $id)
-            ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', 'llibres.titol', 'llibres.preu')
+            ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', 'llibres.titol', 'llibre_comanda.preu', 'llibre_comanda.quantitat')
             ->get();
 
         //$mail = new MailController;
