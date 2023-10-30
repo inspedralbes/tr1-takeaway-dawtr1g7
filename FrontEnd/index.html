@@ -103,7 +103,7 @@
 
                 <div id="graella__productes">
 
-                    <div id="producte" v-for="(llibre, index) in llibres.slice(indexLlibres,indexLlibres+llibresMostrats)"
+                    <div id="producte" v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
                         <img id="producte__img" :src="llibre.img_url">
                         <div id="etiqueta">
