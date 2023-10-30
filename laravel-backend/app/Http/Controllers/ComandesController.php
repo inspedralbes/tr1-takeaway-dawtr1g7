@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comanda;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\MailController;
+use App\Http\Controllers\QrCodeontroller;
 use App\Http\Controllers\SendMailPDFController;
 
 class ComandesController extends Controller
@@ -121,12 +121,12 @@ class ComandesController extends Controller
             ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', 'llibres.titol', 'llibre_comanda.preu', 'llibre_comanda.quantitat')
             ->get();
 
-        //$mail = new MailController;
-        //$mail->sendMail($contingut_mail); 
-        $mail = new SendMailPDFController;
-        $mail->sendMailWithPDF($contingut_mail);
+        $qr = new QrCodeController;
+        return view("qrcode",['contingut' => $contingut_mail]);
 
-        return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
+        //$mail = new SendMailPDFController;
+        //$mail->sendMailWithPDF($contingut_mail);
+        //return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
     }
 }
 
