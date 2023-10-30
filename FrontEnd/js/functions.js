@@ -6,6 +6,8 @@ createApp({
             botigaStatus: 'landing',
             llibres: [],
             llibresFiltrats: [],
+            indexLlibres: 0,
+            llibresMostrats:6,
             categories: [],
             carrito: [],
             comanda: { productes: [] },
@@ -73,8 +75,9 @@ createApp({
         cambiarDiv(id) {
             this.botigaStatus = id;
         },
-        mostrar(id) {
-            return (this.botigaStatus == id);
+        mostrar(id) { 
+            
+            return this.botigaStatus === id;  
         },
         getCarrito() {
             return this.carrito;
@@ -192,6 +195,16 @@ createApp({
             // Filtrar llibres amb quantitat zero
             let newCarrito = this.carrito.filter(item => item.quantitat != 0)
             this.carrito = newCarrito
+        },
+        endevant(){
+            if (this.indexLlibres < this.llibres.length - this.llibresMostrats) {
+                this.indexLlibres += this.llibresMostrats;
+            }
+        },
+        enrere(){
+            if (this.indexLlibres >= this.llibresMostrats) {
+                this.indexLlibres -= this.llibresMostrats;
+            }
         }
     }
 }).mount('#app');
