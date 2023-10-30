@@ -82,12 +82,12 @@ createApp({
         getCategories() {
             return this.categories;
         },
-        canviarCat(id){
-            if(id === 0) {
+        canviarCat(id) {
+            if (id === 0) {
                 this.llibresFiltrats = this.llibres
             } else {
-                
-                this.llibresFiltrats = this.llibres.filter(llibre =>  llibre.categoria_id === id)
+
+                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === id)
             }
         },
         getComanda() {

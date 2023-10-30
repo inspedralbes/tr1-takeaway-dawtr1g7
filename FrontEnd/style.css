@@ -1,5 +1,6 @@
 :root {
     --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
+    --mi-gradient-cat:linear-gradient(to right, #ac8ffc, #4e0ffa);
     --dark-blue: #64729c;
     --light-blue: #b8caff;
     --white: white;
@@ -10,6 +11,7 @@ h1{
     padding: 10px;
 
 }
+
 *{
     margin: 0;
     padding: 0;
@@ -19,11 +21,43 @@ h1{
 img{
     max-width: 100%;
 }
+ 
+/* Estilo para el menú desplegable */
+#categories {
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--mi-gradient-cat); 
+    color:var(--white);
+    display: none;
+    opacity: 0;
+    z-index: 999; 
+}
 
+#categories.active {
+    display: block;
+    opacity: 1;
+}
+
+.itemCategoria {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+.itemCategoriaTodas {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
 
 /*DISTRIBUCIO D'ESPAIS*/
 header {
     grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 999;
     background: var(--mi-gradient); 
     color:var(--white);
     text-align: center;
