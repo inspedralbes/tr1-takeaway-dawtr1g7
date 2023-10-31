@@ -25,25 +25,26 @@
                 </div>
             </div>
             <div v-if="mostrar('landing') && usuari">
-                <button @click="tancarSessio()">Logout</button>
+                <button @click="tancarSessio()" id="logoutBtn">Logout</button>
             </div>
         </header>
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
 
-                <div id="infoBotiga">
-                    <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
-                    <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
-                    <h4 v-if="usuari">Benvingut {{ usuari.nom }}!</h4>
+                <div class="infoBotiga">
+                    <div class="login-btns-container">
+                        <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
+                        <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
+                    </div>
+                    <div class="msg-benvinguda" v-if="usuari">Benvingut {{ usuari.nom }}!</div>
                     <div id="textInfoBot">
-                        <h2>Informació sobre la botiga</h2>
+                        <h2>Informació</h2>
                         <p>
-                            Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim
-                            infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a
-                            explorar la nostra biblioteca
+                            Aquí, cada llibre és un nou món a descobrir. <br>
+                            Embarca't en una odissea de paraules i somia amb nosaltres.
                         </p>
                     </div>
-                    <button @click="cambiarDiv('botiga')">CATÀLEG</button>
+                    <button @click="cambiarDiv('botiga')" id="cataleg-btn">CATÀLEG</button>
                 </div>
                 <img src="imgP.jpeg" alt="" id="imgP">
             </div>
@@ -83,15 +84,15 @@
                       <div>{{ categoria.nom }}</div>
                     </div>
                 </div>
-                <button class="buttonComanda" @click="cambiarDiv('estat')"
-                    v-if="getComanda().productes.length > 0">Comanda
-                </button>
+                <div v-if="getComanda().productes.length > 0" class="buttonComanda-container">
+                    <button class="buttonComanda" @click="cambiarDiv('estat')">La Meva Comanda</button>
+                </div>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
                     <hr>
                     <div>
-                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id" class="carrito-item-container">
                             <div class="carrito-item">
                                 <img :src="getLlibrePerId(itemCarrito.id).img_url" style="width: 70px;height: 106px;">
                                 <div class="carrito-item-info">
@@ -106,25 +107,25 @@
                                 <button @click="sumarQuantitat(itemCarrito.id)">+</button>
                             </div>
                         </div>
-                        <div>Total {{ getPreuTotalCarrito() }} €</div>
+                        <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
                     </div>
                     <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
                 <div id="graella__productes">
 
-                    <div id="producte" v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
+                    <div class="producte" v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
-                        <img id="producte__img" :src="llibre.img_url">
-                        <div id="etiqueta">
-                            <h5 id="producte__titol">{{llibre.titol}}</h5>
-                            <p id="producte__preu">{{llibre.preu}}€</p>
+                        <img class="producte__img" :src="llibre.img_url">
+                        <div class="etiqueta">
+                            <h5 class="producte__titol">{{llibre.titol}}</h5>
+                            <p class="producte__preu">{{llibre.preu}}€</p>
                         </div>
                     </div>
                 </div>
-                <div id="buttonsEnrereEndevant">
-                    <button @click="enrere" :disabled="indexLlibres === 0">enrere</button>
-                    <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">endevant</button>
+                <div class="buttonsEnrereEndevant">
+                    <button @click="enrere" :disabled="indexLlibres === 0">Anterior</button>
+                    <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">Següent</button>
                 </div>
             </div>
 
@@ -149,14 +150,14 @@
                 </div>
 
                 <div class="butonAfegir">
-                    <button @click="cambiarDiv('botiga')"> &lt; Tornar enrere</button>
+                    <button @click="cambiarDiv('botiga')"> &lt; Menú</button>
                 </div>
             </div>
 
             <div id="validacio" v-if="mostrar('validacio')">
                 <div id="dades">
                     <h2>TICKET</h2>
-                    <div v-if="!usuari">
+                    <div v-if="!usuari" class="login-btns-container">
                         <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
                         <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
                     </div>
@@ -173,12 +174,12 @@
                                 <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
                                     <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
                                     <td class="tablQuant">{{ itemCarrito.quantitat }}</td>
-                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
+                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }}€</td>
                                 </tr>
                                 <tr>
                                     <td>TOTAL</td>
                                     <td class="tablQuant">{{ getQuantitatTotalCarrito() }}</td>
-                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }} €</strong></td>
+                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }}€</strong></td>
                                 </tr>
                             </table>
                         </div>
