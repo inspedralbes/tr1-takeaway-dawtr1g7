@@ -111,6 +111,13 @@
                     <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
+
+                <div id="containerBuscador">
+                    <div id="containerContentBuscador">
+                        <input v-model="textBuscat" placeholder="Buscar...">
+                        <button @click="buscarLlibres()">Buscar</button>
+                    </div>
+                </div>
                 <div id="graella__productes">
 
                     <div id="producte" v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"

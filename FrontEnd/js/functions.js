@@ -18,6 +18,8 @@ createApp({
             usuari: null,
             errorMsg: "",
             previewCategories: false,
+            textBuscat: "",
+            categoriaActual:0
         }
     },
 
@@ -27,6 +29,14 @@ createApp({
     },
 
     methods: {
+        buscarLlibres(){
+            this.indexLlibres = 0;
+            if(this.textBuscat == ""){
+                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id == this.categoriaActual);
+            } else{
+                this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(this.textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual );
+            }
+        },
         async getLlibres() {
             let url
             if (this.localhost) {
@@ -94,11 +104,12 @@ createApp({
             return this.categories;
         },
         canviarCat(id) {
-            if (id === 0) {
+            this.categoriaActual = id;
+            if (this.categoriaActual === 0) {
                 this.llibresFiltrats = this.llibres
             } else {
 
-                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === id)
+                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === this.categoriaActual)
             }
         },
         getComanda() {
