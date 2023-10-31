@@ -2,6 +2,7 @@
     --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
     --mi-gradient-cat: linear-gradient(to right, #ac8ffc, #4e0ffa);
     --mi-gradient-btn: linear-gradient(to left, #c7b4fa, #9a76ff);
+    --black: #000;
     --dark-blue: #64729c;
     --light-blue: #b8caff;
     --white: white;
@@ -17,6 +18,7 @@ h2 {
 }
 
 * {
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -170,12 +172,9 @@ img {
 
 .itemCategoria {
     padding: 10px;
-}
+=======
 
-.itemCategoriaTodas {
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
-}
+
 
 /*DISTRIBUCIO D'ESPAIS*/
 header {
@@ -185,6 +184,7 @@ header {
     z-index: 999;
     background: var(--mi-gradient);
     color: var(--white);
+
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -230,6 +230,7 @@ header {
     font-weight: bold;
     text-align: center;
     margin-top: 10px;
+
 }
 
 footer {
@@ -237,6 +238,7 @@ footer {
     background: var(--mi-gradient);
     color: var(--white);
     font-size: 0.8em;
+
     padding: 10px;
     display: flex;
     align-items: center;
@@ -257,6 +259,7 @@ footer {
 }
 
 #app {
+
     min-height: 100vh;
     display: grid;
     width: 100%;
@@ -301,19 +304,17 @@ footer {
 .infoBotiga>#textInfoBot {
     align-self: flex-end;
     gap: 15px;
+
 }
 
 .infoBotiga {
     width: 80%;
     padding-bottom: 10%;
     display: flex;
+
     justify-content: center;
     text-align: center;
-    align-items: center;
     gap: 50px;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /*****DESCRIPCIÓ LLIBRE*****/
@@ -335,6 +336,7 @@ footer {
     height: 80%;
     width: 80%;
     padding: 20px;
+
 }
 
 .portada {
@@ -359,6 +361,7 @@ footer {
     background: var(--mi-gradient-btn);
     border: 1px solid black;
     border-radius: 5px;
+
 }
 
 .butonAfegir {
@@ -427,7 +430,7 @@ footer {
     align-items: center;
 }
 
-.producte {
+#producte {
     position: relative;
     border-radius: 7px;
     align-items: center;
@@ -441,7 +444,7 @@ footer {
     box-shadow: 3px 6px 5px #333;
 }
 
-.producte__titol {
+#producte__titol {
     color: var(--black);
 }
 
@@ -470,15 +473,17 @@ footer {
     box-shadow: 3px 6px 5px #333;
 }
 
+
 /*ESTILS CSS DE LA PREVIEW CARRITO*/
 #previewCarrito {
-    margin: 10px;
+    margin: 15px;
     background: #fff;
     border: 1px solid #ccc;
-    padding: 15px;
+    padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     top: 0;
+
 }
 
 .carrito-item {
@@ -496,6 +501,7 @@ footer {
     border-radius: 5px;
     box-shadow: 3px 6px 5px #333;
     border: none;
+
 }
 
 #titolPreCarrito {
@@ -530,7 +536,7 @@ footer {
 
 }
 
-.etiqueta {
+#etiqueta {
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -543,6 +549,7 @@ footer {
 }
 
 .producte__img {
+
     width: 150px;
     height: 225px;
     border-radius: 7px;
@@ -599,6 +606,7 @@ footer {
     grid-area: resum;
     margin-top: 30px;
     width: 100%;
+
 }
 
 .login-btns-container button {
@@ -649,6 +657,7 @@ th {
     border-radius: 5px;
     border: none;
     box-shadow: 3px 6px 5px #333;
+
 }
 
 /*GRID VALIDACIO*/
@@ -665,9 +674,10 @@ th {
     border-radius: 7px;
     margin-top: 15%;
     padding: 10px;
+
 }
 
-.producte__preu {
+#producte__preu {
     color: var(--black);
 }
 
@@ -737,3 +747,4 @@ th {
     border: none;
     box-shadow: 3px 6px 5px #333;
 }
+

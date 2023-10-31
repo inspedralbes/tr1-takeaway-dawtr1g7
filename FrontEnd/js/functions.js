@@ -8,49 +8,26 @@ createApp({
             llibresFiltrats: [],
             indexLlibres: 0,
             llibresMostrats: 6,
+
             categories: [],
             carrito: [],
-            comanda: { productes: [] },
+            comanda: {productes: []},
             idActual: 0,
             quantitat: 0,
-            previewCarrito: false,
-            localhost: window.location.hostname == '127.0.0.1',
-            usuari: null,
-            errorMsg: "",
-            previewCategories: false,
+            previewCarrito: false
         }
     },
 
     created() {
         this.getLlibres()
-        this.fetchCategories()
     },
 
     methods: {
         async getLlibres() {
-            let url
-            if (this.localhost) {
-                url = "http://localhost:8000/api/llibres"
-            } else {
-                url = '../../laravel-backend/public/api/llibres'
-            }
-            let response = await fetch(url)
+            let response = await fetch('http://localhost:8000/api/llibres')
             let productes = await response.json()
             console.log(productes)
             this.llibres = productes
-            this.llibresFiltrats = productes
-        },
-        async fetchCategories() {
-            let url
-            if (this.localhost) {
-                url = "http://localhost:8000/api/categories"
-            } else {
-                url = '../../laravel-backend/public/api/categories'
-            }
-            let response = await fetch(url)
-            let categoriesProductes = await response.json()
-            console.log(categoriesProductes)
-            this.categories = categoriesProductes
         },
         async crearComanda() {
             if (!this.usuari) {
@@ -59,26 +36,25 @@ createApp({
             }
 
             let carrito = JSON.parse(JSON.stringify(this.carrito));
-            let jsonObject = { "carrito": carrito }
-            let url
-            if (this.localhost) {
-                url = "http://localhost:8000/api/novaComanda"
-            } else {
-                url = '../../laravel-backend/public/api/novaComanda'
+            let jsonObject = {
+                "carrito": carrito
             }
+            try {
+                let response = await fetch('http://localhost:8000/api/novaComanda', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
 
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.usuari.token}`
-                },
-                body: JSON.stringify(jsonObject)
-            })
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+                this.crearNovaComanda(jsonResponse);
 
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            this.crearNovaComanda(jsonResponse);
+            } catch(error) {
+                console.error(error)
+            }
         },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
@@ -86,32 +62,16 @@ createApp({
             this.botigaStatus = id;
         },
         mostrar(id) {
-            return this.botigaStatus === id;
+            return (this.botigaStatus == id);
         },
         getCarrito() {
-            return this.carrito;
-        },
-        getCategories() {
-            return this.categories;
-        },
-        canviarCat(id) {
-            if (id === 0) {
-                this.llibresFiltrats = this.llibres
-            } else {
-
-                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === id)
-            }
+            return this.carrito
         },
         getComanda() {
-            return this.comanda;
+            return this.comanda
         },
         togglePreviewCarrito() {
-            this.previewCategories = false
-            this.previewCarrito = !this.previewCarrito;
-        },
-        togglePreviewCategories() {
-            this.previewCarrito = false
-            this.previewCategories = !this.previewCategories
+            this.previewCarrito = !this.previewCarrito
         },
         mostrarLlibre(index) {
             this.idActual = index;
@@ -141,7 +101,7 @@ createApp({
         getPreuTotalComanda() {
             let preu = 0
             this.comanda.productes.forEach(llibre => {
-                preu += parseInt(llibre.preu) * llibre.quantitat
+                preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
         },
@@ -168,13 +128,15 @@ createApp({
             this.afegirLlibreCarrito(id);
         },
         restarQuantitat(id, comprovacio) {
-            if (comprovacio && this.quantitat !== 0) {
-                this.quantitat--
-                this.treureLlibreCarrito(id)
+            if(comprovacio) {
+                if (this.quantitat !== 0) {
+                    this.quantitat--
+                    this.treureLlibreCarrito(id)
+                }
             } else {
                 this.treureLlibreCarrito(id)
             }
-
+            
         },
         afegirLlibreCarrito(id) {
             let llibre = this.carrito.find(item => item.id === id)
@@ -336,6 +298,7 @@ createApp({
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }
+
         }
     }
 }).mount('#app');

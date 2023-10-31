@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ca">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +13,6 @@
 <body>
     <div id="app">
         <header>
-            <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
-                <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
-            </div>
             <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
             <div id="containerTogglePreviewCarrito" @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
                 <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
@@ -39,6 +35,7 @@
                     <div class="msg-benvinguda" v-if="usuari">Benvingut {{ usuari.nom }}!</div>
                     <div id="textInfoBot">
                         <h2>Informació</h2>
+
                         <p>
                             Aquí, cada llibre és un nou món a descobrir. <br>
                             Embarca't en una odissea de paraules i somia amb nosaltres.
@@ -90,6 +87,7 @@
                     <button class="buttonComanda" @click="cambiarDiv('estat')">La Meva Comanda</button>
                 </div>
 
+
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
                     <hr>
@@ -105,7 +103,7 @@
                             </div>
                             <div class="butonsSumaResta">
                                 <button @click="restarQuantitat(itemCarrito.id,false)">-</button>
-                                <input type="number" v-model="itemCarrito.quantitat" class="inputN">
+                                <input type="number" v-model="itemCarrito.quantitat">
                                 <button @click="sumarQuantitat(itemCarrito.id)">+</button>
                             </div>
                         </div>
@@ -118,6 +116,7 @@
 
                     <div class="producte"
                         v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
+
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
                         <img class="producte__img" :src="llibre.img_url">
                         <div class="etiqueta">
@@ -131,6 +130,7 @@
                     <button @click="endevant"
                         :disabled="indexLlibres >= llibres.length - llibresMostrats">Següent</button>
                 </div>
+
             </div>
 
             <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
@@ -138,7 +138,7 @@
                     <img :src="getLlibreActual().img_url">
                     <div class="butonsSumaResta">
                         <button @click="restarQuantitat(getLlibreActual().id,true)">-</button>
-                        <input type="number" v-model="quantitat" class="inputN">
+                        <input type="number" v-model="quantitat">
                         <button @click="sumarQuantitat(getLlibreActual().id)">+</button>
                     </div>
                 </div>
@@ -166,7 +166,9 @@
                         <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
                     </div>
                     <div v-if="usuari" class="msg-benvinguda">Hola {{ usuari.nom }}!</div>
+
                     <div>
+
                         <div id="resumCompra">
                             <h2>Resum compra</h2>
                             <table>
@@ -188,17 +190,16 @@
                             </table>
                         </div>
                         <div id="containerConf">
+
                             <button @click="crearComanda()">CONFIRMAR</button>
                         </div>
-                        <div v-if="errorMsg.length > 0" style="color: red;text-align: center;">{{ errorMsg }}</div>
                     </div>
                 </div>
             </div>
 
             <div id="estat" v-if="mostrar('estat')">
                 <div id="imgEstat">
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png"
-                        alt="img_check">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png" alt="img_check">
                 </div>
                 <h2>Compra efectuada correctament</h2>
 
@@ -240,12 +241,10 @@
             </div>
         </div>
         <footer>
+            <hr>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
         </footer>
-        <script src="./js/functions.js" type="module"></script>
-
         <script src="js/functions.js" type="module"></script>
-
     </div>
 </body>
 
