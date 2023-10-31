@@ -1,6 +1,7 @@
 :root {
     --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
     --mi-gradient-cat:linear-gradient(to right, #ac8ffc, #4e0ffa);
+    --mi-gradient-btn: linear-gradient(to left, #c7b4fa, #9a76ff);
     --dark-blue: #64729c;
     --light-blue: #b8caff;
     --white: white;
@@ -9,7 +10,10 @@
 h1{
     margin: 0;
     padding: 10px;
+}
 
+h2 {
+    text-align: center;
 }
 
 *{
@@ -20,7 +24,26 @@ h1{
 }
 img{
     max-width: 100%;
+}
 
+/*NUMERO CARRITO*/
+#containerTogglePreviewCarrito{
+    position: relative;
+}
+#containerNumQuantitatCarrito{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#numQuatitatCarrito{
+    font-size: 12px;
 }
 
 /*Estils login*/
@@ -129,6 +152,7 @@ img{
 #categories {
     position: fixed;
     left: 0;
+    top: 60px;
     width: 100vw;
     height: 100vh;
     background: var(--mi-gradient-cat); 
@@ -167,49 +191,53 @@ header {
 }
 
 .buttonComanda{
-    padding: 10px;
-    margin: auto;
-    width: 25%;
-    background: var(--mi-gradient);
-    border-radius: 10%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+    padding: 8px 15px;
+    background: var(--mi-gradient-btn);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 6px 5px #333;
 }
 
-footer {
-    grid-area: footer;
-    background: var(--mi-gradient);
-    color:var(--white);
-    text-align: center;
-}
-
-/*DISTRIBUCIO D'ESPAIS*/
-header {
-    grid-area: header;
-    background: var(--mi-gradient); 
-    color:var(--white);
-    text-align: center;
+.buttonComanda-container {
+    margin: 15px 0;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#landing {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
+}
+
+.msg-benvinguda {
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 footer {
     grid-area: footer;
     background: var(--mi-gradient);
     color:var(--white);
-    text-align: center;
+    font-size: 0.8em;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
+}
+/*DISTRIBUCIO D'ESPAIS*/
 .header-title {
     display: flex;
     align-items: center;
     margin: 0 auto;
-
 }
 
 .icon {
     height: 30px;
+    width: 40px;
     filter: brightness(0) invert(1);
 }
 
@@ -220,60 +248,48 @@ footer {
     grid-template-areas: "header" "conten" "footer";
     grid-template-rows: 60px 1fr 50px;
 }
-#infoBotiga>#textInfoBot>p{
-    text-align: justify;
-}
-/*LANDING
 
-
-
-
-
-#infoBotiga>button{
-    grid-area: buttonBut;
-    padding: 15px;
-    margin: auto;
-    width: 40%;
-}
-*/
 /*LANDING*/
 #imgP{
     width: 100%;
-    height: 20%;
-   
- 
 }
 
-   
-
-#infoBotiga>#textInfoBot>h2{
-    height: 100%;
-   border-bottom: 1px solid black;
-   margin-bottom: 10%;
-   background-image: linear-gradient(to left,#ac8ffc, #000, #6e3afc);
-   background-clip: text;
-   -webkit-background-clip: text;
-   color: transparent;
-   border-bottom: 2px;
+#cataleg-btn {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
-#infoBotiga>button{
-    padding: 15px;
-    margin: auto;
-    width: 35%;
-    background: var(--mi-gradient);
-    border-radius: 10%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
-   
+.login-btns-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
 }
-#infoBotiga>#textInfoBot{
+
+.infoBotiga button {
+    padding: 8px 15px;
+    background: var(--mi-gradient-btn);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 6px 5px #333;
+}
+
+.infoBotiga h2{
+    margin-bottom: 15px;
+    background-image: linear-gradient(to left,#ac8ffc, #000, #6e3afc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.infoBotiga>#textInfoBot{
     align-self: flex-end;
     gap: 15px;
 }
-#infoBotiga{
+.infoBotiga{
     width: 80%;
     padding-bottom: 10%;
-    padding-top: 45%;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -287,17 +303,19 @@ footer {
 /*****DESCRIPCIÓ LLIBRE*****/
 
 #mostrarLlibre {
-    margin: 0 20px;
+    margin: 20px auto;
     display: grid;
     grid-template-areas:
         "tornar_enrere ."
         "portada dades_basiques"
         "descripcio descripcio";
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 5fr 2fr;
     column-gap: 10px;
     row-gap: 10px;
     font-family: sans-serif;
     border: 1px solid black;
+    border-radius: 5px;
     height: 80%;
     width: 80%;
     padding: 20px;
@@ -322,8 +340,9 @@ footer {
 
 .butonsSumaResta {
     height: 30px;
-    background: var(--mi-gradient);
-
+    background: var(--mi-gradient-btn);
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .butonAfegir {
@@ -336,8 +355,11 @@ footer {
 }
 
 .butonAfegir>button {
+    padding: 8px 15px;
+    background: var(--mi-gradient-btn);
+    border-radius: 5px;
     border: none;
-    background-color: inherit;
+    box-shadow: 3px 6px 5px #333;
     cursor: pointer;
 }
 
@@ -398,14 +420,13 @@ footer {
     flex-direction: column; /* Agregado para alinear el contenido verticalmente */
     margin:15px;
     width: 150px;
-    box-shadow: 3px 6px 5px #333, -1px -1px 3px #333;
+    box-shadow: 3px 6px 5px #333;
 }
 
 .producte__titol {
     color: var(--black);
 }
 .inputN::-webkit-outer-spin-button, .inputN::-webkit-inner-spin-button{
-
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -413,6 +434,21 @@ footer {
 .inputN[type=number]{
     -moz-appearance: textfield;
 }
+
+.buttonsEnrereEndevant {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttonsEnrereEndevant button {
+    padding: 8px 15px;
+    background: var(--mi-gradient-btn);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 6px 5px #333;
+}
+
 /*ESTILS CSS DE LA PREVIEW CARRITO*/
 #previewCarrito {
     margin: 10px;
@@ -420,7 +456,6 @@ footer {
     border: 1px solid #ccc;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 60%;
     position: relative;
     top: 0;
  }
@@ -432,14 +467,14 @@ footer {
 
 
 #botonpagar {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 5%;
-    background: var(--mi-gradient);
-    border-radius: 7%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
-    /* Ancho completo */
+    display: block;
+    width: 80%;
+    margin: 15px auto;
+    padding: 5px 15px;
+    background: var(--mi-gradient-btn);
+    border-radius: 5px;
+    box-shadow: 3px 6px 5px #333;
+    border: none;
 }
 
 #titolPreCarrito {
@@ -448,8 +483,16 @@ footer {
 
 #autorPreCarrito {
     text-align: justify;
-    color: lightgray;
+    color: #aaa;
+}
 
+.carrito-item-container {
+    margin-bottom: 10px;
+}
+
+.preu-total-carrito {
+    margin: 10px 0;
+    font-size: 1.2em;
 }
 
 #preuPreCarrito {
@@ -533,9 +576,16 @@ footer {
 /*RESUM COMPRA*/
 #resumCompra {
     grid-area: resum;
-    margin-top: 10%;
-    padding-top: 30px;
+    margin-top: 30px;
     width: 100%;
+}
+
+.login-btns-container button {
+    padding: 8px 15px;
+    background: var(--mi-gradient-btn);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 6px 5px #333;
 }
 
 #resumCompra>h2 {
@@ -573,11 +623,11 @@ th {
     padding: 15px;
     margin: auto;
     width: 60%;
-    background: var(--mi-gradient);
-    border-radius: 7%;
+    background: var(--mi-gradient-btn);
     margin-bottom: 15px;
-    border-radius: 7%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 6px 5px #333;
 }
 
 /*GRID VALIDACIO*/
@@ -592,7 +642,7 @@ th {
     justify-content: center;
     border: 1px solid black;
     margin-top: 15%;
-    padding: 20px;
+    padding: 10px;
 }
 
 .producte__preu {
@@ -651,8 +701,9 @@ th {
     padding: 30px 0;
 }
 #containerTornarInici>button{
-    padding: 10px;
-    background: var(--mi-gradient);
-    border-radius: 7%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+    padding: 8px 15px;
+    background: var(--mi-gradient-btn);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 6px 5px #333;
 }
