@@ -49,16 +49,18 @@
                 <img src="imgP.jpeg" alt="" id="imgP">
             </div>
             <div v-if="mostrar('iniciarSesion')" id="iniciSessio">
-                <h2>INICI SESSIÓ</h2><br>
+                <h2>INICI SESSIÓ</h2>
                 <label for="correu">Correu: </label>
-                <input type="text" id="correuIniciSessio"><br>
+                <input type="text" id="correuIniciSessio">
                 <label for="password">Contrasenya: </label>
-                <input type="password" name="password" id="passwordIniciSesio"><br>
-                <button @click="iniciarSessio()">Iniciar Sessió</button>
+                <input type="password" name="password" id="passwordIniciSesio">
+                
+                    <button @click="iniciarSessio()">Iniciar Sessió</button>
+                
                 <div style="color: red;text-align: center;">{{ errorMsg }}</div>
             </div>
             <div v-if="mostrar('registro')" id="registre">
-                <h2>REGISTRE</h2>
+                <h3>REGISTRE</h3>
                 <label for="name">Nom: </label>
                 <input type="text" id="nomRegistre"><br>
                 <label for="correu">Correu: </label>

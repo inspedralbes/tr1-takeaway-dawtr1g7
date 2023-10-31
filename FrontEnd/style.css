@@ -45,8 +45,110 @@ img{
 #numQuatitatCarrito{
     font-size: 12px;
 }
+
+/*Estils login*/
+
+#iniciSessio {
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    background-color: white;
+    background: url('https://img.freepik.com/fotos-premium/fondo-morado-azul-fondo-morado-palabra-amor_873925-17800.jpg?size=626&ext=jpg');
+    border: none;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 50%;
+}
+
+
+#iniciSessio h2 {
+    color: white;
+    text-align: center;
+}
+
+#iniciSessio label {
+    display: block;
+    color: white;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#correuIniciSessio,
+#passwordIniciSesio {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border:1px solid rgb(155, 155, 155);
+    border-radius: 7px;
+}
+
+#iniciSessio button {
+    width: 100%;
+    padding: 10px;
+    background-image: linear-gradient(to left,#6e3afc, #6e3afc, #6e3afc);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+  
+  
+/*Estils registre*/
+
+#registre{
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    background-color: white;
+    background: url('https://img.freepik.com/fotos-premium/fondo-morado-azul-fondo-morado-palabra-amor_873925-17800.jpg?size=626&ext=jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: none;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#registre h3{
+    color: white;
+    text-align: center;
+}
+
+#registre label{
+    display: block;
+    color: white;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#correuRegistre,
+#passwordRegistre,
+#password2Registre,
+#nomRegistre,
+#telefonRegistre {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border:1px solid rgb(155, 155, 155);
+    border-radius: 7px;
+}
+
+#registre button {
+    width: 100%;
+    padding: 10px;
+    background-image: linear-gradient(to left,#6e3afc, #6e3afc, #6e3afc);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
  
-/* Estilo para el menú desplegable */
+/* Estils menú desplegable*/
 #categories {
     position: fixed;
     left: 0;
@@ -125,55 +227,6 @@ footer {
     align-items: center;
     justify-content: center;
 }
-#iniciSessio label,
-    #registre label {
-        display: inline-block;
-        width: 150px; /* Ancho deseado para las etiquetas */
-        text-align: right; /* Alineación de la etiqueta a la derecha */
-        margin-right: 10px; /* Espacio entre la etiqueta y el input */
-    }
-
-    #iniciSessio input,
-    #registre input {
-        width: 100px; /* Ancho deseado para los inputs */
-       margin-bottom: 5%;
-    }
-#iniciSessio button{
-    margin-top: 5%;
-    margin-left: 40%;
-}
-#iniciSessio h2{
-    text-align: center;
-    margin-bottom: 5%;
-}
-#iniciSessio{
-    border: 1px solid black;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 20px;
-}
-#registre h2{
-    text-align: center;
-    margin-bottom: 5%;
-}
-#registre button{
-    margin-top: 5%;
-    margin-left: 40%;
-}
-#registre{
-    border: 1px solid black;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 20px;
-}
-#logoutBtn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: white;
-    border: none;
 }
 /*DISTRIBUCIO D'ESPAIS*/
 .header-title {
