@@ -20,7 +20,26 @@ h1{
 }
 img{
     max-width: 100%;
+}
 
+/*NUMERO CARRITO*/
+#containerTogglePreviewCarrito{
+    position: relative;
+}
+#containerNumQuantitatCarrito{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#numQuatitatCarrito{
+    font-size: 12px;
 }
  
 /* Estilo para el menú desplegable */
