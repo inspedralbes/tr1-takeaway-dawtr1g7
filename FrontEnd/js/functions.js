@@ -5,112 +5,62 @@ createApp({
         return {
             botigaStatus: 'landing',
             llibres: [],
-            llibresFiltrats: [],
-            indexLlibres: 0,
-            llibresMostrats:6,
             categories: [],
             carrito: [],
-            comanda: { productes: [] },
+            comanda: {productes: []},
             idActual: 0,
             quantitat: 0,
-            previewCarrito: false,
-            localhost: window.location.hostname == '127.0.0.1',
-            usuari: null,
-            errorMsg: "",
-            previewCategories: false,
+            previewCarrito: false
         }
     },
 
     created() {
         this.getLlibres()
-        this.fetchCategories()
     },
 
     methods: {
         async getLlibres() {
-            let url
-            if (this.localhost) {
-                url = "http://localhost:8000/api/llibres"
-            } else {
-                url = '../../laravel-backend/public/api/llibres'
-            }
-            let response = await fetch(url)
+            let response = await fetch('http://localhost:8000/api/llibres')
             let productes = await response.json()
             console.log(productes)
             this.llibres = productes
-            this.llibresFiltrats = productes
-        },
-        async fetchCategories() {
-            let url
-            if (this.localhost) {
-                url = "http://localhost:8000/api/categories"
-            } else {
-                url = '../../laravel-backend/public/api/categories'
-            }
-            let response = await fetch(url)
-            let categoriesProductes = await response.json()
-            console.log(categoriesProductes)
-            this.categories = categoriesProductes
         },
         async crearComanda() {
-            if(!this.usuari) {
-                this.errorMsg = "Inicia sessió per a crear una comanda!"
-                return
-            }
-
             let carrito = JSON.parse(JSON.stringify(this.carrito));
-            let jsonObject = { "carrito": carrito }
-            let url
-            if (this.localhost) {
-                url = "http://localhost:8000/api/novaComanda"
-            } else {
-                url = '../../laravel-backend/public/api/novaComanda'
+            let jsonObject = {
+                "carrito": carrito
             }
+            try {
+                let response = await fetch('http://localhost:8000/api/novaComanda', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
 
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.usuari.token}`
-                },
-                body: JSON.stringify(jsonObject)
-            })
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+                this.crearNovaComanda(jsonResponse);
 
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            this.crearNovaComanda(jsonResponse);
+            } catch(error) {
+                console.error(error)
+            }
         },
         cambiarDiv(id) {
-            this.errorMsg = ""
             this.botigaStatus = id;
         },
         mostrar(id) {
-            return this.botigaStatus === id;
+            return (this.botigaStatus == id);
         },
         getCarrito() {
-            return this.carrito;
-        },
-        getCategories() {
-            return this.categories;
-        },
-        canviarCat(id) {
-            if (id === 0) {
-                this.llibresFiltrats = this.llibres
-            } else {
-
-                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === id)
-            }
+            return this.carrito
         },
         getComanda() {
-            return this.comanda;
+            return this.comanda
         },
         togglePreviewCarrito() {
-            this.previewCategories = false
-            this.previewCarrito = !this.previewCarrito;
-        },
-        togglePreviewCategories() {
-            this.previewCarrito = false
-            this.previewCategories = !this.previewCategories
+            this.previewCarrito = !this.previewCarrito
         },
         mostrarLlibre(index) {
             this.idActual = index;
@@ -140,7 +90,7 @@ createApp({
         getPreuTotalComanda() {
             let preu = 0
             this.comanda.productes.forEach(llibre => {
-                preu += parseInt(llibre.preu) * llibre.quantitat
+                preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
         },
@@ -167,13 +117,15 @@ createApp({
             this.afegirLlibreCarrito(id);
         },
         restarQuantitat(id, comprovacio) {
-            if (comprovacio && this.quantitat !== 0) {
-                this.quantitat--
-                this.treureLlibreCarrito(id)
+            if(comprovacio) {
+                if (this.quantitat !== 0) {
+                    this.quantitat--
+                    this.treureLlibreCarrito(id)
+                }
             } else {
                 this.treureLlibreCarrito(id)
             }
-
+            
         },
         afegirLlibreCarrito(id) {
             let llibre = this.carrito.find(item => item.id === id)
@@ -203,138 +155,6 @@ createApp({
             // Filtrar llibres amb quantitat zero
             let newCarrito = this.carrito.filter(item => item.quantitat != 0)
             this.carrito = newCarrito
-        },
-        guardarUsuari(dadesUsuari) {
-            this.usuari = {
-                id: dadesUsuari.user.id,
-                nom: dadesUsuari.user.name,
-                email: dadesUsuari.user.email,
-                telefon: dadesUsuari.user.telefon,
-                token: dadesUsuari.token.split('|')[1]
-            }
-            console.log(this.usuari)
-            this.errorMsg = ""
-            if(this.carrito.length > 0) {
-                this.cambiarDiv('validacio')
-            } else {
-                this.cambiarDiv('landing')
-            }
-        },
-
-        async getComandaPerUsuari() {
-            let url;
-            if (this.localhost) {
-                url = `http://localhost:8000/api/comandes/user/${this.usuari.id}`
-            } else {
-                url = `../../laravel-backend/public/api/comandes/user/${this.usuari.id}`
-            }
-            let response = await fetch(url, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-            })
-            let jsonResponse = await response.json()
-            console.log(jsonResponse)
-            this.comanda = {
-                id: jsonResponse[0].id,
-                estat: jsonResponse[0].estat,
-                productes: jsonResponse[0].llibres
-            }
-        },
-
-        // USUARIS
-        async registrarUsuari() {
-            let jsonObject = {
-                name: document.getElementById("nomRegistre").value,
-                email: document.getElementById("correuRegistre").value,
-                password: document.getElementById("passwordRegistre").value,
-                password_confirmation: document.getElementById("password2Registre").value,
-                telefon: document.getElementById("telefonRegistre").value
-            }
-            let url;
-            if (this.localhost) {
-                url = "http://localhost:8000/api/registre"
-            } else {
-                url = '../../laravel-backend/public/api/registre'
-            }
-
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify(jsonObject)
-            })
-            let jsonResponse = await response.json()
-            console.log(jsonResponse)
-            if (!jsonResponse.errors) {
-                this.guardarUsuari(jsonResponse)
-            } else {
-                this.errorMsg = jsonResponse.message
-            }
-        },
-
-        async iniciarSessio() {
-            let jsonObject = {
-                email: document.getElementById("correuIniciSessio").value,
-                password: document.getElementById("passwordIniciSesio").value
-            }
-            console.log(jsonObject)
-            let url;
-            if (this.localhost) {
-                url = "http://localhost:8000/api/login"
-            } else {
-                url = '../../laravel-backend/public/api/login'
-            }
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify(jsonObject)
-            })
-            let jsonResponse = await response.json()
-            console.log(jsonResponse)
-            if (!jsonResponse.errors) {
-                this.guardarUsuari(jsonResponse)
-                this.getComandaPerUsuari()
-            } else {
-                this.errorMsg = jsonResponse.message
-            }
-        },
-
-        async tancarSessio() {
-            let url;
-            if (this.localhost) {
-                url = "http://localhost:8000/api/logout"
-            } else {
-                url = '../../laravel-backend/public/api/logout'
-            }
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${this.usuari.token}`
-                },
-            })
-            let jsonResponse = await response.json()
-            console.log(jsonResponse)
-            this.usuari = null
-            this.comanda = { productes: [] }
-        },
-        endevant(){
-            if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
-                this.indexLlibres += this.llibresMostrats;
-            }
-        },
-        enrere(){
-            if (this.indexLlibres >= this.llibresMostrats) {
-                this.indexLlibres -= this.llibresMostrats;
-            }
         }
     }
 }).mount('#app');
