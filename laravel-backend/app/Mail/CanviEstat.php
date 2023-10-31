@@ -16,9 +16,9 @@ class CanviEstat extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($contingut_mail)
     {
-        //
+        $this->contingut_mail = $contingut_mail;
     }
 
     /**
@@ -38,6 +38,7 @@ class CanviEstat extends Mailable
     {
         return new Content(
             view: 'mail.canvi-estat',
+            with: ['info' => $this->contingut_mail]
         );
     }
 

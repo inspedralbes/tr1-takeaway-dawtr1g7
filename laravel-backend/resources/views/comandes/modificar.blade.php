@@ -14,16 +14,18 @@
             @enderror
 
             <div class="mb-3">
-                <label for="estats" class="form-label">Estat: </label>
+                <label for="estat" class="form-label">Estat: </label>
                 <!--<input list="estats" name="estat" class="form-control" value="{{ $comanda->estat }}">-->
-                <select name="estats" id="estats">
-                    <option value="petició_rebuda">Petició Rebuda</option>
-                    <option value="en_procés">En Procés</option>
-                    <option value="esperant_recollit">Esperant ser recollit</option>
-                    <option value="recollit">Recollit</option>
+                <select name="estat">
+                    <option value="Petició Rebuda">Petició Rebuda</option>
+                    <option value="En procés">En Procés</option>
+                    <option value="Esperant ser recollit">Esperant ser recollit</option>
+                    <option value="Recollit">Recollit</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">MODIFICAR ESTAT</button>
+            <input type="submit" class="btn btn-primary" value="MODIFICAR ESTAT">
         </form>
     </div>
 @endsection
+
+                

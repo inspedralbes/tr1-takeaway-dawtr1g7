@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LlibresController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ComandesController;
+use App\Http\Controllers\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,3 @@ Route::delete('/categories/{id}', [CategoriesController::class, 'adminDelete'])-
 Route::get('/comandes', [ComandesController::class, 'adminIndex'])->name('comandes');
 Route::get('/comandes/modificar/{id}', [ComandesController::class, 'adminShow'])->name('view-modificar-comanda');
 Route::patch('/comandes/modificar/{id}', [ComandesController::class, 'adminUpdate'])->name('modificar-comanda');
-
-
