@@ -55,39 +55,4 @@ class CategoriesController extends Controller
 
     return view('categories.index', ['categories' => $categories]);
     }
-
-    public function adminStore(Request $request)
-    {
-        
-        /*$request->validate([
-        'nom' => 'required'
-        ]);*/
-    
-        $categoria = new Categoria;
-        $categoria->nom = $request->nom;
-        $categoria->save();
-    
-        return redirect()->route('view-afegir-categoria')->with('success', 'Categoria afegida correctament');
-    }
-
-    public function adminShow($id) {
-        $categoria = Categoria::find($id);
-        return view('categories.modificar', ['categoria' => $categoria]);
-    }
-    
-
-    public function adminUpdate(Request $request, $id) {
-        $categoria = Categoria::find($id);
-        $categoria->nom = $request->nom;
-        $categoria->save();
-
-        return redirect()->route('view-modificar-categoria', ['id' => $categoria->id])->with('success', 'Categoria actualitazada correctament');
-    }
-
-    public function adminDelete($id) {
-        $categoria = Categoria::find($id);
-        $categoria->delete();
-
-        return redirect()->route('categories')->with('success', 'Categoria eliminada correctament'); 
-    }
 }

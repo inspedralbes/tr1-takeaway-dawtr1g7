@@ -1,6 +1,5 @@
 :root {
-    --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
-    --mi-gradient-cat:linear-gradient(to right, #ac8ffc, #4e0ffa);
+    --black: #000;
     --dark-blue: #64729c;
     --light-blue: #b8caff;
     --white: white;
@@ -9,9 +8,7 @@
 h1{
     margin: 0;
     padding: 10px;
-
 }
-
 *{
     margin: 0;
     padding: 0;
@@ -21,59 +18,12 @@ h1{
 img{
     max-width: 100%;
 }
-#containerTogglePreviewCarrito{
-    position: relative;
-}
-#containerNumQuantitatCarrito{
-    position: absolute;
-    background-color: red;
-    bottom:0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#numQuatitatCarrito{
-    font-size: 11px;
-}
- 
-/* Estilo para el menú desplegable */
-#categories {
-    position: fixed;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--mi-gradient-cat); 
-    color:var(--white);
-    display: none;
-    opacity: 0;
-    z-index: 999; 
-}
 
-#categories.active {
-    display: block;
-    opacity: 1;
-}
-
-.itemCategoria {
-    padding: 10px;
-}
-
-.itemCategoriaTodas {
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
-}
 
 /*DISTRIBUCIO D'ESPAIS*/
 header {
     grid-area: header;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    background: var(--mi-gradient); 
+    background-color: var(--black); 
     color:var(--white);
     text-align: center;
     display: flex;
@@ -81,76 +31,14 @@ header {
     padding: 15px;
 }
 
-.buttonComanda{
-    padding: 10px;
-    margin: auto;
-    width: 25%;
-    background: var(--mi-gradient);
-    border-radius: 10%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+#container{
+    padding-top: 10px;
+    grid-area: conten;
 }
 
 footer {
     grid-area: footer;
-    background: var(--mi-gradient);
-    color:var(--white);
-    text-align: center;
-}
-#iniciSessio label,
-    #registre label {
-        display: inline-block;
-        width: 150px; /* Ancho deseado para las etiquetas */
-        text-align: right; /* Alineación de la etiqueta a la derecha */
-        margin-right: 10px; /* Espacio entre la etiqueta y el input */
-    }
-
-    #iniciSessio input,
-    #registre input {
-        width: 100px; /* Ancho deseado para los inputs */
-       margin-bottom: 5%;
-    }
-#iniciSessio button{
-    margin-top: 5%;
-    margin-left: 40%;
-}
-#iniciSessio h2{
-    text-align: center;
-    margin-bottom: 5%;
-}
-#iniciSessio{
-    border: 1px solid black;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 20px;
-}
-#registre h2{
-    text-align: center;
-    margin-bottom: 5%;
-}
-#registre button{
-    margin-top: 5%;
-    margin-left: 40%;
-}
-#registre{
-    border: 1px solid black;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 20px;
-}
-/*DISTRIBUCIO D'ESPAIS*/
-header {
-    grid-area: header;
-    background: var(--mi-gradient); 
-    color:var(--white);
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-}
-
-footer {
-    grid-area: footer;
-    background: var(--mi-gradient);
+    background-color: var(--black);
     color:var(--white);
     text-align: center;
     padding: 10px;
@@ -159,15 +47,12 @@ footer {
 .header-title {
     display: flex;
     align-items: center;
-    margin: 0 auto;
-
 }
 
 .icon {
-    height: 30px;
+    width: 40px;
     filter: brightness(0) invert(1);
 }
-
 #app{
     min-height: 100vh;
     display: grid;
@@ -175,14 +60,23 @@ footer {
     grid-template-areas: "header" "conten" "footer";
     grid-template-rows: 60px 1fr 50px;
 }
+
+/*LANDING*/
+
+#infoBotiga>#textInfoBot>h2{
+    grid-area: titleInf;
+}
 #infoBotiga>#textInfoBot>p{
+    grid-area: textInfo;
     text-align: justify;
 }
-/*LANDING
 
-
-
-
+#infoBotiga>#textInfoBot{
+    grid-area: infoBot;
+    display: grid;
+    grid-template-areas: "titleInf" "textInfo";
+    gap: 15px;
+}
 
 #infoBotiga>button{
     grid-area: buttonBut;
@@ -190,53 +84,17 @@ footer {
     margin: auto;
     width: 40%;
 }
-*/
-/*LANDING*/
-#imgP{
-    width: 100%;
-    height: 20%;
-   
- 
-}
-
-   
-
-#infoBotiga>#textInfoBot>h2{
-    height: 100%;
-   border-bottom: 1px solid black;
-   margin-bottom: 10%;
-   background-image: linear-gradient(to left,#ac8ffc, #000, #6e3afc);
-   background-clip: text;
-   -webkit-background-clip: text;
-   color: transparent;
-   border-bottom: 2px;
-}
-
-#infoBotiga>button{
-    padding: 15px;
-    margin: auto;
-    width: 35%;
-    background: var(--mi-gradient);
-    border-radius: 10%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
-   
-}
-#infoBotiga>#textInfoBot{
-    align-self: flex-end;
-    gap: 15px;
-}
 #infoBotiga{
     width: 80%;
-    padding-bottom: 10%;
-    padding-top: 45%;
-    display: flex;
+    margin: auto;
+    padding-top: 40%;
+    display: grid;
+    grid-template-areas: 
+    "infoBot"
+    "buttonBut";
     justify-content: center;
     text-align: center;
-    align-items: center;
     gap: 50px;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /*****DESCRIPCIÓ LLIBRE*****/
@@ -252,10 +110,6 @@ footer {
     column-gap: 10px;
     row-gap: 10px;
     font-family: sans-serif;
-    border: 1px solid black;
-    height: 80%;
-    width: 80%;
-    padding: 20px;
 }
 
 .portada {
@@ -277,8 +131,6 @@ footer {
 
 .butonsSumaResta {
     height: 30px;
-    background: var(--mi-gradient);
-
 }
 
 .butonAfegir {
@@ -315,7 +167,6 @@ footer {
     border: 1px solid var(--black);
     height: 100%;
     width: 15%;
-    
 }
 
 .butonsSumaResta>button:nth-child(1) {
@@ -344,7 +195,7 @@ footer {
     align-items: center;
 }
 
-.producte {
+#producte {
     position: relative;
     border-radius: 7px;
     align-items: center;
@@ -356,29 +207,18 @@ footer {
     box-shadow: 3px 6px 5px #333, -1px -1px 3px #333;
 }
 
-.producte__titol {
+#producte__titol {
     color: var(--black);
 }
-.inputN::-webkit-outer-spin-button, .inputN::-webkit-inner-spin-button{
 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-.inputN[type=number]{
-    -moz-appearance: textfield;
-}
 /*ESTILS CSS DE LA PREVIEW CARRITO*/
 #previewCarrito {
-    margin: 10px;
+    margin: 15px;
     background: #fff;
     border: 1px solid #ccc;
-    padding: 15px;
+    padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    position: relative;
-    top: 0;
- }
+}
 
 .carrito-item {
     display: flex;
@@ -387,13 +227,7 @@ footer {
 
 
 #botonpagar {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 5%;
-    background: var(--mi-gradient);
-    border-radius: 7%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+    width: 100%;
     /* Ancho completo */
 }
 
@@ -421,7 +255,7 @@ footer {
 
 }
 
-.etiqueta {
+#etiqueta {
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -433,7 +267,7 @@ footer {
     padding-top: 14px;
 }
 
-.producte__img{
+#producte__img{
     width: 150px;
     height: 225px;
     border-radius: 7px;
@@ -488,9 +322,7 @@ footer {
 /*RESUM COMPRA*/
 #resumCompra {
     grid-area: resum;
-    margin-top: 10%;
     padding-top: 30px;
-    width: 100%;
 }
 
 #resumCompra>h2 {
@@ -525,14 +357,7 @@ th {
 }
 
 #containerConf>button {
-    padding: 15px;
-    margin: auto;
-    width: 60%;
-    background: var(--mi-gradient);
-    border-radius: 7%;
-    margin-bottom: 15px;
-    border-radius: 7%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
+    padding: 10px;
 }
 
 /*GRID VALIDACIO*/
@@ -545,12 +370,9 @@ th {
         "resum"
         "buttConf";
     justify-content: center;
-    border: 1px solid black;
-    margin-top: 15%;
-    padding: 20px;
 }
 
-.producte__preu {
+#producte__preu {
     color: var(--black);
 }
 
@@ -607,7 +429,5 @@ th {
 }
 #containerTornarInici>button{
     padding: 10px;
-    background: var(--mi-gradient);
-    border-radius: 7%;
-    box-shadow: 5px 5px 10px rgb(11, 1, 71);
 }
+
