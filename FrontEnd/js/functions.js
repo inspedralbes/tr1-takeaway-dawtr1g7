@@ -124,7 +124,7 @@ createApp({
             return this.llibres.find(llibre => llibre.id === id)
         },
         getQuantitatTotalCarrito() {
-            let quantitat = 222
+            let quantitat = 0
             this.carrito.forEach(llibre => {
                 quantitat += llibre.quantitat
             });
