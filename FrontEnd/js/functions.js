@@ -81,6 +81,7 @@ createApp({
             this.crearNovaComanda(jsonResponse);
         },
         cambiarDiv(id) {
+            if(id === 'validacio' && this.carrito.length === 0) return;
             this.errorMsg = ""
             this.botigaStatus = id;
         },
