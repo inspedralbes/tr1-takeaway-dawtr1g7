@@ -1,55 +1,55 @@
 @extends('app')
 
 @section('content')
-<div class="container w-50 border p-4 mt-4">
-        <form action="{{ route('afegir-llibre') }}" method="POST" enctype="multipart/form-data">
+<div class="container p-4 mt-4">
+        <form class="box" action="{{ route('afegir-llibre') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             @if (session('success'))
-                <h6 class="alert alert-success">{{ session('success') }}</h6>
+                <h6 class="notification is-success is-light">{{ session('success') }}</h6>
             @endif
 
             @error('title')
-                <h6 class="alert alert-danger">{{ $message }}</h6>
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
             @enderror
 
-            <div class="mb-3">
-                <label for="titol" class="form-label">Titol</label>
-                <input type="text" name="titol" class="form-control">
+            <div class="field">
+                <label for="titol" class="label">Titol</label>
+                <input type="text" name="titol" class="input">
             </div>
-            <div class="mb-3">
-                <label for="autor" class="form-label">Autor</label>
-                <input type="text" name="autor" class="form-control">
+            <div class="field">
+                <label for="autor" class="label">Autor</label>
+                <input type="text" name="autor" class="input">
             </div>
-            <div class="mb-3">
-                <label for="descripcio" class="form-label">Descripció</label>
-                <input type="text" name="descripcio" class="form-control">
+            <div class="field">
+                <label for="descripcio" class="label">Descripció</label>
+                <input type="text" name="descripcio" class="input">
             </div>
-            <div class="mb-3">
-                <label for="editorial" class="form-label">Editorial</label>
-                <input type="text" name="editorial" class="form-control">
+            <div class="field">
+                <label for="editorial" class="label">Editorial</label>
+                <input type="text" name="editorial" class="input">
             </div>
-            <div class="mb-3">
-                <label for="any" class="form-label">Any</label>
-                <input type="number" name="any" class="form-control">
+            <div class="field">
+                <label for="any" class="label">Any</label>
+                <input type="number" name="any" class="input">
             </div>
-            <div class="mb-3">
-                <label for="preu" class="form-label">Preu</label>
-                <input type="number" name="preu" step="0.01" class="form-control">
+            <div class="field">
+                <label for="preu" class="label">Preu</label>
+                <input type="number" name="preu" step="0.01" class="input">
             </div>
-            <div class="mb-3">
-                <label for="isbn" class="form-label">ISBN</label>
-                <input type="text" name="isbn" class="form-control">
+            <div class="field">
+                <label for="isbn" class="label">ISBN</label>
+                <input type="text" name="isbn" class="input">
             </div>
-            <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria</label>
-                <input type="number" name="categoria" class="form-control">
+            <div class="field">
+                <label for="categoria" class="label">Categoria</label>
+                <input type="number" name="categoria" class="input">
             </div>
-            <div class="mb-3">
-                <label for="imatge" class="form-label">Portada</label>
-                <input type="text" name="imatge" class="form-control">
+            <div class="field">
+                <label for="imatge" class="label">Portada</label>
+                <input type="text" name="imatge" class="input">
             </div>
-            <button type="submit" class="btn btn-primary">AFEGIR LLIBRE</button>
+            <button type="submit" class="button is-success is-rounded">AFEGIR LLIBRE</button>
         </form>
     </div>
 @endsection

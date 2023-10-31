@@ -5,10 +5,10 @@
     <form action="{{ route('view-afegir-llibre') }}" method="POST">
         @method('GET')
         @csrf
-        <button class="btn btn-primary">AFEGIR LLIBRE</button>
+        <button class="button is-success is-rounded">AFEGIR LLIBRE</button>
     </form>
     
-    <table class="table">
+    <table class="table is-striped is-fullwidth">
         <tr>
             <th>ID</th>
             <th>Títol</th>
@@ -28,7 +28,7 @@
                     <form action="{{ route('eliminar-llibre', ['id' => $llibre->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                            <button class="button is-danger is-small is-centered">Eliminar</button>
                     </form>
                 </td>
             </tr>

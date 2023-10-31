@@ -1,0 +1,8 @@
+table {
+    font-size: 0.75em;
+}
+
+.is-centered{
+    margin:auto;
+    display: block;
+}

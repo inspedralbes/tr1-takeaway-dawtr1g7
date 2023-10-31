@@ -2,11 +2,11 @@
 
 @section('content')
    
-        <table class="table">
+        <table class="table is-striped is-fullwidth">
             <tr>
                 <th>ID</th>
-                <th>Nom</th>
-                <th></th>
+                <th>Estat</th>
+                <th>Llibres</th>
             </tr>
             @php($comanda_actual = 0)
             @php($i = 0)

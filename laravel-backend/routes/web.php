@@ -19,7 +19,7 @@ use App\Http\Controllers\QrCodeController;
 
 Route::get('/', function () {
     return view('app');
-});
+})->name('admin');
 
 //RUTES LLIBRES
 Route::get('/llibres', [LlibresController::class, 'adminIndex'])->name('llibres');
