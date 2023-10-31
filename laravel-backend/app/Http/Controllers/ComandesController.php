@@ -25,8 +25,13 @@ class ComandesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $usuari = $request->user();
+        $idUsuari = $usuari->id;
+
         $comanda = new Comanda();
         $comanda->estat = 'En preparació';
+        $comanda->user_id = $idUsuari;
 
         $llibresComanda = $request->input('carrito');
         $lineesComanda = [];
