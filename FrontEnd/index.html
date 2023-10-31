@@ -24,8 +24,8 @@
                     <div id="numQuatitatCarrito">{{ getQuantitatTotalCarrito() }}</div>
                 </div>
             </div>
-            <div v-if="mostrar('landing') && usuari">
-                <button @click="tancarSessio()" id="logoutBtn">Logout</button>
+            <div v-if="mostrar('landing') && usuari" class="logout-btn">
+                <button @click="tancarSessio()">Logout</button>
             </div>
         </header>
         <div id="container">
@@ -54,9 +54,8 @@
                 <input type="text" id="correuIniciSessio">
                 <label for="password">Contrasenya: </label>
                 <input type="password" name="password" id="passwordIniciSesio">
-                
-                    <button @click="iniciarSessio()">Iniciar Sessió</button>
-                
+                <button @click="iniciarSessio()">Iniciar Sessió</button>
+
                 <div style="color: red;text-align: center;">{{ errorMsg }}</div>
             </div>
             <div v-if="mostrar('registro')" id="registre">
@@ -76,14 +75,15 @@
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
-                
+
                 <div id="categories" :class="{ active: previewCategories }">
                     <div class="itemCategoriaTodas" @click="canviarCat(0),togglePreviewCategories()">
-                      <div>Mostrar totes</div>
+                        <div>Mostrar totes</div>
                     </div>
-                  
-                    <div class="itemCategoria" v-for="categoria in getCategories()" @click="canviarCat(categoria.id), togglePreviewCategories()">
-                      <div>{{ categoria.nom }}</div>
+
+                    <div class="itemCategoria" v-for="categoria in getCategories()"
+                        @click="canviarCat(categoria.id), togglePreviewCategories()">
+                        <div>{{ categoria.nom }}</div>
                     </div>
                 </div>
                 <div v-if="getComanda().productes.length > 0" class="buttonComanda-container">
@@ -116,7 +116,8 @@
 
                 <div id="graella__productes">
 
-                    <div class="producte" v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
+                    <div class="producte"
+                        v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
                         <img class="producte__img" :src="llibre.img_url">
                         <div class="etiqueta">
@@ -127,7 +128,8 @@
                 </div>
                 <div class="buttonsEnrereEndevant">
                     <button @click="enrere" :disabled="indexLlibres === 0">Anterior</button>
-                    <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">Següent</button>
+                    <button @click="endevant"
+                        :disabled="indexLlibres >= llibres.length - llibresMostrats">Següent</button>
                 </div>
             </div>
 
@@ -163,7 +165,7 @@
                         <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
                         <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
                     </div>
-                    <div v-if="usuari">Hola {{ usuari.nom }}!</div>
+                    <div v-if="usuari" class="msg-benvinguda">Hola {{ usuari.nom }}!</div>
                     <div>
                         <div id="resumCompra">
                             <h2>Resum compra</h2>

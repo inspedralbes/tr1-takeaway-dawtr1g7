@@ -1,13 +1,13 @@
 :root {
     --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
-    --mi-gradient-cat:linear-gradient(to right, #ac8ffc, #4e0ffa);
+    --mi-gradient-cat: linear-gradient(to right, #ac8ffc, #4e0ffa);
     --mi-gradient-btn: linear-gradient(to left, #c7b4fa, #9a76ff);
     --dark-blue: #64729c;
     --light-blue: #b8caff;
     --white: white;
 }
 
-h1{
+h1 {
     margin: 0;
     padding: 10px;
 }
@@ -16,21 +16,23 @@ h2 {
     text-align: center;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-img{
+
+img {
     max-width: 100%;
 }
 
 /*NUMERO CARRITO*/
-#containerTogglePreviewCarrito{
+#containerTogglePreviewCarrito {
     position: relative;
 }
-#containerNumQuantitatCarrito{
+
+#containerNumQuantitatCarrito {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -42,7 +44,8 @@ img{
     justify-content: center;
     align-items: center;
 }
-#numQuatitatCarrito{
+
+#numQuatitatCarrito {
     font-size: 12px;
 }
 
@@ -56,8 +59,7 @@ img{
     background: url('https://img.freepik.com/fotos-premium/fondo-morado-azul-fondo-morado-palabra-amor_873925-17800.jpg?size=626&ext=jpg');
     border: none;
     border-radius: 5px;
-    margin: auto;
-    margin-top: 50%;
+    margin: 30px auto;
 }
 
 
@@ -79,14 +81,14 @@ img{
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
-    border:1px solid rgb(155, 155, 155);
+    border: 1px solid rgb(155, 155, 155);
     border-radius: 7px;
 }
 
 #iniciSessio button {
     width: 100%;
     padding: 10px;
-    background-image: linear-gradient(to left,#6e3afc, #6e3afc, #6e3afc);
+    background-image: linear-gradient(to left, #6e3afc, #6e3afc, #6e3afc);
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -94,11 +96,11 @@ img{
     margin-bottom: 20px;
 }
 
-  
-  
+
+
 /*Estils registre*/
 
-#registre{
+#registre {
     width: 90%;
     max-width: 350px;
     padding: 20px;
@@ -108,16 +110,15 @@ img{
     background-size: 100% 100%;
     border: none;
     border-radius: 5px;
-    margin: auto;
-    margin-top: 50px;
+    margin: 30px auto;
 }
 
-#registre h3{
+#registre h3 {
     color: white;
     text-align: center;
 }
 
-#registre label{
+#registre label {
     display: block;
     color: white;
     margin-top: 10px;
@@ -133,21 +134,21 @@ img{
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
-    border:1px solid rgb(155, 155, 155);
+    border: 1px solid rgb(155, 155, 155);
     border-radius: 7px;
 }
 
 #registre button {
     width: 100%;
     padding: 10px;
-    background-image: linear-gradient(to left,#6e3afc, #6e3afc, #6e3afc);
+    background-image: linear-gradient(to left, #6e3afc, #6e3afc, #6e3afc);
     color: #fff;
     border: none;
     border-radius: 3px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
- 
+
 /* Estils menú desplegable*/
 #categories {
     position: fixed;
@@ -155,11 +156,11 @@ img{
     top: 60px;
     width: 100vw;
     height: 100vh;
-    background: var(--mi-gradient-cat); 
-    color:var(--white);
+    background: var(--mi-gradient-cat);
+    color: var(--white);
     display: none;
     opacity: 0;
-    z-index: 999; 
+    z-index: 999;
 }
 
 #categories.active {
@@ -182,15 +183,27 @@ header {
     position: sticky;
     top: 0;
     z-index: 999;
-    background: var(--mi-gradient); 
-    color:var(--white);
+    background: var(--mi-gradient);
+    color: var(--white);
     text-align: center;
     display: flex;
     justify-content: space-between;
     padding: 15px;
 }
 
-.buttonComanda{
+.logout-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.logout-btn button {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.buttonComanda {
     padding: 8px 15px;
     background: var(--mi-gradient-btn);
     border-radius: 5px;
@@ -215,19 +228,21 @@ header {
 .msg-benvinguda {
     font-size: 1.2em;
     font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
 }
 
 footer {
     grid-area: footer;
     background: var(--mi-gradient);
-    color:var(--white);
+    color: var(--white);
     font-size: 0.8em;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-}
+
 /*DISTRIBUCIO D'ESPAIS*/
 .header-title {
     display: flex;
@@ -241,16 +256,16 @@ footer {
     filter: brightness(0) invert(1);
 }
 
-#app{
+#app {
     min-height: 100vh;
     display: grid;
-    width:100%;
+    width: 100%;
     grid-template-areas: "header" "conten" "footer";
     grid-template-rows: 60px 1fr 50px;
 }
 
 /*LANDING*/
-#imgP{
+#imgP {
     width: 100%;
 }
 
@@ -275,19 +290,20 @@ footer {
     box-shadow: 3px 6px 5px #333;
 }
 
-.infoBotiga h2{
+.infoBotiga h2 {
     margin-bottom: 15px;
-    background-image: linear-gradient(to left,#ac8ffc, #000, #6e3afc);
+    background-image: linear-gradient(to left, #ac8ffc, #000, #6e3afc);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
 }
 
-.infoBotiga>#textInfoBot{
+.infoBotiga>#textInfoBot {
     align-self: flex-end;
     gap: 15px;
 }
-.infoBotiga{
+
+.infoBotiga {
     width: 80%;
     padding-bottom: 10%;
     display: flex;
@@ -382,7 +398,7 @@ footer {
     border: 1px solid var(--black);
     height: 100%;
     width: 15%;
-    
+
 }
 
 .butonsSumaResta>button:nth-child(1) {
@@ -416,9 +432,11 @@ footer {
     border-radius: 7px;
     align-items: center;
 
-    display: flex; /* Agregado para centrar verticalmente el contenido */
-    flex-direction: column; /* Agregado para alinear el contenido verticalmente */
-    margin:15px;
+    display: flex;
+    /* Agregado para centrar verticalmente el contenido */
+    flex-direction: column;
+    /* Agregado para alinear el contenido verticalmente */
+    margin: 15px;
     width: 150px;
     box-shadow: 3px 6px 5px #333;
 }
@@ -426,12 +444,15 @@ footer {
 .producte__titol {
     color: var(--black);
 }
-.inputN::-webkit-outer-spin-button, .inputN::-webkit-inner-spin-button{
+
+.inputN::-webkit-outer-spin-button,
+.inputN::-webkit-inner-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
-.inputN[type=number]{
+
+.inputN[type=number] {
     -moz-appearance: textfield;
 }
 
@@ -458,7 +479,7 @@ footer {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     top: 0;
- }
+}
 
 .carrito-item {
     display: flex;
@@ -521,7 +542,7 @@ footer {
     padding-top: 14px;
 }
 
-.producte__img{
+.producte__img {
     width: 150px;
     height: 225px;
     border-radius: 7px;
@@ -640,7 +661,8 @@ th {
         "resum"
         "buttConf";
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid #333;
+    border-radius: 7px;
     margin-top: 15%;
     padding: 10px;
 }
@@ -649,58 +671,66 @@ th {
     color: var(--black);
 }
 
-#imgEstat{
+#imgEstat {
     text-align: center;
 }
-#imgEstat>img{
+
+#imgEstat>img {
     width: 70%;
     height: auto;
 }
-#estat>h2{
+
+#estat>h2 {
     text-align: center;
 }
-#resumComanda{
+
+#resumComanda {
     width: 90%;
     margin: auto;
     border: 1px solid black;
     margin-top: 20px;
 }
-#idComanda{
+
+#idComanda {
     border-bottom: 1px solid black;
     text-align: center;
     padding: 15px;
     font-size: 18px;
 }
 
-#estatComanda{
+#estatComanda {
     grid-area: estatC;
 }
-#tableComanda{
+
+#tableComanda {
     padding-top: 15px;
     grid-area: tablC;
 }
 
-.tablQuantEstat{
+.tablQuantEstat {
     text-align: center;
 }
-.tablPreuEstat{
+
+.tablPreuEstat {
     text-align: right;
 }
 
-#InfoComanda{
+#InfoComanda {
     padding: 15px;
 }
-#tablC{
+
+#tablC {
     width: 100%;
 }
 
-#containerTornarInici{
+#containerTornarInici {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 30px 0;
 }
-#containerTornarInici>button{
+
+#containerTornarInici>button {
     padding: 8px 15px;
     background: var(--mi-gradient-btn);
     border-radius: 5px;

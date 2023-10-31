@@ -7,7 +7,7 @@ createApp({
             llibres: [],
             llibresFiltrats: [],
             indexLlibres: 0,
-            llibresMostrats:6,
+            llibresMostrats: 6,
             categories: [],
             carrito: [],
             comanda: { productes: [] },
@@ -53,7 +53,7 @@ createApp({
             this.categories = categoriesProductes
         },
         async crearComanda() {
-            if(!this.usuari) {
+            if (!this.usuari) {
                 this.errorMsg = "Inicia sessió per a crear una comanda!"
                 return
             }
@@ -81,7 +81,7 @@ createApp({
             this.crearNovaComanda(jsonResponse);
         },
         cambiarDiv(id) {
-            if(id === 'validacio' && this.carrito.length === 0) return;
+            if (id === 'validacio' && this.carrito.length === 0) return;
             this.errorMsg = ""
             this.botigaStatus = id;
         },
@@ -215,7 +215,7 @@ createApp({
             }
             console.log(this.usuari)
             this.errorMsg = ""
-            if(this.carrito.length > 0) {
+            if (this.carrito.length > 0) {
                 this.cambiarDiv('validacio')
             } else {
                 this.cambiarDiv('landing')
@@ -327,12 +327,12 @@ createApp({
             this.usuari = null
             this.comanda = { productes: [] }
         },
-        endevant(){
+        endevant() {
             if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
                 this.indexLlibres += this.llibresMostrats;
             }
         },
-        enrere(){
+        enrere() {
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }
