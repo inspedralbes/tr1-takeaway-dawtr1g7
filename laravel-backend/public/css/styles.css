@@ -1,5 +1,14 @@
 table {
     font-size: 0.6em;
+    width: 100%;
+}
+
+.table.is-hoverable.is-striped tbody tr:not(:first-child):hover {
+    background-color: #adfff3;
+  }
+  
+.table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
+    background-color: #adfff3;
 }
 
 .is-centered{
@@ -7,12 +16,35 @@ table {
     display: block;
 }
 
-.w-50{
-    width: 50%;
-}
-
 .eliminar {
     width: 45px;
     height: 30px;
 }
-  
+
+.icon-right {
+    padding-left: 5px;
+}
+
+@media (min-width: 428px) {
+    
+    table {
+        font-size: 0.75em;
+    }
+}
+
+@media (min-width: 769px) {
+    
+    .contenidor {
+        width: 80%;
+        margin: auto;
+    }
+
+    table {
+        font-size: 1em;
+    }
+
+    .container__form{
+        width: 50%;
+        margin: auto;
+    }
+}

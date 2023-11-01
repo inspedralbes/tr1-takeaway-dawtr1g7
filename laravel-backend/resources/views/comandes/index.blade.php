@@ -1,8 +1,9 @@
 @extends('app')
 
 @section('content')
-   
-        <table class="table is-striped is-fullwidth">
+
+    <div class="contenidor">   
+        <table class="table mt-6 is-striped is-hoverable is-fullwidth">
             <tr>
                 <th>ID</th>
                 <th>Estat</th>
@@ -27,4 +28,5 @@
                 @endif
             @endforeach
         </table>
+    </div>
 @endsection

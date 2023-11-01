@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container p-4 mt-4">
-        <form class="box" action="{{ route('modificar-llibre', ['id' => $llibre->id]) }}" method="POST">
+        <form class="box container__form" action="{{ route('modificar-llibre', ['id' => $llibre->id]) }}" method="POST">
             @csrf
             @method('PATCH')
             @if (session('success'))
@@ -49,8 +49,8 @@
                 <label for="imatge" class="label">Portada</label>
                 <input type="text" name="imatge" class="input" value="{{ $llibre->img_url }}">
             </div>
-            <button type="submit" class="button is-warning is-rounded is-small mt-4">MODIFICAR LLIBRE</button>
-            <a href="{{ route('llibres') }}" class="button is-danger is-rounded is-small mt-4">CANCELAR</a>
+            <button type="submit" class="button is-warning is-rounded is-responsive mt-4">MODIFICAR LLIBRE <img class="icon-right" src="{{url('/img/update.png')}}" alt="modificar" width=23 height=23></button>
+            <a href="{{ route('llibres') }}" class="button is-danger is-rounded is-responsive mt-4">CANCELAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
         </form>
     </div>
 @endsection

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container p-4 mt-4">
-        <form class="box" action="{{ route('modificar-comanda', ['id' => $comanda->id]) }}" method="POST">
+        <form class="box container__form" action="{{ route('modificar-comanda', ['id' => $comanda->id]) }}" method="POST">
             @csrf
             @method('PATCH')
             @if (session('success'))
@@ -24,8 +24,8 @@
                 </select>
                 </div>
             </div>
-            <input type="submit" class="button is-warning is-rounded is-small mt-4" value="MODIFICAR ESTAT">
-            <a href="{{ route('comandes') }}" class="button is-danger is-rounded is-small mt-4">CANCELAR</a>
+            <input type="submit" class="button is-warning is-rounded is-responsive mt-4" value="MODIFICAR ESTAT">
+            <a href="{{ route('comandes') }}" class="button is-danger is-rounded is-responsive mt-4">CANCELAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
         </form>
     </div>
 @endsection

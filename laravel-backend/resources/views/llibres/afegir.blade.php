@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container p-4 mt-4">
-        <form class="box" action="{{ route('afegir-llibre') }}" method="POST" enctype="multipart/form-data">
+        <form class="box container__form" action="{{ route('afegir-llibre') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             @if (session('success'))
@@ -49,8 +49,9 @@
                 <label for="imatge" class="label">Portada</label>
                 <input type="text" name="imatge" class="input">
             </div>
-            <button type="submit" class="button is-success is-rounded is-small mt-4">AFEGIR LLIBRE</button>
-            <a href="{{ route('llibres') }}" class="button is-danger is-rounded is-small mt-4">CANCELAR</a>
+            <button type="submit" class="button is-success is-rounded is-responsive mt-4">AFEGIR LLIBRE <img class="icon-right" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
+            <a href="{{ route('llibres') }}" class="fle button is-danger is-rounded is-responsive mt-4">CANCELAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
+            
         </form>
     </div>
 @endsection
