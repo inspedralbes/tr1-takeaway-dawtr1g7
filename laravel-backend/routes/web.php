@@ -18,7 +18,7 @@ use App\Http\Controllers\QrCodeController;
 */
 
 Route::get('/', function () {
-    return view('app');
+    return view('admin-landing');
 })->name('admin');
 
 //RUTES LLIBRES
