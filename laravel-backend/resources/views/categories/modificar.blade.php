@@ -17,7 +17,8 @@
                 <label for="nom" class="label">Nom</label>
                 <input type="text" name="nom" class="input" value="{{ $categoria->nom }}">
             </div>
-            <button type="submit" class="button is-warning is-rounded">MODIFICAR CATEGORIA</button>
+            <button type="submit" class="button is-warning is-rounded is-small mt-4">MODIFICAR CATEGORIA</button>
+            <a href="{{ route('categories') }}" class="button is-danger is-rounded is-small mt-4">CANCELAR</a>
         </form>
     </div>
 @endsection

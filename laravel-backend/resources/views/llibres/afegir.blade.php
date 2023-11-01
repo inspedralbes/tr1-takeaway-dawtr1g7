@@ -49,7 +49,8 @@
                 <label for="imatge" class="label">Portada</label>
                 <input type="text" name="imatge" class="input">
             </div>
-            <button type="submit" class="button is-success is-rounded">AFEGIR LLIBRE</button>
+            <button type="submit" class="button is-success is-rounded is-small mt-4">AFEGIR LLIBRE</button>
+            <a href="{{ route('llibres') }}" class="button is-danger is-rounded is-small mt-4">CANCELAR</a>
         </form>
     </div>
 @endsection

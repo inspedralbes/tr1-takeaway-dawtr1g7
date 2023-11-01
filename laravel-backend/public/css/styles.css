@@ -1,8 +1,18 @@
 table {
-    font-size: 0.75em;
+    font-size: 0.6em;
 }
 
 .is-centered{
     margin:auto;
     display: block;
 }
+
+.w-50{
+    width: 50%;
+}
+
+.eliminar {
+    width: 45px;
+    height: 30px;
+}
+  
