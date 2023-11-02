@@ -3,7 +3,7 @@
 @section('content')
 <div class="landing-container">
 <div class="container__button">
-<button class="cataleg button is-link is-rounded is-large mt-6" onclick="document.location='http:\/\/127.0.0.1:5501/FrontEnd/'">TORNAR A CATÀLEG</button>
+<button class="cataleg button is-link is-rounded is-large mt-6" onclick="redirectToLandingPage()">TORNAR A CATÀLEG</button>
 </div>
 <div class="info">Administra des d'aquesta secció el catàleg de llibres disponibles, les seves categories així com les comandes dels clients.</div>
 
@@ -22,4 +22,15 @@
 </button>
 </div>
 </div>
+<script>
+    function redirectToLandingPage() {
+        let localhost = window.location.hostname == '127.0.0.1'
+
+        if(localhost) {
+            window.location.href = 'http://127.0.0.1:5501/FrontEnd/'
+        } else {
+            window.location.href = '../../FrontEnd'
+        }
+    }
+</script>
 @endsection

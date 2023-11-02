@@ -250,6 +250,12 @@ header {
     padding: 15px;
 }
 
+.admin-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
 .logout-btn {
     position: absolute;
     top: 15px;
@@ -317,7 +323,7 @@ footer {
     filter: brightness(0) invert(1);
 }
 /*Imatge logout*/
-.imgLogout{
+.iconsLanding{
     filter: brightness(0) invert(1);
     width: 30px;height: 30px;
 }
@@ -513,6 +519,8 @@ footer {
 
 .inputN[type=number] {
     appearance: textfield;
+    background-color: var(--white);
+    color: var(--blackç);
 } 
 
 .buttonsEnrereEndevant {
