@@ -7,7 +7,7 @@ createApp({
             llibres: [],
             llibresFiltrats: [],
             indexLlibres: 0,
-            llibresMostrats:6,
+            llibresMostrats: 8,
             categories: [],
             carrito: [],
             comanda: { productes: [] },
@@ -18,6 +18,8 @@ createApp({
             usuari: null,
             errorMsg: "",
             previewCategories: false,
+            textBuscat: "",
+            categoriaActual:0
         }
     },
 
@@ -53,7 +55,7 @@ createApp({
             this.categories = categoriesProductes
         },
         async crearComanda() {
-            if(!this.usuari) {
+            if (!this.usuari) {
                 this.errorMsg = "Inicia sessió per a crear una comanda!"
                 return
             }
@@ -81,6 +83,8 @@ createApp({
             this.crearNovaComanda(jsonResponse);
         },
         cambiarDiv(id) {
+            if (id === 'validacio' && this.carrito.length === 0) return;
+            if (id === 'botiga') this.indexLlibres = 0;
             this.errorMsg = ""
             this.botigaStatus = id;
         },
@@ -94,12 +98,13 @@ createApp({
             return this.categories;
         },
         canviarCat(id) {
-            if (id === 0) {
+            this.categoriaActual = id;
+            if (this.categoriaActual === 0) {
                 this.llibresFiltrats = this.llibres
             } else {
-
-                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === id)
+                this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === this.categoriaActual)
             }
+            this.indexLlibres = 0;
         },
         getComanda() {
             return this.comanda;
@@ -123,6 +128,22 @@ createApp({
         getLlibrePerId(id) {
             return this.llibres.find(llibre => llibre.id === id)
         },
+        buscarLlibres(){
+            this.indexLlibres = 0;
+            if(this.textBuscat == ""){
+                if(this.categoriaActual == 0){
+                    this.llibresFiltrats = this.llibres
+                } else{
+                    this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id == this.categoriaActual);
+                }
+            } else{
+                if(this.categoriaActual == 0){
+                    this.llibresFiltrats = this.llibres.filter(llibre => llibre.titol.toLowerCase().includes(this.textBuscat.toLowerCase()));
+                } else{
+                    this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(this.textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual );
+                }
+            }
+         },
         getQuantitatTotalCarrito() {
             let quantitat = 0
             this.carrito.forEach(llibre => {
@@ -140,7 +161,7 @@ createApp({
         getPreuTotalComanda() {
             let preu = 0
             this.comanda.productes.forEach(llibre => {
-                preu += parseInt(llibre.preu) * llibre.quantitat
+                preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
         },
@@ -150,6 +171,11 @@ createApp({
                 quantitat += llibre.quantitat
             });
             return quantitat
+        },
+        getProducteInCarrito(producteId) {
+            let producte = this.carrito.find(item => item.id === producteId)
+            console.log(producte)
+            return producte !== undefined
         },
         crearNovaComanda(objecteComanda) {
             let novaComanda = {
@@ -214,7 +240,7 @@ createApp({
             }
             console.log(this.usuari)
             this.errorMsg = ""
-            if(this.carrito.length > 0) {
+            if (this.carrito.length > 0) {
                 this.cambiarDiv('validacio')
             } else {
                 this.cambiarDiv('landing')
@@ -326,12 +352,12 @@ createApp({
             this.usuari = null
             this.comanda = { productes: [] }
         },
-        endevant(){
+        endevant() {
             if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
                 this.indexLlibres += this.llibresMostrats;
             }
         },
-        enrere(){
+        enrere() {
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }

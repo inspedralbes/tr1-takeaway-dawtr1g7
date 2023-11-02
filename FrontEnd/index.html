@@ -18,44 +18,53 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
             </div>
             <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
-            <div @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
+            <div id="containerTogglePreviewCarrito" @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
                 <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
+                <div id="containerNumQuantitatCarrito">
+                    <div id="numQuatitatCarrito">{{ getQuantitatTotalCarrito() }}</div>
+                </div>
             </div>
-            <div v-if="mostrar('landing') && usuari">
-                <button @click="tancarSessio()">Logout</button>
+            <div v-if="mostrar('landing') && usuari" class="logout-btn">
+                <img class="imgLogout" @click="tancarSessio()" src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png" alt="LogOut">
             </div>
         </header>
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
 
-                <div id="infoBotiga">
-                    <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
-                    <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
-                    <h4 v-if="usuari">Benvingut {{ usuari.nom }}!</h4>
+                <div class="infoBotiga">
+                    <div class="login-btns-container">
+                        <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
+                        <button class="botonsLandingLog" @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
+                    </div>
+                    <div class="msg-benvinguda" v-if="usuari">Benvingut {{ usuari.nom }}!</div>
                     <div id="textInfoBot">
-                        <h2>Informació sobre la botiga</h2>
+                        <h2>Informació</h2>
                         <p>
-                            Galaxia Gutenberg es una biblioteca on podràs trobar els millors llibres de la ciutat. Tenim
-                            infinites categories per que escullis el que més t'agrada, fes clic a CATÀLEG per començar a
-                            explorar la nostra biblioteca
+                            Aquí, cada llibre és un nou món a descobrir. <br>
+                            Embarca't en una odissea de paraules i somia amb nosaltres.
                         </p>
                     </div>
                     <button @click="cambiarDiv('botiga')">CATÀLEG</button>
+                    <button @click="cambiarDiv('botiga')" id="cataleg-btn">CATÀLEG</button>
                     <button onclick="document.location='http:\/\/127.0.0.1:8000'">ADMINISTRACIÓ</a>
+          
                 </div>
-                <img src="imgP.jpeg" alt="" id="imgP">
+                <img src="./img/landingImg.jpeg" alt="" id="imgP">
             </div>
             <div v-if="mostrar('iniciarSesion')" id="iniciSessio">
-                <h2>INICI SESSIÓ</h2><br>
+                <h2>INICI SESSIÓ</h2>
                 <label for="correu">Correu: </label>
-                <input type="text" id="correuIniciSessio"><br>
+                <input type="text" id="correuIniciSessio">
                 <label for="password">Contrasenya: </label>
-                <input type="password" name="password" id="passwordIniciSesio"><br>
+                <input type="password" name="password" id="passwordIniciSesio">
                 <button @click="iniciarSessio()">Iniciar Sessió</button>
-                <div style="color: red;text-align: center;">{{ errorMsg }}</div>
+
+                <div class="error">
+                    {{ errorMsg }}
+                </div>
             </div>
             <div v-if="mostrar('registro')" id="registre">
-                <h2>REGISTRE</h2>
+                <h3>REGISTRE</h3>
                 <label for="name">Nom: </label>
                 <input type="text" id="nomRegistre"><br>
                 <label for="correu">Correu: </label>
@@ -67,29 +76,32 @@
                 <label for="telefon">Teléfon: </label>
                 <input type="text" name="telefon" id="telefonRegistre"><br>
                 <button @click="registrarUsuari()">Registrarme</button>
-                <div style="color: red;text-align: center;">{{ errorMsg }}</div>
+                <div class="error">
+                    {{ errorMsg }}
+                </div>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
-                
+
                 <div id="categories" :class="{ active: previewCategories }">
                     <div class="itemCategoriaTodas" @click="canviarCat(0),togglePreviewCategories()">
-                      <div>Mostrar totes</div>
+                        <div>Mostrar totes</div>
                     </div>
-                  
-                    <div class="itemCategoria" v-for="categoria in getCategories()" @click="canviarCat(categoria.id), togglePreviewCategories()">
-                      <div>{{ categoria.nom }}</div>
+
+                    <div class="itemCategoria" v-for="categoria in getCategories()"
+                        @click="canviarCat(categoria.id), togglePreviewCategories()">
+                        <div>{{ categoria.nom }}</div>
                     </div>
                 </div>
-                <button class="buttonComanda" @click="cambiarDiv('estat')"
-                    v-if="getComanda().productes.length > 0">Comanda
-                </button>
+                <div v-if="getComanda().productes.length > 0" class="buttonComanda-container">
+                    <button class="buttonComanda" @click="cambiarDiv('estat')">La Meva Comanda</button>
+                </div>
 
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
                     <hr>
                     <div>
-                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id" class="carrito-item-container">
                             <div class="carrito-item">
                                 <img :src="getLlibrePerId(itemCarrito.id).img_url" style="width: 70px;height: 106px;">
                                 <div class="carrito-item-info">
@@ -99,30 +111,36 @@
                                 </div>
                             </div>
                             <div class="butonsSumaResta">
-                                <button @click="restarQuantitat(itemCarrito.id,false)">-</button>
+                                <button class="botonsLandingLog" @click="restarQuantitat(itemCarrito.id,false)">-</button>
                                 <input type="number" v-model="itemCarrito.quantitat" class="inputN">
-                                <button @click="sumarQuantitat(itemCarrito.id)">+</button>
+                                <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
                             </div>
                         </div>
-                        <div>Total {{ getPreuTotalCarrito() }} €</div>
+                        <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
                     </div>
                     <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
+                <div id="containerBuscador">
+                    <input v-model="textBuscat" placeholder="Buscar...">
+                    <button @click="buscarLlibres()"><img id="img_search" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png" alt="icon_lupa"></button>
+                </div>
+                
                 <div id="graella__productes">
-
-                    <div id="producte" v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
+                    <div class="producte"
+                        v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
-                        <img id="producte__img" :src="llibre.img_url">
-                        <div id="etiqueta">
-                            <h5 id="producte__titol">{{llibre.titol}}</h5>
-                            <p id="producte__preu">{{llibre.preu}}€</p>
+                        <img class="producte__img" :src="llibre.img_url">
+                        <div class="etiqueta" :class="{ etiquetaCarrito: getProducteInCarrito(llibre.id) }">
+                            <h5 class="producte__titol">{{llibre.titol}}</h5>
+                            <p class="producte__preu">{{llibre.preu}}€</p>
                         </div>
                     </div>
                 </div>
-                <div id="buttonsEnrereEndevant">
-                    <button @click="enrere" :disabled="indexLlibres === 0">enrere</button>
-                    <button @click="endevant" :disabled="indexLlibres >= llibres.length - llibresMostrats">endevant</button>
+                <div class="buttonsEnrereEndevant">
+                    <button class="botonsLandingLog" @click="enrere" :disabled="indexLlibres === 0">Anterior</button>
+                    <button class="botonsLandingLog" @click="endevant"
+                        :disabled="indexLlibres >= llibresFiltrats.length - llibresMostrats">Següent</button>
                 </div>
             </div>
 
@@ -130,9 +148,9 @@
                 <div class="portada">
                     <img :src="getLlibreActual().img_url">
                     <div class="butonsSumaResta">
-                        <button @click="restarQuantitat(getLlibreActual().id,true)">-</button>
+                        <button class="botonsLandingLog" @click="restarQuantitat(getLlibreActual().id,true)">-</button>
                         <input type="number" v-model="quantitat" class="inputN">
-                        <button @click="sumarQuantitat(getLlibreActual().id)">+</button>
+                        <button class="botonsLandingLog" @click="sumarQuantitat(getLlibreActual().id)">+</button>
                     </div>
                 </div>
 
@@ -147,18 +165,18 @@
                 </div>
 
                 <div class="butonAfegir">
-                    <button @click="cambiarDiv('botiga')"> &lt; Tornar enrere</button>
+                    <button class="botoTornarEnrere" @click="cambiarDiv('botiga')">Tornar Enrere</button>
                 </div>
             </div>
 
             <div id="validacio" v-if="mostrar('validacio')">
                 <div id="dades">
                     <h2>TICKET</h2>
-                    <div v-if="!usuari">
+                    <div v-if="!usuari" class="login-btns-container">
                         <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
                         <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
                     </div>
-                    <div v-if="usuari">Hola {{ usuari.nom }}!</div>
+                    <div v-if="usuari" class="msg-benvinguda">Hola {{ usuari.nom }}!</div>
                     <div>
                         <div id="resumCompra">
                             <h2>Resum compra</h2>
@@ -171,19 +189,19 @@
                                 <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
                                     <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
                                     <td class="tablQuant">{{ itemCarrito.quantitat }}</td>
-                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }} €</td>
+                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }}€</td>
                                 </tr>
                                 <tr>
                                     <td>TOTAL</td>
                                     <td class="tablQuant">{{ getQuantitatTotalCarrito() }}</td>
-                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }} €</strong></td>
+                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }}€</strong></td>
                                 </tr>
                             </table>
                         </div>
                         <div id="containerConf">
-                            <button @click="crearComanda()">CONFIRMAR</button>
+                            <button class="botonsLandingLog" @click="crearComanda()">CONFIRMAR</button>
                         </div>
-                        <div v-if="errorMsg.length > 0" style="color: red;text-align: center;">{{ errorMsg }}</div>
+                        <div v-if="errorMsg.length > 0" class="error">{{ errorMsg }}</div>
                     </div>
                 </div>
             </div>
@@ -227,7 +245,7 @@
                 </div>
 
                 <div id="containerTornarInici">
-                    <button @click="cambiarDiv('landing')">Tornar Inici</button>
+                    <button class="botonsLandingLog" @click="cambiarDiv('landing')">Tornar Inici</button>
                 </div>
 
             </div>
