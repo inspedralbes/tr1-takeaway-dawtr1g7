@@ -1,0 +1,152 @@
+/*****ADMIN NAVBAR*****/
+
+.navbar {
+    position: sticky;
+    top: 0;
+}
+
+.navbar-brand > a.navbar-item:hover, .navbar-start > a.navbar-item:hover {
+    background-color: rgba(72,95,199, 0.5);
+}
+
+/*****ADMIN LANDING PAGE*****/
+
+.container__button {
+    display: flex;
+    justify-content: center;
+}
+
+.cataleg {
+    width: 60%;
+}
+
+.info {
+    width: 60%;
+    margin: 30px auto;
+    background-color: rgba(72,95,199, 0.5);
+    color: black;
+    border: 2px solid rgba(72,95,199);
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.graella {
+    width: 60%;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 30px 30px;
+}
+
+.item {
+    padding: 0;
+    border: none;
+    background: none;
+
+    width: 200px;
+    margin: auto;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px black;
+}
+
+.item img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: auto;
+    display: block;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.item:hover > img{
+    opacity: 0.3;
+}
+
+.item h2{
+    padding: 10px;
+    position: absolute; /*em desenganxo de la capa, soc una nova capa, i la meva width es jo mateix*/
+    text-align: center;
+    text-shadow: 2px 2px #ffffff;
+    width: 100%;
+    bottom: 0;
+    margin: 0;
+    color: rgb(30, 30, 30);
+    background-color: rgba(255,255,255, 0.5);
+    border-radius: 0px 0px 20px 20px;
+    font-size: 1.25rem;
+    font-family: "Trebuchet MS", sans-serif;
+    transition: 0.5s;
+}
+
+.item:hover > h2{
+    transform: translate(0px, -75px);
+    font-size: 1.75rem;
+}
+
+/**/
+
+table {
+    font-size: 0.6em;
+    width: 100%;
+}
+
+.table.is-hoverable.is-striped tbody tr:not(:first-child):hover {
+    background-color: rgba(72,95,199, 0.5);
+  }
+  
+.table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
+    background-color: rgba(72,95,199, 0.5);
+}
+
+.is-centered{
+    margin:auto;
+    display: block;
+}
+
+.eliminar {
+    width: 45px;
+    height: 30px;
+}
+
+.icon-right {
+    padding-left: 5px;
+}
+
+@media (min-width: 428px) {
+    
+    table {
+        font-size: 0.75em;
+    }
+}
+
+@media (min-width: 769px) {
+    
+    .landing-container {
+        width: 70%;
+        margin: auto; 
+    }
+
+    .info{
+        font-size: 1.2em;
+    }
+
+    .contenidor {
+        width: 80%;
+        margin: auto;
+    }
+
+    table {
+        font-size: 1em;
+    }
+
+    .container__form{
+        width: 50%;
+        margin: auto;
+    }
+}

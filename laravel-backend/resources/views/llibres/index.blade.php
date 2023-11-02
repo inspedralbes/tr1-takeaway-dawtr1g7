@@ -1,14 +1,14 @@
 @extends('app')
 
 @section('content')
-
-    <form action="{{ route('view-afegir-llibre') }}" method="POST">
+    <div class="contenidor">
+    <form class="p-4 mt-4 mb-4" action="{{ route('view-afegir-llibre') }}" method="POST">
         @method('GET')
         @csrf
-        <button class="btn btn-primary">AFEGIR LLIBRE</button>
+        <button class="button is-success is-rounded is-responsive">AFEGIR LLIBRE <img class="icon-right" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
     </form>
     
-    <table class="table">
+    <table class="table is-striped is-hoverable is-fullwidth">
         <tr>
             <th>ID</th>
             <th>Títol</th>
@@ -28,10 +28,11 @@
                     <form action="{{ route('eliminar-llibre', ['id' => $llibre->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                            <button class="button is-danger is-small is-centered eliminar"><img src="img/delete.png" alt="paperera"></button>
                     </form>
                 </td>
             </tr>
         @endforeach
     </table>
+    </div>
 @endsection

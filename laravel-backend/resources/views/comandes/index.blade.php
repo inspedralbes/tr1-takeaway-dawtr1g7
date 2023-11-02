@@ -1,15 +1,17 @@
 @extends('app')
 
 @section('content')
-   
-        <table class="table">
+
+    <div class="contenidor">   
+        <table class="table mt-6 is-striped is-hoverable is-fullwidth">
             <tr>
                 <th>ID</th>
-                <th>Nom</th>
-                <th></th>
+                <th>Estat</th>
+                <th>Llibres</th>
             </tr>
             @php($comanda_actual = 0)
             @php($i = 0)
+            @php($j = 0)
             @foreach ($comandes as $comanda)
                     @if ($comanda->id != $comanda_actual)
                     <tr>
@@ -21,10 +23,12 @@
                     <li>{{ $comanda->titol}} {{ $comanda->preu }}</li>
                     @endif
                 @php($i++)
-                @if ($i == $num_llibres[$comanda->id-1]->total)
+                @if ($i == $num_llibres[$j]->total)
                     @php($i = 0)
-                    </ul></td></tr><!---->
+                    @php($j++)
+                    </ul></td></tr>
                 @endif
             @endforeach
         </table>
+    </div>
 @endsection
