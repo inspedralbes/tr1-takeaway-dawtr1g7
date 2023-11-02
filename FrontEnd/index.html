@@ -14,7 +14,7 @@
 <body>
     <div id="app">
         <header>
-            <div class="admin-btn" v-on:click="redirectToAdminPage()">
+            <div class="admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
                 <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
             </div>
             <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
