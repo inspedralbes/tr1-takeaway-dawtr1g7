@@ -166,8 +166,8 @@
                 <div id="dades">
                     <h2>TICKET</h2>
                     <div v-if="!usuari" class="login-btns-container">
-                        <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
-                        <button class="botonsLandingLog" @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
+                        <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
+                        <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
                     </div>
                     <div v-if="usuari" class="msg-benvinguda">Hola {{ usuari.nom }}!</div>
                     <div>
