@@ -7,7 +7,7 @@ createApp({
             llibres: [],
             llibresFiltrats: [],
             indexLlibres: 0,
-            llibresMostrats: 6,
+            llibresMostrats: 8,
             categories: [],
             carrito: [],
             comanda: { productes: [] },
@@ -84,6 +84,7 @@ createApp({
         },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
+            if (id === 'botiga') this.indexLlibres = 0;
             this.errorMsg = ""
             this.botigaStatus = id;
         },
@@ -101,9 +102,9 @@ createApp({
             if (this.categoriaActual === 0) {
                 this.llibresFiltrats = this.llibres
             } else {
-
                 this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id === this.categoriaActual)
             }
+            this.indexLlibres = 0;
         },
         getComanda() {
             return this.comanda;
@@ -160,7 +161,7 @@ createApp({
         getPreuTotalComanda() {
             let preu = 0
             this.comanda.productes.forEach(llibre => {
-                preu += parseInt(llibre.preu) * llibre.quantitat
+                preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
         },
@@ -170,6 +171,11 @@ createApp({
                 quantitat += llibre.quantitat
             });
             return quantitat
+        },
+        getProducteInCarrito(producteId) {
+            let producte = this.carrito.find(item => item.id === producteId)
+            console.log(producte)
+            return producte !== undefined
         },
         crearNovaComanda(objecteComanda) {
             let novaComanda = {
