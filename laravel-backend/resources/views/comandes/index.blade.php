@@ -11,6 +11,7 @@
             </tr>
             @php($comanda_actual = 0)
             @php($i = 0)
+            @php($j = 0)
             @foreach ($comandes as $comanda)
                     @if ($comanda->id != $comanda_actual)
                     <tr>
@@ -22,9 +23,10 @@
                     <li>{{ $comanda->titol}} {{ $comanda->preu }}</li>
                     @endif
                 @php($i++)
-                @if ($i == $num_llibres[$comanda->id-1]->total)
+                @if ($i == $num_llibres[$j]->total)
                     @php($i = 0)
-                    </ul></td></tr><!---->
+                    @php($j++)
+                    </ul></td></tr>
                 @endif
             @endforeach
         </table>
