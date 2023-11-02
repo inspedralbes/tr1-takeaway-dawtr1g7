@@ -146,7 +146,22 @@ img {
     border: 1px solid rgb(155, 155, 155);
     border-radius: 7px;
 }
-
+#imgEstat{
+    width: 50%; 
+    height: 50%; 
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    animation: mover 2s ease-in-out; 
+}
+}
+ @keyframes mover { 
+     0% { 
+         top: 0; 
+     } 
+     100% { 
+         top: 200px; 
+    }
 #registre button {
     width: 100%;
     padding: 10px;
