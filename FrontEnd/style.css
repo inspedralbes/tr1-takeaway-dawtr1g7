@@ -1,8 +1,10 @@
 :root {
     --gradient-general: linear-gradient(to left, #895efd, #52389b);
     --dark-blue: #64729c;
-    --light-blue: #b8caff;
-    --white: #fff;
+    --light-blue: #b8caff; 
+    --white: white;
+    --bordeColorBuscador: #4e0ffa;
+    --bc-buscador: #ac8ffc;
     --black:#000;
 }
 
@@ -30,7 +32,6 @@ img {
 #containerTogglePreviewCarrito {
     position: relative;
 }
-
 #containerNumQuantitatCarrito {
     position: absolute;
     bottom: -5px;
@@ -43,7 +44,6 @@ img {
     justify-content: center;
     align-items: center;
 }
-
 #numQuatitatCarrito {
     font-size: 12px;
 }
@@ -51,6 +51,51 @@ img {
 .botonsLandingLog{
     color: var(--white);
     font-size: 18px;
+}
+
+/*ESTILS BUSCADOR*/
+#containerBuscador{
+    padding: 0;
+    width: 95%;
+    height: 30px;
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid var(--bordeColorBuscador);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+}
+#containerBuscador *{
+    background-color: var(--bc-buscador);
+}
+#containerBuscador>input{
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 90%;
+    height: 100%;
+    border-radius: 12px 0px 0px 12px;
+    padding: 10px;
+    color:var(--white);
+}
+#containerBuscador>input::placeholder {
+    color:var(--white);
+}
+#containerBuscador>input:focus{
+    outline: none;
+}
+
+#containerBuscador>button{
+    height: 100%;
+    width: 10%;
+    border: none;
+    border-radius: 0px 12px 12px 0px;
+    padding: 2px;
+}
+#img_search{
+    height: 100%;
+    filter: invert(100%);
+    background-color: #537003;
 }
 
 .botoTornarEnrere{

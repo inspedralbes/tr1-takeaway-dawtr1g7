@@ -118,8 +118,12 @@
                     <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
                 </div>
 
+                <div id="containerBuscador">
+                    <input v-model="textBuscat" placeholder="Buscar...">
+                    <button @click="buscarLlibres()"><img id="img_search" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png" alt="icon_lupa"></button>
+                </div>
+                
                 <div id="graella__productes">
-
                     <div class="producte"
                         v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
