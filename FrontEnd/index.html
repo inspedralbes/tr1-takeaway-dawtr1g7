@@ -124,7 +124,7 @@
                         v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
                         <img class="producte__img" :src="llibre.img_url">
-                        <div class="etiqueta">
+                        <div class="etiqueta" :class="{ etiquetaCarrito: getProducteInCarrito(llibre.id) }">
                             <h5 class="producte__titol">{{llibre.titol}}</h5>
                             <p class="producte__preu">{{llibre.preu}}€</p>
                         </div>

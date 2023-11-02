@@ -1,11 +1,9 @@
 :root {
-    --mi-gradient: linear-gradient(to left, #ac8ffc, #6e3afc);
-    --mi-gradient-cat: linear-gradient(to right, #ac8ffc, #4e0ffa);
-    --mi-gradient-btn: linear-gradient(to left, #895efd, #9a76ff);
+    --gradient-general: linear-gradient(to left, #895efd, #52389b);
     --dark-blue: #64729c;
     --light-blue: #b8caff;
-    --white: white;
-    --black:black;
+    --white: #fff;
+    --black:#000;
 }
 
 h1 {
@@ -167,7 +165,7 @@ img {
     top: 60px;
     width: 100vw;
     height: 100vh;
-    background: var(--mi-gradient-cat);
+    background: var(--gradient-general);
     color: var(--white);
     display: none;
     opacity: 0;
@@ -200,7 +198,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 999;
-    background: var(--mi-gradient);
+    background: var(--gradient-general);
     color: var(--white);
     text-align: center;
     display: flex;
@@ -223,7 +221,7 @@ header {
 .buttonComanda {
     padding: 8px 15px;
     width: 90%;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
     border: none;
     color: var(--white);
@@ -253,7 +251,7 @@ header {
 
 footer {
     grid-area: footer;
-    background: var(--mi-gradient);
+    background: var(--gradient-general);
     color: var(--white);
     font-size: 0.8em;
     padding: 10px;
@@ -308,7 +306,7 @@ footer {
 
 .infoBotiga button {
     padding: 8px 15px;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 3px 2px #333;
@@ -350,7 +348,7 @@ footer {
         "portada dades_basiques"
         "descripcio descripcio";
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 5fr 2fr;
+    grid-template-rows: 1fr 3fr 2fr;
     column-gap: 10px;
     row-gap: 10px;
     font-family: sans-serif;
@@ -380,7 +378,7 @@ footer {
 
 .butonsSumaResta {
     height: 30px;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
 }
 
@@ -395,7 +393,7 @@ footer {
 
 .butonAfegir>button {
     padding: 8px 15px;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 3px 2px #333;
@@ -469,16 +467,9 @@ footer {
     color: var(--black);
 }
 
-.inputN::-webkit-outer-spin-button,
-.inputN::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
 .inputN[type=number] {
-    -moz-appearance: textfield;
-}
+    appearance: textfield;
+} 
 
 .buttonsEnrereEndevant {
     margin: 20px;
@@ -488,7 +479,7 @@ footer {
 
 .buttonsEnrereEndevant button {
     padding: 8px 15px;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 3px 2px #333;
@@ -516,7 +507,7 @@ footer {
     width: 80%;
     margin: 15px auto;
     padding: 5px 15px;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
     box-shadow: 1px 3px 2px #333;
     border: none;
@@ -560,11 +551,15 @@ footer {
     bottom: 0;
     text-align: center;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 0px 0px 7px 7px;
     color: var(--black);
     padding-bottom: 14px;
     padding-top: 14px;
+}
+
+.etiquetaCarrito {
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .producte__img {
@@ -628,7 +623,7 @@ footer {
 
 .login-btns-container button {
     padding: 8px 15px;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 3px 2px #333;
@@ -669,7 +664,7 @@ th {
     padding: 15px;
     margin: auto;
     width: 60%;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     margin-bottom: 15px;
     border-radius: 5px;
     border: none;
@@ -757,7 +752,7 @@ th {
 
 #containerTornarInici>button {
     padding: 8px 15px;
-    background: var(--mi-gradient-btn);
+    background: var(--gradient-general);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 3px 2px #333;

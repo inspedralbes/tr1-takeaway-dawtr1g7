@@ -44,7 +44,7 @@ VALUES
 
 
 INSERT INTO comandas(estat, user_id) VALUES 
-('Pendent de preparació', 1),('En repartiment', 1),('Entregat', 2);
+('Pendent', 1),('Processant', 1),('Recollida', 2);
 
 
 INSERT INTO llibre_comanda (comanda_id, llibre_id, quantitat, preu) VALUES

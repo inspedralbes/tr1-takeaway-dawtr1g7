@@ -153,6 +153,11 @@ createApp({
             });
             return quantitat
         },
+        getProducteInCarrito(producteId) {
+            let producte = this.carrito.find(item => item.id === producteId)
+            console.log(producte)
+            return producte !== undefined
+        },
         crearNovaComanda(objecteComanda) {
             let novaComanda = {
                 id: objecteComanda.id,
