@@ -10,7 +10,7 @@
                 <h6 class="notification is-success is-light">{{ session('success') }}</h6>
             @endif
 
-            @error('title')
+            @error('nom')
                 <h6 class="notification is-danger is-light">{{ $message }}</h6>
             @enderror
 

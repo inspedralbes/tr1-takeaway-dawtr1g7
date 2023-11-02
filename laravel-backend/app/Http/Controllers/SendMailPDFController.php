@@ -41,7 +41,7 @@ class SendMailPDFController extends Controller
         $pdf = PDF::loadView($pdf, $data);
 
         Mail::send($mail, $data, function ($message) use ($data, $pdf) {
-            $message->to($data["email"], $data["email"])
+            $message->to($data["email"], $data["email"]) //to, from ... direcció mail del hestia
                 ->subject($data["title"])
                 ->attachData($pdf->output(), "factura.pdf");
         });

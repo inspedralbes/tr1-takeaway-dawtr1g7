@@ -9,7 +9,39 @@
                 <h6 class="notification is-success is-light">{{ session('success') }}</h6>
             @endif
 
-            @error('title')
+            @error('titol')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('autor')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('descripcio')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('editorial')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('any')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('preu')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('isbn')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('categoria')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
+            @enderror
+
+            @error('portada')
                 <h6 class="notification is-danger is-light">{{ $message }}</h6>
             @enderror
 
@@ -46,8 +78,8 @@
                 <input type="number" name="categoria" class="input" value="{{ $llibre->categoria_id }}">
             </div>
             <div class="field">
-                <label for="imatge" class="label">Portada</label>
-                <input type="text" name="imatge" class="input" value="{{ $llibre->img_url }}">
+                <label for="portada" class="label">Portada</label>
+                <input type="text" name="portada" class="input" value="{{ $llibre->img_url }}">
             </div>
             <button type="submit" class="button is-warning is-rounded is-responsive mt-4">MODIFICAR LLIBRE <img class="icon-right" src="{{url('/img/update.png')}}" alt="modificar" width=23 height=23></button>
             <a href="{{ route('llibres') }}" class="button is-danger is-rounded is-responsive mt-4">CANCEL·LAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
