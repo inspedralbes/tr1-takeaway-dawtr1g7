@@ -22,12 +22,10 @@ class SendMailPDFController extends Controller
         if ($action_code == 0) {
             $title = "HEM REBUT LA TEVA COMANDA";
             $mail = 'mail.comanda-rebuda';
-            $attach_file_name = "comanda_rebuda.pdf";
             $pdf = 'mail.comanda-rebuda';
         } elseif ($action_code == 1) {
             $title = "L'ESTAT DE LA TEVA COMANDA HA CANVIAT";
             $mail = 'mail.canvi-estat';
-            $attach_file_name = "canvi_estat.pdf";
             $pdf = 'mail.canvi-estat';
         }
 
@@ -45,7 +43,7 @@ class SendMailPDFController extends Controller
         Mail::send($mail, $data, function ($message) use ($data, $pdf) {
             $message->to($data["email"], $data["email"])
                 ->subject($data["title"])
-                ->attachData($pdf->output(), "canvi_estat.pdf");
+                ->attachData($pdf->output(), "factura.pdf");
         });
 
     }

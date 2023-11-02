@@ -17,15 +17,15 @@
                 <label for="estat" class="label">Estat: </label>
                 <div class="select">
                 <select name="estat">
-                    <option value="Petició Rebuda">Petició Rebuda</option>
-                    <option value="En procés">En Procés</option>
-                    <option value="Esperant ser recollit">Esperant ser recollit</option>
-                    <option value="Recollit">Recollit</option>
+                    <option value="Recollit">Pendent</option>
+                    <option value="Recollit">En preparació</option>
+                    <option value="Recollit">Esperant a ser recollida</option>
+                    <option value="Recollit">Recollida</option>
                 </select>
                 </div>
             </div>
             <input type="submit" class="button is-warning is-rounded is-responsive mt-4" value="MODIFICAR ESTAT">
-            <a href="{{ route('comandes') }}" class="button is-danger is-rounded is-responsive mt-4">CANCELAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
+            <a href="{{ route('comandes') }}" class="button is-danger is-rounded is-responsive mt-4">CANCEL·LAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
         </form>
     </div>
 @endsection

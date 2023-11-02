@@ -50,7 +50,7 @@
                 <input type="text" name="imatge" class="input">
             </div>
             <button type="submit" class="button is-success is-rounded is-responsive mt-4">AFEGIR LLIBRE <img class="icon-right" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
-            <a href="{{ route('llibres') }}" class="button is-danger is-rounded is-responsive mt-4">CANCELAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
+            <a href="{{ route('llibres') }}" class="button is-danger is-rounded is-responsive mt-4">CANCEL·LAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
             
         </form>
     </div>
