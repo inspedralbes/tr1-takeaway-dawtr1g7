@@ -46,7 +46,7 @@
                     </div>
                     <button @click="cambiarDiv('botiga')" id="cataleg-btn">CATÀLEG</button>
                 </div>
-                <img src="imgP.jpeg" alt="" id="imgP">
+                <img src="./img/landingImg.jpeg" alt="" id="imgP">
             </div>
             <div v-if="mostrar('iniciarSesion')" id="iniciSessio">
                 <h2>INICI SESSIÓ</h2>
@@ -133,7 +133,7 @@
                 <div class="buttonsEnrereEndevant">
                     <button class="botonsLandingLog" @click="enrere" :disabled="indexLlibres === 0">Anterior</button>
                     <button class="botonsLandingLog" @click="endevant"
-                        :disabled="indexLlibres >= llibres.length - llibresMostrats">Següent</button>
+                        :disabled="indexLlibres >= llibresFiltrats.length - llibresMostrats">Següent</button>
                 </div>
             </div>
 
