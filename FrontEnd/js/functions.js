@@ -246,7 +246,13 @@ createApp({
                 this.cambiarDiv('landing')
             }
         },
-
+        redirectToAdminPage() {
+            if(this.localhost) {
+                window.location.href = 'http://127.0.0.1:8000'
+            } else {
+                window.location.href = '../../laravel-backend/public/'
+            }
+        },
         async getComandaPerUsuari() {
             let url;
             if (this.localhost) {

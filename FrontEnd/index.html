@@ -14,6 +14,9 @@
 <body>
     <div id="app">
         <header>
+            <div class="admin-btn" v-on:click="redirectToAdminPage()">
+                <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
+            </div>
             <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
                 <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
             </div>
@@ -25,7 +28,7 @@
                 </div>
             </div>
             <div v-if="mostrar('landing') && usuari" class="logout-btn">
-                <img class="imgLogout" @click="tancarSessio()" src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png" alt="LogOut">
+                <img class="iconsLanding" @click="tancarSessio()" src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png" alt="LogOut">
             </div>
         </header>
         <div id="container">
@@ -44,9 +47,7 @@
                             Embarca't en una odissea de paraules i somia amb nosaltres.
                         </p>
                     </div>
-                    <button @click="cambiarDiv('botiga')">CATÀLEG</button>
                     <button @click="cambiarDiv('botiga')" id="cataleg-btn">CATÀLEG</button>
-                    <button onclick="document.location='http:\/\/127.0.0.1:8000'">ADMINISTRACIÓ</a>
           
                 </div>
                 <img src="./img/landingImg.jpeg" alt="" id="imgP">
@@ -112,7 +113,7 @@
                             </div>
                             <div class="butonsSumaResta">
                                 <button class="botonsLandingLog" @click="restarQuantitat(itemCarrito.id,false)">-</button>
-                                <input type="number" v-model="itemCarrito.quantitat" class="inputN">
+                                <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
                                 <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
                             </div>
                         </div>
@@ -149,7 +150,7 @@
                     <img :src="getLlibreActual().img_url">
                     <div class="butonsSumaResta">
                         <button class="botonsLandingLog" @click="restarQuantitat(getLlibreActual().id,true)">-</button>
-                        <input type="number" v-model="quantitat" class="inputN">
+                        <input type="number" disabled v-model="quantitat" class="inputN">
                         <button class="botonsLandingLog" @click="sumarQuantitat(getLlibreActual().id)">+</button>
                     </div>
                 </div>
