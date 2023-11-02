@@ -1,7 +1,10 @@
 @extends('app')
 
 @section('content')
-<button class="button is-link is-rounded is-large mt-6" onclick="document.location='http:\/\/127.0.0.1:5501/FrontEnd/'">TORNAR A CATÀLEG</button>
+<div class="landing-container">
+<div class="container__button">
+<button class="cataleg button is-link is-rounded is-large mt-6" onclick="document.location='http:\/\/127.0.0.1:5501/FrontEnd/'">TORNAR A CATÀLEG</button>
+</div>
 <div class="info">Administra des d'aquesta secció el catàleg de llibres disponibles, les seves categories així com les comandes dels clients.</div>
 
 <div class="graella">
@@ -17,5 +20,6 @@
 <h2>COMANDES</h2>
 <img src="{{url('/img/comandes.jpeg')}}" alt="llibres" width="200" height="200">
 </button>
+</div>
 </div>
 @endsection
