@@ -84,14 +84,16 @@ createApp({
         },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
-            if (id === 'botiga') {
-                this.indexLlibres = 0;
-                this.previewCategories = false
-            }
+            if (id === 'botiga') this.indexLlibres = 0;
             this.errorMsg = ""
             this.botigaStatus = id;
+            if (this.botigaStatus!='botiga') {
+                this.previewCarrito = false;              
+            }
+            
         },
         mostrar(id) {
+            
             return this.botigaStatus === id;
         },
         getCarrito() {
@@ -115,6 +117,9 @@ createApp({
         togglePreviewCarrito() {
             this.previewCategories = false
             this.previewCarrito = !this.previewCarrito;
+            if (this.botigaStatus!='botiga') {
+                this.previewCarrito = false;
+            }
         },
         togglePreviewCategories() {
             this.previewCarrito = false
