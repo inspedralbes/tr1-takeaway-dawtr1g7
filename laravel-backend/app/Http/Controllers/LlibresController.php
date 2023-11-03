@@ -59,12 +59,17 @@ class LlibresController extends Controller
     public function adminStore(Request $request)
     {
         
-            /*$request->validate([
-                'nom' => 'required',
-                'data' => 'required',
-                'hora' => 'required',
-                'aforament' => 'required'
-            ]);*/
+            $request->validate([
+                'titol' => 'required',
+                'autor' => 'required',
+                'descripcio' => 'required',
+                'editorial' => 'required',
+                'any' => 'required',
+                'preu' => 'required',
+                'isbn' => 'required',
+                'categoria' => 'required',
+                'portada' => 'required'
+            ]);
     
             $llibre = new Llibre;
             $llibre->titol = $request->titol;
@@ -73,10 +78,9 @@ class LlibresController extends Controller
             $llibre->editorial = $request->editorial;
             $llibre->any = $request->any;
             $llibre->preu = $request->preu;
-            $llibre->editorial = $request->editorial;
             $llibre->isbn = $request->isbn;
             $llibre->categoria_id = $request->categoria;
-            $llibre->img_url = $request->imatge;
+            $llibre->img_url = $request->portada;
             
             /*if ($request->hasfile('imatge')) {
                 $file = $request->file('imatge');
@@ -96,6 +100,18 @@ class LlibresController extends Controller
     }
 
     public function adminUpdate(Request $request, $id) {
+
+        $request->validate([
+            'titol' => 'required',
+            'autor' => 'required',
+            'descripcio' => 'required',
+            'editorial' => 'required',
+            'any' => 'required',
+            'preu' => 'required',
+            'isbn' => 'required',
+            'categoria' => 'required',
+            'portada' => 'required'
+        ]);
         
         $llibre = Llibre::find($id);
         $llibre->titol = $request->titol;
@@ -104,10 +120,9 @@ class LlibresController extends Controller
         $llibre->editorial = $request->editorial;
         $llibre->any = $request->any;
         $llibre->preu = $request->preu;
-        $llibre->editorial = $request->editorial;
         $llibre->isbn = $request->isbn;
         $llibre->categoria_id = $request->categoria;
-        $llibre->img_url = $request->imatge;
+        $llibre->img_url = $request->portada;
         $llibre->save();
 
         return redirect()->route('view-modificar-llibre', ['id' => $llibre->id])->with('success', 'Llibre actualitazat correctament');
