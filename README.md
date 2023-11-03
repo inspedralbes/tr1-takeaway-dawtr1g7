@@ -10,7 +10,7 @@ Mentre es navega pel catàleg, es mostren tots els llibres disponibles en una gr
 La pantalla de pagament inclou un resum de la comanda i un formulari per recopilar les dades del client. Un cop realitzat el pagament, la pantalla mostra un missatge de confirmació de l'enviament correcte de la comanda, juntament amb el seu estat i contingut.
 
 **Autors: GRUP 7**
-- Gala Del Águila Redó (Coordinadora de Desplegament)
+- Gala Del Águila Redó (Coordinadora de Desplegament i CSS)
 - Ivan Barbero Santisteban (Coordinador de HTML, CSS i Javascript)
 - Santiago Pujol Saumell (Coordinador de PHP i SQL)
 - David Salvador Sosa (Coordinador de HTML, CSS i Javascript)
