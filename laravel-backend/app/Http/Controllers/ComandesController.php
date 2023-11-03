@@ -47,6 +47,7 @@ class ComandesController extends Controller
             }
             $comanda->save();
             $comanda->llibres()->attach($lineesComanda);
+            $this->sendMail($comanda->id, 0);
             return response()->json($comanda);
         }
 
@@ -132,6 +133,7 @@ class ComandesController extends Controller
         $comanda = Comanda::find($id);
         $comanda->estat = $request->estat;
         $comanda->save();
+        $this->sendMail($id, 1);
 
         /*$contingut_mail = DB::table('comandas')
             ->join('users', 'comandas.user_id', '=', 'users.id')
@@ -142,20 +144,25 @@ class ComandesController extends Controller
             ->groupBy('comandas.id', 'comandas.estat', 'users.name', 'users.email')
             ->get();*/
 
-            $contingut_mail = DB::table('comandas')
-            ->join('users', 'comandas.user_id', '=', 'users.id')
-            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
-            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
-            ->where('comandas.id', '=', $id)
-            ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', 'llibres.titol', 'llibre_comanda.preu', 'llibre_comanda.quantitat')
-            ->get();
+        //$qr = new QrCodeController;
+        //return view("qrcode",['contingut' => $contingut_mail]);
 
-        $qr = new QrCodeController;
-        return view("qrcode",['contingut' => $contingut_mail]);
+        return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
 
-        //$mail = new SendMailPDFController;
-        //$mail->sendMailWithPDF($contingut_mail);
-        //return redirect()->route('view-modificar-comanda', ['id' => $comanda->id])->with('success', 'Estat comanda actualitzat correctament');
+    }
+
+    public function sendMail($id, $action_code)
+    {
+        $contingut_mail = DB::table('comandas')
+        ->join('users', 'comandas.user_id', '=', 'users.id')
+        ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+        ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+        ->where('comandas.id', '=', $id)
+        ->select('comandas.id', 'comandas.estat', 'users.name', 'users.email', 'llibres.titol', 'llibre_comanda.preu', 'llibre_comanda.quantitat')
+        ->get();
+
+        $mail = new SendMailPDFController;
+        $mail->sendMailWithPDF($contingut_mail, $action_code);
     }
 }
 

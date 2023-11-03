@@ -1,23 +1,24 @@
 @extends('app')
 
 @section('content')
-<div class="container w-50 border p-4 mt-4">
-        <form action="{{ route('modificar-categoria', ['id' => $categoria->id]) }}" method="POST">
+<div class="container p-4 mt-4">
+        <form class="box container__form" action="{{ route('modificar-categoria', ['id' => $categoria->id]) }}" method="POST">
             @csrf
             @method('PATCH')
             @if (session('success'))
-                <h6 class="alert alert-success">{{ session('success') }}</h6>
+                <h6 class="notification is-success is-light">{{ session('success') }}</h6>
             @endif
 
-            @error('title')
-                <h6 class="alert alert-danger">{{ $message }}</h6>
+            @error('nom')
+                <h6 class="notification is-danger is-light">{{ $message }}</h6>
             @enderror
 
-            <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input type="text" name="nom" class="form-control" value="{{ $categoria->nom }}">
+            <div class="field">
+                <label for="nom" class="label">Nom</label>
+                <input type="text" name="nom" class="input" value="{{ $categoria->nom }}">
             </div>
-            <button type="submit" class="btn btn-primary">MODIFICAR CATEGORIA</button>
+            <button type="submit" class="button is-warning is-rounded is-responsive mt-4">MODIFICAR CATEGORIA <img class="icon-right" src="{{url('/img/update.png')}}" alt="modificar" width=23 height=23></button>
+            <a href="{{ route('categories') }}" class="button is-danger is-rounded is-responsive mt-4">CANCEL·LAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
         </form>
     </div>
 @endsection

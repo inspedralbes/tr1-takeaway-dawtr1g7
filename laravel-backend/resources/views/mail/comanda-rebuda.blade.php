@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" type="text/css" href="{{ asset('css/bulma.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">-->
-    <!--<link href="/css/bulma.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">-->
+    <link href="../../../public/css/styles.css" rel="stylesheet">
     <style>
         #container {
             background-color: #b8caff;
@@ -75,8 +72,8 @@
 <body>
     <div id="container">
 <div id="content">
-<p>{{ $name }}, l'estat de la teva comanda amb identificador {{ $id }} ha canviat a {{ $estat }}.</p>
-<table class="table is-striped is-hoverable is-fullwidth">
+<p>{{ $name }}, hem rebut la teva comanda amb identificador {{ $id }}. Recorda que pots modificar-la mentres estigui en preparació.</p>
+<table>
     <tr>
         <th>IDENTIFICADOR: {{ $id }}</th>
         <th colspan = "5">{{ $estat }}</th>
