@@ -19,5 +19,5 @@ La pantalla de pagament inclou un resum de la comanda i un formulari per recopil
 **Enllaços:**
 - [Prototip a Penpot (assegura't de deixar el prototip públic)](https://design.penpot.app/#/view/bc104529-972b-8028-8003-522fc01f9f96?page-id=bc104529-972b-8028-8003-522fc01f9f97&section=interactions&frame-id=08c53b94-d879-809b-8003-522fd66e4565&index=0&share-id=bc104529-972b-8028-8003-536571d1b86e)
 - [Taiga.io](https://tree.taiga.io/project/santipu03-tr1g7)
-- [URL de Preproducció](http://galaxiagutemberg.daw.inspedralbes.cat)
-- [URL de Producció (amb domini registrat)](http://galaxiagutemberg.daw.inspedralbes.cat
+- [URL de Preproducció](http://tr1g7.daw.inspedralbes.cat)
+- [URL de Producció (amb domini registrat)](http://galaxiagutemberg.daw.inspedralbes.cat)
