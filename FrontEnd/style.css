@@ -497,18 +497,20 @@ footer {
     grid-template-columns: 1fr 1fr;
     text-align: center;
     align-items: center;
+    
 }
 
 .producte {
     position: relative;
     border-radius: 7px;
     align-items: center;
-
     display: flex;
     /* Agregado para centrar verticalmente el contenido */
     flex-direction: column;
     /* Agregado para alinear el contenido verticalmente */
-    margin: 15px;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
     width: 150px;
     box-shadow: 1px 3px 2px #333;
 }

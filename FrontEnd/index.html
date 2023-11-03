@@ -98,6 +98,10 @@
                     <button class="buttonComanda" @click="cambiarDiv('estat')">La Meva Comanda</button>
                 </div>
 
+
+
+                
+
                 <div id="previewCarrito" v-if="previewCarrito">
                     <div>Cistella de la Compra</div>
                     <hr>
@@ -139,9 +143,9 @@
                     </div>
                 </div>
                 <div class="buttonsEnrereEndevant">
-                    <button class="botonsLandingLog" @click="enrere" :disabled="indexLlibres === 0">Anterior</button>
+                    <button v-if="indexLlibres >= llibresFiltrats.length - llibresMostrats" class="botonsLandingLog" @click="enrere" :disabled="indexLlibres === 0">Anterior</button>
                     <button class="botonsLandingLog" @click="endevant"
-                        :disabled="indexLlibres >= llibresFiltrats.length - llibresMostrats">Següent</button>
+                        v-if="!(indexLlibres >= llibresFiltrats.length - llibresMostrats)">Següent</button>
                 </div>
             </div>
 
