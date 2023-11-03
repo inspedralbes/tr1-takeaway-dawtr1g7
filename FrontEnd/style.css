@@ -1,5 +1,5 @@
 :root {
-    --gradient-general: linear-gradient(to left, #794bf7, #b99fff);
+    --gradient-general: linear-gradient(to left, #794bf7, #ae91fc);
     --dark-blue: #64729c;
     --light-blue: #b8caff; 
     --white: white;
@@ -943,7 +943,8 @@ th {
 
     #containerBuscador {
         width: 35%;
-        margin-left: 30%;
+        margin-left: auto;
+        margin-right: auto;
     }
     #validacio {
         margin-top: 5%;
