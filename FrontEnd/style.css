@@ -3,8 +3,8 @@
     --dark-blue: #64729c;
     --light-blue: #b8caff; 
     --white: white;
-    --bordeColorBuscador: #4e0ffa;
-    --bc-buscador: #ac8ffc;
+    --bc-buscador: #52389b;
+    --inverted-bc-buscador: #ADC764;
     --black:#000;
 }
 
@@ -56,11 +56,8 @@ img {
 /*ESTILS BUSCADOR*/
 #containerBuscador{
     padding: 0;
-    width: 95%;
-    height: 30px;
-    margin: auto;
-    margin-top: 10px;
-    border: 2px solid var(--bordeColorBuscador);
+    height: 35px;
+    margin: 15px 15px;
     border-radius: 50px;
     display: flex;
     justify-content: center;
@@ -70,7 +67,6 @@ img {
 }
 #containerBuscador>input{
     margin: 0;
-    padding: 0;
     border: none;
     width: 90%;
     height: 100%;
@@ -90,12 +86,12 @@ img {
     width: 10%;
     border: none;
     border-radius: 0px 12px 12px 0px;
-    padding: 2px;
+    padding: 5px;
 }
 #img_search{
     height: 100%;
     filter: invert(100%);
-    background-color: #537003;
+    background-color: var(--inverted-bc-buscador);
 }
 
 .botoTornarEnrere{
@@ -503,14 +499,11 @@ footer {
     position: relative;
     border-radius: 7px;
     align-items: center;
-
     display: flex;
-    /* Agregado para centrar verticalmente el contenido */
     flex-direction: column;
-    /* Agregado para alinear el contenido verticalmente */
     margin: 15px;
     width: 150px;
-    box-shadow: 1px 3px 2px #333;
+    box-shadow: 3px 5px 5px #333;
 }
 
 .producte__titol {
@@ -603,15 +596,15 @@ footer {
     bottom: 0;
     text-align: center;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 0px 0px 7px 7px;
     color: var(--black);
     padding-bottom: 14px;
     padding-top: 14px;
 }
 
-.etiquetaCarrito {
-    background-color: rgba(255, 255, 255, 0.9);
+.producteCarrito .etiqueta {
+    background-color: rgba(238, 238, 125, 0.7);
 }
 
 .producte__img {
