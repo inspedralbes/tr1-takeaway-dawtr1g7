@@ -207,14 +207,13 @@ img {
     height: 100vh;
     background: var(--gradient-general);
     color: var(--white);
-    display: none;
-    opacity: 0;
     z-index: 999;
+    transition: 0.2s ease-out;
+    left: -100vw;
 }
 
 #categories.active {
-    display: block;
-    opacity: 1;
+    left: 0;
 }
 
 .itemCategoria {
