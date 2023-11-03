@@ -874,7 +874,8 @@ th {
         grid-template-rows: 1fr 1fr;
         text-align: center;
         align-items: center;
-        margin-left: 10%;
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 2%;
 
     }
