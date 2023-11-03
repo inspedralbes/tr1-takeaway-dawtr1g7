@@ -810,3 +810,38 @@ th {
     border: none;
     box-shadow: 1px 3px 2px #333;
 }
+@media(min-width:700px){
+    .login-btns-container{
+        width: 50%;
+        margin-top: 7%;
+    }
+    .infoBotiga > #textInfoBot {
+        align-self: center;
+    }
+    .direccioBotiga {
+        display: flex;
+        background-color: #b8caff;
+        border: 1px solid black;     
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+    
+    }
+    
+    #direccio {
+        height: 50%;
+        width: 50%;
+    }
+    .infoBotiga {
+        width: 100%; 
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        gap: 50px;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+      }
+}
