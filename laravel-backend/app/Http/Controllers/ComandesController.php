@@ -30,7 +30,7 @@ class ComandesController extends Controller
         $idUsuari = $usuari->id;
 
         $comanda = new Comanda();
-        $comanda->estat = 'En preparació';
+        $comanda->estat = 'Pendent';
         $comanda->user_id = $idUsuari;
 
         $llibresComanda = $request->input('carrito');

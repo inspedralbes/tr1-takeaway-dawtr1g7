@@ -59,9 +59,9 @@ class CategoriesController extends Controller
     public function adminStore(Request $request)
     {
         
-        /*$request->validate([
-        'nom' => 'required'
-        ]);*/
+        $request->validate([
+            'nom' => 'required'
+        ]);
     
         $categoria = new Categoria;
         $categoria->nom = $request->nom;
@@ -77,6 +77,11 @@ class CategoriesController extends Controller
     
 
     public function adminUpdate(Request $request, $id) {
+
+        $request->validate([
+            'nom' => 'required'
+        ]);
+
         $categoria = Categoria::find($id);
         $categoria->nom = $request->nom;
         $categoria->save();

@@ -4,8 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis tareas</title>
-    <link href="/css/bulma.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
+    <script>
+      let localhost = window.location.hostname == '127.0.0.1'
+
+      if(localhost) {
+        let link1 = document.createElement('link');
+        link1.rel = 'stylesheet';
+        link1.href = '/css/bulma.css'; // Ruta al fitxer CSS en desenvolupament
+        document.head.appendChild(link1);
+
+        let link2 = document.createElement('link');
+        link2.rel = 'stylesheet';
+        link2.href = '/css/styles.css'; // Ruta al fitxer CSS en desenvolupament
+        document.head.appendChild(link2);
+      } else {
+        let link1 = document.createElement('link');
+        link1.rel = 'stylesheet';
+        link1.href = '/laravel-backend/public/css/bulma.css'; // Ruta al fitxer CSS en producció
+        document.head.appendChild(link1);
+
+        let link2 = document.createElement('link');
+        link2.rel = 'stylesheet';
+        link2.href = '/laravel-backend/public/css/styles.css'; // Ruta al fitxer CSS en producció
+        document.head.appendChild(link2);
+      }
+    </script>
 </head>
 <body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
