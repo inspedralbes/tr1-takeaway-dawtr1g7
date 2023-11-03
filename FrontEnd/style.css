@@ -59,11 +59,18 @@ img {
     width: 95%;
     height: 30px;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 15px;
     border: 2px solid var(--bordeColorBuscador);
     border-radius: 50px;
     display: flex;
     justify-content: center;
+}
+#infoCategoria{
+    width: 95%;
+    margin: auto;
+    font-style: italic;
+    color: grey;
+    padding-left: 10px;
 }
 #containerBuscador *{
     background-color: var(--bc-buscador);

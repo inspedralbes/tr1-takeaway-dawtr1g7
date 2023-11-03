@@ -126,6 +126,9 @@
                     <input v-model="textBuscat" placeholder="Buscar...">
                     <button @click="buscarLlibres()"><img id="img_search" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png" alt="icon_lupa"></button>
                 </div>
+                <div id="infoCategoria">
+                    Categoria: {{ getNomCategoriaActual() }}
+                </div>
                 
                 <div id="graella__productes">
                     <div class="producte"
