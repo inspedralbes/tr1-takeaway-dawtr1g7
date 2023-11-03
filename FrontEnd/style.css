@@ -944,5 +944,17 @@ th {
     #containerBuscador {
         width: 35%;
     }
-
+    #validacio {
+        margin-top: 5%;
+        padding: 10px;
+    }
+    .login-btns-container button {
+        margin-left: 10%;
+    }
+    #iniciSessio {
+        margin-top: 10%;
+    }
+    #registre {
+        margin-top: 5%;
+      }
 }
