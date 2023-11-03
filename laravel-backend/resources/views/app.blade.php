@@ -20,12 +20,12 @@
       } else {
         let link1 = document.createElement('link');
         link1.rel = 'stylesheet';
-        link1.href = './css/bulma.css'; // Ruta al fitxer CSS en producció
+        link1.href = '/laravel-backend/public/css/bulma.css'; // Ruta al fitxer CSS en producció
         document.head.appendChild(link1);
 
         let link2 = document.createElement('link');
         link2.rel = 'stylesheet';
-        link2.href = './css/styles.css'; // Ruta al fitxer CSS en producció
+        link2.href = '/laravel-backend/public/css/styles.css'; // Ruta al fitxer CSS en producció
         document.head.appendChild(link2);
       }
     </script>
