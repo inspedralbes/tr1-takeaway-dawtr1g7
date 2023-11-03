@@ -958,5 +958,8 @@ th {
     }
     #registre {
         margin-top: 5%;
-      }
+    }
+    #imgP{
+        display: none;
+    }
 }
