@@ -813,8 +813,7 @@ th {
         align-self: center;
         animation-duration: 3s;
         animation-name: slidein;
-        background-color: var(--light-blue);
-        border: 1px solid var(--dark-blue);
+       
       }
       
       @keyframes slidein {
@@ -922,7 +921,6 @@ th {
         border: 1px solid var(--black);
         height: 100%;
         width: 15%;
-
     }
 
     .inputN[type="number"] {
