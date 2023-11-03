@@ -84,7 +84,10 @@ createApp({
         },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
-            if (id === 'botiga') this.indexLlibres = 0;
+            if (id === 'botiga') {
+                this.indexLlibres = 0;
+                this.previewCategories = false
+            }
             this.errorMsg = ""
             this.botigaStatus = id;
         },
