@@ -844,4 +844,10 @@ th {
         margin-left: auto;
         margin-right: auto;
       }
+      #graella__productes {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        text-align: center;
+        align-items: center;
+    }
 }
