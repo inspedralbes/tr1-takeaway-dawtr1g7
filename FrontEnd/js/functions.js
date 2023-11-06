@@ -14,7 +14,7 @@ createApp({
             idActual: 0,
             quantitat: 0,
             previewCarrito: false,
-            localhost: window.location.hostname == '127.0.0.1' || 'localhost',
+            localhost: window.location.hostname == '127.0.0.1',
             usuari: null,
             errorMsg: "",
             previewCategories: false,
