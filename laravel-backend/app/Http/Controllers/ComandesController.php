@@ -40,9 +40,18 @@ class ComandesController extends Controller
         if (is_array($llibresComanda) && count($llibresComanda) > 0) {
             // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
             foreach ($llibresComanda as $llibre) {
+                if ($llibre['quantitat']<=0) {
+                    return response()->json([
+                        'status' => 'error', 
+                        'message' => 'No es pot comprar'
+                    ]);
+                }
+                $llibrepreu = DB::table('llibres')
+                    ->where('id', $llibre['id'])
+                    ->value('preu');
                 $lineesComanda[$llibre['id']] = [
-                    'quantitat' => $llibre['quantitat'],
-                    'preu' => $llibre['preu'],
+                    'quantitat' => $llibre['quantitat'], 
+                    'preu' => $llibrepreu, 
                 ];
             }
             $comanda->save();

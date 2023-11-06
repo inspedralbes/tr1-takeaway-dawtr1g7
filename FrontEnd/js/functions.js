@@ -77,10 +77,16 @@ createApp({
                 },
                 body: JSON.stringify(jsonObject)
             })
-
+            
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            this.crearNovaComanda(jsonResponse);
+            console.log(jsonResponse)
+            if (jsonResponse.estat) {
+                console.log(jsonResponse);
+                this.crearNovaComanda(jsonResponse);
+            } else {
+                this.errorMsg = jsonResponse.message
+            }
+           
         },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
