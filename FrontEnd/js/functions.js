@@ -14,7 +14,7 @@ createApp({
             idActual: 0,
             quantitat: 0,
             previewCarrito: false,
-            localhost: window.location.hostname == '127.0.0.1',
+            localhost: window.location.hostname == '127.0.0.1' || 'localhost',
             usuari: null,
             errorMsg: "",
             previewCategories: false,
@@ -38,7 +38,6 @@ createApp({
             }
             let response = await fetch(url)
             let productes = await response.json()
-            console.log(productes)
             this.llibres = productes
             this.llibresFiltrats = productes
         },
@@ -51,7 +50,6 @@ createApp({
             }
             let response = await fetch(url)
             let categoriesProductes = await response.json()
-            console.log(categoriesProductes)
             this.categories = categoriesProductes
         },
         async crearComanda() {
@@ -185,7 +183,6 @@ createApp({
         },
         getProducteInCarrito(producteId) {
             let producte = this.carrito.find(item => item.id === producteId)
-            console.log(producte)
             return producte !== undefined
         },
         crearNovaComanda(objecteComanda) {
@@ -369,12 +366,12 @@ createApp({
             this.usuari = null
             this.comanda = { productes: [] }
         },
-        endevant() {
+        seguentPagina() {
             if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
                 this.indexLlibres += this.llibresMostrats;
             }
         },
-        enrere() {
+        paginaAnterior() {
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }

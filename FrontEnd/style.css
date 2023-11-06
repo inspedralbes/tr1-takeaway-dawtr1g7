@@ -47,11 +47,6 @@ img {
 #numQuatitatCarrito {
     font-size: 12px;
 }
-/*Botons landing*/
-.botonsLandingLog{
-    color: var(--white);
-    font-size: 18px;
-}
 
 /*ESTILS BUSCADOR*/
 #containerBuscador{
@@ -535,10 +530,16 @@ footer {
 
 .buttonsEnrereEndevant button {
     padding: 8px 15px;
+    color: var(--white);
+    font-size: 18px;
     background: var(--gradient-general);
     border-radius: 5px;
     border: none;
     box-shadow: 1px 3px 2px #333;
+}
+
+.buttonsEnrereEndevant button:disabled {
+    background: #666;
 }
 
 /*ESTILS CSS DE LA PREVIEW CARRITO*/
