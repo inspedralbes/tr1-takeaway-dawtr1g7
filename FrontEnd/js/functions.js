@@ -82,6 +82,14 @@ createApp({
             console.log(jsonResponse);
             this.crearNovaComanda(jsonResponse);
         },
+        async modificarComanda(){
+            const llibre = {};
+            llibre.id = this.comanda.productes[0].pivot.llibre_id;
+            llibre.quantitat = this.comanda.productes[0].pivot.quantitat;
+            llibre.preu = this.comanda.productes[0].pivot.preu;
+            this.carrito.push(llibre);
+            this.cambiarDiv('botiga');
+        },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
             if (id === 'botiga') {
@@ -284,6 +292,31 @@ createApp({
                 estat: jsonResponse[0].estat,
                 productes: jsonResponse[0].llibres
             }
+            console.log("XXXXX")
+            console.log(this.comanda)
+        },
+        async getUltimaComandaPerUsuari() {
+            let url;
+            if (this.localhost) {
+                url = `http://localhost:8000/api/comandes/user/${this.usuari.id}`
+            } else {
+                url = `../../laravel-backend/public/api/comandes/user/${this.usuari.id}`
+            }
+            let response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            })
+            let jsonResponse = await response.json()
+            this.comanda = {
+                id: jsonResponse[jsonResponse.length-1].id,
+                estat: jsonResponse[jsonResponse.length-1].estat,
+                productes: jsonResponse[jsonResponse.length-1].llibres
+            }
+            console.log("Comanda dins funcio")
+            console.log(this.comanda)
+            return this.comanda;
         },
 
         // USUARIS
