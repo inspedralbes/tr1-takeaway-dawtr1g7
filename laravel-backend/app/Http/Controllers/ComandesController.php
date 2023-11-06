@@ -44,7 +44,7 @@ class ComandesController extends Controller
                 if ($llibre['quantitat']<=0) {
                     return response()->json([
                         'status' => 'error', 
-                        'message' => 'No es pot comprar'
+                        'message' => 'Quantitat no pot ser menor o igual a zero'
                     ]);
                 }
                 $llibrepreu = DB::table('llibres')
@@ -89,9 +89,16 @@ class ComandesController extends Controller
 
         //busca comanda
         $comanda = Comanda::find($id);
+        $usuari = $request->user();
 
         //si troba la comanda...
         if($comanda){
+            if($usuari->user_id != $comanda->user_id){
+                return response()->json([
+                    'status' => 'error', 
+                    'message' => 'Usuari no coincideix!'
+                ]);
+            }
 
             //esborra tot el relaciona de comanda-llibres
             $comanda->llibres()->detach();
@@ -105,7 +112,13 @@ class ComandesController extends Controller
             if (is_array($llibresComanda) && count($llibresComanda) > 0) {
                 // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
                 foreach ($llibresComanda as $llibre) {
-    
+                    if ($llibre['quantitat']<=0) {
+                        return response()->json([
+                            'status' => 'error', 
+                            'message' => 'Quantitat no pot ser menor o igual a zero'
+                        ]);
+                    }
+
                     //busco el llibre al bd
                     $llibreBackEnd = Llibre::find($llibre['id']);
     
