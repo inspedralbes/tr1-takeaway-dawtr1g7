@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comanda;
+use App\Models\Llibre;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\QrCodeontroller;
 use App\Http\Controllers\SendMailPDFController;
@@ -73,15 +74,68 @@ class ComandesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comanda = Comanda::find($id);
+            
+        
+        return $comanda;
+        
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        //busca comanda
+        $comanda = Comanda::find($id);
+
+        //si troba la comanda...
+        if($comanda){
+
+            //esborra tot el relaciona de comanda-llibres
+            $comanda->llibres()->detach();
+    
+            //agafo la info del carrito
+            $llibresComanda = $request->input('carrito');
+
+            //variable per guardar els llibres de la comanda
+            $lineesComanda = [];
+    
+            if (is_array($llibresComanda) && count($llibresComanda) > 0) {
+                // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
+                foreach ($llibresComanda as $llibre) {
+    
+                    //busco el llibre al bd
+                    $llibreBackEnd = Llibre::find($llibre['id']);
+    
+                    //si troba llibre -> afegeix a la linea de comandes
+                    if($llibreBackEnd){
+                        $lineesComanda[$llibreBackEnd->id] = [
+                            'quantitat' => $llibre['quantitat'],
+                            'preu' => $llibreBackEnd->preu,
+                        ];
+                    }
+                }
+
+                $comanda->llibres()->attach($lineesComanda);
+                
+                return response()->json($comanda);
+            }
+
+            // Si no s'ha enviat ningun array, retorna error
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No hi han elements a la comanda!',
+            ], 422);
+        }
+
+        // Si no es troba la comanda, retorna error
+        return response()->json([
+            'status' => 'error',
+            'message' => 'No existeix la comanda!'
+        ], 404);
+
     }
 
     /**

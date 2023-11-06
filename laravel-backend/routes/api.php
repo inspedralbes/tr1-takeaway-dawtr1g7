@@ -30,10 +30,13 @@ Route::post('/login', [AuthController::class,'login']);
 // Route::get('/comandes', [ComandesController::class,'index']);
 // Route::get('/comandes/{id}', [ComandesController::class,'show']);
 
+Route::get('/comanda/{id}', [ComandesController::class,'show']);
+
 // Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/novaComanda', [ComandesController::class,'store']);
     Route::post('/logout', [AuthController::class,'logout']);
+    Route::patch('/comanda/{id}', [ComandesController::class,'update']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
