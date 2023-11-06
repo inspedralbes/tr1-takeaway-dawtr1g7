@@ -46,9 +46,9 @@ class ComandesController extends Controller
                     'preu' => $llibre['preu'],
                 ];
             }
-            $this->sendMail($comanda->id, 0);
             $comanda->save();
             $comanda->llibres()->attach($lineesComanda);
+            $this->sendMail($comanda->id, 0);
             return response()->json($comanda);
         }
 
@@ -85,7 +85,7 @@ class ComandesController extends Controller
         if($comanda){
 
             //esborra tot el relaciona de comanda-llibres
-            $comanda->llibres()->delete();
+            $comanda->llibres()->detach();
     
             //agafo la info del carrito
             $llibresComanda = $request->input('carrito');
@@ -111,9 +111,21 @@ class ComandesController extends Controller
 
                 $comanda->llibres()->attach($lineesComanda);
                 
-                //return response()->json($comanda);
+                return response()->json($comanda);
             }
+
+            // Si no s'ha enviat ningun array, retorna error
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No hi han elements a la comanda!',
+            ], 422);
         }
+
+        // Si no es troba la comanda, retorna error
+        return response()->json([
+            'status' => 'error',
+            'message' => 'No existeix la comanda!'
+        ], 404);
 
     }
 
