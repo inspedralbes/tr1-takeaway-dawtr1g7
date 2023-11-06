@@ -14,11 +14,10 @@ createApp({
             idActual: 0,
             quantitat: 0,
             previewCarrito: false,
-            localhost: window.location.hostname == '127.0.0.1',
+            localhost: window.location.hostname == '127.0.0.1' || 'localhost',
             usuari: null,
             errorMsg: "",
             previewCategories: false,
-            textBuscat: "",
             categoriaActual:0
         }
     },
@@ -38,7 +37,6 @@ createApp({
             }
             let response = await fetch(url)
             let productes = await response.json()
-            console.log(productes)
             this.llibres = productes
             this.llibresFiltrats = productes
         },
@@ -51,7 +49,6 @@ createApp({
             }
             let response = await fetch(url)
             let categoriesProductes = await response.json()
-            console.log(categoriesProductes)
             this.categories = categoriesProductes
         },
         async crearComanda() {
@@ -86,7 +83,6 @@ createApp({
             } else {
                 this.errorMsg = jsonResponse.message
             }
-           
         },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
@@ -145,9 +141,9 @@ createApp({
         getLlibrePerId(id) {
             return this.llibres.find(llibre => llibre.id === id)
         },
-        buscarLlibres(){
+        buscarLlibres(textBuscat){
             this.indexLlibres = 0;
-            if(this.textBuscat == ""){
+            if(textBuscat == ""){
                 if(this.categoriaActual == 0){
                     this.llibresFiltrats = this.llibres
                 } else{
@@ -155,9 +151,9 @@ createApp({
                 }
             } else{
                 if(this.categoriaActual == 0){
-                    this.llibresFiltrats = this.llibres.filter(llibre => llibre.titol.toLowerCase().includes(this.textBuscat.toLowerCase()));
+                    this.llibresFiltrats = this.llibres.filter(llibre => llibre.titol.toLowerCase().includes(textBuscat.toLowerCase()));
                 } else{
-                    this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(this.textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual );
+                    this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual );
                 }
             }
          },
@@ -191,7 +187,6 @@ createApp({
         },
         getProducteInCarrito(producteId) {
             let producte = this.carrito.find(item => item.id === producteId)
-            console.log(producte)
             return producte !== undefined
         },
         crearNovaComanda(objecteComanda) {
@@ -202,7 +197,6 @@ createApp({
             }
             this.comanda = novaComanda
             this.carrito = []
-            console.log("creada")
             this.cambiarDiv('estat')
         },
         sumarQuantitat(id) {
@@ -255,7 +249,6 @@ createApp({
                 telefon: dadesUsuari.user.telefon,
                 token: dadesUsuari.token.split('|')[1]
             }
-            console.log(this.usuari)
             this.errorMsg = ""
             if (this.carrito.length > 0) {
                 this.cambiarDiv('validacio')
@@ -285,10 +278,12 @@ createApp({
             })
             let jsonResponse = await response.json()
             console.log(jsonResponse)
-            this.comanda = {
-                id: jsonResponse[0].id,
-                estat: jsonResponse[0].estat,
-                productes: jsonResponse[0].llibres
+            if(jsonResponse.status !== 'error') {
+                this.comanda = {
+                    id: jsonResponse[0].id,
+                    estat: jsonResponse[0].estat,
+                    productes: jsonResponse[0].llibres
+                }
             }
         },
 
@@ -317,7 +312,6 @@ createApp({
                 body: JSON.stringify(jsonObject)
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             if (!jsonResponse.errors) {
                 this.guardarUsuari(jsonResponse)
             } else {
@@ -330,7 +324,6 @@ createApp({
                 email: document.getElementById("correuIniciSessio").value,
                 password: document.getElementById("passwordIniciSesio").value
             }
-            console.log(jsonObject)
             let url;
             if (this.localhost) {
                 url = "http://localhost:8000/api/login"
@@ -346,7 +339,6 @@ createApp({
                 body: JSON.stringify(jsonObject)
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             if (!jsonResponse.errors) {
                 this.guardarUsuari(jsonResponse)
                 this.getComandaPerUsuari()
@@ -371,16 +363,15 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             this.usuari = null
             this.comanda = { productes: [] }
         },
-        endevant() {
+        seguentPagina() {
             if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
                 this.indexLlibres += this.llibresMostrats;
             }
         },
-        enrere() {
+        paginaAnterior() {
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }
