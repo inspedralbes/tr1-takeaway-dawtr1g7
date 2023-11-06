@@ -271,10 +271,13 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            this.comanda = {
-                id: jsonResponse[0].id,
-                estat: jsonResponse[0].estat,
-                productes: jsonResponse[0].llibres
+            console.log(jsonResponse)
+            if(jsonResponse.status !== 'error') {
+                this.comanda = {
+                    id: jsonResponse[0].id,
+                    estat: jsonResponse[0].estat,
+                    productes: jsonResponse[0].llibres
+                }
             }
         },
 
