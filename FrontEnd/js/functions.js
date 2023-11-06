@@ -77,7 +77,6 @@ createApp({
             })
 
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
             this.crearNovaComanda(jsonResponse);
         },
         cambiarDiv(id) {
@@ -193,7 +192,6 @@ createApp({
             }
             this.comanda = novaComanda
             this.carrito = []
-            console.log("creada")
             this.cambiarDiv('estat')
         },
         sumarQuantitat(id) {
@@ -246,7 +244,6 @@ createApp({
                 telefon: dadesUsuari.user.telefon,
                 token: dadesUsuari.token.split('|')[1]
             }
-            console.log(this.usuari)
             this.errorMsg = ""
             if (this.carrito.length > 0) {
                 this.cambiarDiv('validacio')
@@ -275,7 +272,6 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             this.comanda = {
                 id: jsonResponse[0].id,
                 estat: jsonResponse[0].estat,
@@ -308,7 +304,6 @@ createApp({
                 body: JSON.stringify(jsonObject)
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             if (!jsonResponse.errors) {
                 this.guardarUsuari(jsonResponse)
             } else {
@@ -321,7 +316,6 @@ createApp({
                 email: document.getElementById("correuIniciSessio").value,
                 password: document.getElementById("passwordIniciSesio").value
             }
-            console.log(jsonObject)
             let url;
             if (this.localhost) {
                 url = "http://localhost:8000/api/login"
@@ -337,7 +331,6 @@ createApp({
                 body: JSON.stringify(jsonObject)
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             if (!jsonResponse.errors) {
                 this.guardarUsuari(jsonResponse)
                 this.getComandaPerUsuari()
@@ -362,7 +355,6 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             this.usuari = null
             this.comanda = { productes: [] }
         },
