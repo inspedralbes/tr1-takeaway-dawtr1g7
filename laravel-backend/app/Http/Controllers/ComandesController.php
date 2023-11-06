@@ -93,15 +93,12 @@ class ComandesController extends Controller
 
         //si troba la comanda...
         if($comanda){
-            if($usuari->user_id != $comanda->user_id){
+            if($usuari->id != $comanda->user_id){
                 return response()->json([
                     'status' => 'error', 
-                    'message' => 'Usuari no coincideix!'
+                    'message' => 'Usuari no coincideix!',
                 ]);
             }
-
-            //esborra tot el relaciona de comanda-llibres
-            $comanda->llibres()->detach();
     
             //agafo la info del carrito
             $llibresComanda = $request->input('carrito');
@@ -131,6 +128,7 @@ class ComandesController extends Controller
                     }
                 }
 
+                $comanda->llibres()->detach();
                 $comanda->llibres()->attach($lineesComanda);
                 
                 return response()->json($comanda);
