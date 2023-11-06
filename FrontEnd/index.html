@@ -133,8 +133,8 @@
                 </div>
 
                 <div id="containerBuscador">
-                    <input v-model="textBuscat" placeholder="Buscar...">
-                    <button @click="buscarLlibres()"><img id="img_search" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png" alt="icon_lupa"></button>
+                    <input @input="event => buscarLlibres(event.target.value)" placeholder="Buscar...">
+                    <button><img id="img_search" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png" alt="icon_lupa"></button>
                 </div>
                 
                 <div id="graella__productes">
