@@ -20,7 +20,8 @@ createApp({
             previewCategories: false,
             textBuscat: "",
             categoriaActual:0,
-            comandaModificada: false
+            comandaModificada: false,
+            comptadorModificar: 0
         }
     },
 
@@ -95,14 +96,13 @@ createApp({
                 }
 
                 let response = await fetch(url, {
-                    method: 'POST',
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${this.usuari.token}`
                     },
                     body: JSON.stringify(jsonObject)
                 })
-
                 const jsonResponse = await response.json();
                 console.log(jsonResponse);
                 this.crearNovaComanda(jsonResponse);
@@ -110,23 +110,15 @@ createApp({
             }
         },
         async modificarComanda(){
-            
-            /*const llibre = {};
-            llibre.id = this.comanda.productes[0].pivot.llibre_id;
-            llibre.quantitat = this.comanda.productes[0].pivot.quantitat;
-            llibre.preu = this.comanda.productes[0].pivot.preu;
-            this.carrito.push(llibre);
-            this.cambiarDiv('botiga');*/
-
+               
             this.comandaModificada = true;
             for (let i = 0; i < this.comanda.productes.length; i++) {
                 let llibre = {};
-                llibre.id = this.comanda.productes[i].pivot.llibre_id;
-                llibre.quantitat = this.comanda.productes[i].pivot.quantitat;
-                llibre.preu = this.comanda.productes[i].pivot.preu;
+                llibre.id = this.comanda.productes[i].id;
+                llibre.quantitat = this.comanda.productes[i].quantitat;
+                llibre.preu = this.comanda.productes[i].preu;
                 this.carrito.push(llibre);
             }
-            
             this.cambiarDiv('botiga');
         },
         cambiarDiv(id) {
