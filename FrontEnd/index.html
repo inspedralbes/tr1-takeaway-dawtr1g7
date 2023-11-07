@@ -227,10 +227,13 @@
                 <div id="resumComanda">
                     <div id="idComanda">
                         Comanda <strong>{{ getComanda().id }}</strong>
+                        <div id="containerTornarInici"  v-if="getComanda().estat == 'Pendent'">
+                            <button class="botonsLandingLog" @click="modificarComanda()">Modificar comanda</button>
+                        </div> 
                     </div>
                     <div id="InfoComanda">
                         <div id="estatComanda">
-                            Estat de la comanda: <strong>{{ getComanda().estat }}</strong>
+                            Estat de la comanda: <strong>{{ getComanda().estat }}</strong> 
                         </div>
                         <div id="tableComanda">
                             <h3>RESUM COMPRA:</h3>
@@ -258,7 +261,10 @@
                 <div id="containerTornarInici">
                     <button class="botonsLandingLog" @click="cambiarDiv('landing')">Tornar Inici</button>
                 </div>
+            </div>
 
+            <div v-if="mostrar('modificarComanda')" id="modificarComanda">
+                <h2>PANTALLA MODIFICAR COMANDA</h2>
             </div>
         </div>
         <footer>
