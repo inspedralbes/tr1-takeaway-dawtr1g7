@@ -21,7 +21,8 @@ createApp({
             textBuscat: "",
             categoriaActual:0,
             comandaModificada: false,
-            comptadorModificar: 0
+            comptadorModificar: 0,
+            comandesUsuari: []
         }
     },
 
@@ -317,7 +318,8 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
+            //console.log(jsonResponse)
+            this.comandesUsuari = jsonResponse;
             this.comanda = {
                 id: jsonResponse[0].id,
                 estat: jsonResponse[0].estat,
@@ -348,6 +350,20 @@ createApp({
             console.log("Comanda dins funcio")
             console.log(this.comanda)
             return this.comanda;
+        },
+        getQuantitatTotalCom(comanda) {
+            let quantitat = 0
+            comanda.llibres.forEach(llibre => {
+                quantitat += llibre.quantitat
+            });
+            return quantitat
+        },
+        getPreuTotalCom(comanda) {
+            let preu = 0
+            comanda.llibres.forEach(llibre => {
+                preu += llibre.preu * llibre.quantitat
+            });
+            return preu.toFixed(2)
         },
 
         // USUARIS

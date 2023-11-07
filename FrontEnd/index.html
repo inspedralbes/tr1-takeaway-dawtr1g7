@@ -218,46 +218,49 @@
             </div>
 
             <div id="estat" v-if="mostrar('estat')">
-                <div id="imgEstat">
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png"
-                        alt="img_check">
-                </div>
-                <h2>Compra efectuada correctament</h2>
-
-                <div id="resumComanda">
-                    <div id="idComanda">
-                        Comanda <strong>{{ getComanda().id }}</strong>
-                        <div id="containerTornarInici"  v-if="getComanda().estat == 'Pendent'">
-                            <button class="botonsLandingLog" @click="modificarComanda()">Modificar comanda</button>
-                        </div> 
+                <div v-for="actual in comandesUsuari">
+                    <div id="imgEstat">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png"
+                            alt="img_check">
                     </div>
-                    <div id="InfoComanda">
-                        <div id="estatComanda">
-                            Estat de la comanda: <strong>{{ getComanda().estat }}</strong> 
+                    <h2>Compra efectuada correctament</h2>
+                    <div id="resumComanda">
+                        <div id="idComanda">
+                            Comanda <strong>{{ actual.id }}</strong>
+                            <div id="containerTornarInici"  v-if="actual.estat == 'Pendent'">
+                                <button class="botonsLandingLog" @click="modificarComanda()">Modificar comanda</button>
+                            </div> 
                         </div>
-                        <div id="tableComanda">
-                            <h3>RESUM COMPRA:</h3>
-                            <table id="tablC">
-                                <tr>
-                                    <th>Llibre</th>
-                                    <th class="tablQuantEstat">Quantitat</th>
-                                    <th class="tablPreuEstat">Preu</th>
-                                </tr>
-                                <tr v-for="producte in getComanda().productes" :key="producte.id">
-                                    <td>{{ getLlibrePerId(producte.id).titol }}</td>
-                                    <td class="tablQuantEstat">{{ producte.quantitat }}</td>
-                                    <td class="tablPreuEstat">{{ producte.preu }}€</td>
-                                </tr>
-                                <tr>
-                                    <td>TOTAL</td>
-                                    <td class="tablQuantEstat">{{ getQuantitatTotalComanda() }}</td>
-                                    <td class="tablPreuEstat">{{ getPreuTotalComanda() }}€</td>
-                                </tr>
-                            </table>
+                        <div id="InfoComanda">
+                            <div id="estatComanda">
+                                Estat de la comanda: <strong>{{ actual.estat }}</strong> 
+                            </div>
+                            <div id="tableComanda">
+                                <h3>RESUM COMPRA:</h3>
+                                <table id="tablC">
+                                    <tr>
+                                        <th>Llibre</th>
+                                        <th class="tablQuantEstat">Quantitat</th>
+                                        <th class="tablPreuEstat">Preu</th>
+                                    </tr>
+                                    <tr v-for="producte in actual.llibres" :key="producte.id">
+                                        <td>{{ producte.titol }}</td>
+                                        <td class="tablQuantEstat">{{ producte.quantitat }}</td>
+                                        <td class="tablPreuEstat">{{ producte.preu }}€</td>
+                                        <!--<td>{{ getLlibrePerId(producte.id).titol }}</td>
+                                        <td class="tablQuantEstat">{{ producte.quantitat }}</td>
+                                        <td class="tablPreuEstat">{{ producte.preu }}€</td>-->
+                                    </tr>
+                                    <tr>
+                                        <td>TOTAL</td>
+                                        <td class="tablQuantEstat">{{ getQuantitatTotalCom(actual) }}</td>
+                                        <td class="tablPreuEstat">{{ getPreuTotalCom(actual) }}€</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+               </div>
                 <div id="containerTornarInici">
                     <button class="botonsLandingLog" @click="cambiarDiv('landing')">Tornar Inici</button>
                 </div>
