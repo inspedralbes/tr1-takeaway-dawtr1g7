@@ -17,10 +17,10 @@
                 <label for="estat" class="label">Estat: </label>
                 <div class="select">
                 <select name="estat">
-                    <option value="Recollit">Pendent</option>
-                    <option value="Recollit">En preparació</option>
-                    <option value="Recollit">Esperant a ser recollida</option>
-                    <option value="Recollit">Recollida</option>
+                    <option value="Pendent">Pendent</option>
+                    <option value="En preparació">En preparació</option>
+                    <option value="Esperant a ser recollida">Esperant a ser recollida</option>
+                    <option value="Recollida">Recollida</option>
                 </select>
                 </div>
             </div>

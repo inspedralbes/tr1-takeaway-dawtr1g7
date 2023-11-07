@@ -2,26 +2,34 @@
 
 @section('content')
 
-    <form action="{{ route('view-comandes-filtrades') }}" method="POST">
+    <form class="container p-4 mt-4" action="{{ route('view-comandes-filtrades') }}" method="POST">
         @method('GET')
         @csrf
         <div class="mb-3">
-            <input type="checkbox" name="estat1" value="En procés">
-            <label for="estat1">En procés</label><br>
-            <input type="checkbox" name="estat2" value="Petició rebuda">
-            <label for="estat2">Petició rebuda</label><br>
-            <input type="checkbox" name="estat3" value="Esperant ser recollit">
-            <label for="estat3">Esperant ser recollit</label><br>
-            <input type="checkbox" name="estat4" value="Recollit">
-            <label for="estat4">Recollit</label><br>
+            <h5>Estat</h5>
+            <label class="checkbox" for="estat1">
+                <input type="checkbox" name="estat1" value="Pendent">
+                Pendent
+            </label><br>
+            <label class="checkbox" for="estat2">
+                <input type="checkbox" name="estat2" value="En preparació">
+                En preparació
+            </label><br>
+            <label class="checkbox" for="estat3">
+                <input type="checkbox" name="estat3" value="Esperant a ser recollida">
+                Esperant a ser recollida
+            </label><br>
+            <label class="checkbox" for="estat4">
+                <input type="checkbox" name="estat4" value="Recollida">
+                Recollida
+            </label><br>
         </div>
         <div class="mb-3">
-                <label for="id" class="form-label">Identificador</label>
-                <input type="text" name="id" class="form-control">
+            <h5>Identificador</h5>
+            <input type="text" name="id" class="form-control" placeholder="Filtra per id">
         </div>
-        <button type="submit" class="btn btn-primary">FILTRAR</button>
+        <button type="submit" class="button is-link is-rounded is-responsive">FILTRAR</button>
     </form>
-
     <div class="contenidor">   
         <table class="table mt-6 is-striped is-hoverable is-fullwidth">
             <tr>
@@ -51,7 +59,7 @@
             @endforeach
         </table>
         @if(count($comandes) == 0)
-            <p>No s'ha trobat cap resultat </p>
+            <p class="notification is-danger is-light">No s'ha trobat cap resultat </p>
         @endif
     </div>
 @endsection
