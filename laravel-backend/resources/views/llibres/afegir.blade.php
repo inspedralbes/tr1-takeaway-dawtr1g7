@@ -50,6 +50,14 @@
                 <input type="text" name="titol" class="input">
             </div>
             <div class="field">
+                <label for="preu" class="label">Preu</label>
+                <input type="number" name="preu" step="0.01" class="input">
+            </div>
+            <div class="field">
+                <label for="preu" class="label">Stock</label>
+                <input type="number" name="stock" step="0.01" class="input">
+            </div>
+            <div class="field">
                 <label for="autor" class="label">Autor</label>
                 <input type="text" name="autor" class="input">
             </div>
@@ -64,10 +72,6 @@
             <div class="field">
                 <label for="any" class="label">Any</label>
                 <input type="number" name="any" class="input">
-            </div>
-            <div class="field">
-                <label for="preu" class="label">Preu</label>
-                <input type="number" name="preu" step="0.01" class="input">
             </div>
             <div class="field">
                 <label for="isbn" class="label">ISBN</label>

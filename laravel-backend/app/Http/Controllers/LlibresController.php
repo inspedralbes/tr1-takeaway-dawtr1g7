@@ -63,6 +63,7 @@ class LlibresController extends Controller
         ->orWhere('titol', 'like', '%' . $request->filtre . '%')
         ->orWhere('autor', 'like', '%' . $request->filtre . '%')
         ->orWhere('isbn', 'like', '%' . $request->filtre . '%')
+        ->orWhere('stock', 'like', '%' . $request->filtre . '%')
         ->get();
 
     return view('llibres.index', ['llibres' => $llibres]);
@@ -80,7 +81,8 @@ class LlibresController extends Controller
                 'preu' => 'required',
                 'isbn' => 'required',
                 'categoria' => 'required',
-                'portada' => 'required'
+                'portada' => 'required',
+                'stock' => 'required'
             ]);
     
             $llibre = new Llibre;
@@ -93,6 +95,7 @@ class LlibresController extends Controller
             $llibre->isbn = $request->isbn;
             $llibre->categoria_id = $request->categoria;
             $llibre->img_url = $request->portada;
+            $llibre->stock = $request->stock;
             
             /*if ($request->hasfile('imatge')) {
                 $file = $request->file('imatge');
@@ -122,7 +125,8 @@ class LlibresController extends Controller
             'preu' => 'required',
             'isbn' => 'required',
             'categoria' => 'required',
-            'portada' => 'required'
+            'portada' => 'required',
+            'stock' => 'required'
         ]);
         
         $llibre = Llibre::find($id);
@@ -135,6 +139,7 @@ class LlibresController extends Controller
         $llibre->isbn = $request->isbn;
         $llibre->categoria_id = $request->categoria;
         $llibre->img_url = $request->portada;
+        $llibre->stock = $request->stock;
         $llibre->save();
 
         return redirect()->route('view-modificar-llibre', ['id' => $llibre->id])->with('success', 'Llibre actualitazat correctament');

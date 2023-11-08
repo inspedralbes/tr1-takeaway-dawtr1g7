@@ -50,6 +50,14 @@
                 <input type="text" name="titol" class="input" value="{{ $llibre->titol }}">
             </div>
             <div class="field">
+                <label for="preu" class="label">Preu</label>
+                <input type="number" name="preu" step="0.01" class="input" value="{{ $llibre->preu }}">
+            </div>
+            <div class="field">
+                <label for="portada" class="label">Stock</label>
+                <input type="text" name="stock" class="input" value="{{ $llibre->stock }}">
+            </div>
+            <div class="field">
                 <label for="autor" class="label">Autor</label>
                 <input type="text" name="autor" class="input" value="{{ $llibre->autor }}">
             </div>
@@ -64,10 +72,6 @@
             <div class="field">
                 <label for="any" class="label">Any</label>
                 <input type="number" name="any" class="input" value="{{ $llibre->any }}">
-            </div>
-            <div class="field">
-                <label for="preu" class="label">Preu</label>
-                <input type="number" name="preu" step="0.01" class="input" value="{{ $llibre->preu }}">
             </div>
             <div class="field">
                 <label for="isbn" class="label">ISBN</label>

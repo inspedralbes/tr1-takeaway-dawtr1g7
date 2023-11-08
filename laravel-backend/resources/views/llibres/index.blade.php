@@ -24,6 +24,7 @@
             <th>Autor</th>
             <th>ISBN</th>
             <th>Preu</th>
+            <th>Stock</th>
             <th></th>
         </tr>
         @foreach ($llibres as $llibre)
@@ -33,6 +34,7 @@
                 <td>{{ $llibre->autor }}</td>
                 <td>{{ $llibre->isbn }}</td>
                 <td>{{ $llibre->preu }}</td>
+                <td>{{ $llibre->stock }}</td>
                 <td>
                     <form action="{{ route('eliminar-llibre', ['id' => $llibre->id]) }}" method="POST">
                             @method('DELETE')
