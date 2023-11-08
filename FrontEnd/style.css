@@ -16,6 +16,7 @@ h1 {
 
 h2 {
     text-align: center;
+    margin: 15px 0;
 }
 
 * {
@@ -792,9 +793,8 @@ th {
 
 #resumComanda {
     width: 90%;
-    margin: auto;
     border: 1px solid var(--black);
-    margin-top: 20px;
+    margin: 20px auto;
 }
 
 #idComanda {
