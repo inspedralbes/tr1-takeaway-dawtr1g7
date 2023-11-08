@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="contenidor">
-
     <form class="p-4" action="{{ route('view-llibres-filtrats') }}" method="POST">
         @method('GET')
         @csrf

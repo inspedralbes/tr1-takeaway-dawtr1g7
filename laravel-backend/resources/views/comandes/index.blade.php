@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-
+    <div class="contenidor"> 
     <form class="container p-4 mt-4" action="{{ route('view-comandes-filtrades') }}" method="POST">
         @method('GET')
         @csrf
@@ -29,8 +29,7 @@
             <input type="text" name="id" class="form-control" placeholder="Filtra per id">
         </div>
         <button type="submit" class="button is-link is-rounded is-responsive">FILTRAR</button>
-    </form>
-    <div class="contenidor">   
+    </form>  
         <table class="table mt-6 is-striped is-hoverable is-fullwidth">
             <tr>
                 <th>ID</th>

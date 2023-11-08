@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    
+    <div class="contenidor">
     <form class="p-4" action="{{ route('view-categories-filtrades') }}" method="POST">
         @method('GET')
         @csrf
@@ -11,7 +11,7 @@
         </div>
     </form>
 
-    <div class="contenidor">
+    
     <form class="p-4 mb-4" action="{{ route('view-afegir-categoria') }}" method="POST">
         @method('GET')
         @csrf
