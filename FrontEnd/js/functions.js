@@ -449,6 +449,28 @@ createApp({
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }
+        },
+        eliminarComanda(id) {
+      const index = this.carrito.findIndex(comanda => comanda.id === id);
+      if (index !== -1) {
+        this.carrito.splice(index, 1);
+        this.enviarIdAlBackend(id);
+      }
+    },
+    enviarIdAlBackend(id) {
+      fetch('/ruta/' + id, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Comanda eliminada en el backend correctamente.');
+        } else {
+          console.error('Error al eliminar la comanda en el backend.');
         }
+      })
+      .catch(error => {
+        console.error('Error en la solicitud al backend:', error);
+      });
+    },       
     }
 }).mount('#app');
