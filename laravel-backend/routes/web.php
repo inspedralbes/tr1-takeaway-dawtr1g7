@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 //RUTES LLIBRES
 Route::get('/llibres', [LlibresController::class, 'adminIndex'])->name('llibres');
+Route::get('/llibres/filtre', [LlibresController::class, 'adminFiltra'])->name('view-llibres-filtrats');
 Route::get('/llibres/afegir', function () { return view('llibres.afegir');})->name('view-afegir-llibre');
 Route::post('/llibres/afegir', [LlibresController::class, 'adminStore'])->name('afegir-llibre');
 Route::get('/llibres/modificar/{id}', [LlibresController::class, 'adminShow'])->name('view-modificar-llibre');
@@ -31,6 +32,7 @@ Route::delete('/llibres/{id}', [LlibresController::class, 'adminDelete'])->name(
 
 //RUTES CATEGORIES
 Route::get('/categories', [CategoriesController::class, 'adminIndex'])->name('categories');
+Route::get('/categories/filtre', [CategoriesController::class, 'adminFiltra'])->name('view-categories-filtrades');
 Route::get('/categories/afegir', function () { return view('categories.afegir');})->name('view-afegir-categoria');
 Route::post('/categories/afegir', [CategoriesController::class, 'adminStore'])->name('afegir-categoria');
 Route::get('/categories/modificar/{id}', [CategoriesController::class, 'adminShow'])->name('view-modificar-categoria');

@@ -124,6 +124,15 @@ h5 {
     margin-bottom: 3px;
 }
 
+.field__input {
+    width: 100%;
+}
+
+.filtrar {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
 @media (min-width: 428px) {
     
     table {
