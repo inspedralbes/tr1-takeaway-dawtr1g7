@@ -240,7 +240,7 @@
                     <div id="resumComanda">
                         <div id="idComanda">
                             Comanda <strong>{{ actual.id }}</strong>
-                            <div id="containerTornarInici" v-if="actual.estat == 'Pendent'">
+                            <div id="containerTornarInici" v-if="actual.estat == 'Pendent' && comandaModificada == false">
                                 <button class="botonsLandingLog" @click="modificarComanda()">Modificar
                                     comanda</button>
                             </div>
