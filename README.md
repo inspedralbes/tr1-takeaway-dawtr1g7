@@ -10,7 +10,7 @@ Mentre es navega pel catàleg, es mostren tots els llibres disponibles en una gr
 La pantalla de pagament inclou un resum de la comanda i un formulari per recopilar les dades del client. Un cop realitzat el pagament, la pantalla mostra un missatge de confirmació de l'enviament correcte de la comanda, juntament amb el seu estat i contingut.
 
 **Autors: GRUP 7**
-- Gala Del Águila Redó (Coordinadora de Desplegament)
+- Gala Del Águila Redó (Coordinadora de Desplegament i CSS)
 - Ivan Barbero Santisteban (Coordinador de HTML, CSS i Javascript)
 - Santiago Pujol Saumell (Coordinador de PHP i SQL)
 - David Salvador Sosa (Coordinador de HTML, CSS i Javascript)
@@ -19,5 +19,5 @@ La pantalla de pagament inclou un resum de la comanda i un formulari per recopil
 **Enllaços:**
 - [Prototip a Penpot (assegura't de deixar el prototip públic)](https://design.penpot.app/#/view/bc104529-972b-8028-8003-522fc01f9f96?page-id=bc104529-972b-8028-8003-522fc01f9f97&section=interactions&frame-id=08c53b94-d879-809b-8003-522fd66e4565&index=0&share-id=bc104529-972b-8028-8003-536571d1b86e)
 - [Taiga.io](https://tree.taiga.io/project/santipu03-tr1g7)
-- [URL de Preproducció](https://galaxiagutenberg.daw.inspedralbes.cat/tr1-takeaway-dawtr1g7-preproduccio)
-- [URL de Producció (amb domini registrat)](https://galaxiagutenberg.daw.inspedralbes.cat/tr1-takeaway-dawtr1g7-produccio)
+- [URL de Preproducció](http://tr1g7.daw.inspedralbes.cat)
+- [URL de Producció (amb domini registrat)](http://galaxiagutemberg.daw.inspedralbes.cat)

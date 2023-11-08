@@ -1,11 +1,12 @@
 :root {
-    --gradient-general: linear-gradient(to left, #794bf7, #ae91fc);
+    --gradient-general: linear-gradient(to left, #52389b, #764fe2);
     --dark-blue: #64729c;
     --light-blue: #b8caff; 
     --white: white;
     --bc-buscador: #52389b;
     --inverted-bc-buscador: #ADC764;
     --black:#000;
+    --border-rad: 8px;
 }
 
 h1 {
@@ -47,18 +48,14 @@ img {
 #numQuatitatCarrito {
     font-size: 12px;
 }
-/*Botons landing*/
-.botonsLandingLog{
-    color: var(--white);
-    font-size: 18px;
-}
 
 /*ESTILS BUSCADOR*/
 #containerBuscador{
     padding: 0;
     height: 35px;
-    margin: 15px 15px;
-    border-radius: 50px;
+    margin: 20px;
+    margin-bottom: 0;
+    border-radius: var(--border-rad);
     display: flex;
     justify-content: center;
 }
@@ -70,7 +67,7 @@ img {
     border: none;
     width: 90%;
     height: 100%;
-    border-radius: 12px 0px 0px 12px;
+    border-radius: var(--border-rad) 0px 0px var(--border-rad);
     padding: 10px;
     color:var(--white);
 }
@@ -85,7 +82,7 @@ img {
     height: 100%;
     width: 10%;
     border: none;
-    border-radius: 0px 12px 12px 0px;
+    border-radius: 0px var(--border-rad) var(--border-rad) 0px;
     padding: 5px;
 }
 #img_search{
@@ -108,7 +105,7 @@ img {
     background-color: var(--white);
     background: url('https://img.freepik.com/fotos-premium/fondo-morado-azul-fondo-morado-palabra-amor_873925-17800.jpg?size=626&ext=jpg');
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     margin: 30px auto;
 }
 
@@ -131,7 +128,7 @@ img {
     margin-top: 5px;
     margin-bottom: 10px;
     border: 1px solid rgb(155, 155, 155);
-    border-radius: 7px;
+    border-radius: var(--border-rad);
 }
 
 #iniciSessio button {
@@ -140,7 +137,7 @@ img {
     background-image: linear-gradient(to left, #6e3afc, #6e3afc, #6e3afc);
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: var(--border-rad);
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -158,7 +155,7 @@ img {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     margin: 30px auto;
 }
 
@@ -184,7 +181,7 @@ img {
     margin-top: 5px;
     margin-bottom: 10px;
     border: 1px solid rgb(155, 155, 155);
-    border-radius: 7px;
+    border-radius: var(--border-rad);
 }
 
 #registre button {
@@ -193,7 +190,7 @@ img {
     background-image: linear-gradient(to left, #6e3afc, #6e3afc, #6e3afc);
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: var(--border-rad);
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -207,14 +204,13 @@ img {
     height: 100vh;
     background: var(--gradient-general);
     color: var(--white);
-    display: none;
-    opacity: 0;
     z-index: 999;
+    left: -100vw;
+    transition: 0.2s ease-out;
 }
 
 #categories.active {
-    display: block;
-    opacity: 1;
+    left: 0;
 }
 
 .itemCategoria {
@@ -227,10 +223,9 @@ img {
 }
 /*Missatge errors*/
 .error{
-    color: rgb(194, 0, 0);
-    background-color: #d3c4fc;
+    color: rgb(90, 7, 7);
     text-align: center;
-    border-radius: 7px;
+    border-radius: var(--border-rad);
 }
 /*DISTRIBUCIO D'ESPAIS*/
 header {
@@ -260,7 +255,7 @@ header {
 
 .logout-btn button {
     padding: 5px;
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
 }
 
@@ -268,7 +263,7 @@ header {
     padding: 8px 15px;
     width: 90%;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
     color: var(--white);
     box-shadow: 3px 6px 5px #333;
@@ -353,7 +348,7 @@ footer {
 .infoBotiga button {
     padding: 8px 15px;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
     box-shadow: 1px 3px 2px #333;
 }
@@ -392,25 +387,57 @@ footer {
     grid-template-areas:
         "tornar_enrere tornar_enrere"
         "portada dades_basiques"
+        "stock stock"
         "descripcio descripcio";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr 2fr;
-    column-gap: 10px;
-    row-gap: 10px;
+    grid-template-columns: 6fr 4fr;
+    grid-template-rows: 1fr 6fr 1fr 4fr;
+    gap: 15px;
     font-family: sans-serif;
     border: 1px solid var(--black);
-    border-radius: 5px;
-    height: 80%;
-    width: 80%;
+    border-radius: var(--border-rad);
+    width: 90%;
     padding: 20px;
+}
+
+.llibreStock {
+    grid-area: stock;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(206, 32, 32);
 }
 
 .portada {
     grid-area: portada;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.mostrarLlibreImgContainer {
+    position: relative;
+    padding-top: 150%;
+    width: 100%;
+    box-shadow: 2px 5px 5px #333;
+    border-radius: var(--border-rad);
+}
+
+.mostrarLlibreImgContainer img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: var(--border-rad);
 }
 
 .infoLlibre {
     grid-area: dades_basiques;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .llibreDescr {
@@ -423,9 +450,11 @@ footer {
 }
 
 .butonsSumaResta {
+    display: flex;
+    align-items: center;
     height: 30px;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
 }
 
 .butonAfegir {
@@ -440,16 +469,11 @@ footer {
 .butonAfegir>button {
     padding: 8px 15px;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
     box-shadow: 1px 3px 2px #333;
     cursor: pointer;
     font-size: 18px;
-}
-
-
-.llibreDescr>p {
-    font-size: 0.8em;
 }
 
 .butonsSumaResta>input {
@@ -479,33 +503,29 @@ footer {
     border-bottom-right-radius: 7px;
 }
 
-.butonsSumaResta>button:hover {
-    background-color: lightslategray;
-}
-
-.portada>img {
-    width: 90%;
-    height: auto;
-}
-
 #graella__productes {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
     align-items: center;
-    
+}
+
+.botonsLandingLog {
+    color: var(--white);
+}
+
+.botonsLandingLog:disabled {
+    background-color: #666;
 }
 
 .producte {
     position: relative;
-    border-radius: 7px;
+    border-radius: var(--border-rad);
     align-items: center;
     display: flex;
     flex-direction: column;
     /* Agregado para alinear el contenido verticalmente */
-    margin: auto;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 20px auto;
     width: 150px;
     box-shadow: 3px 5px 5px #333;
     transition: transform 0.6s;
@@ -519,13 +539,13 @@ footer {
 }
 
 .producte__titol {
-    color: var(--black);
+    font-size: 1.1em;
 }
 
 .inputN[type=number] {
     appearance: textfield;
     background-color: var(--white);
-    color: var(--blackç);
+    color: var(--black);
 } 
 
 .buttonsEnrereEndevant {
@@ -536,10 +556,16 @@ footer {
 
 .buttonsEnrereEndevant button {
     padding: 8px 15px;
+    color: var(--white);
+    font-size: 18px;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
     box-shadow: 1px 3px 2px #333;
+}
+
+.buttonsEnrereEndevant button:disabled {
+    background: #666;
 }
 
 /*ESTILS CSS DE LA PREVIEW CARRITO*/
@@ -565,7 +591,7 @@ footer {
     margin: 15px auto;
     padding: 5px 15px;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     box-shadow: 1px 3px 2px #333;
     border: none;
     color: var(--white);
@@ -609,7 +635,7 @@ footer {
     text-align: center;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 0px 0px 7px 7px;
+    border-radius: 0px 0px var(--border-rad) var(--border-rad);
     color: var(--black);
     padding-bottom: 14px;
     padding-top: 14px;
@@ -619,10 +645,15 @@ footer {
     background-color: rgba(238, 238, 125, 0.7);
 }
 
+.producteAcabat .etiqueta {
+    background-color: rgba(95, 16, 16, 0.8);
+    color: #fff;
+}
+
 .producte__img {
     width: 150px;
     height: 225px;
-    border-radius: 7px;
+    border-radius: var(--border-rad)
 }
 
 /*GRIDS DADES*/
@@ -681,7 +712,7 @@ footer {
 .login-btns-container button {
     padding: 8px 15px;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
     box-shadow: 1px 3px 2px #333;
     color: var(--white);
@@ -693,6 +724,7 @@ footer {
 
 #resumCompra>table {
     padding-top: 15px;
+    width: 100%;
 }
 
 td,
@@ -724,7 +756,7 @@ th {
     width: 60%;
     background: var(--gradient-general);
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
     box-shadow: 1px 3px 2px #333;
 }
@@ -740,13 +772,9 @@ th {
         "buttConf";
     justify-content: center;
     border: 1px solid #333;
-    border-radius: 7px;
+    border-radius: var(--border-rad);
     margin-top: 15%;
     padding: 10px;
-}
-
-.producte__preu {
-    color: var(--black);
 }
 
 #imgEstat {
@@ -811,10 +839,11 @@ th {
 #containerTornarInici>button {
     padding: 8px 15px;
     background: var(--gradient-general);
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     border: none;
     box-shadow: 1px 3px 2px #333;
 }
+
 @media(min-width:700px) {
     .login-btns-container {
         width: 50%;
@@ -878,20 +907,6 @@ th {
         margin-right: auto;
         margin-top: 2%;
 
-    }
-
-    #mostrarLlibre {
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 5%;
-        height: 60%;
-        width: 50%;
-        padding: 20px;
-    }
-
-    #mostrarLlibre img {
-        width: 60%;
-        height: 70%;
     }
 
     .butonsSumaResta {

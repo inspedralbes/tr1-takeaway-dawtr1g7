@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comanda;
+use App\Models\Llibre;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\QrCodeontroller;
 use App\Http\Controllers\SendMailPDFController;
@@ -38,18 +39,50 @@ class ComandesController extends Controller
 
         // Insertar valors a la taula llibre_comanda
         if (is_array($llibresComanda) && count($llibresComanda) > 0) {
-            // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
-            foreach ($llibresComanda as $llibre) {
-                $lineesComanda[$llibre['id']] = [
-                    'quantitat' => $llibre['quantitat'],
-                    'preu' => $llibre['preu'],
-                ];
+            DB::beginTransaction(); // Iniciar transacció
+
+            try {
+                // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
+                foreach ($llibresComanda as $llibre) {
+                    if ($llibre['quantitat']<=0) {
+                        return response()->json([
+                            'status' => 'error', 
+                            'message' => 'Quantitat no pot ser menor o igual a zero'
+                        ]);
+                    }
+
+                    $llibreInfo = DB::table('llibres')->where('id', $llibre['id'])->first();
+
+                    if (!$llibreInfo || $llibreInfo->stock < $llibre['quantitat']) {
+                        throw new \Exception('Stock insuficient per al llibre ID: ' . $llibre['id']);
+                    }
+
+                    DB::table('llibres')
+                        ->where('id', $llibre['id'])
+                        ->decrement('stock', $llibre['quantitat']);
+
+                    $lineesComanda[$llibre['id']] = [
+                        'quantitat' => $llibre['quantitat'], 
+                        'preu' => $llibreInfo->preu, 
+                    ];
+                }
+
+                $comanda->save();
+                $comanda->llibres()->attach($lineesComanda);
+
+                DB::commit(); // Confirmar canvis si tot va bé
+
+                $this->sendMail($comanda->id, 0);
+                return response()->json($comanda);
+            } catch (\Exception $e) {
+                DB::rollBack(); // Desfer canvis en cas d'error
+                return response()->json([
+                    'status'=> 'error',
+                    'message'=> $e->getMessage()   
+                ], 422); 
             }
-            $comanda->save();
-            $comanda->llibres()->attach($lineesComanda);
-            $this->sendMail($comanda->id, 0);
-            return response()->json($comanda);
         }
+            
 
         // Si no s'a enviat ningun array, retorna error
         return response()->json([
@@ -64,15 +97,92 @@ class ComandesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comanda = Comanda::find($id);
+            
+        
+        return $comanda;
+        
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        //busca comanda
+        $comanda = Comanda::find($id);
+        $usuari = $request->user();
+
+        //si troba la comanda...
+        if($comanda){
+            if($usuari->id != $comanda->user_id){
+                return response()->json([
+                    'status' => 'error', 
+                    'message' => 'Usuari no coincideix!',
+                ]);
+            }
+    
+            $llibresComanda = $request->input('carrito');
+            $lineesComanda = [];
+    
+            if (is_array($llibresComanda) && count($llibresComanda) > 0) {
+                DB::beginTransaction();
+
+                try {
+                    $llibresActuals = $comanda->llibres; // Recupera llibres actuals de la comanda
+
+                    foreach ($llibresActuals as $llibreActual) {
+                        // Incrementa el stock dels llibres eliminats de la comanda
+                        Llibre::find($llibreActual->id)->increment('stock', $llibreActual->pivot->quantitat);
+                    }
+
+                    $comanda->llibres()->detach(); // Elimina les relacions actuals
+
+                    foreach ($llibresComanda as $llibre) {
+                        if ($llibre['quantitat'] <= 0) {
+                            throw new \Exception('Quantitat no pot ser menor o igual a zero');
+                        }
+    
+                        $llibreBackEnd = Llibre::find($llibre['id']);
+    
+                        if (!$llibreBackEnd || $llibreBackEnd->stock < $llibre['quantitat']) {
+                            throw new \Exception('Stock insuficient per al llibre ID: ' . $llibre['id']);
+                        }
+    
+                        $llibreBackEnd->decrement('stock', $llibre['quantitat']);
+    
+                        $lineesComanda[$llibreBackEnd->id] = [
+                            'quantitat' => $llibre['quantitat'],
+                            'preu' => $llibreBackEnd->preu,
+                        ];
+                    }
+    
+                    $comanda->llibres()->attach($lineesComanda);
+    
+                    DB::commit();
+    
+                    return response()->json($comanda);
+                } catch (\Exception $e) {
+                    DB::rollBack();
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ], 422);
+                }
+            }
+
+            // Si no s'ha enviat ningun array, retorna error
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No hi han elements a la comanda!',
+            ], 422);
+        }
+
+        // Si no es troba la comanda, retorna error
+        return response()->json([
+            'status' => 'error',
+            'message' => 'No existeix la comanda!'
+        ], 404);
     }
 
     /**
@@ -165,4 +275,3 @@ class ComandesController extends Controller
         $mail->sendMailWithPDF($contingut_mail, $action_code);
     }
 }
-
