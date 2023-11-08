@@ -79,6 +79,7 @@ createApp({
             console.log(jsonResponse)
             if (jsonResponse.estat) {
                 console.log(jsonResponse);
+                await this.getLlibres()
                 this.crearNovaComanda(jsonResponse);
             } else {
                 this.errorMsg = jsonResponse.message
@@ -187,7 +188,7 @@ createApp({
         },
         getProducteInCarrito(producteId) {
             let producte = this.carrito.find(item => item.id === producteId)
-            return producte !== undefined
+            return producte != undefined
         },
         crearNovaComanda(objecteComanda) {
             let novaComanda = {
