@@ -101,9 +101,9 @@
                     </div>
                 </div>
                 <div v-if="getComanda().productes.length > 0" class="buttonComanda-container">
-                    <button class="buttonComanda" @click="cambiarDiv('comandesUser')">La Meva Comanda</button>
+                    <button class="buttonComanda" @click="cambiarDiv('comandesUser')">Les Meves Comandes</button>
                 </div>
-                 <div id="comandesUser" v-if="comandesUser">
+                 <div id="comandesUser" v-if="mostrar('comandesUser')">
                      <div id="imgEstat">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png"
                         alt="img_check">
