@@ -244,9 +244,8 @@
                                 <button class="botonsLandingLog" @click="modificarComanda()">Modificar
                                     comanda</button>
                             </div>
-                            <div id="containerTornarInici" v-if="actual.estat == 'Pendent'">
-                                <button class="botonsLandingLog" @click="eliminarComanda()">Eliminar
-                                    comanda</button>
+                            <div id="containerTornarInici" v-if="actual.estat === 'Pendent'">
+                                <button class="botonsLandingLog" @click="() => eliminarComanda(actual.id)">Eliminar comanda</button>
                             </div>
                         </div>
                         <div id="InfoComanda">
