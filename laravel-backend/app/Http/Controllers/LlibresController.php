@@ -56,6 +56,18 @@ class LlibresController extends Controller
     return view('llibres.index', ['llibres' => $llibres]);
     }
 
+    public function adminFiltra(Request $request)
+    {
+        $llibres = DB::table('llibres')
+        ->where('id', 'like', '%' . $request->filtre . '%')        
+        ->orWhere('titol', 'like', '%' . $request->filtre . '%')
+        ->orWhere('autor', 'like', '%' . $request->filtre . '%')
+        ->orWhere('isbn', 'like', '%' . $request->filtre . '%')
+        ->get();
+
+    return view('llibres.index', ['llibres' => $llibres]);
+    }
+
     public function adminStore(Request $request)
     {
         

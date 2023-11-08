@@ -56,6 +56,16 @@ class CategoriesController extends Controller
     return view('categories.index', ['categories' => $categories]);
     }
 
+    public function adminFiltra(Request $request)
+    {
+        $categories = DB::table('categorias')
+        ->where('id', 'like', '%' . $request->filtre . '%')        
+        ->orWhere('nom', 'like', '%' . $request->filtre . '%')
+        ->get();
+
+    return view('categories.index', ['categories' => $categories]);
+    }
+
     public function adminStore(Request $request)
     {
         

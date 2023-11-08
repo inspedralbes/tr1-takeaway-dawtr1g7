@@ -232,6 +232,69 @@ class ComandesController extends Controller
 
     }
 
+    public function adminFiltra(Request $request)
+    {
+     
+        $filtre_estats = $request->request->all();
+        array_splice($filtre_estats, 0, 2);
+        array_splice($filtre_estats, count($filtre_estats)-1, 1);
+        
+        $filtre_id = $request->request->all();
+        $filtre_id = array_pop($filtre_id);
+
+        $comandes = [];
+        $num_llibres = [];
+        
+        if (count($filtre_estats) > 0 && $filtre_id != null) {
+            $comandes = DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->get();
+        
+            $num_llibres =  DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('llibre_comanda.comanda_id', DB::raw('count(*) as total'))
+            ->groupBy('llibre_comanda.comanda_id')    
+            ->get();
+        } else if ((count($filtre_estats) > 0 && $filtre_id == null)) {
+            $comandes = DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->get();
+        
+            $num_llibres =  DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->select('llibre_comanda.comanda_id', DB::raw('count(*) as total'))
+            ->groupBy('llibre_comanda.comanda_id')    
+            ->get();
+        } else if (count($filtre_estats) == 0 && $filtre_id != null) {
+            $comandes = DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->get();
+        
+            $num_llibres =  DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('llibre_comanda.comanda_id', DB::raw('count(*) as total'))
+            ->groupBy('llibre_comanda.comanda_id')    
+            ->get();
+        }
+
+     return view('comandes.index', ['comandes' => $comandes], ['num_llibres' => $num_llibres]);
+    }
+
+
     public function adminShow($id)
     {
         $comanda = Comanda::find($id);
