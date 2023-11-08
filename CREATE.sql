@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2023 a las 08:21:09
+-- Tiempo de generación: 07-11-2023 a las 08:36:01
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -80,6 +80,7 @@ CREATE TABLE `llibres` (
   `any` int(10) UNSIGNED NOT NULL,
   `preu` decimal(8,2) NOT NULL,
   `isbn` varchar(13) NOT NULL,
+  `stock` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `categoria_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -118,14 +119,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(65, '2014_10_12_000000_create_users_table', 1),
-(66, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(67, '2019_08_19_000000_create_failed_jobs_table', 1),
-(68, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(69, '2023_10_23_103731_create_categories_table', 1),
-(70, '2023_10_23_103734_create_llibres_table', 1),
-(71, '2023_10_23_111916_create_comandes_table', 1),
-(72, '2023_10_24_062156_create_llibre_comanda_table', 1);
+(121, '2014_10_12_000000_create_users_table', 1),
+(122, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(123, '2019_08_19_000000_create_failed_jobs_table', 1),
+(124, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(125, '2023_10_23_103731_create_categories_table', 1),
+(126, '2023_10_23_103734_create_llibres_table', 1),
+(127, '2023_10_23_111916_create_comandes_table', 1),
+(128, '2023_10_24_062156_create_llibre_comanda_table', 1);
 
 -- --------------------------------------------------------
 
@@ -280,7 +281,7 @@ ALTER TABLE `llibre_comanda`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
