@@ -275,4 +275,3 @@ class ComandesController extends Controller
         $mail->sendMailWithPDF($contingut_mail, $action_code);
     }
 }
-
