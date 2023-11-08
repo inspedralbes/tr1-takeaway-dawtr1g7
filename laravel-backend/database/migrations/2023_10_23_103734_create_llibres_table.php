@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('any');
             $table->decimal('preu', 8, 2);
             $table->string('isbn', 13);
+            $table->unsignedInteger('stock')->default(0);
             $table->foreignId('categoria_id')->nullable()->constrained('categorias')->onDelete('set null');
             $table->timestamps();
         });

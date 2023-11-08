@@ -5,6 +5,7 @@ use App\Http\Controllers\LlibresController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ComandesController;
 use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,12 @@ Route::delete('/categories/{id}', [CategoriesController::class, 'adminDelete'])-
 Route::get('/comandes', [ComandesController::class, 'adminIndex'])->name('comandes');
 Route::get('/comandes/modificar/{id}', [ComandesController::class, 'adminShow'])->name('view-modificar-comanda');
 Route::patch('/comandes/modificar/{id}', [ComandesController::class, 'adminUpdate'])->name('modificar-comanda');
+
+//RUTES USUARIS
+Route::get('/usuaris', [UsersController::class, 'adminIndex'])->name('usuaris');
+Route::get('/usuari/afegir',  function () { return view('usuaris.afegir');})->name('view-afegir-usuari');
+Route::post('/usuari/afegir', [UsersController::class, 'adminStore'])->name('afegir-usuari');
+
+Route::get('/usuaris/modificar/{id}', [UsersController::class, 'adminShow'])->name('view-modificar-usuari');
+Route::patch('/usuaris/modificar/{id}', [UsersController::class, 'adminUpdate'])->name('modificar-usuari');
+Route::delete('/usuariDestroy/{id}', [UsersController::class, 'adminDelete'])->name('eliminar-usuari');
