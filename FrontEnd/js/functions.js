@@ -128,6 +128,11 @@ createApp({
             }
             this.cambiarDiv('botiga');
         },
+        cancelarModificarComanda(){
+            this.carrito = [];
+            this.comandaModificada = false;
+            this.cambiarDiv('comandesUser');
+        },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
             if (id === 'botiga') {
