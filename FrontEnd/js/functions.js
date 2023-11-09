@@ -150,7 +150,7 @@ createApp({
             this.getLlibres()
             this.getLlistatComandesPerUsuari()
         },
-        cancelarModificarComanda(){
+        cancelarModificarComanda() {
             this.carrito = [];
             this.comandaModificada = false;
             this.cambiarDiv('comandesUser');
@@ -278,9 +278,9 @@ createApp({
             if (comprovacio && this.quantitat !== 0) {
                 this.quantitat--
                 this.treureLlibreCarrito(id)
-                
+
             } else {
-                this.treureLlibreCarrito(id)           
+                this.treureLlibreCarrito(id)
             }
 
         },
@@ -312,8 +312,8 @@ createApp({
             // Filtrar llibres amb quantitat zero
             let newCarrito = this.carrito.filter(item => item.quantitat != 0)
             this.carrito = newCarrito
-            if (this.carrito.length<=0) {
-                this.previewCarrito=false;
+            if (this.carrito.length <= 0) {
+                this.previewCarrito = false;
             }
         },
         guardarUsuari(dadesUsuari) {

@@ -334,6 +334,7 @@ footer {
     width: 30px;
     height: 30px;
 }
+
 /*Selector del div global*/
 #app {
     min-height: 100vh;
@@ -395,6 +396,7 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+
 .landing__botonsLandingLog {
     color: var(--white);
 }
@@ -526,7 +528,8 @@ footer {
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
 }
- /* Botiga */
+
+/* Botiga */
 #graella__productes {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -584,6 +587,7 @@ footer {
 .buttonsEnrereEndevant button:disabled {
     background: #666;
 }
+
 .etiqueta {
     position: absolute;
     bottom: 0;
@@ -870,6 +874,7 @@ th {
 }
 
 @media(min-width:700px) {
+
     /*Landing*/
     .login-btns-container {
         width: 50%;
@@ -922,6 +927,7 @@ th {
         margin-left: auto;
         margin-right: auto;
     }
+
     /*Botiga*/
     #graella__productes {
         display: grid;
@@ -1000,6 +1006,7 @@ th {
         margin-left: auto;
         margin-right: auto;
     }
+
     /*Espais apartat validació*/
     #validacio {
         margin-top: 5%;
@@ -1023,10 +1030,12 @@ th {
     #registre {
         margin-top: 5%;
     }
+
     /*Imatge página principal*/
     #imgP {
         display: none;
     }
+
     /*Estils apartat estat comanda */
     #imgEstat img {
         width: 10%;
