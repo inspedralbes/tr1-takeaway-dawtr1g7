@@ -414,7 +414,7 @@ footer {
 }
 
 .infoBotiga>#textInfoBot {
-    align-self: flex-end;
+ 
     gap: 15px;
 }
 
@@ -935,7 +935,7 @@ th {
 
     /*Landing*/
     .login-btns-container {
-        width: 50%;
+        width: 30%;
      
     }
     #imgDesk{
@@ -1085,7 +1085,7 @@ th {
     }
 
     .login-btns-container {
-        margin-left: 30px;
+        margin-left: 20px;
     }
 
     #iniciSessio {
