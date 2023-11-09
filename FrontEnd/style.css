@@ -396,8 +396,22 @@ footer {
     border: 1px solid var(--dark-blue);
     padding: 10px;
 }
-
+.login-btns-container {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    justify-content: space-between;
+    margin-top: 20px;  
+}
 .login-btns-container h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
+
+}
+.login-btns-container h6, .login-btns-container2 h6 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -789,7 +803,7 @@ footer {
     width: 100%;
 }
 
-.login-btns-container button {
+.login-btns-container button, .login-btns-container2 button {
     padding: 8px 15px;
     background: var(--gradient-general);
     border-radius: var(--border-rad);
@@ -962,6 +976,9 @@ th {
     .login-btns-container {
         width: 30%;
     }
+    .login-btns-container2 {
+        width: 30%;
+    }
 
     #imgDesk {
         display: block;
@@ -1105,11 +1122,11 @@ th {
 
     /*Botons de inici de sessió i registre */
 
-    .login-btns-container button {
+    .login-btns-container button, .login-btns-container2 button {
         margin: 5px;
     }
 
-    .login-btns-container {
+    .login-btns-container, .login-btns-container2 {
         margin-left: 20px;
     }
 
