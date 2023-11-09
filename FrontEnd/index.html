@@ -17,7 +17,7 @@
             <div class="admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
                 <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
             </div>
-            <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
+            <div @click="togglePreviewCategories()" v-if="mostrar('botiga')">
                 <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
             </div>
             <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
@@ -111,32 +111,37 @@
                 <div v-if="getComanda().productes.length > 0" class="buttonComanda-container">
                     <button class="buttonComanda" @click="cambiarDiv('comandesUser')">Les Meves Comandes</button>
                 </div>
-                <div id="previewCarrito" v-if="previewCarrito">
-                    <div>Cistella de la Compra</div>
-                    <hr>
-                    <div>
-                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id" class="carrito-item-container">
-                            <div class="carrito-item">
-                                <img :src="getLlibrePerId(itemCarrito.id).img_url" style="width: 70px;height: 106px;">
-                                <div class="carrito-item-info">
-                                    <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
-                                    <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
-                                    <div id="preuPreCarrito">{{ getLlibrePerId(itemCarrito.id).preu }}€</div>
+                <Transition name="animacioCarrito">
+                    <div id="previewCarrito" v-if="previewCarrito">
+                        <div>Cistella de la Compra</div>
+                        <hr>
+                        <div>
+                            <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id"
+                                class="carrito-item-container">
+                                <div class="carrito-item">
+                                    <img :src="getLlibrePerId(itemCarrito.id).img_url"
+                                        style="width: 70px;height: 106px;">
+                                    <div class="carrito-item-info">
+                                        <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
+                                        <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
+                                        <div id="preuPreCarrito">{{ getLlibrePerId(itemCarrito.id).preu }}€</div>
+                                    </div>
+                                </div>
+                                <div class="butonsSumaResta">
+                                    <button class="botonsLandingLog"
+                                        @click="restarQuantitat(itemCarrito.id,false)">-</button>
+                                    <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
+                                    <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
                                 </div>
                             </div>
-                            <div class="butonsSumaResta">
-                                <button class="botonsLandingLog"
-                                    @click="restarQuantitat(itemCarrito.id,false)">-</button>
-                                <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
-                                <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
-                            </div>
+                            <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
                         </div>
-                        <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
+                        <button class="boto_cistella" @click="cambiarDiv('validacio')">PAGAR</button>
+                        <button class="boto_cistella" @click="cancelarModificarComanda()"
+                            v-if="comandaModificada == true">CANCELAR MODIFICAR</button>
                     </div>
-                    <button class="boto_cistella" @click="cambiarDiv('validacio')">PAGAR</button>
-                    <button class="boto_cistella" @click="cancelarModificarComanda()"
-                        v-if="comandaModificada == true">CANCELAR MODIFICAR</button>
-                </div>
+                </Transition>
+
 
                 <div id="containerBuscador">
                     <input @input="event => buscarLlibres(event.target.value)" placeholder="Buscar...">

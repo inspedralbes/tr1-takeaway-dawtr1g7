@@ -414,6 +414,10 @@ footer {
     color: var(--white);
 }
 
+.botonsLandingLog {
+    color: var(--white);
+}
+
 .botonsLandingLog:disabled {
     background-color: #666;
 }
@@ -626,6 +630,18 @@ footer {
     width: 150px;
     height: 225px;
     border-radius: var(--border-rad)
+}
+
+/* Transició Preview Carrito */
+.animacioCarrito-enter-active,
+.animacioCarrito-leave-active {
+  transition: all 0.5s ease;
+}
+
+.animacioCarrito-enter-from,
+.animacioCarrito-leave-to {
+  opacity: 0;
+  transform: translateY(-60px);
 }
 
 /*Preview Carrito*/
