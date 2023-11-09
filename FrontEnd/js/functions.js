@@ -57,14 +57,13 @@ createApp({
             this.categories = categoriesProductes
         },
         async crearComanda() {
+            if (!this.usuari) {
+                this.errorMsg = "Inicia sessió per a crear una comanda!"
+                return
+            }
+            
             this.cambiarDiv('loading');
             if(this.comandaModificada == false) {
-
-                if (!this.usuari) {
-                    this.errorMsg = "Inicia sessió per a crear una comanda!"
-                    return
-                }
-
                 let carrito = JSON.parse(JSON.stringify(this.carrito));
                 let jsonObject = { "carrito": carrito }
                 let url
