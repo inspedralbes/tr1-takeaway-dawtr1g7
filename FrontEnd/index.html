@@ -252,7 +252,10 @@
 
             <div id="comandesUser" v-if="mostrar('comandesUser')">
                 <h2>Les Meves Comandes</h2>
-                <div v-for="(actual, index) in comandesUsuari">
+                <div class="butonAfegir">
+                    <button class="botoTornarEnrereComandes" @click="cambiarDiv('botiga')">Tornar Enrere</button>
+                </div>
+                <div v-for="(actual, index) in comandesUsuari">            
                     <div id="resumComanda">
                         <div id="idComanda">
                             Comanda <strong>{{ actual.id }}</strong>
@@ -336,7 +339,7 @@
                 </div>
 
                 <div id="containerTornarInici">
-                    <button class="botonsLandingLog" @click="cambiarDiv('landing')">Tornar Inici</button>
+                    <button class="botonsLandingLog" @click="cambiarDiv('botiga')">Tornar botiga</button>
                 </div>
 
             </div>

@@ -31,23 +31,23 @@ h2 {
 img {
     max-width: 100%;
 }
-.loading{
+.loading {
     display: flex;
     justify-content: center;
     margin: auto;
     align-items: center;
     width: 100%;
     height: 100%;
-    
+
 }
 
-.loading-img{
+.loading-img {
     margin-right: 20px;
     width: 100px;
     height: 100px;
 }
 
-.loading-in-Botons{
+.loading-in-Botons {
     width: 14px;
     height: 14px;
 }
@@ -324,6 +324,13 @@ header {
     width: 100%;
 }
 
+.botoTornarEnrereComandes {
+    color: var(--white);
+    font-size: 18px;
+    width: 100%;
+}
+
+
 footer {
     grid-area: footer;
     background: var(--gradient-general);
@@ -368,9 +375,11 @@ footer {
 #imgP {
     width: 100%;
 }
-#imgDesk{
-   display: none;
+
+#imgDesk {
+    display: none;
 }
+
 #cataleg-btn {
     padding: 15px 25px;
     font-size: 1.2em;
@@ -392,7 +401,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-   
+
     /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
 
 }
@@ -657,13 +666,13 @@ footer {
 /* Transició Preview Carrito */
 .animacioCarrito-enter-active,
 .animacioCarrito-leave-active {
-  transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .animacioCarrito-enter-from,
 .animacioCarrito-leave-to {
-  opacity: 0;
-  transform: translateY(-60px);
+    opacity: 0;
+    transform: translateY(-60px);
 }
 
 /*Preview Carrito*/
@@ -923,11 +932,12 @@ th {
     border: none;
     box-shadow: 1px 3px 2px #333;
 }
+
 .direccioBotiga {
-   
+
     background-color: var(--light-blue);
     border: 1px solid var(--dark-blue);
-   
+
 
 }
 
@@ -936,9 +946,10 @@ th {
     /*Landing*/
     .login-btns-container {
         width: 50%;
-     
+
     }
-    #imgDesk{
+
+    #imgDesk {
         display: block;
         width: 30%;
         height: 50%;
