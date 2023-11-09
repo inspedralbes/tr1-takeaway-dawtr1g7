@@ -107,6 +107,7 @@ createApp({
                 this.crearNovaComanda(jsonResponse);
                 this.comandaModificada = false;
             }
+            this.getLlibres()
             this.getLlistatComandesPerUsuari();
         },
         async modificarComanda(index) {
@@ -146,6 +147,7 @@ createApp({
             const jsonResponse = await response.json();
             console.log(jsonResponse);
             this.comandaModificada = false
+            this.getLlibres()
             this.getLlistatComandesPerUsuari()
         },
         cancelarModificarComanda(){
