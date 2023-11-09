@@ -107,10 +107,18 @@ createApp({
                 this.crearNovaComanda(jsonResponse);
                 this.comandaModificada = false;
             }
+            this.getLlistatComandesPerUsuari();
         },
-        async modificarComanda(){
-               
+        async modificarComanda(index){
+            
+            let comandaAuxiliar = {};
+            comandaAuxiliar.id = this.comandesUsuari[index].id;
+            comandaAuxiliar.estat = this.comandesUsuari[index].estat;
+            comandaAuxiliar.productes = this.comandesUsuari[index].llibres;
+
             this.comandaModificada = true;
+            this.carrito = [];
+            this.comanda = comandaAuxiliar;
             for (let i = 0; i < this.comanda.productes.length; i++) {
                 let llibre = {};
                 llibre.id = this.comanda.productes[i].id;
@@ -345,6 +353,22 @@ createApp({
             console.log("Comanda dins funcio")
             console.log(this.comanda)
             return this.comanda;
+        },
+        async getLlistatComandesPerUsuari() {
+            let url;
+            if (this.localhost) {
+                url = `http://localhost:8000/api/comandes/user/${this.usuari.id}`
+            } else {
+                url = `../../laravel-backend/public/api/comandes/user/${this.usuari.id}`
+            }
+            let response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            })
+            let jsonResponse = await response.json();
+            this.comandesUsuari = jsonResponse;
         },
         getQuantitatTotalCom(comanda) {
             let quantitat = 0
