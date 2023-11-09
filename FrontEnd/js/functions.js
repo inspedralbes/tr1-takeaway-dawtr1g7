@@ -23,7 +23,8 @@ createApp({
             comandaModificada: false,
             comptadorModificar: 0,
             comandesUsuari: [],
-            loadingStatus: false
+            loadingStatus: false,
+            comandaEliminada:0
         }
     },
 
@@ -131,6 +132,8 @@ createApp({
             this.cambiarDiv('botiga');
         },
         async eliminarComanda(id) {
+            this.comandaEliminada = id;
+            this.loadingStatus = !this.loadingStatus;
             let url;
             if (this.localhost) {
                 url = `http://localhost:8000/api/comanda/${id}`;
@@ -150,6 +153,9 @@ createApp({
             this.comandaModificada = false
             this.getLlibres()
             this.getLlistatComandesPerUsuari()
+
+            this.comandaEliminada = 0;
+            this.loadingStatus = !this.loadingStatus;
         },
         cancelarModificarComanda() {
             this.carrito = [];
@@ -511,5 +517,8 @@ createApp({
                 this.indexLlibres -= this.llibresMostrats;
             }
         },
+        comandaEliminat(id){
+            return this.comandaEliminada == id;
+        }
     }
 }).mount('#app');
