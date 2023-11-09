@@ -6,8 +6,8 @@
         @method('GET')
         @csrf
         <div class="field has-addons mb-3">
-            <input type="text" name="filtre" class="form-control field__input" placeholder="Filtra per id o nom">
-            <button type="submit" class="button is-link filtrar">FILTRAR</button>
+            <input type="text" name="filtre" class="form-control form-control--filtrar" placeholder="Filtra per id o nom">
+            <button type="submit" class="button button--filtrar">FILTRAR</button>
         </div>
     </form>
 
@@ -15,7 +15,7 @@
     <form class="p-4 mb-4" action="{{ route('view-afegir-categoria') }}" method="POST">
         @method('GET')
         @csrf
-        <button class="button is-success is-rounded is-responsive">AFEGIR CATEGORIA <img class="icon-right" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
+        <button class="button button--icon is-success is-rounded is-responsive"><p>AFEGIR CATEGORIA</p><img class="icon" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
     </form>
     
         <table class="table is-striped is-hoverable is-fullwidth">
