@@ -31,6 +31,26 @@ h2 {
 img {
     max-width: 100%;
 }
+.loading{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.loading-img{
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+.loading-in-Botons{
+    width: 14px;
+    height: 14px;
+}
 
 /*NUMERO CARRITO*/
 #containerTogglePreviewCarrito {

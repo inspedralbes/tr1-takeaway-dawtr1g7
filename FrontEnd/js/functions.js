@@ -22,7 +22,8 @@ createApp({
             categoriaActual: 0,
             comandaModificada: false,
             comptadorModificar: 0,
-            comandesUsuari: []
+            comandesUsuari: [],
+            loadingStatus: false
         }
     },
 
@@ -56,8 +57,9 @@ createApp({
             this.categories = categoriesProductes
         },
         async crearComanda() {
+            this.cambiarDiv('loading');
+            if(this.comandaModificada == false) {
 
-            if (this.comandaModificada == false) {
                 if (!this.usuari) {
                     this.errorMsg = "Inicia sessió per a crear una comanda!"
                     return
@@ -167,6 +169,9 @@ createApp({
                 this.previewCarrito = false;
             }
 
+        },
+        mostrarloading(estat){
+            return this.loadingStatus === estat;
         },
         mostrar(id) {
 
@@ -416,6 +421,7 @@ createApp({
 
         // USUARIS
         async registrarUsuari() {
+            this.loadingStatus = !this.loadingStatus
             let jsonObject = {
                 name: document.getElementById("nomRegistre").value,
                 email: document.getElementById("correuRegistre").value,
@@ -444,9 +450,11 @@ createApp({
             } else {
                 this.errorMsg = jsonResponse.message
             }
+            this.loadingStatus = !this.loadingStatus
         },
 
         async iniciarSessio() {
+            this.loadingStatus = !this.loadingStatus
             let jsonObject = {
                 email: document.getElementById("correuIniciSessio").value,
                 password: document.getElementById("passwordIniciSesio").value
@@ -472,6 +480,7 @@ createApp({
             } else {
                 this.errorMsg = jsonResponse.message
             }
+            this.loadingStatus = !this.loadingStatus
         },
 
         async tancarSessio() {
