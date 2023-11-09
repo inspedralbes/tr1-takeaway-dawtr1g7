@@ -23,7 +23,11 @@ createApp({
             comandaModificada: false,
             comptadorModificar: 0,
             comandesUsuari: [],
+<<<<<<< HEAD
             mostrarBotonsIniciRegistre:true
+=======
+            loadingStatus: false
+>>>>>>> 3b5576814c2550c17bad1a260869fd863f4ba5ab
         }
     },
 
@@ -57,13 +61,13 @@ createApp({
             this.categories = categoriesProductes
         },
         async crearComanda() {
-
-            if (this.comandaModificada == false) {
-                if (!this.usuari) {
-                    this.errorMsg = "Inicia sessió per a crear una comanda!"
-                    return
-                }
-
+            if (!this.usuari) {
+                this.errorMsg = "Inicia sessió per a crear una comanda!"
+                return
+            }
+            
+            this.cambiarDiv('loading');
+            if(this.comandaModificada == false) {
                 let carrito = JSON.parse(JSON.stringify(this.carrito));
                 let jsonObject = { "carrito": carrito }
                 let url
@@ -168,6 +172,9 @@ createApp({
                 this.previewCarrito = false;
             }
 
+        },
+        mostrarloading(estat){
+            return this.loadingStatus === estat;
         },
         mostrar(id) {
 
@@ -417,6 +424,7 @@ createApp({
 
         // USUARIS
         async registrarUsuari() {
+            this.loadingStatus = !this.loadingStatus
             let jsonObject = {
                 name: document.getElementById("nomRegistre").value,
                 email: document.getElementById("correuRegistre").value,
@@ -445,10 +453,15 @@ createApp({
             } else {
                 this.errorMsg = jsonResponse.message
             }
+<<<<<<< HEAD
             this.mostrarBotonsIniciRegistre=false;
+=======
+            this.loadingStatus = !this.loadingStatus
+>>>>>>> 3b5576814c2550c17bad1a260869fd863f4ba5ab
         },
 
         async iniciarSessio() {
+            this.loadingStatus = !this.loadingStatus
             let jsonObject = {
                 email: document.getElementById("correuIniciSessio").value,
                 password: document.getElementById("passwordIniciSesio").value
@@ -475,7 +488,11 @@ createApp({
                 this.errorMsg = jsonResponse.message
              
             }
+<<<<<<< HEAD
             this.mostrarBotonsIniciRegistre=false;
+=======
+            this.loadingStatus = !this.loadingStatus
+>>>>>>> 3b5576814c2550c17bad1a260869fd863f4ba5ab
         },
 
         async tancarSessio() {
