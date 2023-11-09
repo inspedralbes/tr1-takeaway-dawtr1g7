@@ -50,7 +50,7 @@ img {
     align-items: center;
 }
 
-#numQuantitatCarrito {
+#numQuatitatCarrito {
     font-size: 12px;
 }
 
@@ -95,7 +95,7 @@ img {
     padding: 5px;
 }
 
-#containerBuscador__img_search {
+#img_search {
     height: 100%;
     filter: invert(100%);
     background-color: var(--inverted-bc-buscador);
@@ -358,12 +358,24 @@ footer {
 
 .login-btns-container {
     display: flex;
-    width: 100%;
+    width: 110%;
     justify-content: space-between;
     margin-top: 20px;
+    background-color: var(--light-blue);
+    border: 1px solid var(--dark-blue);
+    padding: 10px;
 }
 
-.landing__infoBotiga button {
+.login-btns-container h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
+
+}
+
+.infoBotiga button {
     padding: 8px 15px;
     background: var(--gradient-general);
     border-radius: var(--border-rad);
@@ -371,7 +383,7 @@ footer {
     box-shadow: 1px 3px 2px #333;
 }
 
-.landing__infoBotiga h2 {
+.infoBotiga h2 {
     margin-bottom: 15px;
     background-image: linear-gradient(to left, #ac8ffc, #000, #6e3afc);
     background-clip: text;
@@ -379,12 +391,12 @@ footer {
     color: transparent;
 }
 
-.landing__infoBotiga>#textInfoBot {
+.infoBotiga>#textInfoBot {
     align-self: flex-end;
     gap: 15px;
 }
 
-.landing__infoBotiga {
+.infoBotiga {
     width: 80%;
     padding-bottom: 10%;
     display: flex;
@@ -397,11 +409,12 @@ footer {
     margin-right: auto;
 }
 
+
 .landing__botonsLandingLog {
     color: var(--white);
 }
 
-.landing__botonsLandingLog:disabled {
+.botonsLandingLog:disabled {
     background-color: #666;
 }
 
@@ -537,7 +550,7 @@ footer {
     align-items: center;
 }
 
-.graella__productes--producte {
+.producte {
     position: relative;
     border-radius: var(--border-rad);
     align-items: center;
@@ -872,6 +885,13 @@ th {
     border: none;
     box-shadow: 1px 3px 2px #333;
 }
+.direccioBotiga {
+   
+    background-color: var(--light-blue);
+    border: 1px solid var(--dark-blue);
+   
+
+}
 
 @media(min-width:700px) {
 
@@ -902,7 +922,7 @@ th {
 
     .direccioBotiga {
         display: flex;
-        background-color: #b8caff;
+        background-color: var(--light-blue);
         border: 1px solid var(--dark-blue);
         width: 80%;
         margin-left: auto;

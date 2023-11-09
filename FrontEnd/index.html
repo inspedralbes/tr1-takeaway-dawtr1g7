@@ -14,17 +14,17 @@
 <body>
     <div id="app">
         <header>
-            <div class="header__admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
+            <div class="admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
                 <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
             </div>
-            <div @click="header__togglePreviewCategories" v-if="mostrar('botiga')">
+            <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
                 <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
             </div>
             <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
             <div id="containerTogglePreviewCarrito" @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
                 <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
                 <div id="containerNumQuantitatCarrito">
-                    <div id="header__numQuantitatCarrito">{{ getQuantitatTotalCarrito() }}</div>
+                    <div id="numQuatitatCarrito">{{ getQuantitatTotalCarrito() }}</div>
                 </div>
             </div>
             <div v-if="mostrar('landing') && usuari" class="logout-btn">
@@ -35,8 +35,9 @@
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
 
-                <div class="landing__infoBotiga">
+                <div class="infoBotiga">
                     <div class="login-btns-container">
+                        <h6>Inicia sessió o registra't:</h6><br>
                         <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar
                             Sessió</button>
                         <button class="botonsLandingLog" @click="cambiarDiv('registro')"
@@ -54,7 +55,8 @@
                     <div class="direccioBotiga">
                         <div id="direccio" class="direccioBotiga__item"><b>Direcció</b><br>Av. d'Esplugues,
                             40<br>Esplugues de
-                            Ll. ,Barcelona<br>08034</div>
+                            Ll. ,Barcelona<br>08034
+                        </div>
                         <div id="infoContacte" class="direccioBotiga__item"><b>Telèfon:</b>
                             (123) 456-7890<br>
                             <div id="infoContacte" class="direccioBotiga__item"><b>Horaris d'atenció al
@@ -138,13 +140,13 @@
 
                 <div id="containerBuscador">
                     <input @input="event => buscarLlibres(event.target.value)" placeholder="Buscar...">
-                    <button><img id="containerBuscador__img_search"
+                    <button><img id="img_search"
                             src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png"
                             alt="icon_lupa"></button>
                 </div>
 
                 <div id="graella__productes">
-                    <div class="graella__productes--producte"
+                    <div class="producte"
                         :class="{ producteCarrito: getProducteInCarrito(llibre.id), producteAcabat: llibre.stock <= 0 }"
                         v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
