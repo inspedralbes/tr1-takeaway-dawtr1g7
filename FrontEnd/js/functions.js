@@ -148,6 +148,11 @@ createApp({
             this.comandaModificada = false
             this.getLlistatComandesPerUsuari()
         },
+        cancelarModificarComanda(){
+            this.carrito = [];
+            this.comandaModificada = false;
+            this.cambiarDiv('comandesUser');
+        },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
             if (id === 'botiga') {
@@ -491,6 +496,6 @@ createApp({
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }
-        }
+        },
     }
 }).mount('#app');

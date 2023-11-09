@@ -131,7 +131,8 @@
                         </div>
                         <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
                     </div>
-                    <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
+                    <button class="boto_cistella" @click="cambiarDiv('validacio')">PAGAR</button>
+                    <button class="boto_cistella" @click="cancelarModificarComanda()" v-if="comandaModificada == true">CANCELAR MODIFICAR</button>
                 </div>
 
                 <div id="containerBuscador">
@@ -325,15 +326,15 @@
             </div>
         </div>
 
-            <div v-if="mostrar('modificarComanda')" id="modificarComanda">
-                <h2>PANTALLA MODIFICAR COMANDA</h2>
-            </div>
+        <div v-if="mostrar('modificarComanda')" id="modificarComanda">
+            <h2>PANTALLA MODIFICAR COMANDA</h2>
         </div>
         <footer>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
         </footer>
-        <script src="./js/functions.js" type="module"></script>
     </div>
+    <script src="./js/functions.js" type="module"></script>
+
 </body>
 
 
