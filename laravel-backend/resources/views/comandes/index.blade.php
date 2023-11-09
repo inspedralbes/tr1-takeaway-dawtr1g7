@@ -28,7 +28,7 @@
             <h5>Identificador</h5>
             <input type="text" name="id" class="form-control" placeholder="Filtra per id">
         </div>
-        <button type="submit" class="button is-link is-rounded is-responsive">FILTRAR</button>
+        <button type="submit" class="button button--filtrar is-rounded is-responsive">FILTRAR</button>
     </form>  
         <table class="table mt-6 is-striped is-hoverable is-fullwidth">
             <tr>
