@@ -256,13 +256,19 @@
                     <div id="resumComanda">
                         <div id="idComanda">
                             Comanda <strong>{{ actual.id }}</strong>
-                            <div v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
-                                <button class="comandes-btns" @click="modificarComanda(index)">Modificar
-                                    comanda</button>
-                            </div>
-                            <div v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
-                                <button class="comandes-btns" @click="eliminarComanda(actual.id)">Eliminar
-                                    comanda</button>
+                            <div class="buttonsComandaContainer">
+                                <div class="buttonsComandaContent">
+                                    <div v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                        <button class="comandes-btns" @click="modificarComanda(index)">Modificar
+                                            comanda</button>
+                                    </div>
+                                    <div v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                        <button class="comandes-btns" @click="eliminarComanda(actual.id)">
+                                            <p v-if="mostrarloading(false) || !comandaEliminat(actual.id)">EliminarComanda</p>
+                                            <img v-if="mostrarloading(true) && comandaEliminat(actual.id)" src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons">
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div id="InfoComanda">

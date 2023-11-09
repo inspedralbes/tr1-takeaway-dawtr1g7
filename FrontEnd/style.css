@@ -891,6 +891,21 @@ th {
     text-align: right;
 }
 
+/*ButtonsComanda*/
+.buttonsComandaContainer{
+    width: 100%;
+}
+.buttonsComandaContent{
+    width: 50%;
+    margin: auto;
+}
+.buttonsComandaContent>div{
+    width: 100%;
+}
+.buttonsComandaContent>div>button{
+    width: 100%;
+}
+
 #InfoComanda {
     padding: 15px;
 }
