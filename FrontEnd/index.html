@@ -256,8 +256,8 @@
                     <button class="botoTornarEnrereComandes" @click="cambiarDiv('botiga')">Tornar Enrere</button>
                 </div>
                 <div v-for="(actual, index) in comandesUsuari">            
-                    <div id="resumComanda">
-                        <div id="idComanda">
+                    <div class="resumComanda">
+                        <div class="idComanda">
                             Comanda <strong>{{ actual.id }}</strong>
                             <div class="buttonsComandaContainer">
                                 <div class="buttonsComandaContent">
@@ -274,13 +274,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="InfoComanda">
-                            <div id="estatComanda">
+                        <div class="InfoComanda">
+                            <div class="estatComanda">
                                 Estat de la comanda: <strong>{{ actual.estat }}</strong>
                             </div>
-                            <div id="tableComanda">
+                            <div class="tableComanda">
                                 <h3>RESUM COMPRA:</h3>
-                                <table id="tablC">
+                                <table class="tablC">
                                     <tr>
                                         <th>Llibre</th>
                                         <th class="tablQuantEstat">Quantitat</th>

@@ -870,24 +870,24 @@ th {
     text-align: center;
 }
 
-#resumComanda {
+.resumComanda {
     width: 90%;
     border: 1px solid var(--black);
     margin: 20px auto;
 }
 
-#idComanda {
+.idComanda {
     border-bottom: 1px solid var(--black);
     text-align: center;
     padding: 15px;
     font-size: 18px;
 }
 
-#estatComanda {
+.estatComanda {
     grid-area: estatC;
 }
 
-#tableComanda {
+.tableComanda {
     padding-top: 15px;
     grid-area: tablC;
 }
@@ -915,11 +915,11 @@ th {
     width: 100%;
 }
 
-#InfoComanda {
+.InfoComanda {
     padding: 15px;
 }
 
-#tablC {
+.tablC {
     width: 100%;
 }
 
