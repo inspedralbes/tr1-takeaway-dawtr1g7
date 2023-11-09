@@ -328,7 +328,7 @@ header {
 .botoTornarEnrereComandes {
     color: var(--white);
     font-size: 18px;
-    width: 100%;
+    width: 80%;
 }
 
 
@@ -390,15 +390,27 @@ footer {
 
 .login-btns-container {
     display: flex;
-    width: 110%;
     justify-content: space-between;
     margin-top: 20px;
     background-color: var(--light-blue);
     border: 1px solid var(--dark-blue);
     padding: 10px;
 }
-
+.login-btns-container {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    margin-top: 20px;  
+}
 .login-btns-container h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
+
+}
+.login-btns-container h6, .login-btns-container2 h6 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -429,7 +441,7 @@ footer {
 }
 
 .infoBotiga {
-    width: 80%;
+    width: 90%;
     padding-bottom: 10%;
     display: flex;
     justify-content: center;
@@ -645,6 +657,8 @@ footer {
 
 .butonAfegir {
     grid-area: tornar_enrere;
+    display: flex;
+    justify-content: center;
 }
 
 .infoLlibre>h5 {
@@ -657,6 +671,7 @@ footer {
     background: var(--gradient-general);
     border-radius: var(--border-rad);
     border: none;
+    margin: auto;
     box-shadow: 1px 3px 2px #333;
     cursor: pointer;
     font-size: 18px;
@@ -901,7 +916,7 @@ footer {
     width: 100%;
 }
 
-.login-btns-container button {
+.login-btns-container button, .login-btns-container2 button {
     padding: 8px 15px;
     background: var(--gradient-general);
     border-radius: var(--border-rad);
@@ -982,24 +997,24 @@ th {
     text-align: center;
 }
 
-#resumComanda {
+.resumComanda {
     width: 90%;
     border: 1px solid var(--black);
     margin: 20px auto;
 }
 
-#idComanda {
+.idComanda {
     border-bottom: 1px solid var(--black);
     text-align: center;
     padding: 15px;
     font-size: 18px;
 }
 
-#estatComanda {
+.estatComanda {
     grid-area: estatC;
 }
 
-#tableComanda {
+.tableComanda {
     padding-top: 15px;
     grid-area: tablC;
 }
@@ -1030,11 +1045,11 @@ th {
     width: 100%;
 }
 
-#InfoComanda {
+.InfoComanda {
     padding: 15px;
 }
 
-#tablC {
+.tablC {
     width: 100%;
 }
 
@@ -1075,6 +1090,9 @@ th {
 
     /*Landing*/
     .login-btns-container {
+        width: 30%;
+    }
+    .login-btns-container2 {
         width: 30%;
     }
 
@@ -1220,11 +1238,11 @@ th {
 
     /*Botons de inici de sessió i registre */
 
-    .login-btns-container button {
+    .login-btns-container button, .login-btns-container2 button {
         margin: 5px;
     }
 
-    .login-btns-container {
+    .login-btns-container, .login-btns-container2 {
         margin-left: 20px;
     }
 
