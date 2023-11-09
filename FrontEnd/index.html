@@ -33,7 +33,7 @@
             </div>
         </header>
         <div id="container">
-            
+
             <div v-if="mostrar('landing')" id="landing">
 
                 <div class="infoBotiga">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <img src="./img/landingImg.jpeg" alt="" id="imgP">
-               
+
             </div>
             <div v-if="mostrar('iniciarSesion')" id="iniciSessio">
                 <h2>INICI SESSIÓ</h2>
@@ -75,7 +75,10 @@
                 <input type="text" id="correuIniciSessio">
                 <label for="password">Contrasenya: </label>
                 <input type="password" name="password" id="passwordIniciSesio">
-                <button @click="iniciarSessio()"><p v-if="mostrarloading(false)">Iniciar Sessió</p><img v-if="mostrarloading(true)" src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons"></button>
+                <button @click="iniciarSessio()">
+                    <p v-if="mostrarloading(false)">Iniciar Sessió</p><img v-if="mostrarloading(true)"
+                        src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons">
+                </button>
 
                 <div class="error">
                     {{ errorMsg }}
@@ -93,14 +96,17 @@
                 <input type="password" name="password2" id="password2Registre"><br>
                 <label for="telefon">Teléfon: </label>
                 <input type="text" name="telefon" id="telefonRegistre"><br>
-                <button @click="registrarUsuari()"><p v-if="mostrarloading(false)">Registrarme</p><img v-if="mostrarloading(true)" src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons"></button>
+                <button @click="registrarUsuari()">
+                    <p v-if="mostrarloading(false)">Registrarme</p><img v-if="mostrarloading(true)"
+                        src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons">
+                </button>
                 <div class="error">
                     {{ errorMsg }}
                 </div>
             </div>
             <div v-if="mostrar('loading')" class="loading">
-                    <img src="https://i.gifer.com/ZKZg.gif" alt="" class="loading-img">
-                    <p>Procesando compra...</p>
+                <img src="https://i.gifer.com/ZKZg.gif" alt="" class="loading-img">
+                <p>Procesando compra...</p>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
@@ -137,7 +143,8 @@
                                     <button class="botonsLandingLog"
                                         @click="restarQuantitat(itemCarrito.id,false)">-</button>
                                     <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
-                                    <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
+                                    <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)"
+                                        :disabled="getLlibreActual().stock <= 0 || getLlibreActual().stock <= quantitat">+</button>
                                 </div>
                             </div>
                             <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
@@ -216,7 +223,7 @@
                 <div id="dades">
                     <h2>TICKET</h2>
                     <div v-if="!usuari" class="login-btns-container2">
-                        <button @click="cambiarDiv('iniciarSesion')" >Iniciar Sessió</button>
+                        <button @click="cambiarDiv('iniciarSesion')">Iniciar Sessió</button>
                         <button @click="cambiarDiv('registro')">Registre</button>
                     </div>
                     <div v-if="usuari" class="msg-benvinguda">Hola {{ usuari.nom }}!</div>
@@ -254,20 +261,24 @@
                 <div class="butonAfegir">
                     <button class="botoTornarEnrereComandes" @click="cambiarDiv('botiga')">Tornar Enrere</button>
                 </div>
-                <div v-for="(actual, index) in comandesUsuari">            
+                <div v-for="(actual, index) in comandesUsuari">
                     <div class="resumComanda">
                         <div class="idComanda">
                             Comanda <strong>{{ actual.id }}</strong>
                             <div class="buttonsComandaContainer">
                                 <div class="buttonsComandaContent">
-                                    <div v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                    <div
+                                        v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
                                         <button class="comandes-btns" @click="modificarComanda(index)">Modificar
                                             comanda</button>
                                     </div>
-                                    <div v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                    <div
+                                        v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
                                         <button class="comandes-btns" @click="eliminarComanda(actual.id)">
-                                            <p v-if="mostrarloading(false) || !comandaEliminat(actual.id)">EliminarComanda</p>
-                                            <img v-if="mostrarloading(true) && comandaEliminat(actual.id)" src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons">
+                                            <p v-if="mostrarloading(false) || !comandaEliminat(actual.id)">
+                                                EliminarComanda</p>
+                                            <img v-if="mostrarloading(true) && comandaEliminat(actual.id)"
+                                                src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons">
                                         </button>
                                     </div>
                                 </div>
