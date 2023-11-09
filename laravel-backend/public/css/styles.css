@@ -153,6 +153,14 @@ header {
     padding-left: 15px;
 }
 
+.form-control--filtrar-no-button {
+    width: 100%;
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 15px;
+    height: 40px;
+}
+
 .button--filtrar {
     background: var(--gradient-general);
     border: 1px solid var(--black);
@@ -189,9 +197,11 @@ table {
     justify-content: space-between;
     align-items: center;
     column-gap: 5px;
+    width: fit-content;
 }
 
 h5 {
+    color: var(--bc-buscador);
     font-size: 1.2em;
     font-weight: 600;
     margin-bottom: 3px;
