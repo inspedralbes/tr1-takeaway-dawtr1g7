@@ -22,7 +22,8 @@ createApp({
             categoriaActual: 0,
             comandaModificada: false,
             comptadorModificar: 0,
-            comandesUsuari: []
+            comandesUsuari: [],
+            mostrarBotonsIniciRegistre:true
         }
     },
 
@@ -444,6 +445,7 @@ createApp({
             } else {
                 this.errorMsg = jsonResponse.message
             }
+            this.mostrarBotonsIniciRegistre=false;
         },
 
         async iniciarSessio() {
@@ -471,7 +473,9 @@ createApp({
                 this.getComandaPerUsuari()
             } else {
                 this.errorMsg = jsonResponse.message
+             
             }
+            this.mostrarBotonsIniciRegistre=false;
         },
 
         async tancarSessio() {

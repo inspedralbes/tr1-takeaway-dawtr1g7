@@ -368,13 +368,21 @@ footer {
     padding: 10px;
 }
 
-.login-btns-container h6 {
+
+.login-btns-container h6, .login-btns-container2 h6 {
     display: flex;
     justify-content: center;
     align-items: center;
    
     /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
 
+}
+.login-btns-container2 {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .infoBotiga button {
@@ -735,6 +743,7 @@ footer {
 #dades {
     grid-area: dades;
     padding-top: 15px;
+    width: 20em;
 }
 
 /*RESUM COMPRA*/
@@ -745,6 +754,14 @@ footer {
 }
 
 .login-btns-container button {
+    padding: 8px 15px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+    color: var(--white);
+}
+.login-btns-container2 button {
     padding: 8px 15px;
     background: var(--gradient-general);
     border-radius: var(--border-rad);
@@ -902,6 +919,22 @@ th {
         width: 30%;
      
     }
+    .login-btns-container h6, .login-btns-container2 h6 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+        /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
+    
+    }
+    .login-btns-container2 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding: 10px;
+    }
+    
     #imgDesk{
         display: block;
         width: 30%;

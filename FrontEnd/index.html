@@ -36,7 +36,7 @@
             <div v-if="mostrar('landing')" id="landing">
 
                 <div class="infoBotiga">
-                    <div class="login-btns-container">
+                    <div class="login-btns-container" v-if="mostrarBotonsIniciRegistre">
                         <h6>Inicia sessió o registra't:</h6><br>
                         <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar
                             Sessió</button>
@@ -206,7 +206,7 @@
             <div id="validacio" v-if="mostrar('validacio')">
                 <div id="dades">
                     <h2>TICKET</h2>
-                    <div v-if="!usuari" class="login-btns-container">
+                    <div v-if="!usuari" class="login-btns-container2">
                         <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
                         <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
                     </div>
