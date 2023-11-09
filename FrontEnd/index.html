@@ -17,7 +17,7 @@
             <div class="admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
                 <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
             </div>
-            <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
+            <div @click="togglePreviewCategories()" v-if="mostrar('botiga')">
                 <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
             </div>
             <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
@@ -38,6 +38,7 @@
 
                 <div class="infoBotiga">
                     <div class="login-btns-container">
+                        <h6>Inicia sessió o registra't:</h6><br>
                         <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar
                             Sessió</button>
                         <button class="botonsLandingLog" @click="cambiarDiv('registro')"
@@ -45,6 +46,7 @@
                     </div>
                     <div class="msg-benvinguda" v-if="usuari">Benvingut {{ usuari.nom }}!</div>
                     <div id="textInfoBot">
+                        <img src="./img/imgDesk.jpg" alt="" id="imgDesk">
                         <h2>Informació</h2>
                         <p>
                             Aquí, cada llibre és un nou món a descobrir. <br>
@@ -55,7 +57,8 @@
                     <div class="direccioBotiga">
                         <div id="direccio" class="direccioBotiga__item"><b>Direcció</b><br>Av. d'Esplugues,
                             40<br>Esplugues de
-                            Ll. ,Barcelona<br>08034</div>
+                            Ll. ,Barcelona<br>08034
+                        </div>
                         <div id="infoContacte" class="direccioBotiga__item"><b>Telèfon:</b>
                             (123) 456-7890<br>
                             <div id="infoContacte" class="direccioBotiga__item"><b>Horaris d'atenció al
@@ -65,6 +68,7 @@
                     </div>
                 </div>
                 <img src="./img/landingImg.jpeg" alt="" id="imgP">
+               
             </div>
             <div v-if="mostrar('iniciarSesion')" id="iniciSessio">
                 <h2>INICI SESSIÓ</h2>
@@ -114,30 +118,37 @@
                 <div v-if="getComanda().productes.length > 0" class="buttonComanda-container">
                     <button class="buttonComanda" @click="cambiarDiv('comandesUser')">Les Meves Comandes</button>
                 </div>
-                <div id="previewCarrito" v-if="previewCarrito">
-                    <div>Cistella de la Compra</div>
-                    <hr>
-                    <div>
-                        <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id" class="carrito-item-container">
-                            <div class="carrito-item">
-                                <img :src="getLlibrePerId(itemCarrito.id).img_url" style="width: 70px;height: 106px;">
-                                <div class="carrito-item-info">
-                                    <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
-                                    <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
-                                    <div id="preuPreCarrito">{{ getLlibrePerId(itemCarrito.id).preu }}€</div>
+                <Transition name="animacioCarrito">
+                    <div id="previewCarrito" v-if="previewCarrito">
+                        <div>Cistella de la Compra</div>
+                        <hr>
+                        <div>
+                            <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id"
+                                class="carrito-item-container">
+                                <div class="carrito-item">
+                                    <img :src="getLlibrePerId(itemCarrito.id).img_url"
+                                        style="width: 70px;height: 106px;">
+                                    <div class="carrito-item-info">
+                                        <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
+                                        <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
+                                        <div id="preuPreCarrito">{{ getLlibrePerId(itemCarrito.id).preu }}€</div>
+                                    </div>
+                                </div>
+                                <div class="butonsSumaResta">
+                                    <button class="botonsLandingLog"
+                                        @click="restarQuantitat(itemCarrito.id,false)">-</button>
+                                    <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
+                                    <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
                                 </div>
                             </div>
-                            <div class="butonsSumaResta">
-                                <button class="botonsLandingLog"
-                                    @click="restarQuantitat(itemCarrito.id,false)">-</button>
-                                <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
-                                <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
-                            </div>
+                            <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
                         </div>
-                        <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
+                        <button class="boto_cistella" @click="cambiarDiv('validacio')">PAGAR</button>
+                        <button class="boto_cistella" @click="cancelarModificarComanda()"
+                            v-if="comandaModificada == true">CANCELAR MODIFICAR</button>
                     </div>
-                    <button id="botonpagar" @click="cambiarDiv('validacio')">PAGAR</button>
-                </div>
+                </Transition>
+
 
                 <div id="containerBuscador">
                     <input @input="event => buscarLlibres(event.target.value)" placeholder="Buscar...">
@@ -245,12 +256,13 @@
                     <div id="resumComanda">
                         <div id="idComanda">
                             Comanda <strong>{{ actual.id }}</strong>
-                            <div id="containerTornarInici" v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
-                                <button class="botonsLandingLog" @click="modificarComanda(index)">Modificar
+                            <div v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                <button class="comandes-btns" @click="modificarComanda(index)">Modificar
                                     comanda</button>
                             </div>
-                            <div id="containerTornarInici" v-if="actual.estat === 'Pendent'">
-                                <button class="botonsLandingLog" @click="() => eliminarComanda(actual.id)">Eliminar comanda</button>
+                            <div v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                <button class="comandes-btns" @click="eliminarComanda(actual.id)">Eliminar
+                                    comanda</button>
                             </div>
                         </div>
                         <div id="InfoComanda">
@@ -330,15 +342,15 @@
             </div>
         </div>
 
-            <div v-if="mostrar('modificarComanda')" id="modificarComanda">
-                <h2>PANTALLA MODIFICAR COMANDA</h2>
-            </div>
+        <div v-if="mostrar('modificarComanda')" id="modificarComanda">
+            <h2>PANTALLA MODIFICAR COMANDA</h2>
         </div>
         <footer>
             <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
         </footer>
-        <script src="./js/functions.js" type="module"></script>
     </div>
+    <script src="./js/functions.js" type="module"></script>
+
 </body>
 
 

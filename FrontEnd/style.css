@@ -1,14 +1,16 @@
+/*Colors que fem servir a la web*/
 :root {
     --gradient-general: linear-gradient(to left, #52389b, #764fe2);
     --dark-blue: #64729c;
-    --light-blue: #b8caff; 
+    --light-blue: #b8caff;
     --white: white;
     --bc-buscador: #52389b;
     --inverted-bc-buscador: #ADC764;
-    --black:#000;
+    --black: #000;
     --border-rad: 8px;
 }
 
+/*Estils per elements de tota la web*/
 h1 {
     margin: 0;
     padding: 10px;
@@ -54,6 +56,7 @@ img {
 #containerTogglePreviewCarrito {
     position: relative;
 }
+
 #containerNumQuantitatCarrito {
     position: absolute;
     bottom: -5px;
@@ -66,12 +69,13 @@ img {
     justify-content: center;
     align-items: center;
 }
+
 #numQuatitatCarrito {
     font-size: 12px;
 }
 
 /*ESTILS BUSCADOR*/
-#containerBuscador{
+#containerBuscador {
     padding: 0;
     height: 35px;
     margin: 20px;
@@ -80,43 +84,44 @@ img {
     display: flex;
     justify-content: center;
 }
-#containerBuscador *{
+
+#containerBuscador * {
     background-color: var(--bc-buscador);
 }
-#containerBuscador>input{
+
+#containerBuscador>input {
     margin: 0;
     border: none;
     width: 90%;
     height: 100%;
     border-radius: var(--border-rad) 0px 0px var(--border-rad);
     padding: 10px;
-    color:var(--white);
+    color: var(--white);
 }
+
 #containerBuscador>input::placeholder {
-    color:var(--white);
+    color: var(--white);
 }
-#containerBuscador>input:focus{
+
+#containerBuscador>input:focus {
     outline: none;
 }
 
-#containerBuscador>button{
+#containerBuscador>button {
     height: 100%;
     width: 10%;
     border: none;
     border-radius: 0px var(--border-rad) var(--border-rad) 0px;
     padding: 5px;
 }
-#img_search{
+
+#img_search {
     height: 100%;
     filter: invert(100%);
     background-color: var(--inverted-bc-buscador);
 }
 
-.botoTornarEnrere{
-    color: var(--white);
-    font-size: 18px;
-    width: 100%;
-}
+
 /*Estils login*/
 
 #iniciSessio {
@@ -242,12 +247,14 @@ img {
     padding: 20px;
     border-bottom: 1px solid #ccc;
 }
+
 /*Missatge errors*/
-.error{
+.error {
     color: rgb(90, 7, 7);
     text-align: center;
     border-radius: var(--border-rad);
 }
+
 /*DISTRIBUCIO D'ESPAIS*/
 header {
     grid-area: header;
@@ -311,6 +318,12 @@ header {
     margin-top: 10px;
 }
 
+.botoTornarEnrere {
+    color: var(--white);
+    font-size: 18px;
+    width: 100%;
+}
+
 footer {
     grid-area: footer;
     background: var(--gradient-general);
@@ -334,11 +347,15 @@ footer {
     width: 40px;
     filter: brightness(0) invert(1);
 }
+
 /*Imatge logout*/
-.iconsLanding{
+.iconsLanding {
     filter: brightness(0) invert(1);
-    width: 30px;height: 30px;
+    width: 30px;
+    height: 30px;
 }
+
+/*Selector del div global*/
 #app {
     min-height: 100vh;
     display: grid;
@@ -351,7 +368,9 @@ footer {
 #imgP {
     width: 100%;
 }
-
+#imgDesk{
+   display: none;
+}
 #cataleg-btn {
     padding: 15px 25px;
     font-size: 1.2em;
@@ -361,10 +380,22 @@ footer {
 
 .login-btns-container {
     display: flex;
-    width: 100%;
+    width: 110%;
     justify-content: space-between;
     margin-top: 20px;
-} 
+    background-color: var(--light-blue);
+    border: 1px solid var(--dark-blue);
+    padding: 10px;
+}
+
+.login-btns-container h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
+
+}
 
 .infoBotiga button {
     padding: 8px 15px;
@@ -400,7 +431,20 @@ footer {
     margin-right: auto;
 }
 
-/*****DESCRIPCIÓ LLIBRE*****/
+
+.landing__botonsLandingLog {
+    color: var(--white);
+}
+
+.botonsLandingLog {
+    color: var(--white);
+}
+
+.botonsLandingLog:disabled {
+    background-color: #666;
+}
+
+/*****DESCRIPCIÓ LLIBRE APARTAT MOSTRAR LLIBRE*****/
 
 #mostrarLlibre {
     margin: 20px auto;
@@ -524,19 +568,12 @@ footer {
     border-bottom-right-radius: 7px;
 }
 
+/* Botiga */
 #graella__productes {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
     align-items: center;
-}
-
-.botonsLandingLog {
-    color: var(--white);
-}
-
-.botonsLandingLog:disabled {
-    background-color: #666;
 }
 
 .producte {
@@ -552,10 +589,11 @@ footer {
     transition: transform 0.6s;
 }
 
-.producte:hover{
+.producte:hover {
     transform: scale(1.2);
 }
-.producte:active{
+
+.producte:active {
     transform: scale(1.1);
 }
 
@@ -567,7 +605,7 @@ footer {
     appearance: textfield;
     background-color: var(--white);
     color: var(--black);
-} 
+}
 
 .buttonsEnrereEndevant {
     margin: 20px;
@@ -589,7 +627,47 @@ footer {
     background: #666;
 }
 
-/*ESTILS CSS DE LA PREVIEW CARRITO*/
+.etiqueta {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0px 0px var(--border-rad) var(--border-rad);
+    color: var(--black);
+    padding-bottom: 14px;
+    padding-top: 14px;
+}
+
+.producteCarrito .etiqueta {
+    background-color: rgba(238, 238, 125, 0.7);
+}
+
+.producteAcabat .etiqueta {
+    background-color: rgba(95, 16, 16, 0.8);
+    color: #fff;
+}
+
+.producte__img {
+    width: 150px;
+    height: 225px;
+    border-radius: var(--border-rad)
+}
+
+/* Transició Preview Carrito */
+.animacioCarrito-enter-active,
+.animacioCarrito-leave-active {
+  transition: all 0.5s ease;
+}
+
+.animacioCarrito-enter-from,
+.animacioCarrito-leave-to {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+
+/*Preview Carrito*/
+
 #previewCarrito {
     margin: 10px;
     background: #fff;
@@ -605,8 +683,7 @@ footer {
     margin: 10px 10px;
 }
 
-
-#botonpagar {
+.boto_cistella {
     display: block;
     width: 80%;
     margin: 15px auto;
@@ -650,34 +727,7 @@ footer {
 
 }
 
-.etiqueta {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 0px 0px var(--border-rad) var(--border-rad);
-    color: var(--black);
-    padding-bottom: 14px;
-    padding-top: 14px;
-}
-
-.producteCarrito .etiqueta {
-    background-color: rgba(238, 238, 125, 0.7);
-}
-
-.producteAcabat .etiqueta {
-    background-color: rgba(95, 16, 16, 0.8);
-    color: #fff;
-}
-
-.producte__img {
-    width: 150px;
-    height: 225px;
-    border-radius: var(--border-rad)
-}
-
-/*GRIDS DADES*/
+/*Grid àrea de formulari*/
 #labelNom {
     grid-area: lablNom;
 }
@@ -702,7 +752,7 @@ footer {
     grid-area: telInp;
 }
 
-/*GRID DADES*/
+/*Grid àrea de formulari DADES*/
 #dadesInput {
     display: grid;
     grid-template-areas:
@@ -856,6 +906,16 @@ th {
     padding: 30px 0;
 }
 
+.comandes-btns {
+    padding: 8px 15px;
+    color: var(--white);
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+    margin: 10px auto;
+}
+
 #containerTornarInici>button {
     padding: 8px 15px;
     background: var(--gradient-general);
@@ -863,37 +923,53 @@ th {
     border: none;
     box-shadow: 1px 3px 2px #333;
 }
+.direccioBotiga {
+   
+    background-color: var(--light-blue);
+    border: 1px solid var(--dark-blue);
+   
+
+}
 
 @media(min-width:700px) {
+
+    /*Landing*/
     .login-btns-container {
         width: 50%;
-        margin-top: 7%;
+     
+    }
+    #imgDesk{
+        display: block;
+        width: 30%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .infoBotiga>#textInfoBot {
         align-self: center;
         animation-duration: 3s;
         animation-name: slidein;
-       
-      }
-      
-      @keyframes slidein {
+
+    }
+
+    @keyframes slidein {
         from {
-          margin-left: 100%;
-          width: 50%;
+            margin-left: 100%;
+            width: 50%;
         }
-      
+
         to {
-          margin-left: 0%;
-          width: 100%;
+            margin-left: 0%;
+            width: 100%;
         }
-      }
+    }
 
     .direccioBotiga {
         display: flex;
-        background-color: #b8caff;
+        background-color: var(--light-blue);
         border: 1px solid var(--dark-blue);
-        width: 80%;
+        width: 40%;
         margin-left: auto;
         margin-right: auto;
         padding: 5px;
@@ -917,6 +993,7 @@ th {
         margin-right: auto;
     }
 
+    /*Botiga*/
     #graella__productes {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -943,6 +1020,7 @@ th {
         width: 15%;
     }
 
+    /*Estils Preview Carrito*/
     .butonsSumaRestaCarrito {
         height: 30px;
         width: 30%;
@@ -987,31 +1065,44 @@ th {
         width: 30%;
     }
 
+    /*Estils Buscador*/
     #containerBuscador {
         width: 35%;
         margin-left: auto;
         margin-right: auto;
     }
+
+    /*Espais apartat validació*/
     #validacio {
         margin-top: 5%;
         padding: 10px;
     }
+
+    /*Botons de inici de sessió i registre */
+
     .login-btns-container button {
         margin: 5px;
     }
-    .login-btns-container{
+
+    .login-btns-container {
         margin-left: 30px;
     }
+
     #iniciSessio {
         margin-top: 10%;
     }
+
     #registre {
         margin-top: 5%;
     }
-    #imgP{
+
+    /*Imatge página principal*/
+    #imgP {
         display: none;
     }
-    #imgEstat img{
+
+    /*Estils apartat estat comanda */
+    #imgEstat img {
         width: 10%;
         margin-top: 15%;
     }
