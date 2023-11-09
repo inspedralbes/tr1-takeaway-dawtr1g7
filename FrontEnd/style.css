@@ -836,6 +836,16 @@ th {
     padding: 30px 0;
 }
 
+.comandes-btns {
+    padding: 8px 15px;
+    color: var(--white);
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+    margin: 10px auto;
+}
+
 #containerTornarInici>button {
     padding: 8px 15px;
     background: var(--gradient-general);
