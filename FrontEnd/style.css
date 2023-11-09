@@ -348,7 +348,9 @@ footer {
 #imgP {
     width: 100%;
 }
-
+#imgDesk{
+   display: none;
+}
 #cataleg-btn {
     padding: 15px 25px;
     font-size: 1.2em;
@@ -897,7 +899,14 @@ th {
     /*Landing*/
     .login-btns-container {
         width: 50%;
-        margin-top: 7%;
+     
+    }
+    #imgDesk{
+        display: block;
+        width: 30%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .infoBotiga>#textInfoBot {
@@ -923,7 +932,7 @@ th {
         display: flex;
         background-color: var(--light-blue);
         border: 1px solid var(--dark-blue);
-        width: 80%;
+        width: 40%;
         margin-left: auto;
         margin-right: auto;
         padding: 5px;
