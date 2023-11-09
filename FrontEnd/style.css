@@ -409,7 +409,8 @@ footer {
     margin-right: auto;
 }
 
-.botonsLandingLog {
+
+.landing__botonsLandingLog {
     color: var(--white);
 }
 
