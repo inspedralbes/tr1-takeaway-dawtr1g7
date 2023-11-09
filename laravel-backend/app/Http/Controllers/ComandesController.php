@@ -121,6 +121,14 @@ class ComandesController extends Controller
                     'message' => 'Usuari no coincideix!',
                 ]);
             }
+
+            // Comprova si l'estat de la comanda és 'Pendent'
+            if ($comanda->estat != 'Pendent') {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'La comanda només es pot eliminar si està en estat Pendent.',
+                ], 403);
+            }
     
             $llibresComanda = $request->input('carrito');
             $lineesComanda = [];
@@ -188,9 +196,60 @@ class ComandesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        // Busca la comanda
+        $comanda = Comanda::find($id);
+        $usuari = $request->user();
+
+        // Comprova si la comanda existeix
+        if (!$comanda) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No existeix la comanda!',
+            ], 404);
+        }
+
+        // Comprova si l'usuari coincideix amb el propietari de la comanda
+        if ($usuari->id != $comanda->user_id) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Usuari no coincideix!',
+            ], 403);
+        }
+
+        // Comprova si l'estat de la comanda és 'Pendent'
+        if ($comanda->estat != 'Pendent') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'La comanda només es pot eliminar si està en estat Pendent.',
+            ], 403);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // Incrementa l'estoc dels llibres de la comanda abans d'eliminar-la
+            foreach ($comanda->llibres as $llibre) {
+                Llibre::find($llibre->id)->increment('stock', $llibre->pivot->quantitat);
+            }
+
+            // Elimina la comanda
+            $comanda->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Comanda eliminada correctament.',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 422);
+        }
     }
 
     public function search(string $userId)
