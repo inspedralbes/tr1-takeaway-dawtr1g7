@@ -5,7 +5,14 @@
         @if (session('success'))
             <h6 class="notification is-success is-light">{{ session('success') }}</h6>
         @endif
-
+    <form class="p-4" action="{{ route('view-usuaris-filtrats') }}" method="POST">
+        @method('GET')
+        @csrf
+        <div class="field has-addons mb-3">
+            <input type="text" name="filtre" class="form-control form-control--filtrar" placeholder="Filtra per id, nom, email o telèfon">
+            <button type="submit" class="button button--filtrar">FILTRAR</button>
+        </div>
+    </form>
     <form class="p-4 mt-4 mb-4" action="{{ route('view-afegir-usuari') }}" method="POST">
         @method('GET')
         @csrf

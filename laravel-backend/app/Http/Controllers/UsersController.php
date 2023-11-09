@@ -4,12 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
     public function adminIndex(){
         $usuaris = User::all();
         return view('usuaris.index', ['usuaris' => $usuaris]);
+    }
+
+    public function adminFiltra(Request $request)
+    {
+        $usuaris = DB::table('users')
+        ->where('id', 'like', '%' . $request->filtre . '%')        
+        ->orWhere('name', 'like', '%' . $request->filtre . '%')
+        ->orWhere('email', 'like', '%' . $request->filtre . '%')
+        ->orWhere('telefon', 'like', '%' . $request->filtre . '%')
+        ->get();
+
+    return view('usuaris.index', ['usuaris' => $usuaris]);
     }
     
     public function adminStore(Request $request)
