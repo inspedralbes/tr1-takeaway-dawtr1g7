@@ -37,12 +37,11 @@
             <div v-if="mostrar('landing')" id="landing">
 
                 <div class="infoBotiga">
-                    <div class="login-btns-container">
+                    <div class="login-btns-container" v-if="!usuari">
                         <h6>Inicia sessió o registra't:</h6><br>
-                        <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar
+                        <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')">Iniciar
                             Sessió</button>
-                        <button class="botonsLandingLog" @click="cambiarDiv('registro')"
-                            v-if="!usuari">Registre</button>
+                        <button class="botonsLandingLog" @click="cambiarDiv('registro')">Registre</button>
                     </div>
                     <div class="msg-benvinguda" v-if="usuari">Benvingut {{ usuari.nom }}!</div>
                     <div id="textInfoBot">
@@ -216,9 +215,9 @@
             <div id="validacio" v-if="mostrar('validacio')">
                 <div id="dades">
                     <h2>TICKET</h2>
-                    <div v-if="!usuari" class="login-btns-container">
-                        <button @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar Sessió</button>
-                        <button @click="cambiarDiv('registro')" v-if="!usuari">Registre</button>
+                    <div v-if="!usuari" class="login-btns-container2">
+                        <button @click="cambiarDiv('iniciarSesion')" >Iniciar Sessió</button>
+                        <button @click="cambiarDiv('registro')">Registre</button>
                     </div>
                     <div v-if="usuari" class="msg-benvinguda">Hola {{ usuari.nom }}!</div>
                     <div>
