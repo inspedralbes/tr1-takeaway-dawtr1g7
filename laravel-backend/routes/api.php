@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/novaComanda', [ComandesController::class,'store']);
     Route::post('/logout', [AuthController::class,'logout']);
     Route::patch('/comanda/{id}', [ComandesController::class,'update']);
+    Route::delete('/comanda/{id}', [ComandesController::class,'destroy']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

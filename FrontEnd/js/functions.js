@@ -19,7 +19,7 @@ createApp({
             errorMsg: "",
             previewCategories: false,
             textBuscat: "",
-            categoriaActual:0,
+            categoriaActual: 0,
             comandaModificada: false,
             comptadorModificar: 0,
             comandesUsuari: []
@@ -57,7 +57,7 @@ createApp({
         },
         async crearComanda() {
 
-            if(this.comandaModificada == false) {
+            if (this.comandaModificada == false) {
                 if (!this.usuari) {
                     this.errorMsg = "Inicia sessió per a crear una comanda!"
                     return
@@ -109,8 +109,8 @@ createApp({
             }
             this.getLlistatComandesPerUsuari();
         },
-        async modificarComanda(index){
-            
+        async modificarComanda(index) {
+
             let comandaAuxiliar = {};
             comandaAuxiliar.id = this.comandesUsuari[index].id;
             comandaAuxiliar.estat = this.comandesUsuari[index].estat;
@@ -128,6 +128,31 @@ createApp({
             }
             this.cambiarDiv('botiga');
         },
+        async eliminarComanda(id) {
+            let url;
+            if (this.localhost) {
+                url = `http://localhost:8000/api/comanda/${id}`;
+            } else {
+                url = `../../laravel-backend/public/api/comanda/${id}`;
+            }
+
+            let response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.usuari.token}`
+                },
+            })
+            const jsonResponse = await response.json();
+            console.log(jsonResponse);
+            this.comandaModificada = false
+            this.getLlistatComandesPerUsuari()
+        },
+        cancelarModificarComanda(){
+            this.carrito = [];
+            this.comandaModificada = false;
+            this.cambiarDiv('comandesUser');
+        },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
             if (id === 'botiga') {
@@ -136,13 +161,13 @@ createApp({
             }
             this.errorMsg = ""
             this.botigaStatus = id;
-            if (this.botigaStatus!='botiga') {
-                this.previewCarrito = false;              
+            if (this.botigaStatus != 'botiga') {
+                this.previewCarrito = false;
             }
-            
+
         },
         mostrar(id) {
-            
+
             return this.botigaStatus === id;
         },
         getCarrito() {
@@ -166,7 +191,7 @@ createApp({
         togglePreviewCarrito() {
             this.previewCategories = false
             this.previewCarrito = !this.previewCarrito;
-            if (this.botigaStatus!='botiga') {
+            if (this.botigaStatus != 'botiga') {
                 this.previewCarrito = false;
             }
         },
@@ -185,22 +210,22 @@ createApp({
         getLlibrePerId(id) {
             return this.llibres.find(llibre => llibre.id === id)
         },
-        buscarLlibres(textBuscat){
+        buscarLlibres(textBuscat) {
             this.indexLlibres = 0;
-            if(textBuscat == ""){
-                if(this.categoriaActual == 0){
+            if (textBuscat == "") {
+                if (this.categoriaActual == 0) {
                     this.llibresFiltrats = this.llibres
-                } else{
+                } else {
                     this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id == this.categoriaActual);
                 }
-            } else{
-                if(this.categoriaActual == 0){
+            } else {
+                if (this.categoriaActual == 0) {
                     this.llibresFiltrats = this.llibres.filter(llibre => llibre.titol.toLowerCase().includes(textBuscat.toLowerCase()));
-                } else{
-                    this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual );
+                } else {
+                    this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual);
                 }
             }
-         },
+        },
         getQuantitatTotalCarrito() {
             let quantitat = 0
             this.carrito.forEach(llibre => {
@@ -301,7 +326,7 @@ createApp({
             }
         },
         redirectToAdminPage() {
-            if(this.localhost) {
+            if (this.localhost) {
                 window.location.href = 'http://127.0.0.1:8000'
             } else {
                 window.location.href = '../../laravel-backend/public/'
@@ -328,8 +353,6 @@ createApp({
                 estat: jsonResponse[0].estat,
                 productes: jsonResponse[0].llibres
             }
-            console.log("XXXXX")
-            console.log(this.comanda)
         },
         async getUltimaComandaPerUsuari() {
             let url;
@@ -346,9 +369,9 @@ createApp({
             })
             let jsonResponse = await response.json()
             this.comanda = {
-                id: jsonResponse[jsonResponse.length-1].id,
-                estat: jsonResponse[jsonResponse.length-1].estat,
-                productes: jsonResponse[jsonResponse.length-1].llibres
+                id: jsonResponse[jsonResponse.length - 1].id,
+                estat: jsonResponse[jsonResponse.length - 1].estat,
+                productes: jsonResponse[jsonResponse.length - 1].llibres
             }
             console.log("Comanda dins funcio")
             console.log(this.comanda)
@@ -474,27 +497,5 @@ createApp({
                 this.indexLlibres -= this.llibresMostrats;
             }
         },
-        eliminarComanda(id) {
-      const index = this.carrito.findIndex(comanda => comanda.id === id);
-      if (index !== -1) {
-        this.carrito.splice(index, 1);
-        this.enviarIdAlBackend(id);
-      }
-    },
-    enviarIdAlBackend(id) {
-      fetch('/ruta/' + id, {
-        method: 'DELETE'
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log('Comanda eliminada en el backend correctamente.');
-        } else {
-          console.error('Error al eliminar la comanda en el backend.');
-        }
-      })
-      .catch(error => {
-        console.error('Error en la solicitud al backend:', error);
-      });
-    },       
     }
 }).mount('#app');
