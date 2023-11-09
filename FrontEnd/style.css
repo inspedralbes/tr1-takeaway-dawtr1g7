@@ -916,6 +916,11 @@ footer {
     width: 100%;
 }
 
+.login-btns-container2 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .login-btns-container button, .login-btns-container2 button {
     padding: 8px 15px;
     background: var(--gradient-general);
