@@ -14,7 +14,7 @@
             @enderror
 
             <div class="field">
-                <label for="estat" class="label">Estat: </label>
+                <label for="estat" class="label">Estat</label>
                 <div class="select">
                 <select name="estat">
                     <option value="Pendent">Pendent</option>

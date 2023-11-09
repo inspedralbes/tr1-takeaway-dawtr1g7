@@ -35,6 +35,12 @@ class UsersController extends Controller
 
     public function adminUpdate(Request $request, string $id)
     {
+        $fields = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'telefon' => 'required|string|min:7',
+        ]);
+
         $usuari = User::find($id);
         $usuari->update($request->all());
         return redirect()->route('usuaris')->with('success', 'Usuari modificat correctament');

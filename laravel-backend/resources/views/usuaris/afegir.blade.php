@@ -31,20 +31,19 @@
                 <input type="text" id="mail" name="email" class="input">
             </div>
             <div class="field">
-                <label for="contrasenya" class="label">Password</label>
+                <label for="contrasenya" class="label">Contrasenya</label>
                 <input type="password" id="contrasenya" name="password" class="input">
             </div>
             <div class="field">
-                <label for="contrasenya" class="label">Confirma Password</label>
+                <label for="contrasenya" class="label">Confirmació contrasenya</label>
                 <input type="password" id="contrasenya" name="password_confirmation" class="input">
             </div>
             <div class="field">
-                <label for="telef" class="label">telefon</label>
+                <label for="telef" class="label">Telèfon</label>
                 <input type="text" id="telef" name="telefon" class="input">
             </div>
-            <button type="submit" class="button is-success is-rounded is-responsive mt-4">AFEGIR USUARI <img class="icon-right" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
-            <a href="{{ route('usuaris') }}" class="button is-danger is-rounded is-responsive mt-4">CANCEL·LAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
-            
+            <button type="submit" class="button button--icon is-success is-rounded is-responsive mt4"><p>AFEGIR USUARI</p><img class="icon" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
+            <a href="{{ route('usuaris') }}" class="button button--icon is-danger is-rounded is-responsive mt-4"><p>CANCEL·LAR</p><img class="icon" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
         </form>
     </div>
 @endsection

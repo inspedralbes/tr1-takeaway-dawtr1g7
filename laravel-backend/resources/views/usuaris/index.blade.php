@@ -9,7 +9,7 @@
     <form class="p-4 mt-4 mb-4" action="{{ route('view-afegir-usuari') }}" method="POST">
         @method('GET')
         @csrf
-        <button class="button is-success is-rounded is-responsive">AFEGIR USUARI<img class="icon-right" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
+        <button class="button button--icon is-success is-rounded is-responsive"><p>AFEGIR USUARI</p><img class="icon" src="{{url('/img/plus.png')}}" alt="suma" width=23 height=23></button>
     </form>
     
     <table class="table is-striped is-hoverable is-fullwidth">
