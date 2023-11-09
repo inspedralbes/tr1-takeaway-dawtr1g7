@@ -50,7 +50,7 @@ img {
     align-items: center;
 }
 
-#numQuatitatCarrito {
+#numQuantitatCarrito {
     font-size: 12px;
 }
 
@@ -95,7 +95,7 @@ img {
     padding: 5px;
 }
 
-#img_search {
+#containerBuscador__img_search {
     height: 100%;
     filter: invert(100%);
     background-color: var(--inverted-bc-buscador);
@@ -362,7 +362,7 @@ footer {
     margin-top: 20px;
 }
 
-.infoBotiga button {
+.landing__infoBotiga button {
     padding: 8px 15px;
     background: var(--gradient-general);
     border-radius: var(--border-rad);
@@ -370,7 +370,7 @@ footer {
     box-shadow: 1px 3px 2px #333;
 }
 
-.infoBotiga h2 {
+.landing__infoBotiga h2 {
     margin-bottom: 15px;
     background-image: linear-gradient(to left, #ac8ffc, #000, #6e3afc);
     background-clip: text;
@@ -378,12 +378,12 @@ footer {
     color: transparent;
 }
 
-.infoBotiga>#textInfoBot {
+.landing__infoBotiga>#textInfoBot {
     align-self: flex-end;
     gap: 15px;
 }
 
-.infoBotiga {
+.landing__infoBotiga {
     width: 80%;
     padding-bottom: 10%;
     display: flex;
@@ -395,11 +395,11 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
-.botonsLandingLog {
+.landing__botonsLandingLog {
     color: var(--white);
 }
 
-.botonsLandingLog:disabled {
+.landing__botonsLandingLog:disabled {
     background-color: #666;
 }
 
@@ -534,7 +534,7 @@ footer {
     align-items: center;
 }
 
-.producte {
+.graella__productes--producte {
     position: relative;
     border-radius: var(--border-rad);
     align-items: center;
