@@ -136,7 +136,8 @@
                         <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
                     </div>
                     <button class="boto_cistella" @click="cambiarDiv('validacio')">PAGAR</button>
-                    <button class="boto_cistella" @click="cancelarModificarComanda()" v-if="comandaModificada == true">CANCELAR MODIFICAR</button>
+                    <button class="boto_cistella" @click="cancelarModificarComanda()"
+                        v-if="comandaModificada == true">CANCELAR MODIFICAR</button>
                 </div>
 
                 <div id="containerBuscador">
@@ -250,7 +251,8 @@
                                     comanda</button>
                             </div>
                             <div v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
-                                <button class="comandes-btns" @click="eliminarComanda(actual.id)">Eliminar comanda</button>
+                                <button class="comandes-btns" @click="eliminarComanda(actual.id)">Eliminar
+                                    comanda</button>
                             </div>
                         </div>
                         <div id="InfoComanda">
