@@ -14,17 +14,17 @@
 <body>
     <div id="app">
         <header>
-            <div class="admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
+            <div class="header__admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
                 <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
             </div>
-            <div @click="togglePreviewCategories" v-if="mostrar('botiga')">
+            <div @click="header__togglePreviewCategories" v-if="mostrar('botiga')">
                 <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
             </div>
             <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutenberg</div>
             <div id="containerTogglePreviewCarrito" @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
                 <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
                 <div id="containerNumQuantitatCarrito">
-                    <div id="numQuatitatCarrito">{{ getQuantitatTotalCarrito() }}</div>
+                    <div id="header__numQuantitatCarrito">{{ getQuantitatTotalCarrito() }}</div>
                 </div>
             </div>
             <div v-if="mostrar('landing') && usuari" class="logout-btn">
@@ -35,7 +35,7 @@
         <div id="container">
             <div v-if="mostrar('landing')" id="landing">
 
-                <div class="infoBotiga">
+                <div class="landing__infoBotiga">
                     <div class="login-btns-container">
                         <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')" v-if="!usuari">Iniciar
                             Sessió</button>
@@ -123,8 +123,7 @@
                                 </div>
                             </div>
                             <div class="butonsSumaResta">
-                                <button class="botonsLandingLog"
-                                    @click="restarQuantitat(itemCarrito.id,false)">-</button>
+                                <button class="botonsLandingLog" @click="restarQuantitat(itemCarrito.id,false)">-</button>
                                 <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
                                 <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)">+</button>
                             </div>
@@ -137,13 +136,13 @@
 
                 <div id="containerBuscador">
                     <input @input="event => buscarLlibres(event.target.value)" placeholder="Buscar...">
-                    <button><img id="img_search"
+                    <button><img id="containerBuscador__img_search"
                             src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png"
                             alt="icon_lupa"></button>
                 </div>
 
                 <div id="graella__productes">
-                    <div class="producte"
+                    <div class="graella__productes--producte"
                         :class="{ producteCarrito: getProducteInCarrito(llibre.id), producteAcabat: llibre.stock <= 0 }"
                         v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
                         @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
