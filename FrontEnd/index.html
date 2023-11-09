@@ -241,12 +241,12 @@
                     <div id="resumComanda">
                         <div id="idComanda">
                             Comanda <strong>{{ actual.id }}</strong>
-                            <div id="containerTornarInici" v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
-                                <button class="botonsLandingLog" @click="modificarComanda(index)">Modificar
+                            <div v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                <button class="comandes-btns" @click="modificarComanda(index)">Modificar
                                     comanda</button>
                             </div>
-                            <div id="containerTornarInici" v-if="actual.estat === 'Pendent'">
-                                <button class="botonsLandingLog" @click="() => eliminarComanda(actual.id)">Eliminar comanda</button>
+                            <div v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                <button class="comandes-btns" @click="eliminarComanda(actual.id)">Eliminar comanda</button>
                             </div>
                         </div>
                         <div id="InfoComanda">
