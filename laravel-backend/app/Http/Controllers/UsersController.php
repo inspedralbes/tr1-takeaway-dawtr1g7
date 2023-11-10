@@ -19,7 +19,6 @@ class UsersController extends Controller
         ->where('id', 'like', '%' . $request->filtre . '%')        
         ->orWhere('name', 'like', '%' . $request->filtre . '%')
         ->orWhere('email', 'like', '%' . $request->filtre . '%')
-        ->orWhere('telefon', 'like', '%' . $request->filtre . '%')
         ->get();
 
     return view('usuaris.index', ['usuaris' => $usuaris]);

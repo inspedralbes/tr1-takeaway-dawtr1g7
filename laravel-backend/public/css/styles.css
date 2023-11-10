@@ -207,6 +207,15 @@ h5 {
     margin-bottom: 3px;
 }
 
+.linia-comanda {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.linia-comanda--left {
+    float: left;
+}
+
 /*****ADMIN FOOTER*****/
 footer {
     grid-area: footer;

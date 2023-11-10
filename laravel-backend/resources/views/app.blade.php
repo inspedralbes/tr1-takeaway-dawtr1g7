@@ -39,9 +39,9 @@
 
     <header>
       <div class="header__icon">
-        <img class="iconsLanding" src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png" alt="LogOut">
+        <img class="iconsLanding" src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png" alt="LogOut" onclick="redirectToLandingPage()">
       </div>
-      <div class="header__title">Galaxia Gutenberg</div>
+      <div class="header__title" onclick="redirectToLandingPage()">Galaxia Gutenberg</div>
     </header>
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -90,6 +90,17 @@
         });
       });
     </script>
+    <script>
+    function redirectToLandingPage() {
+        let localhost = window.location.hostname == '127.0.0.1'
+
+        if (localhost) {
+            window.location.href = 'http://127.0.0.1:5501/FrontEnd/'
+        } else {
+            window.location.href = '../../FrontEnd'
+        }
+    }
+</script>
 
   </body>
 

@@ -220,7 +220,7 @@ class ComandesController extends Controller
         $comandes = DB::table('comandas')
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
-            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
             ->get();
 
         $num_llibres = DB::table('llibre_comanda')
