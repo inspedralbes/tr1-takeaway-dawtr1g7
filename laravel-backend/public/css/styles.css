@@ -1,46 +1,100 @@
+:root {
+    --gradient-general: linear-gradient(to left, #52389b, #764fe2);
+    --dark-blue: #64729c;
+    --light-blue: #b8caff; 
+    --white: white;
+    --bc-buscador: #52389b;
+    --inverted-bc-buscador: #ADC764;
+    --black:#000;
+    --gray: rgb(30, 30, 30);
+    --border-rad: 8px;
+}
+
+/*****ADMIN HEADER*****/
+
+header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: var(--gradient-general);
+    color: var(--white);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.header__icon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.header__icon > img {
+    filter: brightness(0) invert(1);
+    width: 30px;height: 30px;
+}
+
+.header__title {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
 /*****ADMIN NAVBAR*****/
 
 .navbar {
     position: sticky;
-    top: 0;
+    top: 54px;
 }
 
 .navbar-brand > a.navbar-item:hover, .navbar-start > a.navbar-item:hover {
-    background-color: rgba(72,95,199, 0.5);
+    background-color: var(--light-blue);
+    color: var(--black)
 }
 
 /*****ADMIN LANDING PAGE*****/
 
-.container__button {
+.admin-landing-container__button {
     display: flex;
     justify-content: center;
 }
 
-.cataleg {
-    width: 60%;
+.button__cataleg {
+    width: 70%;
+    padding: 30px;
+    background: var(--gradient-general);
+    color: var(--white);
+    border: none;
 }
 
-.info {
-    width: 60%;
+.button__cataleg:hover {
+    background: var(--light-blue);
+    color: var(--black);
+}
+
+.admin-landing-container__info {
+    width: 70%;
     margin: 30px auto;
-    background-color: rgba(72,95,199, 0.5);
-    color: black;
-    border: 2px solid rgba(72,95,199);
+    background-color: var(--light-blue);
+    color: var(--black);
+    border: 2px solid var(--bc-buscador);
     padding: 15px;
     text-align: center;
     font-size: 0.9em;
 }
 
-.graella {
-    width: 60%;
-    margin: 30px auto;
+.seccions-admin {
+    width: 70%;
+    margin: 40px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 30px 30px;
 }
 
-.item {
+.seccions-admin__item {
     padding: 0;
     border: none;
     background: none;
@@ -49,34 +103,34 @@
     margin: auto;
     position: relative;
     border-radius: 20px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px var(--black);
 }
 
-.item img{
+.seccions-admin__item > img{
     width: 200px;
     height: 200px;
     object-fit: cover;
     margin: auto;
     display: block;
     border-radius: 20px;
-    background-color: white;
+    background-color: var(--white);
     opacity: 1;
     transition: 0.5s;
 }
 
-.item:hover > img{
+.seccions-admin__item:hover > img{
     opacity: 0.3;
 }
 
-.item h2{
+.seccions-admin__item h2{
     padding: 10px;
     position: absolute; /*em desenganxo de la capa, soc una nova capa, i la meva width es jo mateix*/
     text-align: center;
-    text-shadow: 2px 2px #ffffff;
+    text-shadow: 2px 2px var(--white);
     width: 100%;
     bottom: 0;
     margin: 0;
-    color: rgb(30, 30, 30);
+    color: var(--gray);
     background-color: rgba(255,255,255, 0.5);
     border-radius: 0px 0px 20px 20px;
     font-size: 1.25rem;
@@ -84,24 +138,48 @@
     transition: 0.5s;
 }
 
-.item:hover > h2{
+.seccions-admin__item:hover > h2{
     transform: translate(0px, -75px);
     font-size: 1.75rem;
 }
 
-/**/
+/*****ADMIN SECCIONS*****/
+
+.form-control--filtrar {
+    width: 100%;
+    border-width: 1px;
+    border-right: none;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 15px;
+}
+
+.form-control--filtrar-no-button {
+    width: 100%;
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 15px;
+    height: 40px;
+}
+
+.button--filtrar {
+    background: var(--gradient-general);
+    border: 1px solid var(--black);
+    color: var(--white);
+    border-radius: 0px 5px 5px 0px;
+}
 
 table {
+    margin: 5px;
     font-size: 0.6em;
     width: 100%;
 }
 
 .table.is-hoverable.is-striped tbody tr:not(:first-child):hover {
-    background-color: rgba(72,95,199, 0.5);
-  }
+    background-color: var(--light-blue);
+}
   
 .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
-    background-color: rgba(72,95,199, 0.5);
+    background-color: var(--light-blue);
 }
 
 .is-centered{
@@ -114,8 +192,41 @@ table {
     height: 30px;
 }
 
-.icon-right {
-    padding-left: 5px;
+.button--icon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 5px;
+    width: fit-content;
+}
+
+h5 {
+    color: var(--bc-buscador);
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.linia-comanda {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.linia-comanda--left {
+    float: left;
+}
+
+/*****ADMIN FOOTER*****/
+footer {
+    grid-area: footer;
+    background: var(--gradient-general);
+    color: var(--white);
+    font-size: 0.8em;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 @media (min-width: 428px) {
@@ -127,7 +238,7 @@ table {
 
 @media (min-width: 769px) {
     
-    .landing-container {
+    .admin-landing-container {
         width: 70%;
         margin: auto; 
     }

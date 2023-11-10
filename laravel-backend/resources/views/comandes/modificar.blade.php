@@ -14,18 +14,18 @@
             @enderror
 
             <div class="field">
-                <label for="estat" class="label">Estat: </label>
+                <label for="estat" class="label">Estat</label>
                 <div class="select">
                 <select name="estat">
-                    <option value="Recollit">Pendent</option>
-                    <option value="Recollit">En preparació</option>
-                    <option value="Recollit">Esperant a ser recollida</option>
-                    <option value="Recollit">Recollida</option>
+                    <option value="Pendent">Pendent</option>
+                    <option value="En preparació">En preparació</option>
+                    <option value="Esperant a ser recollida">Esperant a ser recollida</option>
+                    <option value="Recollida">Recollida</option>
                 </select>
                 </div>
             </div>
-            <input type="submit" class="button is-warning is-rounded is-responsive mt-4" value="MODIFICAR ESTAT">
-            <a href="{{ route('comandes') }}" class="button is-danger is-rounded is-responsive mt-4">CANCEL·LAR <img class="icon-right" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
+            <button type="submit" class="button button--icon is-warning is-rounded is-responsive mt-4"><p>MODIFICAR ESTAT</p><img class="icon" src="{{url('/img/update.png')}}" alt="modificar" width=23 height=23></button>
+            <a href="{{ route('comandes') }}" class="button button--icon is-danger is-rounded is-responsive mt-4"><p>CANCEL·LAR</p><img class="icon" src="{{url('/img/cross.png')}}" alt="creu" width=30 height=30></a>
         </form>
     </div>
 @endsection

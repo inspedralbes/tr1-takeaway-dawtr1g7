@@ -19,7 +19,12 @@ createApp({
             errorMsg: "",
             previewCategories: false,
             textBuscat: "",
-            categoriaActual:0
+            categoriaActual: 0,
+            comandaModificada: false,
+            comptadorModificar: 0,
+            comandesUsuari: [],
+            loadingStatus: false,
+            comandaEliminada: 0
         }
     },
 
@@ -38,7 +43,6 @@ createApp({
             }
             let response = await fetch(url)
             let productes = await response.json()
-            console.log(productes)
             this.llibres = productes
             this.llibresFiltrats = productes
         },
@@ -51,7 +55,6 @@ createApp({
             }
             let response = await fetch(url)
             let categoriesProductes = await response.json()
-            console.log(categoriesProductes)
             this.categories = categoriesProductes
         },
         async crearComanda() {
@@ -60,27 +63,102 @@ createApp({
                 return
             }
 
-            let carrito = JSON.parse(JSON.stringify(this.carrito));
-            let jsonObject = { "carrito": carrito }
-            let url
-            if (this.localhost) {
-                url = "http://localhost:8000/api/novaComanda"
+            this.cambiarDiv('loading');
+            if (this.comandaModificada == false) {
+                let carrito = JSON.parse(JSON.stringify(this.carrito));
+                let jsonObject = { "carrito": carrito }
+                let url
+                if (this.localhost) {
+                    url = "http://localhost:8000/api/novaComanda"
+                } else {
+                    url = '../../laravel-backend/public/api/novaComanda'
+                }
+
+                let response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${this.usuari.token}`
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
+
+                const jsonResponse = await response.json();
+                this.crearNovaComanda(jsonResponse);
             } else {
-                url = '../../laravel-backend/public/api/novaComanda'
+                let carrito = JSON.parse(JSON.stringify(this.carrito));
+                let jsonObject = { "carrito": carrito }
+                let url
+                if (this.localhost) {
+                    url = "http://localhost:8000/api/comanda/" + this.comanda.id
+                } else {
+                    url = '../../laravel-backend/public/api/comanda/' + this.comanda.id
+                }
+
+                let response = await fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${this.usuari.token}`
+                    },
+                    body: JSON.stringify(jsonObject)
+                })
+                const jsonResponse = await response.json();
+                this.crearNovaComanda(jsonResponse);
+                this.comandaModificada = false;
+            }
+            this.getLlibres()
+            await this.getLlistatComandesPerUsuari();
+            this.comanda = { productes: [] }
+        },
+        async modificarComanda(index) {
+
+            let comandaAuxiliar = {};
+            comandaAuxiliar.id = this.comandesUsuari[index].id;
+            comandaAuxiliar.estat = this.comandesUsuari[index].estat;
+            comandaAuxiliar.productes = this.comandesUsuari[index].llibres;
+
+            this.comandaModificada = true;
+            this.carrito = [];
+            this.comanda = comandaAuxiliar;
+            for (let i = 0; i < this.comanda.productes.length; i++) {
+                let llibre = {};
+                llibre.id = this.comanda.productes[i].id;
+                llibre.quantitat = this.comanda.productes[i].quantitat;
+                llibre.preu = this.comanda.productes[i].preu;
+                this.carrito.push(llibre);
+            }
+            this.cambiarDiv('botiga');
+        },
+        async eliminarComanda(id) {
+            this.comandaEliminada = id;
+            this.loadingStatus = !this.loadingStatus;
+            let url;
+            if (this.localhost) {
+                url = `http://localhost:8000/api/comanda/${id}`;
+            } else {
+                url = `../../laravel-backend/public/api/comanda/${id}`;
             }
 
             let response = await fetch(url, {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${this.usuari.token}`
                 },
-                body: JSON.stringify(jsonObject)
             })
-
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            this.crearNovaComanda(jsonResponse);
+            this.comandaModificada = false
+            this.getLlibres()
+            this.getLlistatComandesPerUsuari()
+
+            this.comandaEliminada = 0;
+            this.loadingStatus = !this.loadingStatus;
+        },
+        cancelarModificarComanda() {
+            this.carrito = [];
+            this.comandaModificada = false;
+            this.cambiarDiv('comandesUser');
         },
         cambiarDiv(id) {
             if (id === 'validacio' && this.carrito.length === 0) return;
@@ -90,8 +168,16 @@ createApp({
             }
             this.errorMsg = ""
             this.botigaStatus = id;
+            if (this.botigaStatus != 'botiga') {
+                this.previewCarrito = false;
+            }
+
+        },
+        mostrarloading(estat) {
+            return this.loadingStatus === estat;
         },
         mostrar(id) {
+
             return this.botigaStatus === id;
         },
         getCarrito() {
@@ -115,6 +201,9 @@ createApp({
         togglePreviewCarrito() {
             this.previewCategories = false
             this.previewCarrito = !this.previewCarrito;
+            if (this.botigaStatus != 'botiga') {
+                this.previewCarrito = false;
+            }
         },
         togglePreviewCategories() {
             this.previewCarrito = false
@@ -131,22 +220,22 @@ createApp({
         getLlibrePerId(id) {
             return this.llibres.find(llibre => llibre.id === id)
         },
-        buscarLlibres(){
+        buscarLlibres(textBuscat) {
             this.indexLlibres = 0;
-            if(this.textBuscat == ""){
-                if(this.categoriaActual == 0){
+            if (textBuscat == "") {
+                if (this.categoriaActual == 0) {
                     this.llibresFiltrats = this.llibres
-                } else{
+                } else {
                     this.llibresFiltrats = this.llibres.filter(llibre => llibre.categoria_id == this.categoriaActual);
                 }
-            } else{
-                if(this.categoriaActual == 0){
-                    this.llibresFiltrats = this.llibres.filter(llibre => llibre.titol.toLowerCase().includes(this.textBuscat.toLowerCase()));
-                } else{
-                    this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(this.textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual );
+            } else {
+                if (this.categoriaActual == 0) {
+                    this.llibresFiltrats = this.llibres.filter(llibre => llibre.titol.toLowerCase().includes(textBuscat.toLowerCase()));
+                } else {
+                    this.llibresFiltrats = this.llibresFiltrats.filter(llibre => llibre.titol.toLowerCase().includes(textBuscat.toLowerCase()) && llibre.categoria_id == this.categoriaActual);
                 }
             }
-         },
+        },
         getQuantitatTotalCarrito() {
             let quantitat = 0
             this.carrito.forEach(llibre => {
@@ -163,22 +252,21 @@ createApp({
         },
         getPreuTotalComanda() {
             let preu = 0
-            this.comanda.productes.forEach(llibre => {
+            this.getUltimaComandaUsuari().llibres.forEach(llibre => {
                 preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
         },
         getQuantitatTotalComanda() {
             let quantitat = 0
-            this.comanda.productes.forEach(llibre => {
+            this.getUltimaComandaUsuari().llibres.forEach(llibre => {
                 quantitat += llibre.quantitat
             });
             return quantitat
         },
         getProducteInCarrito(producteId) {
             let producte = this.carrito.find(item => item.id === producteId)
-            console.log(producte)
-            return producte !== undefined
+            return producte != undefined
         },
         crearNovaComanda(objecteComanda) {
             let novaComanda = {
@@ -188,7 +276,6 @@ createApp({
             }
             this.comanda = novaComanda
             this.carrito = []
-            console.log("creada")
             this.cambiarDiv('estat')
         },
         sumarQuantitat(id) {
@@ -199,6 +286,7 @@ createApp({
             if (comprovacio && this.quantitat !== 0) {
                 this.quantitat--
                 this.treureLlibreCarrito(id)
+
             } else {
                 this.treureLlibreCarrito(id)
             }
@@ -232,6 +320,9 @@ createApp({
             // Filtrar llibres amb quantitat zero
             let newCarrito = this.carrito.filter(item => item.quantitat != 0)
             this.carrito = newCarrito
+            if (this.carrito.length <= 0) {
+                this.previewCarrito = false;
+            }
         },
         guardarUsuari(dadesUsuari) {
             this.usuari = {
@@ -241,7 +332,6 @@ createApp({
                 telefon: dadesUsuari.user.telefon,
                 token: dadesUsuari.token.split('|')[1]
             }
-            console.log(this.usuari)
             this.errorMsg = ""
             if (this.carrito.length > 0) {
                 this.cambiarDiv('validacio')
@@ -250,7 +340,7 @@ createApp({
             }
         },
         redirectToAdminPage() {
-            if(this.localhost) {
+            if (this.localhost) {
                 window.location.href = 'http://127.0.0.1:8000'
             } else {
                 window.location.href = '../../laravel-backend/public/'
@@ -270,16 +360,75 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
+            this.comandesUsuari = jsonResponse;
             this.comanda = {
                 id: jsonResponse[0].id,
                 estat: jsonResponse[0].estat,
                 productes: jsonResponse[0].llibres
             }
         },
+        async getUltimaComandaPerUsuari() {
+            let url;
+            if (this.localhost) {
+                url = `http://localhost:8000/api/comandes/user/${this.usuari.id}`
+            } else {
+                url = `../../laravel-backend/public/api/comandes/user/${this.usuari.id}`
+            }
+            let response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            })
+            let jsonResponse = await response.json()
+            this.comanda = {
+                id: jsonResponse[jsonResponse.length - 1].id,
+                estat: jsonResponse[jsonResponse.length - 1].estat,
+                productes: jsonResponse[jsonResponse.length - 1].llibres
+            }
+            return this.comanda;
+        },
+        async getLlistatComandesPerUsuari() {
+            let url;
+            if (this.localhost) {
+                url = `http://localhost:8000/api/comandes/user/${this.usuari.id}`
+            } else {
+                url = `../../laravel-backend/public/api/comandes/user/${this.usuari.id}`
+            }
+            let response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            })
+            let jsonResponse = await response.json();
+            if (jsonResponse.status !== 'error') {
+                this.comandesUsuari = jsonResponse;
+            } else {
+                this.comandesUsuari = []
+            }
+        },
+        getQuantitatTotalCom(comanda) {
+            let quantitat = 0
+            comanda.llibres.forEach(llibre => {
+                quantitat += llibre.quantitat
+            });
+            return quantitat
+        },
+        getPreuTotalCom(comanda) {
+            let preu = 0
+            comanda.llibres.forEach(llibre => {
+                preu += llibre.preu * llibre.quantitat
+            });
+            return preu.toFixed(2)
+        },
+        getUltimaComandaUsuari() {
+            return this.comandesUsuari[this.comandesUsuari.length - 1]
+        },
 
         // USUARIS
         async registrarUsuari() {
+            this.loadingStatus = !this.loadingStatus
             let jsonObject = {
                 name: document.getElementById("nomRegistre").value,
                 email: document.getElementById("correuRegistre").value,
@@ -303,20 +452,20 @@ createApp({
                 body: JSON.stringify(jsonObject)
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             if (!jsonResponse.errors) {
                 this.guardarUsuari(jsonResponse)
             } else {
                 this.errorMsg = jsonResponse.message
             }
+            this.loadingStatus = !this.loadingStatus
         },
 
         async iniciarSessio() {
+            this.loadingStatus = !this.loadingStatus
             let jsonObject = {
                 email: document.getElementById("correuIniciSessio").value,
                 password: document.getElementById("passwordIniciSesio").value
             }
-            console.log(jsonObject)
             let url;
             if (this.localhost) {
                 url = "http://localhost:8000/api/login"
@@ -332,13 +481,13 @@ createApp({
                 body: JSON.stringify(jsonObject)
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             if (!jsonResponse.errors) {
                 this.guardarUsuari(jsonResponse)
                 this.getComandaPerUsuari()
             } else {
                 this.errorMsg = jsonResponse.message
             }
+            this.loadingStatus = !this.loadingStatus
         },
 
         async tancarSessio() {
@@ -357,19 +506,21 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            console.log(jsonResponse)
             this.usuari = null
             this.comanda = { productes: [] }
         },
-        endevant() {
+        seguentPagina() {
             if (this.indexLlibres < this.llibresFiltrats.length - this.llibresMostrats) {
                 this.indexLlibres += this.llibresMostrats;
             }
         },
-        enrere() {
+        paginaAnterior() {
             if (this.indexLlibres >= this.llibresMostrats) {
                 this.indexLlibres -= this.llibresMostrats;
             }
+        },
+        comandaEliminat(id) {
+            return this.comandaEliminada == id;
         }
     }
 }).mount('#app');

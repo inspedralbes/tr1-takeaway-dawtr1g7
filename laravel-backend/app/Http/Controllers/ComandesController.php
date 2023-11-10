@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comanda;
+use App\Models\Llibre;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\QrCodeontroller;
 use App\Http\Controllers\SendMailPDFController;
@@ -30,7 +31,7 @@ class ComandesController extends Controller
         $idUsuari = $usuari->id;
 
         $comanda = new Comanda();
-        $comanda->estat = 'En preparació';
+        $comanda->estat = 'Pendent';
         $comanda->user_id = $idUsuari;
 
         $llibresComanda = $request->input('carrito');
@@ -38,18 +39,50 @@ class ComandesController extends Controller
 
         // Insertar valors a la taula llibre_comanda
         if (is_array($llibresComanda) && count($llibresComanda) > 0) {
-            // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
-            foreach ($llibresComanda as $llibre) {
-                $lineesComanda[$llibre['id']] = [
-                    'quantitat' => $llibre['quantitat'],
-                    'preu' => $llibre['preu'],
-                ];
+            DB::beginTransaction(); // Iniciar transacció
+
+            try {
+                // Per cada objecte de l'array, popular array 'lineesComanda' amb la quantitat i el preu rebuts
+                foreach ($llibresComanda as $llibre) {
+                    if ($llibre['quantitat']<=0) {
+                        return response()->json([
+                            'status' => 'error', 
+                            'message' => 'Quantitat no pot ser menor o igual a zero'
+                        ]);
+                    }
+
+                    $llibreInfo = DB::table('llibres')->where('id', $llibre['id'])->first();
+
+                    if (!$llibreInfo || $llibreInfo->stock < $llibre['quantitat']) {
+                        throw new \Exception('Stock insuficient per al llibre ID: ' . $llibre['id']);
+                    }
+
+                    DB::table('llibres')
+                        ->where('id', $llibre['id'])
+                        ->decrement('stock', $llibre['quantitat']);
+
+                    $lineesComanda[$llibre['id']] = [
+                        'quantitat' => $llibre['quantitat'], 
+                        'preu' => $llibreInfo->preu, 
+                    ];
+                }
+
+                $comanda->save();
+                $comanda->llibres()->attach($lineesComanda);
+
+                DB::commit(); // Confirmar canvis si tot va bé
+
+                $this->sendMail($comanda->id, 0);
+                return response()->json($comanda);
+            } catch (\Exception $e) {
+                DB::rollBack(); // Desfer canvis en cas d'error
+                return response()->json([
+                    'status'=> 'error',
+                    'message'=> $e->getMessage()   
+                ], 422); 
             }
-            $comanda->save();
-            $comanda->llibres()->attach($lineesComanda);
-            $this->sendMail($comanda->id, 0);
-            return response()->json($comanda);
         }
+            
 
         // Si no s'a enviat ningun array, retorna error
         return response()->json([
@@ -64,23 +97,159 @@ class ComandesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comanda = Comanda::find($id);
+            
+        
+        return $comanda;
+        
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        //busca comanda
+        $comanda = Comanda::find($id);
+        $usuari = $request->user();
+
+        //si troba la comanda...
+        if($comanda){
+            if($usuari->id != $comanda->user_id){
+                return response()->json([
+                    'status' => 'error', 
+                    'message' => 'Usuari no coincideix!',
+                ]);
+            }
+
+            // Comprova si l'estat de la comanda és 'Pendent'
+            if ($comanda->estat != 'Pendent') {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'La comanda només es pot eliminar si està en estat Pendent.',
+                ], 403);
+            }
+    
+            $llibresComanda = $request->input('carrito');
+            $lineesComanda = [];
+    
+            if (is_array($llibresComanda) && count($llibresComanda) > 0) {
+                DB::beginTransaction();
+
+                try {
+                    $llibresActuals = $comanda->llibres; // Recupera llibres actuals de la comanda
+
+                    foreach ($llibresActuals as $llibreActual) {
+                        // Incrementa el stock dels llibres eliminats de la comanda
+                        Llibre::find($llibreActual->id)->increment('stock', $llibreActual->pivot->quantitat);
+                    }
+
+                    $comanda->llibres()->detach(); // Elimina les relacions actuals
+
+                    foreach ($llibresComanda as $llibre) {
+                        if ($llibre['quantitat'] <= 0) {
+                            throw new \Exception('Quantitat no pot ser menor o igual a zero');
+                        }
+    
+                        $llibreBackEnd = Llibre::find($llibre['id']);
+    
+                        if (!$llibreBackEnd || $llibreBackEnd->stock < $llibre['quantitat']) {
+                            throw new \Exception('Stock insuficient per al llibre ID: ' . $llibre['id']);
+                        }
+    
+                        $llibreBackEnd->decrement('stock', $llibre['quantitat']);
+    
+                        $lineesComanda[$llibreBackEnd->id] = [
+                            'quantitat' => $llibre['quantitat'],
+                            'preu' => $llibreBackEnd->preu,
+                        ];
+                    }
+    
+                    $comanda->llibres()->attach($lineesComanda);
+    
+                    DB::commit();
+    
+                    return response()->json($comanda);
+                } catch (\Exception $e) {
+                    DB::rollBack();
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ], 422);
+                }
+            }
+
+            // Si no s'ha enviat ningun array, retorna error
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No hi han elements a la comanda!',
+            ], 422);
+        }
+
+        // Si no es troba la comanda, retorna error
+        return response()->json([
+            'status' => 'error',
+            'message' => 'No existeix la comanda!'
+        ], 404);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        // Busca la comanda
+        $comanda = Comanda::find($id);
+        $usuari = $request->user();
+
+        // Comprova si la comanda existeix
+        if (!$comanda) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No existeix la comanda!',
+            ], 404);
+        }
+
+        // Comprova si l'usuari coincideix amb el propietari de la comanda
+        if ($usuari->id != $comanda->user_id) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Usuari no coincideix!',
+            ], 403);
+        }
+
+        // Comprova si l'estat de la comanda és 'Pendent'
+        if ($comanda->estat != 'Pendent') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'La comanda només es pot eliminar si està en estat Pendent.',
+            ], 403);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // Incrementa l'estoc dels llibres de la comanda abans d'eliminar-la
+            foreach ($comanda->llibres as $llibre) {
+                Llibre::find($llibre->id)->increment('stock', $llibre->pivot->quantitat);
+            }
+
+            // Elimina la comanda
+            $comanda->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Comanda eliminada correctament.',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 422);
+        }
     }
 
     public function search(string $userId)
@@ -110,7 +279,7 @@ class ComandesController extends Controller
         $comandes = DB::table('comandas')
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
-            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
             ->get();
 
         $num_llibres = DB::table('llibre_comanda')
@@ -121,6 +290,69 @@ class ComandesController extends Controller
      return view('comandes.index', ['comandes' => $comandes], ['num_llibres' => $num_llibres]);
 
     }
+
+    public function adminFiltra(Request $request)
+    {
+     
+        $filtre_estats = $request->request->all();
+        array_splice($filtre_estats, 0, 2);
+        array_splice($filtre_estats, count($filtre_estats)-1, 1);
+        
+        $filtre_id = $request->request->all();
+        $filtre_id = array_pop($filtre_id);
+
+        $comandes = [];
+        $num_llibres = [];
+        
+        if (count($filtre_estats) > 0 && $filtre_id != null) {
+            $comandes = DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
+            ->get();
+        
+            $num_llibres =  DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('llibre_comanda.comanda_id', DB::raw('count(*) as total'))
+            ->groupBy('llibre_comanda.comanda_id')    
+            ->get();
+        } else if ((count($filtre_estats) > 0 && $filtre_id == null)) {
+            $comandes = DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
+            ->get();
+        
+            $num_llibres =  DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->whereIn('comandas.estat', $filtre_estats)
+            ->select('llibre_comanda.comanda_id', DB::raw('count(*) as total'))
+            ->groupBy('llibre_comanda.comanda_id')    
+            ->get();
+        } else if (count($filtre_estats) == 0 && $filtre_id != null) {
+            $comandes = DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
+            ->get();
+        
+            $num_llibres =  DB::table('comandas')
+            ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
+            ->where('comandas.id', '=', $filtre_id)
+            ->select('llibre_comanda.comanda_id', DB::raw('count(*) as total'))
+            ->groupBy('llibre_comanda.comanda_id')    
+            ->get();
+        }
+
+     return view('comandes.index', ['comandes' => $comandes], ['num_llibres' => $num_llibres]);
+    }
+
 
     public function adminShow($id)
     {
@@ -165,4 +397,3 @@ class ComandesController extends Controller
         $mail->sendMailWithPDF($contingut_mail, $action_code);
     }
 }
-
