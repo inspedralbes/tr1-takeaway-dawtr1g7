@@ -21,3 +21,4 @@ La pantalla de pagament inclou un resum de la comanda i un formulari per recopil
 - [Taiga.io](https://tree.taiga.io/project/santipu03-tr1g7)
 - [URL de Preproducció](http://tr1g7.daw.inspedralbes.cat)
 - [URL de Producció (amb domini registrat)](http://galaxiagutemberg.daw.inspedralbes.cat)
+
