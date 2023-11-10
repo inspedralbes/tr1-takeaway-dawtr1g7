@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
             <h5>Identificador</h5>
-            <input type="text" name="id" class="form-control" placeholder="Filtra per id">
+            <input type="text" name="id" class="form-control form-control--filtrar-no-button" placeholder="Filtra per id">
         </div>
         <button type="submit" class="button button--filtrar is-rounded is-responsive">FILTRAR</button>
     </form>  
@@ -44,10 +44,10 @@
                     <tr>
                         <td>{{ $comanda->id}}</td>
                         <td><a href="{{ route('view-modificar-comanda', ['id' => $comanda->id]) }}">{{ $comanda->estat}}</a></td>
-                        <td><ul><li>{{ $comanda->titol }} {{ $comanda->preu }}</li>
+                        <td><ul><li class="linia-comanda"><span class="linia-comanda--left">{{ $comanda->titol }}</span> {{ $comanda->preu }} * {{ $comanda->quantitat }}</li>
                     @php($comanda_actual = $comanda->id)
                     @else
-                    <li>{{ $comanda->titol}} {{ $comanda->preu }}</li>
+                    <li class="linia-comanda"><span class="linia-comanda--left">{{ $comanda->titol }}</span> {{ $comanda->preu }} * {{ $comanda->quantitat }}</li>
                     @endif
                 @php($i++)
                 @if ($i == $num_llibres[$j]->total)

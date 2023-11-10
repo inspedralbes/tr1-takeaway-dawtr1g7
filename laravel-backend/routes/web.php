@@ -48,6 +48,7 @@ Route::patch('/comandes/modificar/{id}', [ComandesController::class, 'adminUpdat
 
 //RUTES USUARIS
 Route::get('/usuaris', [UsersController::class, 'adminIndex'])->name('usuaris');
+Route::get('/usuaris/filtre', [UsersController::class, 'adminFiltra'])->name('view-usuaris-filtrats');
 Route::get('/usuari/afegir',  function () { return view('usuaris.afegir');})->name('view-afegir-usuari');
 Route::post('/usuari/afegir', [UsersController::class, 'adminStore'])->name('afegir-usuari');
 
