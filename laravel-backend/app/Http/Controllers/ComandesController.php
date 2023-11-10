@@ -310,7 +310,7 @@ class ComandesController extends Controller
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
             ->whereIn('comandas.estat', $filtre_estats)
             ->where('comandas.id', '=', $filtre_id)
-            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
             ->get();
         
             $num_llibres =  DB::table('comandas')
@@ -325,7 +325,7 @@ class ComandesController extends Controller
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
             ->whereIn('comandas.estat', $filtre_estats)
-            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
             ->get();
         
             $num_llibres =  DB::table('comandas')
@@ -339,7 +339,7 @@ class ComandesController extends Controller
             ->join('llibre_comanda', 'comandas.id', '=', 'llibre_comanda.comanda_id')
             ->join('llibres', 'llibres.id', '=', 'llibre_comanda.llibre_id')
             ->where('comandas.id', '=', $filtre_id)
-            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu')
+            ->select('comandas.id', 'comandas.estat', 'llibres.titol', 'llibres.preu', 'llibre_comanda.quantitat')
             ->get();
         
             $num_llibres =  DB::table('comandas')
