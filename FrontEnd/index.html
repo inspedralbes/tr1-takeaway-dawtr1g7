@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Galaxia Gutemberg</title>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="admin-btn" v-on:click="redirectToAdminPage()"
+                v-if="mostrar('landing') && usuari && usuari.nom === 'admin'">
+                <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
+            </div>
+            <div @click="togglePreviewCategories()" v-if="mostrar('botiga')">
+                <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" alt="" class="icon">
+            </div>
+            <div class="header-title" @click="cambiarDiv('landing')">Galaxia Gutemberg</div>
+            <div id="containerTogglePreviewCarrito" @click="togglePreviewCarrito()" v-if="mostrar('botiga')">
+                <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/shopping-304640_1280.png" alt="" class="icon">
+                <div id="containerNumQuantitatCarrito">
+                    <div id="numQuatitatCarrito">{{ getQuantitatTotalCarrito() }}</div>
+                </div>
+            </div>
+            <div v-if="mostrar('landing') && usuari" class="logout-btn">
+                <img class="iconsLanding" @click="tancarSessio()"
+                    src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png" alt="LogOut">
+            </div>
+        </header>
+        <div id="container">
+
+            <div v-if="mostrar('landing')" id="landing">
+
+                <div class="infoBotiga">
+                    <div class="login-btns-container" v-if="!usuari">
+                        <h6>Inicia sessió o registra't:</h6><br>
+                        <button class="botonsLandingLog" @click="cambiarDiv('iniciarSesion')">Iniciar
+                            Sessió</button>
+                        <button class="botonsLandingLog" @click="cambiarDiv('registro')">Registre</button>
+                    </div>
+                    <div class="msg-benvinguda" v-if="usuari">Benvingut {{ usuari.nom }}!</div>
+                    <div id="textInfoBot">
+                        <img src="./img/imgDesk.jpg" alt="" id="imgDesk">
+                        <h2>Informació</h2>
+                        <p>
+                            Aquí, cada llibre és un nou món a descobrir. <br>
+                            Embarca't en una odissea de paraules i somia amb nosaltres.
+                        </p>
+                    </div>
+                    <button @click="cambiarDiv('botiga')" id="cataleg-btn">CATÀLEG</button>
+                    <div class="direccioBotiga">
+                        <div id="direccio" class="direccioBotiga__item"><b>Direcció</b><br>Av. d'Esplugues,
+                            40<br>Esplugues de
+                            Ll. ,Barcelona<br>08034
+                        </div>
+                        <div id="infoContacte" class="direccioBotiga__item"><b>Telèfon:</b>
+                            (123) 456-7890<br>
+                            <div id="infoContacte" class="direccioBotiga__item"><b>Horaris d'atenció al
+                                    client</b><br>Dilluns a
+                                Divendres_ 08:00h - 13:30h | 15:30h - 21:00h <br>Dissabtes i Diumenges: Tancat</div>
+                        </div>
+                    </div>
+                </div>
+                <img src="./img/landingImg.jpeg" alt="" id="imgP">
+
+            </div>
+            <div v-if="mostrar('iniciarSesion')" id="iniciSessio">
+                <h2>INICI SESSIÓ</h2>
+                <label for="correu">Correu: </label>
+                <input type="text" id="correuIniciSessio">
+                <label for="password">Contrasenya: </label>
+                <input type="password" name="password" id="passwordIniciSesio">
+                <button @click="iniciarSessio()">
+                    <p v-if="mostrarloading(false)">Iniciar Sessió</p><span v-if="mostrarloading(true)"
+                        class="loader"></span>
+                </button>
+
+
+                <div class="error">
+                    {{ errorMsg }}
+                </div>
+            </div>
+            <div v-if="mostrar('registro')" id="registre">
+                <h3>REGISTRE</h3>
+                <label for="name">Nom: </label>
+                <input type="text" id="nomRegistre"><br>
+                <label for="correu">Correu: </label>
+                <input type="email" id="correuRegistre"><br>
+                <label for="password">Contrasenya: </label>
+                <input type="password" name="password" id="passwordRegistre"><br>
+                <label for="password2">Confirmació contrasenya: </label>
+                <input type="password" name="password2" id="password2Registre"><br>
+                <label for="telefon">Teléfon: </label>
+                <input type="text" name="telefon" id="telefonRegistre"><br>
+                <button @click="registrarUsuari()">
+                    <p v-if="mostrarloading(false)">Registrarme</p><span v-if="mostrarloading(true)" class="loader">
+                </button>
+                <div class="error">
+                    {{ errorMsg }}
+                </div>
+            </div>
+            <div v-if="mostrar('loading')" class="loading">
+                <span class="loaderCompra"></span>
+                <p>Processant...</p>
+            </div>
+            <div id="botiga" v-if="mostrar('botiga')">
+
+                <div id="categories" :class="{ active: previewCategories }">
+                    <div class="itemCategoriaTodas" @click="canviarCat(0),togglePreviewCategories()">
+                        <div>Mostrar totes</div>
+                    </div>
+
+                    <div class="itemCategoria" v-for="categoria in getCategories()"
+                        @click="canviarCat(categoria.id), togglePreviewCategories()">
+                        <div>{{ categoria.nom }}</div>
+                    </div>
+                </div>
+                <div v-if="comandesUsuari.length > 0" class="buttonComanda-container">
+                    <button class="buttonComanda" @click="cambiarDiv('comandesUser')">Les Meves Comandes</button>
+                </div>
+                <Transition name="animacioCarrito">
+                    <div id="previewCarrito" v-if="previewCarrito">
+                        <div>Cistella de la Compra</div>
+                        <hr>
+                        <div>
+                            <div v-for="itemCarrito in getCarrito()" :key="itemCarrito.id"
+                                class="carrito-item-container">
+                                <div class="carrito-item">
+                                    <img :src="getLlibrePerId(itemCarrito.id).img_url"
+                                        style="width: 70px;height: 106px;">
+                                    <div class="carrito-item-info">
+                                        <div id="titolPreCarrito">{{ getLlibrePerId(itemCarrito.id).titol }}</div>
+                                        <div id="autorPreCarrito">{{ getLlibrePerId(itemCarrito.id).autor }}</div>
+                                        <div id="preuPreCarrito">{{ getLlibrePerId(itemCarrito.id).preu }}€</div>
+                                    </div>
+                                </div>
+                                <div class="butonsSumaResta">
+                                    <button class="botonsLandingLog"
+                                        @click="restarQuantitat(itemCarrito.id,false)">-</button>
+                                    <input type="number" disabled v-model="itemCarrito.quantitat" class="inputN">
+                                    <button class="botonsLandingLog" @click="sumarQuantitat(itemCarrito.id)"
+                                        :disabled="getLlibrePerId(itemCarrito.id).stock <= 0 || getLlibrePerId(itemCarrito.id).stock <= itemCarrito.quantitat">+</button>
+                                </div>
+                            </div>
+                            <div class="preu-total-carrito">Total {{ getPreuTotalCarrito() }} €</div>
+                        </div>
+                        <button class="boto_cistella" @click="cambiarDiv('validacio')">PAGAR</button>
+                        <button class="boto_cistella" @click="cancelarModificarComanda()"
+                            v-if="comandaModificada == true">CANCELAR MODIFICAR</button>
+                    </div>
+                </Transition>
+
+
+                <div id="containerBuscador">
+                    <input @input="event => buscarLlibres(event.target.value)" placeholder="Buscar...">
+                    <button><img id="img_search"
+                            src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png"
+                            alt="icon_lupa"></button>
+                </div>
+
+                <div id="graella__productes">
+                    <div class="producte"
+                        :class="{ producteCarrito: getProducteInCarrito(llibre.id), producteAcabat: llibre.stock <= 0 }"
+                        v-for="(llibre, index) in llibresFiltrats.slice(indexLlibres,indexLlibres+llibresMostrats)"
+                        @click="mostrarLlibre(llibre.id), cambiarDiv('mostrarLlibre')" :key="index">
+                        <img class="producte__img" :src="llibre.img_url">
+                        <div class="etiqueta">
+                            <h5 class="producte__titol">{{llibre.titol}}</h5>
+                            <p class="producte__preu">{{llibre.preu}}€</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttonsEnrereEndevant">
+                    <button @click="paginaAnterior" :disabled="indexLlibres === 0">Anterior</button>
+                    <button @click="seguentPagina"
+                        :disabled="indexLlibres >= llibresFiltrats.length - llibresMostrats">Següent</button>
+                </div>
+            </div>
+
+            <div id="mostrarLlibre" v-if="mostrar('mostrarLlibre')">
+                <div class="portada">
+                    <div class="mostrarLlibreImgContainer">
+                        <img :src="getLlibreActual().img_url">
+                    </div>
+                    <div class="butonsSumaResta">
+                        <button class="botonsLandingLog" @click="restarQuantitat(getLlibreActual().id,true)"
+                            :disabled="quantitat === 0">-</button>
+                        <input type="number" disabled v-model="quantitat" class="inputN">
+                        <button class="botonsLandingLog" @click="sumarQuantitat(getLlibreActual().id)"
+                            :disabled="getLlibreActual().stock <= 0 || getLlibreActual().stock <= quantitat">+</button>
+                    </div>
+                </div>
+
+                <div v-if="getLlibreActual().stock > 0" class="llibreStock">
+                    Queden {{getLlibreActual().stock}} llibres!
+                </div>
+
+                <div v-if="getLlibreActual().stock <= 0" class="llibreStock">
+                    LLIBRE ESGOTAT!
+                </div>
+
+                <div class="infoLlibre">
+                    <h5>{{ getLlibreActual().titol }}</h5>
+                    <p>{{ getLlibreActual().preu }}€</p>
+                    <p>{{ getLlibreActual().any }}</p>
+                </div>
+
+                <div class="llibreDescr">
+                    <p>{{ getLlibreActual().descripcio }}</p>
+                </div>
+
+                <div class="butonAfegir">
+                    <button class="botoTornarEnrere" @click="cambiarDiv('botiga')">Tornar Enrere</button>
+                </div>
+            </div>
+
+            <div id="validacio" v-if="mostrar('validacio')">
+                <div id="dades">
+                    <h2>TICKET</h2>
+                    <div v-if="!usuari" class="login-btns-container2">
+                        <button @click="cambiarDiv('iniciarSesion')">Iniciar Sessió</button>
+                        <button @click="cambiarDiv('registro')">Registre</button>
+                    </div>
+                    <div v-if="usuari" class="msg-benvinguda">Hola {{ usuari.nom }}!</div>
+                    <div>
+                        <div id="resumCompra">
+                            <h2>Resum compra</h2>
+                            <table>
+                                <tr>
+                                    <th>Llibre</th>
+                                    <th class="tablQuant">Quantitat</th>
+                                    <th class="tablPreu">Preu</th>
+                                </tr>
+                                <tr v-for="itemCarrito in getCarrito()" :key="itemCarrito.id">
+                                    <td>{{ getLlibrePerId(itemCarrito.id).titol }}</td>
+                                    <td class="tablQuant">{{ itemCarrito.quantitat }}</td>
+                                    <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }}€</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TOTAL</strong></td>
+                                    <td class="tablQuant"><strong>{{ getQuantitatTotalCarrito() }}</strong></td>
+                                    <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }}€</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="containerConf">
+                            <button class="botonsLandingLog" @click="crearComanda()">CONFIRMAR</button>
+                        </div>
+                        <div v-if="errorMsg.length > 0" class="error">{{ errorMsg }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comandesUser" v-if="mostrar('comandesUser')">
+                <h2>Les Meves Comandes</h2>
+                <div class="butonAfegir">
+                    <button class="botoTornarEnrereComandes" @click="cambiarDiv('botiga')">Tornar Enrere</button>
+                </div>
+                <div v-for="(actual, index) in comandesUsuari">
+                    <div class="resumComanda">
+                        <div class="idComanda">
+                            Comanda <strong>{{ actual.id }}</strong>
+                            <div class="buttonsComandaContainer">
+                                <div class="buttonsComandaContent">
+                                    <div
+                                        v-if="actual.estat == 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                        <button class="comandes-btns" @click="modificarComanda(index)">Modificar
+                                            comanda</button>
+                                    </div>
+                                    <div
+                                        v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
+                                        <button class="comandes-btns" @click="eliminarComanda(actual.id)">
+                                            <p v-if="mostrarloading(false) || !comandaEliminat(actual.id)">Eliminar
+                                                Comanda</p>
+                                            <span v-if="mostrarloading(true) && comandaEliminat(actual.id)"
+                                                class="loader">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="InfoComanda">
+                            <div class="estatComanda">
+                                Estat: <strong>{{ actual.estat }}</strong>
+                            </div>
+                            <div class="tableComanda">
+                                <h3>RESUM COMPRA</h3>
+                                <hr>
+                                <table class="tablC">
+                                    <tr>
+                                        <th>Llibre</th>
+                                        <th class="tablQuantEstat">Quantitat</th>
+                                        <th class="tablPreuEstat">Preu</th>
+                                    </tr>
+                                    <tr v-for="producte in actual.llibres" :key="producte.id">
+                                        <td>{{ producte.titol }}</td>
+                                        <td class="tablQuantEstat">{{ producte.quantitat }}</td>
+                                        <td class="tablPreuEstat">{{ producte.preu }}€</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>TOTAL</strong></td>
+                                        <td class="tablQuantEstat"><strong>{{ getQuantitatTotalCom(actual) }}</strong></td>
+                                        <td class="tablPreuEstat"><strong>{{ getPreuTotalCom(actual) }}€</strong></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="estat" v-if="mostrar('estat')">
+                <div id="imgEstat">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/858/556/small/green-check-mark-icon-with-circle-tick-box-check-list-circle-frame-checkbox-symbol-sign-png.png"
+                        alt="img_check">
+                </div>
+                <h2>Compra efectuada correctament</h2>
+
+                <div class="resumComanda">
+                    <div class="idComanda">
+                        Comanda <strong>{{ getUltimaComandaUsuari().id }}</strong>
+                    </div>
+                    <div class="InfoComanda">
+                        <div class="estatComanda">
+                            Estat: <strong>{{ getUltimaComandaUsuari().estat }}</strong>
+                        </div>
+                        <div class="tableComanda">
+                            <h3>RESUM COMPRA:</h3>
+                            <hr>
+                            <table class="tablC">
+                                <tr>
+                                    <th>Llibre</th>
+                                    <th class="tablQuantEstat">Quantitat</th>
+                                    <th class="tablPreuEstat">Preu</th>
+                                </tr>
+                                <tr v-for="producte in getUltimaComandaUsuari().llibres" :key="producte.id">
+                                    <td>{{ getLlibrePerId(producte.id).titol }}</td>
+                                    <td class="tablQuantEstat">{{ producte.quantitat }}</td>
+                                    <td class="tablPreuEstat">{{ producte.preu }}€</td>
+                                </tr>
+                                <tr>
+                                    <td>TOTAL</td>
+                                    <td class="tablQuantEstat"><strong>{{ getQuantitatTotalComanda() }}</strong></td>
+                                    <td class="tablPreuEstat"><strong>{{ getPreuTotalComanda() }}€</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="containerTornarInici">
+                    <button class="botonsLandingLog" @click="cambiarDiv('botiga')">Tornar botiga</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div v-if="mostrar('modificarComanda')" id="modificarComanda">
+            <h2>PANTALLA MODIFICAR COMANDA</h2>
+        </div>
+        <footer>
+            <p id="textFooter">© Biblioteca Galaxia Gutenberg All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="./js/functions.js" type="module"></script>
+
+</body>
+
+
+</html>

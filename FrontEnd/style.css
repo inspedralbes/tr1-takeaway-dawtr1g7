@@ -1,0 +1,1327 @@
+/*Colors que fem servir a la web*/
+:root {
+    --gradient-general: linear-gradient(to left, #52389b, #764fe2);
+    --dark-blue: #64729c;
+    --light-blue: #b8caff;
+    --white: white;
+    --bc-buscador: #52389b;
+    --inverted-bc-buscador: #ADC764;
+    --black: #000;
+    --border-rad: 8px;
+}
+
+/*Estils per elements de tota la web*/
+h1 {
+    margin: 0;
+    padding: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin: 15px 0;
+}
+
+h3 {
+    text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.loading-img {
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+.loading-in-Botons {
+    width: 14px;
+    height: 14px;
+}
+
+/*NUMERO CARRITO*/
+#containerTogglePreviewCarrito {
+    position: relative;
+}
+
+#containerNumQuantitatCarrito {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#numQuatitatCarrito {
+    font-size: 12px;
+}
+
+/*ESTILS BUSCADOR*/
+#containerBuscador {
+    padding: 0;
+    height: 35px;
+    margin: 20px;
+    margin-bottom: 0;
+    border-radius: var(--border-rad);
+    display: flex;
+    justify-content: center;
+}
+
+#containerBuscador * {
+    background-color: var(--bc-buscador);
+}
+
+#containerBuscador>input {
+    margin: 0;
+    border: none;
+    width: 90%;
+    height: 100%;
+    border-radius: var(--border-rad) 0px 0px var(--border-rad);
+    padding: 10px;
+    color: var(--white);
+}
+
+#containerBuscador>input::placeholder {
+    color: var(--white);
+}
+
+#containerBuscador>input:focus {
+    outline: none;
+}
+
+#containerBuscador>button {
+    height: 100%;
+    width: 10%;
+    border: none;
+    border-radius: 0px var(--border-rad) var(--border-rad) 0px;
+    padding: 5px;
+}
+
+#img_search {
+    height: 100%;
+    filter: invert(100%);
+    background-color: var(--inverted-bc-buscador);
+}
+
+
+/*Estils login*/
+
+#iniciSessio {
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    background-color: var(--white);
+    background: url('https://img.freepik.com/fotos-premium/fondo-morado-azul-fondo-morado-palabra-amor_873925-17800.jpg?size=626&ext=jpg');
+    border: none;
+    border-radius: var(--border-rad);
+    margin: 30px auto;
+}
+
+#iniciSessio h2 {
+    color: var(--white);
+    text-align: center;
+}
+
+#iniciSessio label {
+    display: block;
+    color: var(--white);
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#correuIniciSessio,
+#passwordIniciSesio {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: var(--border-rad);
+}
+
+#iniciSessio button {
+    width: 100%;
+    padding: 10px;
+    background-image: linear-gradient(to left, #6e3afc, #6e3afc, #6e3afc);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-rad);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+/*Estils registre*/
+
+#registre {
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    background-color: var(--white);
+    background: url('https://img.freepik.com/fotos-premium/fondo-morado-azul-fondo-morado-palabra-amor_873925-17800.jpg?size=626&ext=jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: none;
+    border-radius: var(--border-rad);
+    margin: 30px auto;
+}
+
+#registre h3 {
+    color: var(--white);
+    text-align: center;
+}
+
+#registre label {
+    display: block;
+    color: var(--white);
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#correuRegistre,
+#passwordRegistre,
+#password2Registre,
+#nomRegistre,
+#telefonRegistre {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: var(--border-rad);
+}
+
+#registre button {
+    width: 100%;
+    padding: 10px;
+    background-image: linear-gradient(to left, #6e3afc, #6e3afc, #6e3afc);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-rad);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Estils menú desplegable*/
+#categories {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 100vw;
+    height: 100vh;
+    background: var(--gradient-general);
+    color: var(--white);
+    z-index: 999;
+    left: -100vw;
+    transition: 0.2s ease-out;
+}
+
+#categories.active {
+    left: 0;
+}
+
+.itemCategoria {
+    padding: 10px;
+}
+
+.itemCategoriaTodas {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+/*Missatge errors*/
+.error {
+    color: rgb(90, 7, 7);
+    text-align: center;
+    border-radius: var(--border-rad);
+}
+
+/*DISTRIBUCIO D'ESPAIS*/
+header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: var(--gradient-general);
+    color: var(--white);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.admin-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.logout-btn button {
+    padding: 5px;
+    border-radius: var(--border-rad);
+    border: none;
+}
+
+.buttonComanda {
+    padding: 8px 15px;
+    width: 90%;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    color: var(--white);
+    box-shadow: 3px 6px 5px #333;
+}
+
+.buttonComanda-container {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#landing {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.msg-benvinguda {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.botoTornarEnrere {
+    color: var(--white);
+    font-size: 18px;
+    width: 100%;
+}
+
+.botoTornarEnrereComandes {
+    color: var(--white);
+    font-size: 18px;
+    width: 80%;
+}
+
+
+footer {
+    grid-area: footer;
+    background: var(--gradient-general);
+    color: var(--white);
+    font-size: 0.8em;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*DISTRIBUCIO D'ESPAIS*/
+.header-title {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.icon {
+    height: 30px;
+    width: 40px;
+    filter: brightness(0) invert(1);
+}
+
+/*Imatge logout*/
+.iconsLanding {
+    filter: brightness(0) invert(1);
+    width: 30px;
+    height: 30px;
+}
+
+/*Selector del div global*/
+#app {
+    min-height: 100vh;
+    display: grid;
+    width: 100%;
+    grid-template-areas: "header" "conten" "footer";
+    grid-template-rows: 60px 1fr 50px;
+}
+
+/*LANDING*/
+#imgP {
+    width: 100%;
+}
+
+#imgDesk {
+    display: none;
+}
+
+#cataleg-btn {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.login-btns-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    background-color: var(--light-blue);
+    border: 1px solid var(--dark-blue);
+    padding: 15px;
+}
+
+.login-btns-container {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.login-btns-container h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
+
+}
+
+.login-btns-container h6,
+.login-btns-container2 h6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Esto es opcional y depende de tu diseño. Ajusta según sea necesario. */
+
+}
+
+.infoBotiga button {
+    padding: 8px 15px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+}
+
+.infoBotiga h2 {
+    margin-bottom: 15px;
+    background-image: linear-gradient(to left, #ac8ffc, #000, #6e3afc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.infoBotiga>#textInfoBot {
+
+    gap: 15px;
+}
+
+.infoBotiga {
+    width: 90%;
+    padding-bottom: 10%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 50px;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Estils loading*/
+.loader {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    max-width: 1.6rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    animation: pulsOut 1.8s ease-in-out infinite;
+    filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.75));
+}
+
+.loader:before {
+    width: 100%;
+    padding-bottom: 100%;
+    box-shadow: inset 0 0 0 1rem #fff;
+    animation-name: pulsIn;
+}
+
+.loader:after {
+    width: calc(100% - 2rem);
+    padding-bottom: calc(100% - 2rem);
+    box-shadow: 0 0 0 0 #fff;
+}
+
+@keyframes pulsIn {
+    0% {
+        box-shadow: inset 0 0 0 1rem #fff;
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        box-shadow: inset 0 0 0 0 #fff;
+        opacity: 0;
+    }
+}
+
+@keyframes pulsOut {
+
+    0%,
+    50% {
+        box-shadow: 0 0 0 0 #fff;
+        opacity: 0;
+    }
+
+    100% {
+        box-shadow: 0 0 0 1rem #fff;
+        opacity: 1;
+    }
+}
+
+
+
+.loaderCompra {
+    width: 150px;
+    height: 150px;
+    background-color: #764fe2;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 30px 4px rgba(0, 0, 0, 0.5) inset,
+        0 5px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin-right: 50px;
+}
+
+.loaderCompra:before,
+.loaderCompra:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 45%;
+    top: -40%;
+    background-color: #fff;
+    animation: wave 5s linear infinite;
+}
+
+.loaderCompra:before {
+    border-radius: 30%;
+    background: rgba(255, 255, 255, 0.4);
+    animation: wave 5s linear infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.landing__botonsLandingLog {
+    color: var(--white);
+}
+
+.botonsLandingLog {
+    color: var(--white);
+}
+
+.botonsLandingLog:disabled {
+    background-color: #666;
+}
+
+/*****DESCRIPCIÓ LLIBRE APARTAT MOSTRAR LLIBRE*****/
+
+#mostrarLlibre {
+    margin: 20px auto;
+    display: grid;
+    grid-template-areas:
+        "tornar_enrere tornar_enrere"
+        "portada dades_basiques"
+        "stock stock"
+        "descripcio descripcio";
+    grid-template-columns: 6fr 4fr;
+    grid-template-rows: 1fr 6fr 1fr 4fr;
+    gap: 15px;
+    font-family: sans-serif;
+    border: 1px solid var(--black);
+    border-radius: var(--border-rad);
+    width: 90%;
+    padding: 20px;
+}
+
+.llibreStock {
+    grid-area: stock;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(206, 32, 32);
+}
+
+.portada {
+    grid-area: portada;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.mostrarLlibreImgContainer {
+    position: relative;
+    padding-top: 150%;
+    width: 100%;
+    box-shadow: 2px 5px 5px #333;
+    border-radius: var(--border-rad);
+}
+
+.mostrarLlibreImgContainer img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: var(--border-rad);
+}
+
+.infoLlibre {
+    grid-area: dades_basiques;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.llibreDescr {
+    grid-area: descripcio;
+}
+
+.infoLlibre>p:nth-child(2) {
+    font-size: 1.25em;
+    font-weight: lighter;
+}
+
+.butonsSumaResta {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+}
+
+.butonAfegir {
+    grid-area: tornar_enrere;
+    display: flex;
+    justify-content: center;
+}
+
+.infoLlibre>h5 {
+    font-size: 1.25em;
+    margin: 0;
+}
+
+.butonAfegir>button {
+    padding: 8px 15px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    margin: auto;
+    box-shadow: 1px 3px 2px #333;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.butonsSumaResta>input {
+    width: 70%;
+    height: 100%;
+    border: 1px solid var(--black);
+    border-left-style: none;
+    border-right-style: none;
+    text-align: center;
+}
+
+.butonsSumaResta>button {
+    background-color: transparent;
+    border: 1px solid var(--black);
+    height: 100%;
+    width: 15%;
+
+}
+
+.butonsSumaResta>button:nth-child(1) {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.butonsSumaResta>button:nth-child(3) {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+/* Botiga */
+#graella__productes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    align-items: center;
+}
+
+.producte {
+    position: relative;
+    border-radius: var(--border-rad);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* Agregado para alinear el contenido verticalmente */
+    margin: 20px auto;
+    width: 150px;
+    box-shadow: 3px 5px 5px #333;
+    transition: transform 0.6s;
+}
+
+.producte:active {
+    transform: scale(1.1);
+}
+
+.producte__titol {
+    font-size: 1.1em;
+}
+
+.inputN[type=number] {
+    appearance: textfield;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.buttonsEnrereEndevant {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttonsEnrereEndevant button {
+    padding: 8px 15px;
+    color: var(--white);
+    font-size: 18px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+}
+
+.buttonsEnrereEndevant button:disabled {
+    background: #666;
+}
+
+.etiqueta {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0px 0px var(--border-rad) var(--border-rad);
+    color: var(--black);
+    padding-bottom: 14px;
+    padding-top: 14px;
+}
+
+.producteCarrito .etiqueta {
+    background-color: rgba(238, 238, 125, 0.7);
+}
+
+.producteAcabat .etiqueta {
+    background-color: rgba(95, 16, 16, 0.8);
+    color: #fff;
+}
+
+.producte__img {
+    width: 150px;
+    height: 225px;
+    border-radius: var(--border-rad)
+}
+
+/* Transició Preview Carrito */
+.animacioCarrito-enter-active,
+.animacioCarrito-leave-active {
+    transition: all 0.5s ease;
+}
+
+.animacioCarrito-enter-from,
+.animacioCarrito-leave-to {
+    opacity: 0;
+    transform: translateY(-60px);
+}
+
+/*Preview Carrito*/
+
+#previewCarrito {
+    margin: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 0;
+}
+
+.carrito-item {
+    display: flex;
+    margin: 10px 10px;
+}
+
+.boto_cistella {
+    display: block;
+    width: 80%;
+    margin: 15px auto;
+    padding: 5px 15px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    box-shadow: 1px 3px 2px #333;
+    border: none;
+    color: var(--white);
+}
+
+#titolPreCarrito {
+    text-align: justify;
+}
+
+#autorPreCarrito {
+    text-align: justify;
+    color: #aaa;
+}
+
+.carrito-item-container {
+    margin-bottom: 10px;
+}
+
+.preu-total-carrito {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+#preuPreCarrito {
+    position: absolute;
+    text-align: right;
+    bottom: 0;
+    right: 0;
+}
+
+.carrito-item-info {
+    position: relative;
+    width: 100%;
+    margin-left: 15px;
+
+}
+
+/*Grid àrea de formulari*/
+#labelNom {
+    grid-area: lablNom;
+}
+
+#nomValidacio {
+    grid-area: nomInp;
+}
+
+#labelEmail {
+    grid-area: lablEmail;
+}
+
+#emailValidacio {
+    grid-area: emailInp;
+}
+
+#labelTel {
+    grid-area: lablTel;
+}
+
+#telValidacio {
+    grid-area: telInp;
+}
+
+/*Grid àrea de formulari DADES*/
+#dadesInput {
+    display: grid;
+    grid-template-areas:
+        "lablNom"
+        "nomInp"
+        "lablEmail"
+        "emailInp"
+        "lablTel"
+        "telInp";
+}
+
+#dadesInput>label {
+    padding-top: 10px;
+}
+
+#dades {
+    grid-area: dades;
+    padding-top: 15px;
+}
+
+/*RESUM COMPRA*/
+#resumCompra {
+    grid-area: resum;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.login-btns-container2 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.login-btns-container button,
+.login-btns-container2 button {
+    padding: 8px 15px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+    color: var(--white);
+}
+
+#resumCompra>h2 {
+    text-align: center;
+}
+
+#resumCompra>table {
+    padding-top: 15px;
+    width: 100%;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 8px;
+}
+
+.tablQuant {
+    text-align: center;
+}
+
+.tablPreu {
+    text-align: right;
+}
+
+/*BUTTON CONFIRMAR*/
+#containerConf {
+    grid-area: buttConf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+#containerConf>button {
+    padding: 15px;
+    margin: auto;
+    width: 60%;
+    background: var(--gradient-general);
+    margin-bottom: 15px;
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+}
+
+/*GRID VALIDACIO*/
+#validacio {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+        "dades"
+        "resum"
+        "buttConf";
+    border: 1px solid #333;
+    border-radius: var(--border-rad);
+    margin-top: 15%;
+    padding: 10px;
+}
+
+#imgEstat {
+    text-align: center;
+}
+
+#imgEstat>img {
+    width: 50%;
+    height: auto;
+}
+
+#estat>h2 {
+    text-align: center;
+}
+
+.resumComanda {
+    width: 90%;
+    border: 1px solid var(--black);
+    margin: 20px auto;
+}
+
+.idComanda {
+    border-bottom: 1px solid var(--black);
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.estatComanda {
+    grid-area: estatC;
+    text-align: center;
+}
+
+.tableComanda {
+    padding-top: 15px;
+    grid-area: tablC;
+}
+
+.tablQuantEstat {
+    text-align: center;
+}
+
+.tablPreuEstat {
+    text-align: right;
+}
+
+/*ButtonsComanda*/
+.buttonsComandaContainer {
+    width: 100%;
+}
+
+.buttonsComandaContent {
+    width: 80%;
+    margin: auto;
+}
+
+.buttonsComandaContent>div {
+    width: 100%;
+}
+
+.buttonsComandaContent>div>button {
+    width: 100%;
+}
+
+.InfoComanda {
+    padding: 15px;
+}
+
+.tablC {
+    width: 100%;
+}
+
+#containerTornarInici {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.comandes-btns {
+    padding: 8px 15px;
+    color: var(--white);
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+    margin: 10px auto;
+}
+
+#containerTornarInici>button {
+    padding: 8px 15px;
+    background: var(--gradient-general);
+    border-radius: var(--border-rad);
+    border: none;
+    box-shadow: 1px 3px 2px #333;
+}
+
+.direccioBotiga {
+
+    background-color: var(--light-blue);
+    border: 1px solid var(--dark-blue);
+
+
+}
+
+@media(min-width:700px) {
+
+    /*Landing*/
+    .login-btns-container {
+        width: 30%;
+    }
+
+    .login-btns-container2 {
+        width: 30%;
+    }
+
+    #imgDesk {
+        display: block;
+        width: 30%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .infoBotiga>#textInfoBot {
+        align-self: center;
+        animation-duration: 3s;
+        animation-name: slidein;
+
+    }
+
+    @keyframes slidein {
+        from {
+            margin-left: 100%;
+            width: 50%;
+        }
+
+        to {
+            margin-left: 0%;
+            width: 100%;
+        }
+    }
+
+    .direccioBotiga {
+        display: flex;
+        background-color: var(--light-blue);
+        border: 1px solid var(--dark-blue);
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+
+    }
+
+    #direccio {
+        height: 50%;
+        width: 50%;
+    }
+
+    .infoBotiga {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        gap: 50px;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*Botiga*/
+    #graella__productes {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        text-align: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2%;
+
+    }
+
+    .butonsSumaResta {
+        width: 40%;
+    }
+
+    .butonsSumaResta>input {
+        width: 70%;
+        height: 100%;
+    }
+
+    .butonsSumaResta>button {
+        height: 100%;
+        width: 15%;
+    }
+
+    /*Estils Preview Carrito*/
+    .butonsSumaRestaCarrito {
+        height: 30px;
+        width: 30%;
+        background: var(--mi-gradient);
+        text-align: center;
+        padding: 0;
+    }
+
+    .butonsSumaRestaCarrito>p {
+        text-align: center;
+    }
+
+    .butonsSumaRestaCarrito>input {
+        width: 70%;
+        height: 100%;
+        border: 1px solid var(--black);
+        border-left-style: none;
+        border-right-style: none;
+        text-align: center;
+    }
+
+    .butonsSumaRestaCarrito>button {
+        background-color: transparent;
+        border: 1px solid var(--black);
+        height: 100%;
+        width: 15%;
+    }
+
+    .inputN[type="number"] {
+        width: 70%;
+    }
+
+    #previewCarrito {
+        position: relative;
+
+        max-width: 30%;
+        max-height: 220px;
+        overflow-y: auto;
+    }
+
+    .butonAfegir>button {
+        width: 30%;
+        margin-right: 70%;
+    }
+
+    .infoLlibre {
+        width: 50%;
+    }
+
+    .infoLlibre img {
+        width: 50%;
+        height: 50%;
+    }
+
+    #mostrarLlibre {
+        margin: 20px auto;
+        width: 50%;
+        padding: 20px;
+    }
+
+    .mostrarLlibreImgContainer {
+        position: relative;
+        padding-top: 50%;
+        width: 40%;
+        height: 50%;
+        box-shadow: 2px 5px 5px #333;
+        border-radius: var(--border-rad);
+    }
+
+    .mostrarLlibreImgContainer img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        border-radius: var(--border-rad);
+    }
+
+    /*Estils Buscador*/
+    #containerBuscador {
+        width: 35%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*Estils ticket*/
+    #dades {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*Espais apartat validació*/
+    #validacio {
+        margin-top: 5%;
+        padding: 10px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .resumComanda {
+        width: 50%;
+        border: 1px solid var(--black);
+        margin: 20px auto;
+    }
+    .butonAfegir > button{
+        width: 15%;
+        margin-right: 0;
+    }
+
+    /*Botons de inici de sessió i registre */
+
+    .login-btns-container button,
+    .login-btns-container2 button {
+        margin: 5px;
+    }
+
+    .login-btns-container,
+    .login-btns-container2 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #iniciSessio {
+        margin-top: 10%;
+    }
+
+    #registre {
+        margin-top: 5%;
+    }
+
+    /*Imatge página principal*/
+    #imgP {
+        display: none;
+    }
+
+    /*Estils apartat estat comanda */
+    #imgEstat img {
+        width: 10%;
+        margin-top: 15%;
+    }
+}
