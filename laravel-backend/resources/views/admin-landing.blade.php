@@ -26,16 +26,4 @@
         </button>
     </div>
 </div>
-
-<script>
-    function redirectToLandingPage() {
-        let localhost = window.location.hostname == '127.0.0.1'
-
-        if (localhost) {
-            window.location.href = 'http://127.0.0.1:5501/FrontEnd/'
-        } else {
-            window.location.href = '../../FrontEnd'
-        }
-    }
-</script>
 @endsection
