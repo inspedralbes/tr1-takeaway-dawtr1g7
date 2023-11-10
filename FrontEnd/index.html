@@ -243,8 +243,8 @@
                                     <td class="tablPreu">{{ getLlibrePerId(itemCarrito.id).preu }}€</td>
                                 </tr>
                                 <tr>
-                                    <td>TOTAL</td>
-                                    <td class="tablQuant">{{ getQuantitatTotalCarrito() }}</td>
+                                    <td><strong>TOTAL</strong></td>
+                                    <td class="tablQuant"><strong>{{ getQuantitatTotalCarrito() }}</strong></td>
                                     <td class="tablPreu"><strong>{{ getPreuTotalCarrito() }}€</strong></td>
                                 </tr>
                             </table>
@@ -304,9 +304,9 @@
                                         <td class="tablPreuEstat">{{ producte.preu }}€</td>
                                     </tr>
                                     <tr>
-                                        <td>TOTAL</td>
-                                        <td class="tablQuantEstat">{{ getQuantitatTotalCom(actual) }}</td>
-                                        <td class="tablPreuEstat">{{ getPreuTotalCom(actual) }}€</td>
+                                        <td><strong>TOTAL</strong></td>
+                                        <td class="tablQuantEstat"><strong>{{ getQuantitatTotalCom(actual) }}</strong></td>
+                                        <td class="tablPreuEstat"><strong>{{ getPreuTotalCom(actual) }}€</strong></td>
                                     </tr>
                                 </table>
                             </div>
@@ -346,8 +346,8 @@
                                 </tr>
                                 <tr>
                                     <td>TOTAL</td>
-                                    <td class="tablQuantEstat">{{ getQuantitatTotalComanda() }}</td>
-                                    <td class="tablPreuEstat">{{ getPreuTotalComanda() }}€</td>
+                                    <td class="tablQuantEstat"><strong>{{ getQuantitatTotalComanda() }}</strong></td>
+                                    <td class="tablPreuEstat"><strong>{{ getPreuTotalComanda() }}€</strong></td>
                                 </tr>
                             </table>
                         </div>

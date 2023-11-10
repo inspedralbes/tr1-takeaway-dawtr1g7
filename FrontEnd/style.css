@@ -729,10 +729,6 @@ footer {
     transition: transform 0.6s;
 }
 
-.producte:hover {
-    transform: scale(1.2);
-}
-
 .producte:active {
     transform: scale(1.1);
 }
