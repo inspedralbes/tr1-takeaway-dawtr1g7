@@ -14,7 +14,8 @@
 <body>
     <div id="app">
         <header>
-            <div class="admin-btn" v-on:click="redirectToAdminPage()" v-if="mostrar('landing')">
+            <div class="admin-btn" v-on:click="redirectToAdminPage()"
+                v-if="mostrar('landing') && usuari && usuari.nom === 'admin'">
                 <img src="https://static.thenounproject.com/png/3324336-200.png" class="iconsLanding" alt="">
             </div>
             <div @click="togglePreviewCategories()" v-if="mostrar('botiga')">
@@ -106,7 +107,7 @@
             </div>
             <div v-if="mostrar('loading')" class="loading">
                 <span class="loaderCompra"></span>
-                <p>Procesando compra...</p>
+                <p>Processant...</p>
             </div>
             <div id="botiga" v-if="mostrar('botiga')">
 
@@ -120,7 +121,7 @@
                         <div>{{ categoria.nom }}</div>
                     </div>
                 </div>
-                <div v-if="getComanda().productes.length > 0" class="buttonComanda-container">
+                <div v-if="comandesUsuari.length > 0" class="buttonComanda-container">
                     <button class="buttonComanda" @click="cambiarDiv('comandesUser')">Les Meves Comandes</button>
                 </div>
                 <Transition name="animacioCarrito">
@@ -275,10 +276,10 @@
                                     <div
                                         v-if="actual.estat === 'Pendent' && comandaModificada == false && carrito.length == 0">
                                         <button class="comandes-btns" @click="eliminarComanda(actual.id)">
-                                            <p v-if="mostrarloading(false) || !comandaEliminat(actual.id)">
-                                                EliminarComanda</p>
-                                            <img v-if="mostrarloading(true) && comandaEliminat(actual.id)"
-                                                src="https://i.gifer.com/ZKZg.gif" class="loading-in-Botons">
+                                            <p v-if="mostrarloading(false) || !comandaEliminat(actual.id)">Eliminar
+                                                Comanda</p>
+                                            <span v-if="mostrarloading(true) && comandaEliminat(actual.id)"
+                                                class="loader">
                                         </button>
                                     </div>
                                 </div>
@@ -286,10 +287,11 @@
                         </div>
                         <div class="InfoComanda">
                             <div class="estatComanda">
-                                Estat de la comanda: <strong>{{ actual.estat }}</strong>
+                                Estat: <strong>{{ actual.estat }}</strong>
                             </div>
                             <div class="tableComanda">
-                                <h3>RESUM COMPRA:</h3>
+                                <h3>RESUM COMPRA</h3>
+                                <hr>
                                 <table class="tablC">
                                     <tr>
                                         <th>Llibre</th>
@@ -300,9 +302,6 @@
                                         <td>{{ producte.titol }}</td>
                                         <td class="tablQuantEstat">{{ producte.quantitat }}</td>
                                         <td class="tablPreuEstat">{{ producte.preu }}€</td>
-                                        <!--<td>{{ getLlibrePerId(producte.id).titol }}</td>
-                                        <td class="tablQuantEstat">{{ producte.quantitat }}</td>
-                                        <td class="tablPreuEstat">{{ producte.preu }}€</td>-->
                                     </tr>
                                     <tr>
                                         <td>TOTAL</td>
@@ -325,21 +324,22 @@
 
                 <div class="resumComanda">
                     <div class="idComanda">
-                        Comanda <strong>{{ getComanda().id }}</strong>
+                        Comanda <strong>{{ getUltimaComandaUsuari().id }}</strong>
                     </div>
                     <div class="InfoComanda">
                         <div class="estatComanda">
-                            Estat de la comanda: <strong>{{ getComanda().estat }}</strong>
+                            Estat: <strong>{{ getUltimaComandaUsuari().estat }}</strong>
                         </div>
                         <div class="tableComanda">
                             <h3>RESUM COMPRA:</h3>
+                            <hr>
                             <table class="tablC">
                                 <tr>
                                     <th>Llibre</th>
                                     <th class="tablQuantEstat">Quantitat</th>
                                     <th class="tablPreuEstat">Preu</th>
                                 </tr>
-                                <tr v-for="producte in getComanda().productes" :key="producte.id">
+                                <tr v-for="producte in getUltimaComandaUsuari().llibres" :key="producte.id">
                                     <td>{{ getLlibrePerId(producte.id).titol }}</td>
                                     <td class="tablQuantEstat">{{ producte.quantitat }}</td>
                                     <td class="tablPreuEstat">{{ producte.preu }}€</td>

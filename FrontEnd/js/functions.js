@@ -24,7 +24,7 @@ createApp({
             comptadorModificar: 0,
             comandesUsuari: [],
             loadingStatus: false,
-            comandaEliminada:0
+            comandaEliminada: 0
         }
     },
 
@@ -62,9 +62,9 @@ createApp({
                 this.errorMsg = "Inicia sessió per a crear una comanda!"
                 return
             }
-            
+
             this.cambiarDiv('loading');
-            if(this.comandaModificada == false) {
+            if (this.comandaModificada == false) {
                 let carrito = JSON.parse(JSON.stringify(this.carrito));
                 let jsonObject = { "carrito": carrito }
                 let url
@@ -84,7 +84,6 @@ createApp({
                 })
 
                 const jsonResponse = await response.json();
-                console.log(jsonResponse);
                 this.crearNovaComanda(jsonResponse);
             } else {
                 let carrito = JSON.parse(JSON.stringify(this.carrito));
@@ -105,12 +104,12 @@ createApp({
                     body: JSON.stringify(jsonObject)
                 })
                 const jsonResponse = await response.json();
-                console.log(jsonResponse);
                 this.crearNovaComanda(jsonResponse);
                 this.comandaModificada = false;
             }
             this.getLlibres()
-            this.getLlistatComandesPerUsuari();
+            await this.getLlistatComandesPerUsuari();
+            this.comanda = { productes: [] }
         },
         async modificarComanda(index) {
 
@@ -149,7 +148,6 @@ createApp({
                 },
             })
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
             this.comandaModificada = false
             this.getLlibres()
             this.getLlistatComandesPerUsuari()
@@ -175,7 +173,7 @@ createApp({
             }
 
         },
-        mostrarloading(estat){
+        mostrarloading(estat) {
             return this.loadingStatus === estat;
         },
         mostrar(id) {
@@ -254,14 +252,14 @@ createApp({
         },
         getPreuTotalComanda() {
             let preu = 0
-            this.comanda.productes.forEach(llibre => {
+            this.getUltimaComandaUsuari().llibres.forEach(llibre => {
                 preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
         },
         getQuantitatTotalComanda() {
             let quantitat = 0
-            this.comanda.productes.forEach(llibre => {
+            this.getUltimaComandaUsuari().llibres.forEach(llibre => {
                 quantitat += llibre.quantitat
             });
             return quantitat
@@ -362,7 +360,6 @@ createApp({
                 },
             })
             let jsonResponse = await response.json()
-            //console.log(jsonResponse)
             this.comandesUsuari = jsonResponse;
             this.comanda = {
                 id: jsonResponse[0].id,
@@ -389,8 +386,6 @@ createApp({
                 estat: jsonResponse[jsonResponse.length - 1].estat,
                 productes: jsonResponse[jsonResponse.length - 1].llibres
             }
-            console.log("Comanda dins funcio")
-            console.log(this.comanda)
             return this.comanda;
         },
         async getLlistatComandesPerUsuari() {
@@ -407,7 +402,11 @@ createApp({
                 },
             })
             let jsonResponse = await response.json();
-            this.comandesUsuari = jsonResponse;
+            if (jsonResponse.status !== 'error') {
+                this.comandesUsuari = jsonResponse;
+            } else {
+                this.comandesUsuari = []
+            }
         },
         getQuantitatTotalCom(comanda) {
             let quantitat = 0
@@ -422,6 +421,9 @@ createApp({
                 preu += llibre.preu * llibre.quantitat
             });
             return preu.toFixed(2)
+        },
+        getUltimaComandaUsuari() {
+            return this.comandesUsuari[this.comandesUsuari.length - 1]
         },
 
         // USUARIS
@@ -517,7 +519,7 @@ createApp({
                 this.indexLlibres -= this.llibresMostrats;
             }
         },
-        comandaEliminat(id){
+        comandaEliminat(id) {
             return this.comandaEliminada == id;
         }
     }
